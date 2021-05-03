@@ -13,7 +13,7 @@
 		7F376B1C26401A910063F2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1A26401A910063F2EC /* Main.storyboard */; };
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
-		7F376B2A26401E770063F2EC /* TopViewAlertCollectionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F376B2926401E770063F2EC /* TopViewAlertCollectionListVC.swift */; };
+		7FABB9A7264023F8001182DF /* TopViewAlertCollectionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9A6264023F8001182DF /* TopViewAlertCollectionListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		7F376B1D26401A920063F2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7F376B2926401E770063F2EC /* TopViewAlertCollectionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewAlertCollectionListVC.swift; sourceTree = "<group>"; };
+		7FABB9A6264023F8001182DF /* TopViewAlertCollectionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewAlertCollectionListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,6 @@
 		7F376B0826401A910063F2EC = {
 			isa = PBXGroup;
 			children = (
-				7F376B2926401E770063F2EC /* TopViewAlertCollectionListVC.swift */,
 				7F376B1326401A910063F2EC /* ToProtectOversleeping */,
 				7F376B1226401A910063F2EC /* Products */,
 			);
@@ -61,6 +60,7 @@
 			children = (
 				7F376B1426401A910063F2EC /* AppDelegate.swift */,
 				7F376B1626401A910063F2EC /* SceneDelegate.swift */,
+				7FABB9A6264023F8001182DF /* TopViewAlertCollectionListVC.swift */,
 				7F376B1826401A910063F2EC /* ViewController.swift */,
 				7F376B1A26401A910063F2EC /* Main.storyboard */,
 				7F376B1D26401A920063F2EC /* Assets.xcassets */,
@@ -140,7 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F376B2A26401E770063F2EC /* TopViewAlertCollectionListVC.swift in Sources */,
+				7FABB9A7264023F8001182DF /* TopViewAlertCollectionListVC.swift in Sources */,
 				7F376B1926401A910063F2EC /* ViewController.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,
