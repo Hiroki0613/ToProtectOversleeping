@@ -31,16 +31,17 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        settingInformation()
+        backgroundColor = .systemRed
+//        settingInformation()
         configure()
         configureDecoration()
-        
+        settingInformation()
         
         self.backgroundView = UIView()
         addSubview(self.backgroundView!)
     }
     
-    
+        
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -57,6 +58,7 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .systemRed
         let padding: CGFloat = 8
         // 起きる時間をStack
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
@@ -83,23 +85,23 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
             //起きる時間
             wakeUpTimeStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             wakeUpTimeStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: padding),
-            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: 50),
+            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: 10),
             // チャットチーム名
             chatTeamNameStackView.topAnchor.constraint(equalTo: wakeUpTimeStackView.bottomAnchor, constant: padding),
             chatTeamNameStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             chatTeamNameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            chatTeamNameStackView.heightAnchor.constraint(equalToConstant: 50),
+            chatTeamNameStackView.heightAnchor.constraint(equalToConstant: 10),
             // GPS
             setGPSStackView.topAnchor.constraint(equalTo: chatTeamNameStackView.bottomAnchor, constant: padding),
             setGPSStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             setGPSStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            setGPSStackView.heightAnchor.constraint(equalToConstant: 50),
+            setGPSStackView.heightAnchor.constraint(equalToConstant: 10),
             // 市区町村
             prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setGPSStackView.bottomAnchor, constant: padding),
             prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             prefectureAndCityNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: 50)
+            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: 10)
         ])
     }
     
