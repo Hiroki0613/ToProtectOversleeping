@@ -15,12 +15,12 @@ class WakeUpCardView: UIView {
     var wakeUpTimeStackView = UIStackView(frame: .zero)
     // チャットのチーム名、ピッカー式にするか悩む
     var chatTeamNameLabel = UILabel()
-//    var chatTeamNameTextField = UITextField()
-//    var chatTeamNameStackView = UIStackView(frame: .zero)
+    var chatTeamNameTextField = UITextField()
+    var chatTeamNameStackView = UIStackView(frame: .zero)
     // GPSを設定するボタン
     var setGPSLabel = UILabel()
-//    var setGPSButton = UIButton()
-//    var setGPSStackView = UIStackView(frame: .zero)
+    var setGPSButton = UIButton()
+    var setGPSStackView = UIStackView(frame: .zero)
     // 地図の表示は要望があったら
     
     // 住所の表示、プライバシーの保護のために市区町村まで
@@ -33,11 +33,10 @@ class WakeUpCardView: UIView {
         backgroundColor = .systemRed
         settingInformation()
         configure()
-//        configureDecoration()
-//        settingInformation()
+        //        configureDecoration()
     }
     
-        
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -53,14 +52,15 @@ class WakeUpCardView: UIView {
     
     
     private func configure() {
-//        translatesAutoresizingMaskIntoConstraints = false
+        //        translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
-        chatTeamNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        setGPSLabel.translatesAutoresizingMaskIntoConstraints = false
+        chatTeamNameStackView.translatesAutoresizingMaskIntoConstraints = false
+        setGPSStackView.translatesAutoresizingMaskIntoConstraints = false
         prefectureAndCityNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundColor = .systemRed
-        let padding: CGFloat = 8
+        backgroundColor = .systemBackground
+        let padding: CGFloat = 20.0
+        let spacePadding: CGFloat = 50.0
         // 起きる時間をStack
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextField)
@@ -68,70 +68,47 @@ class WakeUpCardView: UIView {
         wakeUpTimeStackView.alignment = .fill
         addSubview(wakeUpTimeStackView)
         
-//        addSubview(wakeUpTimeLabel)
+        //        addSubview(wakeUpTimeLabel)
         // チャットチーム名をStack
-//        chatTeamNameStackView.addArrangedSubview(chatTeamNameLabel)
-//        chatTeamNameStackView.addArrangedSubview(chatTeamNameTextField)
-//        chatTeamNameStackView.axis = .vertical
-//        chatTeamNameStackView.alignment = .fill
-//        addSubview(chatTeamNameStackView)
+        chatTeamNameStackView.addArrangedSubview(chatTeamNameLabel)
+        chatTeamNameStackView.addArrangedSubview(chatTeamNameTextField)
+        chatTeamNameStackView.axis = .vertical
+        chatTeamNameStackView.alignment = .fill
+        addSubview(chatTeamNameStackView)
         
-        addSubview(chatTeamNameLabel)
+        //        addSubview(chatTeamNameLabel)
         // GPSセットをStack
-//        setGPSStackView.addArrangedSubview(setGPSLabel)
-//        setGPSStackView.addArrangedSubview(setGPSButton)
-//        setGPSStackView.axis = .vertical
-//        setGPSStackView.alignment = .fill
-//        addSubview(setGPSStackView)
+        setGPSStackView.addArrangedSubview(setGPSLabel)
+        setGPSStackView.addArrangedSubview(setGPSButton)
+        setGPSStackView.axis = .vertical
+        setGPSStackView.alignment = .fill
+        addSubview(setGPSStackView)
         
-        addSubview(setGPSLabel)
+        //        addSubview(setGPSLabel)
         // 市区町村
         addSubview(prefectureAndCityNameLabel)
         
-//        NSLayoutConstraint.activate([
-//            //起きる時間
-//            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
-//            wakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-//            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-//            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: 10),
-//            // チャットチーム名
-//            chatTeamNameStackView.topAnchor.constraint(equalTo: self.bottomAnchor, constant: padding),
-//            chatTeamNameStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-//            chatTeamNameStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-//            chatTeamNameStackView.heightAnchor.constraint(equalToConstant: 10),
-//            // GPS
-//            setGPSStackView.topAnchor.constraint(equalTo: chatTeamNameStackView.bottomAnchor, constant: padding),
-//            setGPSStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-//            setGPSStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-//            setGPSStackView.heightAnchor.constraint(equalToConstant: 10),
-//            // 市区町村
-//            prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setGPSStackView.bottomAnchor, constant: padding),
-//            prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-//            prefectureAndCityNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-//            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: 10)
-//        ])
-        
         NSLayoutConstraint.activate([
             //起きる時間
-            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
+            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: spacePadding),
             wakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             wakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: 50),
+            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: spacePadding),
             // チャットチーム名
-            chatTeamNameLabel.topAnchor.constraint(equalTo: wakeUpTimeLabel.bottomAnchor, constant: padding),
-            chatTeamNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            chatTeamNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            chatTeamNameLabel.heightAnchor.constraint(equalToConstant: 50),
+            chatTeamNameStackView.topAnchor.constraint(equalTo: wakeUpTimeLabel.bottomAnchor, constant:  spacePadding),
+            chatTeamNameStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            chatTeamNameStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            chatTeamNameStackView.heightAnchor.constraint(equalToConstant: spacePadding),
             // GPS
-            setGPSLabel.topAnchor.constraint(equalTo: chatTeamNameLabel.bottomAnchor, constant: padding),
-            setGPSLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            setGPSLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setGPSLabel.heightAnchor.constraint(equalToConstant: 50),
+            setGPSStackView.topAnchor.constraint(equalTo: chatTeamNameLabel.bottomAnchor, constant: spacePadding),
+            setGPSStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            setGPSStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            setGPSStackView.heightAnchor.constraint(equalToConstant: spacePadding),
             // 市区町村
-            prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setGPSLabel.bottomAnchor, constant: padding),
+            prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setGPSLabel.bottomAnchor, constant: spacePadding),
             prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             prefectureAndCityNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: 50)
+            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: spacePadding)
         ])
     }
     
