@@ -32,7 +32,7 @@ class JinrikishaGPS: UIViewController {
         drawCircle(center: imperialPalaceLocation, meter: 250, times: 20)
     }
     
-    // 地図をタップさせて移動させる
+    // 地図を任意の場所へ移動させる
     private func moveTo(
         center location: CLLocationCoordinate2D,
         animated: Bool,

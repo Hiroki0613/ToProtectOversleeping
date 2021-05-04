@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class WakeUpCardView: UIView {
     
@@ -35,6 +36,9 @@ class WakeUpCardView: UIView {
     var setGPSStackView = UIStackView(frame: .zero)
     // 地図の表示は要望があったら
     
+
+    // アドレスを格納
+    var addressString = ""
     // 住所の表示、プライバシーの保護のために市区町村まで
     var prefectureAndCityNameLabel = UILabel()
     
@@ -58,6 +62,29 @@ class WakeUpCardView: UIView {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:MM"
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
+    }
+    
+    // 位置から住所を取得
+    func convert(latitude:CLLocationDegrees, longitude: CLLocationDegrees) {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        
+        geocoder.reverseGeocodeLocation(location) { placemark, error in
+            
+            if placemark != nil {
+                if let pm = placemark?.first {
+                    
+                    if pm.administrativeArea != nil || pm.locality != nil {
+                        
+                        self.addressString = pm.name! + pm.administrativeArea! + pm.locality!
+                    } else {
+                        self.addressString = pm.name!
+                    }
+                    
+                    self.prefectureAndCityNameLabel.text = self.addressString
+                }
+            }
+        }
     }
     
     

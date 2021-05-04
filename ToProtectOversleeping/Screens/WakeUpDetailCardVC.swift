@@ -9,7 +9,9 @@ import UIKit
 
 class WakeUpDetailCardVC: UIViewController {
     
+    // 起きる時間のカード
     var wakeUpCardView = WakeUpCardView()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,10 @@ class WakeUpDetailCardVC: UIViewController {
         wakeUpCardView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 400)
         view.addSubview(wakeUpCardView)
     }
+    
+    
+    
+ 
     
 //    // セルを装飾
 //    private func configureDecoration() {
