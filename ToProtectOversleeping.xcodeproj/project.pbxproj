@@ -15,6 +15,8 @@
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
 		7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */; };
 		7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */; };
+		7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B32641069A001182DF /* SwipeButton.swift */; };
+		7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B6264106A2001182DF /* SwipeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardCollectionListVC.swift; sourceTree = "<group>"; };
 		7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardCollectionListCell.swift; sourceTree = "<group>"; };
+		7FABB9B32641069A001182DF /* SwipeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
+		7FABB9B6264106A2001182DF /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
+				7FABB9B226410686001182DF /* SlideButtonAciton */,
 				7FABB9AE26403E5D001182DF /* CustomViews */,
 				7FABB9AD26403E36001182DF /* Support */,
 				7F376B2226401A920063F2EC /* Info.plist */,
@@ -103,6 +108,15 @@
 				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		7FABB9B226410686001182DF /* SlideButtonAciton */ = {
+			isa = PBXGroup;
+			children = (
+				7FABB9B32641069A001182DF /* SwipeButton.swift */,
+				7FABB9B6264106A2001182DF /* SwipeViewController.swift */,
+			);
+			path = SlideButtonAciton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +193,8 @@
 				7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */,
 				7F376B1926401A910063F2EC /* ViewController.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,
+				7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */,
+				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
