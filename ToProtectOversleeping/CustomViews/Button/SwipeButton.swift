@@ -227,7 +227,7 @@ extension SwipeButton : RoundViewDelegate{
         }
     }
 }
-protocol RoundViewDelegate: class {
+protocol RoundViewDelegate: AnyObject {
     func roundViewTouchesEnded() -> Void
 }
 

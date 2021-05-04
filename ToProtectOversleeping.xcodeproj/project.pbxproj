@@ -13,6 +13,7 @@
 		7F376B1C26401A910063F2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1A26401A910063F2EC /* Main.storyboard */; };
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
+		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
 		7FA9B64C2641198C0017985B /* WakeUpCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B64B2641198C0017985B /* WakeUpCardView.swift */; };
 		7FA9B65126411ADB0017985B /* WakeUpDetailCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B65026411ADB0017985B /* WakeUpDetailCardVC.swift */; };
 		7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */; };
@@ -32,6 +33,7 @@
 		7F376B1D26401A920063F2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
 		7FA9B64B2641198C0017985B /* WakeUpCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardView.swift; sourceTree = "<group>"; };
 		7FA9B65026411ADB0017985B /* WakeUpDetailCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpDetailCardVC.swift; sourceTree = "<group>"; };
 		7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpAndCutAlertBySlideVC.swift; sourceTree = "<group>"; };
@@ -82,6 +84,22 @@
 			path = ToProtectOversleeping;
 			sourceTree = "<group>";
 		};
+		7F68CD0126416AFA00D362B0 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		7F68CD0626416FF300D362B0 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				7FABB9B32641069A001182DF /* SwipeButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		7FA9B64A2641196D0017985B /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +132,8 @@
 		7FABB9AE26403E5D001182DF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7F68CD0626416FF300D362B0 /* Button */,
+				7F68CD0126416AFA00D362B0 /* Map */,
 				7FA9B64A2641196D0017985B /* View */,
 				7FABB9AF26403E66001182DF /* Cell */,
 			);
@@ -141,7 +161,6 @@
 		7FABB9B226410686001182DF /* SlideButtonAciton */ = {
 			isa = PBXGroup;
 			children = (
-				7FABB9B32641069A001182DF /* SwipeButton.swift */,
 				7FABB9B6264106A2001182DF /* SwipeViewController.swift */,
 			);
 			path = SlideButtonAciton;
@@ -218,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA9B65F264142100017985B /* JinrikishaGPS.swift in Sources */,
+				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
 				7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */,
 				7FA9B65126411ADB0017985B /* WakeUpDetailCardVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* WakeUpCardView.swift in Sources */,
