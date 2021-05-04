@@ -17,7 +17,7 @@ class WakeUpAndCutAlertBySlideVC: UIViewController {
     // 地図
     var mapView = MKMapView()
     // 測定結果を表示するラベル
-    var swipedActionLabel = UILabel()
+    var swipedActionLabel = WUBodyLabel(fontSize: 20)
     //　スワイプボタン
     var swipeButton: SwipeButton!
     
@@ -116,7 +116,7 @@ class WakeUpAndCutAlertBySlideVC: UIViewController {
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
+            mapView.heightAnchor.constraint(equalToConstant: view.frame.size.width + 70),
             
             swipedActionLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 40),
             swipedActionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
@@ -128,7 +128,7 @@ class WakeUpAndCutAlertBySlideVC: UIViewController {
     
     func setupSwipeButton() {
         if swipeButton == nil {
-            self.swipeButton = SwipeButton(frame: CGRect(x: 20, y: view.frame.height - 100, width: view.frame.size.width - 40, height: 50))
+            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 100, width: view.frame.size.width - 80, height: 50))
             swipeButton.isRightToLeft = false
             swipeButton.text = "右へスライドしてください"
             swipeButton.swipedText = "GPS取得中"
@@ -151,6 +151,7 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
             // アノテーションを画像にする
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView.image = UIImage(named: "jinrikisya_man")
+//            annotationView.image = UIImage(systemName: "figure.wave")
             annotationView.canShowCallout = true
             return annotationView
         }

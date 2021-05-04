@@ -11,8 +11,8 @@ import MapKit
 class WakeUpCardView: UIView {
     
     // 起きる時間
-    var wakeUpTimeLabel = UILabel()
-    var wakeUpTimeTextField = UITextField()
+    var wakeUpTimeLabel = WUBodyLabel(fontSize: 24)
+    var wakeUpTimeTextField = WUTextFields()
     var wakeUpTimeStackView = UIStackView(frame: .zero)
     
     let datePicker: UIDatePicker = {
@@ -26,13 +26,13 @@ class WakeUpCardView: UIView {
     }()
     
     // チャットのチーム名、ピッカー式にするか悩む
-    var chatTeamNameLabel = UILabel()
-    var chatTeamNameTextField = UITextField()
+    var chatTeamNameLabel = WUBodyLabel(fontSize: 24)
+    var chatTeamNameTextField = WUTextFields()
     var chatTeamNameStackView = UIStackView(frame: .zero)
     
     // GPSを設定するボタン
-    var setGPSLabel = UILabel()
-    var setGPSButton = UIButton()
+    var setGPSLabel = WUBodyLabel(fontSize: 24)
+    var setGPSButton = WUButton(backgroundColor: .systemOrange, title: "タップして取得")
     var setGPSStackView = UIStackView(frame: .zero)
     // 地図の表示は要望があったら
     
@@ -40,7 +40,7 @@ class WakeUpCardView: UIView {
     // アドレスを格納
     var addressString = ""
     // 住所の表示、プライバシーの保護のために市区町村まで
-    var prefectureAndCityNameLabel = UILabel()
+    var prefectureAndCityNameLabel = WUBodyLabel(fontSize: 20)
     
     
     override init(frame: CGRect) {
@@ -91,9 +91,9 @@ class WakeUpCardView: UIView {
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
         wakeUpTimeLabel.text = "起きる時間"
-        chatTeamNameLabel.text = "チャットチーム名"
+        chatTeamNameLabel.text = "チーム名"
         setGPSLabel.text = "住所"
-        prefectureAndCityNameLabel.text = "GPSを取得すると、ここに表示されます"
+        prefectureAndCityNameLabel.text = "GPSを取得すると、\nここに表示されます"
         
         wakeUpTimeTextField.inputView = datePicker
         wakeUpTimeTextField.delegate = self
@@ -107,14 +107,17 @@ class WakeUpCardView: UIView {
         setGPSStackView.translatesAutoresizingMaskIntoConstraints = false
         prefectureAndCityNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        prefectureAndCityNameLabel.numberOfLines = 0
+        
         backgroundColor = .systemBackground
         let padding: CGFloat = 20.0
-        let spacePadding: CGFloat = 50.0
+        let spacePadding: CGFloat = 60.0
         // 起きる時間をStack
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextField)
         wakeUpTimeStackView.axis = .vertical
         wakeUpTimeStackView.alignment = .fill
+        wakeUpTimeStackView.spacing = 10
         addSubview(wakeUpTimeStackView)
         
         //        addSubview(wakeUpTimeLabel)
@@ -123,6 +126,7 @@ class WakeUpCardView: UIView {
         chatTeamNameStackView.addArrangedSubview(chatTeamNameTextField)
         chatTeamNameStackView.axis = .vertical
         chatTeamNameStackView.alignment = .fill
+        chatTeamNameStackView.spacing = 10
         addSubview(chatTeamNameStackView)
         
         //        addSubview(chatTeamNameLabel)
@@ -131,6 +135,7 @@ class WakeUpCardView: UIView {
         setGPSStackView.addArrangedSubview(setGPSButton)
         setGPSStackView.axis = .vertical
         setGPSStackView.alignment = .fill
+//        setGPSStackView.spacing = 10
         addSubview(setGPSStackView)
         
         //        addSubview(setGPSLabel)
@@ -139,7 +144,7 @@ class WakeUpCardView: UIView {
         
         NSLayoutConstraint.activate([
             //起きる時間
-            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: spacePadding),
+            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
             wakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             wakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: spacePadding),
@@ -160,21 +165,15 @@ class WakeUpCardView: UIView {
             prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: spacePadding)
         ])
     }
-    
-    // セルを装飾
-    private func configureDecoration() {
-        self.backgroundColor = .systemGray
-        self.layer.cornerRadius = 16
-        self.layer.shadowOpacity = 0.1
-        self.layer.shadowRadius = 10
-        self.layer.shadowOffset = .init(width: 0, height: 10)
-        self.layer.shouldRasterize = true
-    }
 }
 
 extension WakeUpCardView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // キーボード入力や、カット/ペースによる変更を防ぐ
              return false
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        return true
     }
 }
