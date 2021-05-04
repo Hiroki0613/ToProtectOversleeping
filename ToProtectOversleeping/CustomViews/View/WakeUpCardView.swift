@@ -99,6 +99,15 @@ class WakeUpCardView: UIView {
         wakeUpTimeTextField.delegate = self
     }
     
+    // ここでGPSを取得
+    @objc func tapSetGPSButton() {
+        wakeUpTimeTextField.resignFirstResponder()
+        chatTeamNameTextField.resignFirstResponder()
+        
+        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+    }
+    
     
     private func configure() {
         //        translatesAutoresizingMaskIntoConstraints = false
@@ -133,6 +142,7 @@ class WakeUpCardView: UIView {
         // GPSセットをStack
         setGPSStackView.addArrangedSubview(setGPSLabel)
         setGPSStackView.addArrangedSubview(setGPSButton)
+        setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
         setGPSStackView.axis = .vertical
         setGPSStackView.alignment = .fill
 //        setGPSStackView.spacing = 10

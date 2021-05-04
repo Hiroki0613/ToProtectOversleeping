@@ -19,8 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = WakeUpAndCutAlertBySlideVC()
+        window?.rootViewController = createWakeUpDetailCardNC()
         window?.makeKeyAndVisible()
+    }
+    
+    func createWakeUpDetailCardNC() -> UINavigationController {
+        let wakeUpDetailCardVC = WakeUpDetailCardVC()
+        wakeUpDetailCardVC.title = "目覚ましセット"
+        return UINavigationController(rootViewController: wakeUpDetailCardVC)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
