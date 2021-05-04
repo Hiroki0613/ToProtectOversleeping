@@ -13,10 +13,22 @@ class WakeUpCardView: UIView {
     var wakeUpTimeLabel = UILabel()
     var wakeUpTimeTextField = UITextField()
     var wakeUpTimeStackView = UIStackView(frame: .zero)
+    
+    let datePicker: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .time
+        dp.preferredDatePickerStyle = .wheels
+        dp.timeZone = NSTimeZone.local
+        dp.locale = Locale.current
+        dp.addTarget(self, action: #selector(dateChange), for: .valueChanged)
+        return dp
+    }()
+    
     // チャットのチーム名、ピッカー式にするか悩む
     var chatTeamNameLabel = UILabel()
     var chatTeamNameTextField = UITextField()
     var chatTeamNameStackView = UIStackView(frame: .zero)
+    
     // GPSを設定するボタン
     var setGPSLabel = UILabel()
     var setGPSButton = UIButton()
@@ -42,12 +54,22 @@ class WakeUpCardView: UIView {
     }
     
     
+    @objc func dateChange() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:MM"
+        wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
+    }
+    
+    
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
         wakeUpTimeLabel.text = "起きる時間"
         chatTeamNameLabel.text = "チャットチーム名"
         setGPSLabel.text = "住所"
         prefectureAndCityNameLabel.text = "GPSを取得すると、ここに表示されます"
+        
+        wakeUpTimeTextField.inputView = datePicker
+        wakeUpTimeTextField.delegate = self
     }
     
     
@@ -120,5 +142,12 @@ class WakeUpCardView: UIView {
         self.layer.shadowRadius = 10
         self.layer.shadowOffset = .init(width: 0, height: 10)
         self.layer.shouldRasterize = true
+    }
+}
+
+extension WakeUpCardView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // キーボード入力や、カット/ペースによる変更を防ぐ
+             return false
     }
 }
