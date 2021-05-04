@@ -11,8 +11,8 @@ class WakeUpCardView: UIView {
     
     // 起きる時間
     var wakeUpTimeLabel = UILabel()
-//    var wakeUpTimeTextField = UITextField()
-//    var wakeUpTimeStackView = UIStackView(frame: .zero)
+    var wakeUpTimeTextField = UITextField()
+    var wakeUpTimeStackView = UIStackView(frame: .zero)
     // チャットのチーム名、ピッカー式にするか悩む
     var chatTeamNameLabel = UILabel()
 //    var chatTeamNameTextField = UITextField()
@@ -31,10 +31,10 @@ class WakeUpCardView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .systemRed
-//        settingInformation()
-        configure()
-        configureDecoration()
         settingInformation()
+        configure()
+//        configureDecoration()
+//        settingInformation()
     }
     
         
@@ -53,17 +53,22 @@ class WakeUpCardView: UIView {
     
     
     private func configure() {
-        translatesAutoresizingMaskIntoConstraints = false
+//        translatesAutoresizingMaskIntoConstraints = false
+        wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
+        chatTeamNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        setGPSLabel.translatesAutoresizingMaskIntoConstraints = false
+        prefectureAndCityNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         backgroundColor = .systemRed
         let padding: CGFloat = 8
         // 起きる時間をStack
-//        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
-//        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextField)
-//        wakeUpTimeStackView.axis = .vertical
-//        wakeUpTimeStackView.alignment = .fill
-//        addSubview(wakeUpTimeStackView)
+        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
+        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextField)
+        wakeUpTimeStackView.axis = .vertical
+        wakeUpTimeStackView.alignment = .fill
+        addSubview(wakeUpTimeStackView)
         
-        addSubview(wakeUpTimeLabel)
+//        addSubview(wakeUpTimeLabel)
         // チャットチーム名をStack
 //        chatTeamNameStackView.addArrangedSubview(chatTeamNameLabel)
 //        chatTeamNameStackView.addArrangedSubview(chatTeamNameTextField)
@@ -108,25 +113,25 @@ class WakeUpCardView: UIView {
         
         NSLayoutConstraint.activate([
             //起きる時間
-            wakeUpTimeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
-            wakeUpTimeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            wakeUpTimeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            wakeUpTimeLabel.heightAnchor.constraint(equalToConstant: 10),
+            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
+            wakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: 50),
             // チャットチーム名
             chatTeamNameLabel.topAnchor.constraint(equalTo: wakeUpTimeLabel.bottomAnchor, constant: padding),
             chatTeamNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             chatTeamNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            chatTeamNameLabel.heightAnchor.constraint(equalToConstant: 10),
+            chatTeamNameLabel.heightAnchor.constraint(equalToConstant: 50),
             // GPS
             setGPSLabel.topAnchor.constraint(equalTo: chatTeamNameLabel.bottomAnchor, constant: padding),
             setGPSLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             setGPSLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setGPSLabel.heightAnchor.constraint(equalToConstant: 10),
+            setGPSLabel.heightAnchor.constraint(equalToConstant: 50),
             // 市区町村
             prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setGPSLabel.bottomAnchor, constant: padding),
             prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             prefectureAndCityNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: 10)
+            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     

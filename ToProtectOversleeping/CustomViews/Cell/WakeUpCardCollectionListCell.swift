@@ -57,7 +57,12 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     
     
     private func configure() {
-        translatesAutoresizingMaskIntoConstraints = false
+//        translatesAutoresizingMaskIntoConstraints = false
+        wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
+        chatTeamNameStackView.translatesAutoresizingMaskIntoConstraints = false
+        setGPSStackView.translatesAutoresizingMaskIntoConstraints = false
+        prefectureAndCityNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         backgroundColor = .systemRed
         let padding: CGFloat = 8
         // 起きる時間をStack
