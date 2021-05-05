@@ -29,6 +29,8 @@ class WakeUpDetailCardVC: UIViewController {
     
     // ここでGPSを取得
     @objc func tapSetGPSButton() {
+        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
+        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
