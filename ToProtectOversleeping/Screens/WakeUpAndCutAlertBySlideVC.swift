@@ -30,7 +30,11 @@ class WakeUpAndCutAlertBySlideVC: UIViewController {
         moveTo(center: imperialPalaceLocation, animated: false)
         setAnnotation(location: imperialPalaceLocation)
         drawCircle(center: imperialPalaceLocation, meter: 10, times: 10)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     // 地図を任意の場所へ移動させる

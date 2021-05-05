@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
+    // ナビゲーションコントローラーを実装
     func createWakeUpDetailCardNC() -> UINavigationController {
         let wakeUpDetailCardVC = WakeUpDetailCardVC()
         wakeUpDetailCardVC.title = "目覚ましセット"

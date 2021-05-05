@@ -18,12 +18,19 @@ class WakeUpDetailCardVC: UIViewController {
         view.backgroundColor = .systemOrange
         configureView()
         configureDecoration()
+        wakeUpCardView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    // ここでGPSを取得
+    @objc func tapSetGPSButton() {
+        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     

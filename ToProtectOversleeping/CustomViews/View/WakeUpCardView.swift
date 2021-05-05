@@ -105,7 +105,7 @@ class WakeUpCardView: UIView {
         chatTeamNameTextField.resignFirstResponder()
         
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     
