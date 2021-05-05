@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WakeUpDetailCardVC: UIViewController {
+class WakeUpDetailCardVC: BaseGpsVC {
     
     // 起きる時間のカード
     var wakeUpCardView = WakeUpCardView()

@@ -8,11 +8,10 @@
 import UIKit
 import MapKit
 
-class WakeUpAndCutAlertBySlideVC: UIViewController {
+class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     
     private let imperialPalaceLocation = CLLocationCoordinate2D(latitude: 35.024101, longitude: 135.762018)
-    
     
     // 地図
     var mapView = MKMapView()
@@ -20,7 +19,6 @@ class WakeUpAndCutAlertBySlideVC: UIViewController {
     var swipedActionLabel = WUBodyLabel(fontSize: 20)
     //　スワイプボタン
     var swipeButton: SwipeButton!
-    
     
     
     override func viewDidLoad() {
@@ -106,6 +104,7 @@ class WakeUpAndCutAlertBySlideVC: UIViewController {
     
     func configureUI() {
         mapView.delegate = self
+        locationManager.delegate = self
         // Mapの大きさを定義
         mapView.translatesAutoresizingMaskIntoConstraints = false
         swipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -201,3 +200,4 @@ extension CLLocationCoordinate2D {
         return "\(roundedDistance / 1000)km"
     }
 }
+
