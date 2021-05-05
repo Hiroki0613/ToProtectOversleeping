@@ -10,9 +10,6 @@ import MapKit
 
 class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
-    
-    private let imperialPalaceLocation = CLLocationCoordinate2D(latitude: 35.024101, longitude: 135.762018)
-
     var myAddressLatitude = 0.0
     var myAddressLongitude = 0.0
     
@@ -23,29 +20,29 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     //　スワイプボタン
     var swipeButton: SwipeButton!
     
-    var myLocation = CLLocationCoordinate2D()
+    var myHomeLocation = CLLocationCoordinate2D()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getCurrentLocation()
         view.backgroundColor = .systemBackground
         configureUI()
-//        myLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
-        moveTo(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), animated: false)
-//        moveTo(center: imperialPalaceLocation, animated: false)
+        swipeButton.getGeocoderDelegate = self
+        myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
+//        moveTo(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), animated: false)
+        moveTo(center: myHomeLocation, animated: false)
         print(myAddressLongitude)
         print(myAddressLatitude)
-//        setAnnotation(location: imperialPalaceLocation)
-        setAnnotation(location: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
-//        drawCircle(center: imperialPalaceLocation, meter: 10, times: 10)
-        drawCircle(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), meter: 10, times: 10)
+//        setAnnotation(location: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
+        setAnnotation(location: myHomeLocation)
+//        drawCircle(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), meter: 10, times: 10)
+        drawCircle(center: myHomeLocation, meter: 10, times: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
-        moveTo(center: myLocation, animated: false)
+        moveTo(center: myHomeLocation, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -68,8 +65,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = rank(location: location)
-//        annotation.subtitle = location.distanceText(to: imperialPalaceLocation)
-        annotation.subtitle = location.distanceTextFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
+//        annotation.subtitle = location.distanceTextFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
+        annotation.subtitle = location.distanceTextFromHome(to: myHomeLocation)
         mapView.addAnnotation(annotation)
     }
     
@@ -87,8 +84,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     // 距離を測定して、コメントを分類
     private func rank(location: CLLocationCoordinate2D) -> String {
-//        let rawDistance = location.distanceFromHome(to: imperialPalaceLocation)
-        let rawDistance = location.distanceFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
+//        let rawDistance = location.distanceFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
+        let rawDistance = location.distanceFromHome(to: myHomeLocation)
         
         print("rawDistance: ", rawDistance)
         
@@ -160,7 +157,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
 
 
 extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
-    
     // アニテーションビューについて、設定するdelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "annotation"
@@ -171,8 +167,8 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
         } else {
             // アノテーションを画像にする
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView.image = UIImage(named: "jinrikisya_man")
-//            annotationView.image = UIImage(systemName: "figure.wave")
+//            annotationView.image = UIImage(named: "jinrikisya_man")
+            annotationView.image = UIImage(systemName: "figure.wave")
             annotationView.canShowCallout = true
             return annotationView
         }
@@ -193,9 +189,9 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
     
 }
 
+
 // 2点間の距離を測定
 extension CLLocationCoordinate2D {
-    
     func distanceFromHome(
         to targetLoacation: CLLocationCoordinate2D) -> CLLocationDistance {
         
@@ -203,11 +199,9 @@ extension CLLocationCoordinate2D {
         let location2 = CLLocation(latitude: targetLoacation.latitude, longitude: targetLoacation.longitude)
         return location1.distance(from: location2)
     }
-    
     // 距離をStringで表示
     func distanceTextFromHome(to targetLocation: CLLocationCoordinate2D) -> String {
         
-
         let rawDistance = distanceFromHome(to: targetLocation)
         print("distanceTextFromHome. rawDistance", rawDistance)
         
@@ -220,5 +214,15 @@ extension CLLocationCoordinate2D {
         let roundedDistance = (rawDistance / 100).rounded() * 100
         return "\(roundedDistance / 1000)km"
     }
+}
+
+
+extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
+    func getAddressFromCurrentPlace() {
+        getCurrentLocation()
+        swipedActionLabel.text = "取得完了しました"
+    }
+    
+    
 }
 

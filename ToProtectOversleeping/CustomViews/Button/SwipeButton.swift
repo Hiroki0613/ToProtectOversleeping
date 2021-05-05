@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol GetGeocoderDelegate {
+    func getAddressFromCurrentPlace()
+}
+
 class SwipeButton: UIView {
+    
+    var getGeocoderDelegate: GetGeocoderDelegate?
+    
     var borderColor:  UIColor = .black
     var borderWidth:  CGFloat = 1.5
     var cornerRadius: CGFloat = 10.0
@@ -29,28 +36,28 @@ class SwipeButton: UIView {
             self.backgroundColor = backColor
         }
     }
-    var textColor : UIColor = UIColor.lightGray {
+    var textColor : UIColor = .label {
         didSet {
             self.textLabel.textColor = textColor
         }
     }
-
+    
     var swipedFrontColor : UIColor = .systemOrange
     var swipedGroundColor : UIColor = UIColor.darkGray
     var swipedTextColor : UIColor = .systemOrange
-
+    
     var textFont : UIFont = UIFont.systemFont(ofSize: 16) {
         didSet {
             self.textLabel.font = textFont
         }
     }
-
+    
     var barHeight: CGFloat = 40.0 {
         didSet {
             self.layoutSubviews()
         }
     }
-
+    
     public var isEnabled: Bool = true {
         didSet {
             self.layoutSubviews()
@@ -62,10 +69,10 @@ class SwipeButton: UIView {
             self.layoutSubviews()
         }
     }
-
+    
     public var text: String? = nil {
         didSet {
-         self.layoutSubviews()
+            self.layoutSubviews()
         }
     }
     public var swipedText: String?
@@ -82,31 +89,32 @@ class SwipeButton: UIView {
         label.textAlignment = .center
         label.font = textFont
         return label
-        }()
-
+    }()
+    
     public lazy var bar: UIView = { [unowned self] in
         let view = UIView()
         view.backgroundColor = groundColor
         return view
-        }()
-
+    }()
+    
     public lazy var button: RoundView = { [unowned self] in
         let view = RoundView()
         view.backgroundColor = frontColor
         view.delegate = self
         return view
-        }()
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.commInt()
+        
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commInt()
     }
-
+    
     public convenience init(_ text: String?) {
         self.init()
         self.text = text
@@ -114,13 +122,13 @@ class SwipeButton: UIView {
     }
     func commInt() {
         self.backgroundColor = backColor
-
+        
         self.addSubview(bar)
         self.bar.addSubview(textLabel)
         self.addSubview(button)
         self.bringSubviewToFront(button)
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -170,7 +178,7 @@ extension SwipeButton {
         view.layer.borderColor = color.cgColor
         view.layer.borderWidth = width
     }
-
+    
     func corner(_ view: UIView, radius: CGFloat = 0) {
         view.layer.masksToBounds = true
         view.layer.cornerRadius = (radius > 0) ? radius : (view.frame.height / 2)
@@ -180,13 +188,15 @@ extension SwipeButton {
 extension SwipeButton {
     func swipeToGo() {
         UIView.animate(withDuration: self.duration, animations: {
-                self.button.frame = self.turnedFrame
+            self.button.frame = self.turnedFrame
         }){ (completed) in
+            // ここにボタンがスワイプされた時の処理を書く
             self.button.backgroundColor = self.swipedFrontColor
             self.bar.backgroundColor = self.swipedGroundColor
             self.textLabel.textColor = self.swipedTextColor
             if let swipedText = self.swipedText {
-            self.textLabel.text = swipedText
+                self.textLabel.text = swipedText
+                self.getGeocoderDelegate?.getAddressFromCurrentPlace()
             }
         }
     }
@@ -212,16 +222,20 @@ extension SwipeButton : RoundViewDelegate{
     func roundViewTouchesEnded() {
         if self.button.center.x > (self.frame.width / 2) {
             if self.isRightToLeft {
-                swipeToBack()
+                // ここはデッドコードになる
+                //                swipeToBack()
             } else {
+                //ここでスワイプしたときの処理が描かれる、1回だけ処理をさせる
                 swipeToGo()
             }
         } else {
             if self.isRightToLeft {
-                swipeToGo()
+                // ここはデッドコードになる
+                //                swipeToGo()
                 
-                //ここにボタンスワイプ終了の
+                
             } else {
+                //ここにボタンスワイプ終了の
                 swipeToBack()
             }
         }
@@ -242,7 +256,7 @@ class RoundView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else{
             return
