@@ -12,6 +12,9 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     
     private let imperialPalaceLocation = CLLocationCoordinate2D(latitude: 35.024101, longitude: 135.762018)
+
+    var myAddressLatitude = 0.0
+    var myAddressLongitude = 0.0
     
     // 地図
     var mapView = MKMapView()
@@ -20,18 +23,29 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     //　スワイプボタン
     var swipeButton: SwipeButton!
     
+    var myLocation = CLLocationCoordinate2D()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getCurrentLocation()
         view.backgroundColor = .systemBackground
         configureUI()
-        moveTo(center: imperialPalaceLocation, animated: false)
-        setAnnotation(location: imperialPalaceLocation)
-        drawCircle(center: imperialPalaceLocation, meter: 10, times: 10)
+//        myLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
+        moveTo(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), animated: false)
+//        moveTo(center: imperialPalaceLocation, animated: false)
+        print(myAddressLongitude)
+        print(myAddressLatitude)
+//        setAnnotation(location: imperialPalaceLocation)
+        setAnnotation(location: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
+//        drawCircle(center: imperialPalaceLocation, meter: 10, times: 10)
+        drawCircle(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), meter: 10, times: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view.layoutIfNeeded()
+        moveTo(center: myLocation, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -54,7 +68,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = rank(location: location)
-        annotation.subtitle = location.distanceText(to: imperialPalaceLocation)
+//        annotation.subtitle = location.distanceText(to: imperialPalaceLocation)
+        annotation.subtitle = location.distanceTextFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
         mapView.addAnnotation(annotation)
     }
     
@@ -72,7 +87,10 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     // 距離を測定して、コメントを分類
     private func rank(location: CLLocationCoordinate2D) -> String {
-        let rawDistance = location.distance(to: imperialPalaceLocation)
+//        let rawDistance = location.distanceFromHome(to: imperialPalaceLocation)
+        let rawDistance = location.distanceFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
+        
+        print("rawDistance: ", rawDistance)
         
         switch rawDistance {
         case 0..<(10):
@@ -119,7 +137,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.heightAnchor.constraint(equalToConstant: view.frame.size.width + 70),
+            mapView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
             
             swipedActionLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 40),
             swipedActionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
@@ -188,7 +206,10 @@ extension CLLocationCoordinate2D {
     
     // 距離をStringで表示
     func distanceTextFromHome(to targetLocation: CLLocationCoordinate2D) -> String {
+        
+
         let rawDistance = distanceFromHome(to: targetLocation)
+        print("distanceTextFromHome. rawDistance", rawDistance)
         
         // 1km未満は四捨五入で10m単位
         if rawDistance < 1000 {

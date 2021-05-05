@@ -24,6 +24,7 @@ class WakeUpDetailCardVC: BaseGpsVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view.layoutIfNeeded()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -31,7 +32,15 @@ class WakeUpDetailCardVC: BaseGpsVC {
     @objc func tapSetGPSButton() {
         wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
         wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
+        getCurrentLocation()
+        print(geoCoderLongitude)
+        print(geoCoderLatitude)
+//        print(wakeUpCardView.prefectureAndCityNameLabel.text)
+        wakeUpCardView.prefectureAndCityNameLabel.text = address
+        
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     

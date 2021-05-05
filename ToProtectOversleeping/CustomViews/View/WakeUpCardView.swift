@@ -11,7 +11,7 @@ import MapKit
 class WakeUpCardView: UIView {
     
     // 起きる時間
-    var wakeUpTimeLabel = WUBodyLabel(fontSize: 24)
+    var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)
     var wakeUpTimeTextField = WUTextFields()
     var wakeUpTimeStackView = UIStackView(frame: .zero)
     
@@ -26,12 +26,12 @@ class WakeUpCardView: UIView {
     }()
     
     // チャットのチーム名、ピッカー式にするか悩む
-    var chatTeamNameLabel = WUBodyLabel(fontSize: 24)
+    var chatTeamNameLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameTextField = WUTextFields()
     var chatTeamNameStackView = UIStackView(frame: .zero)
     
     // GPSを設定するボタン
-    var setGPSLabel = WUBodyLabel(fontSize: 24)
+    var setGPSLabel = WUBodyLabel(fontSize: 20)
     var setGPSButton = WUButton(backgroundColor: .systemOrange, title: "タップして取得")
     var setGPSStackView = UIStackView(frame: .zero)
     // 地図の表示は要望があったら
@@ -40,7 +40,7 @@ class WakeUpCardView: UIView {
     // アドレスを格納
     var addressString = ""
     // 住所の表示、プライバシーの保護のために市区町村まで
-    var prefectureAndCityNameLabel = WUBodyLabel(fontSize: 20)
+    var prefectureAndCityNameLabel = WUBodyLabel(fontSize: 18)
     
     
     override init(frame: CGRect) {

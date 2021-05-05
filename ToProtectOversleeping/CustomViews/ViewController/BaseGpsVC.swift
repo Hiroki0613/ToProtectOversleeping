@@ -25,7 +25,7 @@ class BaseGpsVC: UIViewController {
     // 緯度
     var geoCoderLatitude = 0.0
     // 経度
-    var longitude = 0.0
+    var geoCoderLongitude = 0.0
     
     // 国
     var countryLabel = UILabel()
@@ -87,7 +87,7 @@ extension BaseGpsVC: CLLocationManagerDelegate {
         if let location = locations.first {
             // 緯度・経度
             self.geoCoderLatitude = location.coordinate.latitude
-            self.longitude = location.coordinate.longitude
+            self.geoCoderLongitude = location.coordinate.longitude
             
             // 逆ジオコーディング
             self.geocoder.reverseGeocodeLocation(location) { placemark, error in
