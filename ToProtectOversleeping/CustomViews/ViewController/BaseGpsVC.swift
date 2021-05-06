@@ -113,7 +113,7 @@ extension BaseGpsVC: CLLocationManagerDelegate {
                     let subLocality = placemark.subLocality == nil ? "" : placemark.subLocality!
 //                    let thoroughfare = placemark.thoroughfare == nil ? "" : placemark.thoroughfare!
 //                    let placeName = !thoroughfare.contains( subLocality ) ? subLocality : thoroughfare
-                    self.address = administrativeArea + subAdministrativeArea + locality + subLocality
+                    self.address = "\(administrativeArea)\(subAdministrativeArea)\(locality)\(subLocality)"
                 }
             }
         }
