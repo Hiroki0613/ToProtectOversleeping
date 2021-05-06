@@ -12,6 +12,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     var myAddressLatitude = 0.0
     var myAddressLongitude = 0.0
+    var mySettingAlarmTime = Date()
+    var alarm = Alarm()
     
     // 地図
     var mapView = MKMapView()
@@ -33,18 +35,41 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         moveTo(center: myHomeLocation, animated: false)
         print(myAddressLongitude)
         print(myAddressLatitude)
+
+        
 //        setAnnotation(location: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
         setAnnotation(location: myHomeLocation)
 //        drawCircle(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), meter: 10, times: 10)
         drawCircle(center: myHomeLocation, meter: 10, times: 10)
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkSettingAlarmWithinTwoHours(settingTime: mySettingAlarmTime)
         self.view.layoutIfNeeded()
         moveTo(center: myHomeLocation, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    
+    // ここで2時間以内だった時の設定を入れる
+    func checkSettingAlarmWithinTwoHours(settingTime: Date) {
+        var differenceFromCurrenTime = 0
+        differenceFromCurrenTime = alarm.calculateTimeInterval(userAwakeTime: settingTime)
+        print("設定時刻との差分2:" ,differenceFromCurrenTime)
+        
+        if differenceFromCurrenTime > 7200 {
+            // ２時間以上前の時
+            swipedActionLabel.text = "２時間以上前です"
+            swipeButton.isHidden = true
+        } else {
+            // ２時間以内の時
+            swipedActionLabel.text = "2時間以内です"
+            swipeButton.isHidden = false
+        }
+    }
+    
     
     // 地図を任意の場所へ移動させる
     private func moveTo(
@@ -129,6 +154,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         view.addSubview(swipedActionLabel)
         let padding:CGFloat = 40.0;
         setupSwipeButton()
+        swipeButton.isHidden = true
         
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

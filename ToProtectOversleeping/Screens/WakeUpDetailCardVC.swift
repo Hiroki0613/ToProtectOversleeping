@@ -35,12 +35,14 @@ class WakeUpDetailCardVC: BaseGpsVC {
         getCurrentLocation()
         print(geoCoderLongitude)
         print(geoCoderLatitude)
+        print("wakeUpCardView.datePicker.date:" ,wakeUpCardView.datePicker.date)
 //        print(wakeUpCardView.prefectureAndCityNameLabel.text)
         wakeUpCardView.prefectureAndCityNameLabel.text = address
         
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
         wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
