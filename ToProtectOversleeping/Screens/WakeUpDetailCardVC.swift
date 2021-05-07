@@ -18,8 +18,7 @@ class WakeUpDetailCardVC: BaseGpsVC {
         view.backgroundColor = .systemOrange
         configureView()
         configureDecoration()
-        wakeUpCardView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
-        
+        configureAddTarget()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +26,35 @@ class WakeUpDetailCardVC: BaseGpsVC {
         self.view.layoutIfNeeded()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+    
+    func configureAddTarget() {
+        wakeUpCardView.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(setAlarmSwitch(sender:)), for: .valueChanged)
+        wakeUpCardView.chatTeamRegistrationButton.addTarget(self, action: #selector(registerTeamMate), for: .touchUpInside)
+        wakeUpCardView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
+    }
+    
+    
+    // ここで目覚ましをセット
+    @objc func setAlarmSwitch(sender: UISwitch) {
+        let onCheck: Bool = sender.isOn
+            // UISwitch値を確認
+            if onCheck {
+                // viewのalphaを1.0にする。
+                // 目覚ましをONにする
+                print("スイッチの状態はオンです。値: \(onCheck)")
+            } else {
+                // viewのalphaを0.8にする。
+                // 目覚ましをOFFにする
+                print("スイッチの状態はオフです。値: \(onCheck)")
+            }
+    }
+    
+    
+    // ここで登録を確認
+    @objc func registerTeamMate() {
+        print("登録されました")
+    }
+    
     
     // ここでGPSを取得
     @objc func tapSetGPSButton() {

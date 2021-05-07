@@ -38,7 +38,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
 
         
 //        setAnnotation(location: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
-        setAnnotation(location: myHomeLocation)
+//        setAnnotation(location: myHomeLocation)
 //        drawCircle(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), meter: 10, times: 10)
         drawCircle(center: myHomeLocation, meter: 10, times: 10)
     }
@@ -194,6 +194,7 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
             // アノテーションを画像にする
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 //            annotationView.image = UIImage(named: "jinrikisya_man")
+            // figure.waveのサイズを大きくしたい
             annotationView.image = UIImage(systemName: "figure.wave")
             annotationView.canShowCallout = true
             return annotationView
@@ -247,6 +248,7 @@ extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
         swipedActionLabel.text = "取得完了しました"
+        setAnnotation(location: myHomeLocation)
     }
     
     
