@@ -32,6 +32,7 @@
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
 		7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */; };
 		7FE523C72646840000B7D1B0 /* WakeUpSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */; };
+		7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
 		7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatVC.swift; sourceTree = "<group>"; };
 		7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingVC.swift; sourceTree = "<group>"; };
+		7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA9B64B2641198C0017985B /* WakeUpCardView.swift */,
+				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE523C82646841700B7D1B0 /* TabBar */,
+				7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */,
 				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
 				7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */,
 			);
@@ -254,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				7FA9B65026411ADB0017985B /* WakeUpDetailCardVC.swift */,
-				7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */,
 				7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */,
 			);
 			path = TabBar;
@@ -344,6 +347,7 @@
 				7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */,
 				7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */,
 				7F376B1926401A910063F2EC /* ViewController.swift in Sources */,
+				7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,
 				7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */,
 				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,

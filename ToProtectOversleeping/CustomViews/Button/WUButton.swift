@@ -30,7 +30,7 @@ class WUButton: UIButton {
     private func configure() {
         layer.cornerRadius = 10
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        setTitleColor(.tertiaryLabel, for: .normal)
+        setTitleColor(.systemBackground, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
     

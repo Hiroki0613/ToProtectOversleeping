@@ -25,12 +25,13 @@ class WakeUpDetailCardVC: BaseGpsVC {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func configureAddTarget() {
         wakeUpCardView.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(setAlarmSwitch(sender:)), for: .valueChanged)
         wakeUpCardView.chatTeamRegistrationButton.addTarget(self, action: #selector(registerTeamMate), for: .touchUpInside)
-        wakeUpCardView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
+        wakeUpCardView.setChatButton.addTarget(self, action: #selector(tapChatButton), for: .touchUpInside)
     }
     
     
@@ -52,6 +53,8 @@ class WakeUpDetailCardVC: BaseGpsVC {
     
     // ここで登録を確認
     @objc func registerTeamMate() {
+        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
+        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
         print("登録されました")
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
@@ -61,16 +64,18 @@ class WakeUpDetailCardVC: BaseGpsVC {
     }
     
     
-    // ここでGPSを取得
-    @objc func tapSetGPSButton() {
+    // チャットビューへ画面遷移
+    @objc func tapChatButton() {
         wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
         wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
         getCurrentLocation()
-        print(geoCoderLongitude)
-        print(geoCoderLatitude)
-        print("wakeUpCardView.datePicker.date:" ,wakeUpCardView.datePicker.date)
+        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+//        print(geoCoderLongitude)
+//        print(geoCoderLatitude)
+//        print("wakeUpCardView.datePicker.date:" ,wakeUpCardView.datePicker.date)
 //        print(wakeUpCardView.prefectureAndCityNameLabel.text)
-        wakeUpCardView.prefectureAndCityNameLabel.text = address
+//        wakeUpCardView.prefectureAndCityNameLabel.text = address
         
 //        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
 //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
@@ -81,7 +86,7 @@ class WakeUpDetailCardVC: BaseGpsVC {
     
     
     func configureView() {
-        wakeUpCardView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 400)
+        wakeUpCardView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 280)
         view.addSubview(wakeUpCardView)
     }
     
