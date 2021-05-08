@@ -13,13 +13,13 @@ class WUTabBarController: UITabBarController {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
 //        viewControllers = [createWakeUpDetailCardVC(), createWakeUpCommunicateChatVC(), createWakeUpSettingVC()]
-        viewControllers = [createWakeUpCardCollectionListVC(),createWakeUpSettingVC()]
+        viewControllers = [createWakeUpCardCollectionListVC(),createWakeUpSettingVC(),createWakeUpAndCutAlertBySlideVC()]
     }
     
     
     func createWakeUpCardCollectionListVC() -> UINavigationController {
         let wakeUpCardCollectionListVC = WakeUpCardCollectionListVC()
-        wakeUpCardCollectionListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "collectionView", tag: 0)
+        wakeUpCardCollectionListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "Home", tag: 0)
         return UINavigationController(rootViewController: wakeUpCardCollectionListVC)
     }
     
@@ -28,6 +28,12 @@ class WUTabBarController: UITabBarController {
         let wakeUpSettingVC = WakeUpSettingVC()
         wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 1)
         return UINavigationController(rootViewController: wakeUpSettingVC)
+    }
+    
+    func createWakeUpAndCutAlertBySlideVC() -> UINavigationController {
+        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        wakeUpAndCutAlertBySlideVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "GPS暫定", tag: 2)
+        return UINavigationController(rootViewController: wakeUpAndCutAlertBySlideVC)
     }
     
 

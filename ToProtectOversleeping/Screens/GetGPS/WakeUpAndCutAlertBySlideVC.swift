@@ -10,9 +10,11 @@ import MapKit
 
 class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
-    var myAddressLatitude = 0.0
-    var myAddressLongitude = 0.0
+    // 暫定で家の近くに設定している
+    var myAddressLatitude = 35.7140224101
+    var myAddressLongitude = 139.65362018
     var mySettingAlarmTime = Date()
+    
     var alarm = Alarm()
     
     // 地図
@@ -27,7 +29,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemOrange
         configureUI()
         swipeButton.getGeocoderDelegate = self
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
@@ -59,7 +61,9 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         differenceFromCurrenTime = alarm.calculateTimeInterval(userAwakeTime: settingTime)
         print("設定時刻との差分2:" ,differenceFromCurrenTime)
         
-        if differenceFromCurrenTime > 7200 {
+        
+        //TODO: 暫定で2時間以上前に設定しています
+        if differenceFromCurrenTime < 7200 {
             // ２時間以上前の時
             swipedActionLabel.text = "２時間以上前です"
             swipeButton.isHidden = true
@@ -68,6 +72,16 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             swipedActionLabel.text = "2時間以内です"
             swipeButton.isHidden = false
         }
+        
+//        if differenceFromCurrenTime > 7200 {
+//            // ２時間以上前の時
+//            swipedActionLabel.text = "２時間以上前です"
+//            swipeButton.isHidden = true
+//        } else {
+//            // ２時間以内の時
+//            swipedActionLabel.text = "2時間以内です"
+//            swipeButton.isHidden = false
+//        }
     }
     
     
@@ -170,11 +184,12 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     }
     
     
+    // TODO: ここでswipeButtonでの判定が行われる。 100m以上離れた時と、離れていない時で分岐する。
     func setupSwipeButton() {
         if swipeButton == nil {
             self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 100, width: view.frame.size.width - 80, height: 50))
             swipeButton.isRightToLeft = false
-            swipeButton.text = "右へスライドしてください"
+            swipeButton.text = "→右へスワイプ→"
             swipeButton.swipedText = "GPS取得中"
             view.addSubview(swipeButton)
         }
@@ -248,7 +263,10 @@ extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
         swipedActionLabel.text = "取得完了しました"
-        setAnnotation(location: myHomeLocation)
+//        setAnnotation(location: myHomeLocation)
+        setAnnotation(location: CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude))
+        print("geoCoderLatitude:", geoCoderLatitude)
+        print("geoCoderLongitude:", geoCoderLongitude)
     }
     
     

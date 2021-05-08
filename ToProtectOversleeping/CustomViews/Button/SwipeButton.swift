@@ -17,7 +17,7 @@ class SwipeButton: UIView {
     var getGeocoderDelegate: GetGeocoderDelegate?
     
     var borderColor:  UIColor = .black
-    var borderWidth:  CGFloat = 1.5
+    var borderWidth:  CGFloat = 2.0
     var cornerRadius: CGFloat = 10.0
     var duration:     Double  = 0.8
     
@@ -26,9 +26,9 @@ class SwipeButton: UIView {
             self.button.backgroundColor = frontColor
         }
     }
-    var groundColor : UIColor = .systemGray {
+    var groundColor : UIColor = .systemGray.withAlphaComponent(0.5) {
         didSet {
-            self.bar.backgroundColor = groundColor
+            self.bar.backgroundColor = groundColor.withAlphaComponent(0.5)
         }
     }
     var backColor : UIColor = .clear {
@@ -41,12 +41,12 @@ class SwipeButton: UIView {
             self.textLabel.textColor = textColor
         }
     }
-    
+        
     var swipedFrontColor : UIColor = .systemOrange
-    var swipedGroundColor : UIColor = UIColor.darkGray
+    var swipedGroundColor : UIColor = .darkGray
     var swipedTextColor : UIColor = .systemOrange
     
-    var textFont : UIFont = UIFont.systemFont(ofSize: 16) {
+    var textFont : UIFont = UIFont.systemFont(ofSize: 20) {
         didSet {
             self.textLabel.font = textFont
         }
@@ -93,13 +93,15 @@ class SwipeButton: UIView {
     
     public lazy var bar: UIView = { [unowned self] in
         let view = UIView()
-        view.backgroundColor = groundColor
+        view.backgroundColor = groundColor.withAlphaComponent(0.5)
         return view
     }()
     
     public lazy var button: RoundView = { [unowned self] in
         let view = RoundView()
         view.backgroundColor = frontColor
+        view.layer.borderColor = UIColor.systemBackground.cgColor
+        view.layer.borderWidth = 3.0
         view.delegate = self
         return view
     }()
@@ -192,11 +194,16 @@ extension SwipeButton {
         }){ (completed) in
             // ここにボタンがスワイプされた時の処理を書く
             self.button.backgroundColor = self.swipedFrontColor
-            self.bar.backgroundColor = self.swipedGroundColor
+            self.bar.backgroundColor = self.swipedGroundColor.withAlphaComponent(0.7)
             self.textLabel.textColor = self.swipedTextColor
             if let swipedText = self.swipedText {
                 self.textLabel.text = swipedText
                 self.getGeocoderDelegate?.getAddressFromCurrentPlace()
+            }
+            UIView.animate(withDuration: self.duration, delay: 5.0) {
+                self.swipeToBack()
+            } completion: { completed in
+                print("completed: ",completed)
             }
         }
     }
@@ -206,7 +213,7 @@ extension SwipeButton {
             self.button.frame = self.startFrame
         }){ (completed) in
             self.button.backgroundColor = self.frontColor
-            self.bar.backgroundColor = self.groundColor
+            self.bar.backgroundColor = self.groundColor.withAlphaComponent(0.5)
             self.textLabel.textColor = self.textColor
             if let text = self.text {
                 self.textLabel.text = text
