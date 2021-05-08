@@ -101,7 +101,7 @@ extension BaseGpsVC: CLLocationManagerDelegate {
                     self.subAdministrativeAreaLabel.text = placemark.subAdministrativeArea
                     // 市区町村
                     self.localityLabel.text = placemark.locality
-                    // 超バンなしの地名
+                    // 丁番なしの地名
                     self.subLocalityLabel.text = placemark.subLocality
                     self.thoroughfareLabel.text = placemark.thoroughfare
                     self.subThoroughfareLabel.text = placemark.subThoroughfare
@@ -111,9 +111,10 @@ extension BaseGpsVC: CLLocationManagerDelegate {
                     let subAdministrativeArea = placemark.subAdministrativeArea == nil ? "" : placemark.subAdministrativeArea!
                     let locality = placemark.locality == nil ? "" : placemark.locality!
                     let subLocality = placemark.subLocality == nil ? "" : placemark.subLocality!
-//                    let thoroughfare = placemark.thoroughfare == nil ? "" : placemark.thoroughfare!
-//                    let placeName = !thoroughfare.contains( subLocality ) ? subLocality : thoroughfare
-                    self.address = "\(administrativeArea)\(subAdministrativeArea)\(locality)\(subLocality)"
+                    let thoroughfare = placemark.thoroughfare == nil ? "" : placemark.thoroughfare!
+                    let placeName = !thoroughfare.contains( subLocality ) ? subLocality : thoroughfare
+                    let subThoroughfare = placemark.subThoroughfare == nil ? "" : placemark.subThoroughfare!
+                    self.address = "\(administrativeArea)\(subAdministrativeArea)\(locality)\(placeName)\(subThoroughfare)"
                 }
             }
         }
