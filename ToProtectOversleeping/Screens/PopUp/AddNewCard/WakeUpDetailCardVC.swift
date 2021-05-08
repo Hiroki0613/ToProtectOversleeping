@@ -15,7 +15,6 @@ class WakeUpDetailCardVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
         configureView()
         configureDecoration()
         configureAddTarget()
@@ -29,33 +28,39 @@ class WakeUpDetailCardVC: BaseGpsVC {
     }
     
     func configureAddTarget() {
-        wakeUpCardView.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(setAlarmSwitch(sender:)), for: .valueChanged)
-        wakeUpCardView.chatTeamRegistrationButton.addTarget(self, action: #selector(registerTeamMate), for: .touchUpInside)
-        wakeUpCardView.setChatButton.addTarget(self, action: #selector(tapChatButton), for: .touchUpInside)
+        wakeUpCardView.wakeUpDismissButton.addTarget(self, action: #selector(tapToDismiss), for: .touchUpInside)
+        if wakeUpCardView.isChatTeamRegistered {
+            wakeUpCardView.chatTeamInvitationButton.addTarget(self, action: #selector(invitedFromTeam), for: .touchUpInside)
+        } else {
+            wakeUpCardView.chatTeamNewRegisterButton.addTarget(self, action: #selector(registerNewTeam), for: .touchUpInside)
+            wakeUpCardView.chatTeamNewInvitedButton.addTarget(self, action: #selector(invitedToTeam), for: .touchUpInside)
+        }
+
+//        wakeUpCardView.setChatButton.addTarget(self, action: #selector(tapChatButton), for: .touchUpInside)
     }
     
     
     // ここで目覚ましをセット
-    @objc func setAlarmSwitch(sender: UISwitch) {
-        let onCheck: Bool = sender.isOn
-            // UISwitch値を確認
-            if onCheck {
-                // viewのalphaを1.0にする。
-                // 目覚ましをONにする
-                print("スイッチの状態はオンです。値: \(onCheck)")
-            } else {
-                // viewのalphaを0.8にする。
-                // 目覚ましをOFFにする
-                print("スイッチの状態はオフです。値: \(onCheck)")
-            }
+    @objc func tapToDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // 新規登録
+    @objc func registerNewTeam() {
+        print("新規登録しました")
+    }
+    
+    // 招待してもらう
+    @objc func invitedToTeam() {
+        print("招待してもらいました")
     }
     
     
-    // ここで登録を確認
-    @objc func registerTeamMate() {
+    // チームへ招待する
+    @objc func invitedFromTeam() {
         wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
         wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
-        print("登録されました")
+        print("招待しました")
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
         wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
@@ -64,13 +69,13 @@ class WakeUpDetailCardVC: BaseGpsVC {
     }
     
     
-    // チャットビューへ画面遷移
-    @objc func tapChatButton() {
-        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
-        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
-        getCurrentLocation()
-        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+//    // チャットビューへ画面遷移
+//    @objc func tapChatButton() {
+//        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
+//        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
+//        getCurrentLocation()
+//        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+//        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
 //        print(geoCoderLongitude)
 //        print(geoCoderLatitude)
 //        print("wakeUpCardView.datePicker.date:" ,wakeUpCardView.datePicker.date)
@@ -82,12 +87,24 @@ class WakeUpDetailCardVC: BaseGpsVC {
 //        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
 //        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
 //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
-    }
+//    }
     
     
     func configureView() {
-        wakeUpCardView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 280)
+        configureBlurView()
+        configureCardView()
+    }
+    
+    func configureCardView(){
+        wakeUpCardView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
         view.addSubview(wakeUpCardView)
+    }
+    
+    func configureBlurView() {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.frame = self.view.frame
+        view.addSubview(visualEffectView)
     }
     
     // セルを装飾

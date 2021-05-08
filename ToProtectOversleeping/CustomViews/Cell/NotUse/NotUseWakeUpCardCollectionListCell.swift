@@ -1,13 +1,13 @@
 //
-//  WakeUpCardCollectionListCell.swift
+//  NotUseWakeUpCardCollectionListCell.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/05/03.
+//  Created by 近藤宏輝 on 2021/05/08.
 //
 
 import UIKit
 
-class WakeUpCardCollectionListCell: UICollectionViewCell {
+class NotUseWakeUpCardCollectionListCell: UICollectionViewCell {
     
     static let reuseID = "WakeUpCardCollectionListCell"
     
@@ -36,7 +36,7 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     var chatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
-    var isChatTeamRegistered = true
+    var isChatTeamRegistered = false
     
     // チャットへ移動するボタン
     var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")

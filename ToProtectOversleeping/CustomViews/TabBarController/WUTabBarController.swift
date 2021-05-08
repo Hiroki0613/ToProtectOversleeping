@@ -13,30 +13,24 @@ class WUTabBarController: UITabBarController {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
 //        viewControllers = [createWakeUpDetailCardVC(), createWakeUpCommunicateChatVC(), createWakeUpSettingVC()]
-        viewControllers = [createWakeUpDetailCardVC(), createWakeUpSettingVC()]
+        viewControllers = [createWakeUpCardCollectionListVC(),createWakeUpSettingVC()]
     }
     
     
-    func createWakeUpDetailCardVC() -> UINavigationController {
-        let wakeUpDetailCardVC = WakeUpDetailCardVC()
-        wakeUpDetailCardVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "Home", tag: 0)
-        return UINavigationController(rootViewController: wakeUpDetailCardVC)
+    func createWakeUpCardCollectionListVC() -> UINavigationController {
+        let wakeUpCardCollectionListVC = WakeUpCardCollectionListVC()
+        wakeUpCardCollectionListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "collectionView", tag: 0)
+        return UINavigationController(rootViewController: wakeUpCardCollectionListVC)
     }
     
-//    func createWakeUpCommunicateChatVC() -> UINavigationController {
-//        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-//        wakeUpCommunicateChatVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "message", title: "Chat", tag: 1)
-//        return UINavigationController(rootViewController: wakeUpCommunicateChatVC)
-//    }
     
     func createWakeUpSettingVC() -> UINavigationController {
         let wakeUpSettingVC = WakeUpSettingVC()
-        wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 2)
+        wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 1)
         return UINavigationController(rootViewController: wakeUpSettingVC)
     }
     
 
-    
     /// SFSymbolsをTabBarにいれる
     /// - Parameters:
     ///   - symbolSystemName: SFSymbolsの名前

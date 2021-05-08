@@ -22,21 +22,24 @@ class WakeUpCardView: UIView {
         return dp
     }()
     var wakeUpTimeTextField = WUTextFields()
-    let wakeUpSetAlarmSwitch = UISwitch() //目覚ましのセット
+    let wakeUpDismissButton = WUButton(backgroundColor: .systemOrange, title: "×")
     var wakeUpTimeTextFieldAndSwitchStackView = UIStackView(frame: .zero)
     var wakeUpTimeStackView = UIStackView(frame: .zero)
     
     // チャットのチーム名、ワンタイムトークンにて招待制
+    var chatTeamLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameTextField = WUTextFields()
-    var chatTeamRegistrationButton = WUButton(backgroundColor: .systemOrange, title: "登録")
+    var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "新規登録")
+    var chatTeamNewInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待される")
+    var chatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
-    
+    var isChatTeamRegistered = false
     
     // GPSを設定するボタン
 //    var setChatLabel = WUBodyLabel(fontSize: 20)
-    var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
+//    var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
 //    var setGPSStackView = UIStackView(frame: .zero)
     // 地図の表示は要望があったら
     
@@ -95,7 +98,8 @@ class WakeUpCardView: UIView {
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
         wakeUpTimeLabel.text = "起きる時間"
-        chatTeamNameLabel.text = "チーム"
+        chatTeamLabel.text = "チーム"
+        chatTeamNameLabel.text = "早起き"
 //        setChatLabel.text = "住所"
 //        prefectureAndCityNameLabel.text = "GPSを取得すると、\nここに表示されます"
         
@@ -116,14 +120,17 @@ class WakeUpCardView: UIView {
         //        translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpSetAlarmSwitch.translatesAutoresizingMaskIntoConstraints = false
+        wakeUpDismissButton.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextFieldAndSwitchStackView.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpSetAlarmSwitch.isOn = false
+//        wakeUpSetAlarmSwitch.isOn = false
         
+        chatTeamLabel.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameLabel.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        chatTeamRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
+        chatTeamNewRegisterButton.translatesAutoresizingMaskIntoConstraints = false
+        chatTeamNewInvitedButton.translatesAutoresizingMaskIntoConstraints = false
+        chatTeamInvitationButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -138,7 +145,7 @@ class WakeUpCardView: UIView {
         
         // 起きる時間をStack
         wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpTimeTextField)
-        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpSetAlarmSwitch)
+        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpDismissButton)
         wakeUpTimeTextFieldAndSwitchStackView.axis = .horizontal
         wakeUpTimeTextFieldAndSwitchStackView.alignment = .fill
         wakeUpTimeTextFieldAndSwitchStackView.spacing = 20
@@ -150,18 +157,28 @@ class WakeUpCardView: UIView {
         addSubview(wakeUpTimeStackView)
         
         // チャットチーム名をStack
-        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNameTextField)
-        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamRegistrationButton)
+        if isChatTeamRegistered {
+            // チームが登録済みの場合
+            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNameLabel)
+            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamInvitationButton)
+        } else {
+            // チームが未定の場合
+            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewRegisterButton)
+            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewInvitedButton)
+        }
+        
         chatTeamNameAndRegstrationStackView.axis = .horizontal
         chatTeamNameAndRegstrationStackView.alignment = .fill
-        chatTeamNameAndRegstrationStackView.distribution = .fill
+        chatTeamNameAndRegstrationStackView.distribution = .fillEqually
         chatTeamNameAndRegstrationStackView.spacing = 20
-        chatTeamNameStackView.addArrangedSubview(chatTeamNameLabel)
+        chatTeamNameStackView.addArrangedSubview(chatTeamLabel)
         chatTeamNameStackView.addArrangedSubview(chatTeamNameAndRegstrationStackView)
         chatTeamNameStackView.axis = .vertical
         chatTeamNameStackView.alignment = .fill
         chatTeamNameStackView.spacing = 10
         addSubview(chatTeamNameStackView)
+            
+
         
         // GPSセットをStack
 //        setGPSStackView.addArrangedSubview(setChatLabel)
@@ -169,7 +186,7 @@ class WakeUpCardView: UIView {
 //        setGPSStackView.axis = .vertical
 //        setGPSStackView.alignment = .fill
 //        setGPSStackView.spacing = 10
-        addSubview(setChatButton)
+//        addSubview(setChatButton)
         
         // 市区町村
 //        addSubview(prefectureAndCityNameLabel)
@@ -184,12 +201,12 @@ class WakeUpCardView: UIView {
             chatTeamNameStackView.topAnchor.constraint(equalTo: wakeUpTimeTextFieldAndSwitchStackView.bottomAnchor, constant:  spacePadding),
             chatTeamNameStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             chatTeamNameStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            chatTeamNameStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
-            // GPS
-            setChatButton.topAnchor.constraint(equalTo: chatTeamNameAndRegstrationStackView.bottomAnchor, constant: spacePadding),
-            setChatButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            setChatButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setChatButton.heightAnchor.constraint(equalToConstant: 40)
+            chatTeamNameStackView.heightAnchor.constraint(equalToConstant: 65)
+//            // GPS
+//            setChatButton.topAnchor.constraint(equalTo: chatTeamNameAndRegstrationStackView.bottomAnchor, constant: spacePadding),
+//            setChatButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+//            setChatButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+//            setChatButton.heightAnchor.constraint(equalToConstant: 40)
 //            // 市区町村
 //            prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setChatButton.bottomAnchor, constant: spacePadding),
 //            prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
@@ -199,13 +216,13 @@ class WakeUpCardView: UIView {
     }
 }
 
-extension WakeUpCardView: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // キーボード入力や、カット/ペースによる変更を防ぐ
-             return false
-    }
-    
-    override func resignFirstResponder() -> Bool {
-        return true
-    }
-}
+//extension WakeUpCardView: UITextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        // キーボード入力や、カット/ペースによる変更を防ぐ
+//             return false
+//    }
+//    
+//    override func resignFirstResponder() -> Bool {
+//        return true
+//    }
+//}

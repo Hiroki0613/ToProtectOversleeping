@@ -1,15 +1,14 @@
 //
-//  WakeUpCardCollectionListCell.swift
+//  NotUseWakeUpCardView.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/05/03.
+//  Created by 近藤宏輝 on 2021/05/08.
 //
 
 import UIKit
+import MapKit
 
-class WakeUpCardCollectionListCell: UICollectionViewCell {
-    
-    static let reuseID = "WakeUpCardCollectionListCell"
+class NotUseWakeUpCardView: UIView {
     
     // 起きる時間
     var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)
@@ -36,16 +35,28 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     var chatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
-    var isChatTeamRegistered = true
+    var isChatTeamRegistered = false
     
-    // チャットへ移動するボタン
+    // GPSを設定するボタン
+//    var setChatLabel = WUBodyLabel(fontSize: 20)
     var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
+//    var setGPSStackView = UIStackView(frame: .zero)
+    // 地図の表示は要望があったら
+    
+
+    // アドレスを格納
+//    var addressString = ""
+    // 住所の表示、プライバシーの保護のために市区町村まで
+//    var prefectureAndCityNameLabel = WUBodyLabel(fontSize: 18)
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+//        backgroundColor = .systemRed
         settingInformation()
         configure()
-        configureDecoration()
+        //        configureDecoration()
     }
     
     
@@ -60,16 +71,52 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
+//    // 位置から住所を取得
+//    func convert(latitude:CLLocationDegrees, longitude: CLLocationDegrees) {
+//        let geocoder = CLGeocoder()
+//        let location = CLLocation(latitude: latitude, longitude: longitude)
+//
+//        geocoder.reverseGeocodeLocation(location) { placemark, error in
+//
+//            if placemark != nil {
+//                if let pm = placemark?.first {
+//
+//                    if pm.administrativeArea != nil || pm.locality != nil {
+//
+//                        self.addressString = pm.name! + pm.administrativeArea! + pm.locality!
+//                    } else {
+//                        self.addressString = pm.name!
+//                    }
+//
+//                    self.prefectureAndCityNameLabel.text = self.addressString
+//                }
+//            }
+//        }
+//    }
+    
+    
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
         wakeUpTimeLabel.text = "起きる時間"
         chatTeamLabel.text = "チーム"
         chatTeamNameLabel.text = "早起き"
+//        setChatLabel.text = "住所"
+//        prefectureAndCityNameLabel.text = "GPSを取得すると、\nここに表示されます"
+        
         wakeUpTimeTextField.inputView = datePicker
+//        wakeUpTimeTextField.delegate = self
     }
     
+    // ここでGPSを取得
+//    @objc func tapSetGPSButton() {
+//        wakeUpTimeTextField.resignFirstResponder()
+//        chatTeamNameTextField.resignFirstResponder()
+//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+//    }
+    
+    
     private func configure() {
-        backgroundColor = .systemBackground.withAlphaComponent(0.7)
         //        translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +133,11 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         chatTeamInvitationButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameStackView.translatesAutoresizingMaskIntoConstraints = false
-                
+        
+//        setGPSStackView.translatesAutoresizingMaskIntoConstraints = false
+//        prefectureAndCityNameLabel.translatesAutoresizingMaskIntoConstraints = false
+//        prefectureAndCityNameLabel.numberOfLines = 0
+        
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
@@ -126,9 +177,19 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         chatTeamNameStackView.alignment = .fill
         chatTeamNameStackView.spacing = 10
         addSubview(chatTeamNameStackView)
-                    
+            
+
+        
         // GPSセットをStack
+//        setGPSStackView.addArrangedSubview(setChatLabel)
+//        setGPSStackView.addArrangedSubview(setChatButton)
+//        setGPSStackView.axis = .vertical
+//        setGPSStackView.alignment = .fill
+//        setGPSStackView.spacing = 10
         addSubview(setChatButton)
+        
+        // 市区町村
+//        addSubview(prefectureAndCityNameLabel)
         
         NSLayoutConstraint.activate([
             //起きる時間
@@ -146,16 +207,22 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
             setChatButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             setChatButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             setChatButton.heightAnchor.constraint(equalToConstant: 40)
+//            // 市区町村
+//            prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setChatButton.bottomAnchor, constant: spacePadding),
+//            prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+//            prefectureAndCityNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+//            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
+}
+
+extension WakeUpCardView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // キーボード入力や、カット/ペースによる変更を防ぐ
+             return false
+    }
     
-    // セルを装飾
-    private func configureDecoration() {
-        layer.shadowColor = UIColor.systemGray.cgColor
-        layer.cornerRadius = 16
-        layer.shadowOpacity = 0.1
-        layer.shadowRadius = 10
-        layer.shadowOffset = .init(width: 0, height: 10)
-        layer.shouldRasterize = true
+    override func resignFirstResponder() -> Bool {
+        return true
     }
 }

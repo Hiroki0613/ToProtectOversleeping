@@ -33,6 +33,8 @@
 		7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */; };
 		7FE523C72646840000B7D1B0 /* WakeUpSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */; };
 		7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */; };
+		7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523CF2646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift */; };
+		7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523D22646C34B00B7D1B0 /* NotUseWakeUpCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatVC.swift; sourceTree = "<group>"; };
 		7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingVC.swift; sourceTree = "<group>"; };
 		7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingView.swift; sourceTree = "<group>"; };
+		7FE523CF2646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotUseWakeUpCardCollectionListCell.swift; sourceTree = "<group>"; };
+		7FE523D22646C34B00B7D1B0 /* NotUseWakeUpCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotUseWakeUpCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		7FA9B64A2641196D0017985B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7FE523D12646C33600B7D1B0 /* NotUse */,
 				7FA9B64B2641198C0017985B /* WakeUpCardView.swift */,
 				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
 			);
@@ -206,6 +211,7 @@
 		7FABB9AF26403E66001182DF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				7FE523CE2646C29000B7D1B0 /* NotUse */,
 				7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */,
 			);
 			path = Cell;
@@ -214,10 +220,10 @@
 		7FABB9B026403E79001182DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				7FE523D72646CD6F00B7D1B0 /* PopUp */,
 				7FE523C82646841700B7D1B0 /* TabBar */,
-				7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */,
-				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
-				7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */,
+				7FE523D62646C96600B7D1B0 /* GetGPS */,
+				7FE523D52646C94A00B7D1B0 /* Chat */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -257,10 +263,58 @@
 		7FE523C82646841700B7D1B0 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				7FA9B65026411ADB0017985B /* WakeUpDetailCardVC.swift */,
+				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
 				7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		7FE523CE2646C29000B7D1B0 /* NotUse */ = {
+			isa = PBXGroup;
+			children = (
+				7FE523CF2646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift */,
+			);
+			path = NotUse;
+			sourceTree = "<group>";
+		};
+		7FE523D12646C33600B7D1B0 /* NotUse */ = {
+			isa = PBXGroup;
+			children = (
+				7FE523D22646C34B00B7D1B0 /* NotUseWakeUpCardView.swift */,
+			);
+			path = NotUse;
+			sourceTree = "<group>";
+		};
+		7FE523D42646C8BC00B7D1B0 /* AddNewCard */ = {
+			isa = PBXGroup;
+			children = (
+				7FA9B65026411ADB0017985B /* WakeUpDetailCardVC.swift */,
+			);
+			path = AddNewCard;
+			sourceTree = "<group>";
+		};
+		7FE523D52646C94A00B7D1B0 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		7FE523D62646C96600B7D1B0 /* GetGPS */ = {
+			isa = PBXGroup;
+			children = (
+				7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */,
+			);
+			path = GetGPS;
+			sourceTree = "<group>";
+		};
+		7FE523D72646CD6F00B7D1B0 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				7FE523D42646C8BC00B7D1B0 /* AddNewCard */,
+			);
+			path = PopUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA9B65F264142100017985B /* JinrikishaGPS.swift in Sources */,
+				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
 				7FE523C72646840000B7D1B0 /* WakeUpSettingVC.swift in Sources */,
 				7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */,
@@ -353,6 +408,7 @@
 				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,
 				7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */,
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
+				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,
 				7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,
 				7F1452E42641A9C600BAB44F /* WUButton.swift in Sources */,
