@@ -12,7 +12,8 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
-        viewControllers = [createWakeUpDetailCardVC(), createWakeUpCommunicateChatVC(), createWakeUpSettingVC()]
+//        viewControllers = [createWakeUpDetailCardVC(), createWakeUpCommunicateChatVC(), createWakeUpSettingVC()]
+        viewControllers = [createWakeUpDetailCardVC(), createWakeUpSettingVC()]
     }
     
     
@@ -22,11 +23,11 @@ class WUTabBarController: UITabBarController {
         return UINavigationController(rootViewController: wakeUpDetailCardVC)
     }
     
-    func createWakeUpCommunicateChatVC() -> UINavigationController {
-        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-        wakeUpCommunicateChatVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "message", title: "Chat", tag: 1)
-        return UINavigationController(rootViewController: wakeUpCommunicateChatVC)
-    }
+//    func createWakeUpCommunicateChatVC() -> UINavigationController {
+//        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+//        wakeUpCommunicateChatVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "message", title: "Chat", tag: 1)
+//        return UINavigationController(rootViewController: wakeUpCommunicateChatVC)
+//    }
     
     func createWakeUpSettingVC() -> UINavigationController {
         let wakeUpSettingVC = WakeUpSettingVC()
