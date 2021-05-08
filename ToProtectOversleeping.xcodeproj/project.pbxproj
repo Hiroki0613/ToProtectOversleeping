@@ -27,6 +27,7 @@
 		7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */; };
 		7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B32641069A001182DF /* SwipeButton.swift */; };
 		7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B6264106A2001182DF /* SwipeViewController.swift */; };
+		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardCollectionListCell.swift; sourceTree = "<group>"; };
 		7FABB9B32641069A001182DF /* SwipeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
 		7FABB9B6264106A2001182DF /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
+		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
+				7FE523BB26464C7300B7D1B0 /* Extention */,
 				7FA9B65D264141F40017985B /* JinrikishaGPS */,
 				7FABB9B026403E79001182DF /* Screens */,
 				7FABB9B226410686001182DF /* SlideButtonAciton */,
@@ -213,6 +216,14 @@
 			path = SlideButtonAciton;
 			sourceTree = "<group>";
 		};
+		7FE523BB26464C7300B7D1B0 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,6 +309,7 @@
 				7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */,
 				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
+				7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,
 				7F1452E42641A9C600BAB44F /* WUButton.swift in Sources */,
 			);
