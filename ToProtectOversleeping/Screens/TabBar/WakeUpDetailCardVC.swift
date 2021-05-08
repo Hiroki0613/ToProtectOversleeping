@@ -53,6 +53,11 @@ class WakeUpDetailCardVC: BaseGpsVC {
     // ここで登録を確認
     @objc func registerTeamMate() {
         print("登録されました")
+        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
+        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     
@@ -67,11 +72,11 @@ class WakeUpDetailCardVC: BaseGpsVC {
 //        print(wakeUpCardView.prefectureAndCityNameLabel.text)
         wakeUpCardView.prefectureAndCityNameLabel.text = address
         
-        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
-        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
+//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     
