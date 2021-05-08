@@ -28,6 +28,7 @@
 		7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B32641069A001182DF /* SwipeButton.swift */; };
 		7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B6264106A2001182DF /* SwipeViewController.swift */; };
 		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
+		7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		7FABB9B32641069A001182DF /* SwipeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
 		7FABB9B6264106A2001182DF /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
+				7FE523BE26464ED600B7D1B0 /* QRCode */,
 				7FE523BB26464C7300B7D1B0 /* Extention */,
 				7FA9B65D264141F40017985B /* JinrikishaGPS */,
 				7FABB9B026403E79001182DF /* Screens */,
@@ -224,6 +227,14 @@
 			path = Extention;
 			sourceTree = "<group>";
 		};
+		7FE523BE26464ED600B7D1B0 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,6 +310,7 @@
 				7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */,
 				7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */,
 				7FA9B65126411ADB0017985B /* WakeUpDetailCardVC.swift in Sources */,
+				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* WakeUpCardView.swift in Sources */,
 				7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */,
 				7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */,
