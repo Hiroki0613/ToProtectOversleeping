@@ -212,7 +212,7 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 //            annotationView.image = UIImage(named: "jinrikisya_man")
             // figure.waveのサイズを大きくしたい
-            annotationView.image = UIImage(systemName: "figure.wave")
+            annotationView.image = UIImage(systemName: "figure.wave")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 30, weight: .bold))
             annotationView.canShowCallout = true
             return annotationView
         }
