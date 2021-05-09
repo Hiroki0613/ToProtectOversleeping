@@ -9,26 +9,15 @@ import UIKit
 
 class SetInvitedTeamMateView: UIView {
     
-    // 起きる時間
-    var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)
-    let datePicker: UIDatePicker = {
-        let dp = UIDatePicker()
-        dp.datePickerMode = .time
-        dp.preferredDatePickerStyle = .wheels
-        dp.timeZone = NSTimeZone.local
-        dp.locale = Locale.current
-        dp.addTarget(self, action: #selector(dateChange), for: .valueChanged)
-        return dp
-    }()
-    var wakeUpTimeTextField = WUTextFields()
-    let wakeUpDismissButton = WUButton(backgroundColor: .systemOrange, title: "×")
-    var wakeUpTimeTextFieldAndSwitchStackView = UIStackView(frame: .zero)
-    var wakeUpTimeStackView = UIStackView(frame: .zero)
+    //招待IDを入力
+    var invitedIDLabel = WUBodyLabel(fontSize: 20)
+    var invitedIDTextField = WUTextFields()
+    var invitedIDStackView = UIStackView(frame: .zero)
     
     // チャットのチーム名、ワンタイムトークンにて招待制
-    var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "登録")
-    var chatTeamGoBackButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
-    var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
+    var registeredByQRCodeButton = WUButton(backgroundColor: .systemOrange, title: "QR読み取り")
+    var registeredByQRCodeGoBackButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
+    var regsteredByQRCodeStackView = UIStackView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,73 +31,57 @@ class SetInvitedTeamMateView: UIView {
     }
     
     
-    @objc func dateChange() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:MM"
-        wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
-    }
-    
-    
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
-        wakeUpTimeLabel.text = "チーム名を入力してください"
+        invitedIDLabel.text = "招待IDを入力してください"
+        invitedIDTextField.text = ""
     }
     
     
     private func configure() {
-        wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpDismissButton.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpTimeTextFieldAndSwitchStackView.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
+        invitedIDLabel.translatesAutoresizingMaskIntoConstraints = false
+        invitedIDTextField.translatesAutoresizingMaskIntoConstraints = false
+        invitedIDStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        chatTeamNewRegisterButton.translatesAutoresizingMaskIntoConstraints = false
-        chatTeamGoBackButton.translatesAutoresizingMaskIntoConstraints = false
-        chatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
+        registeredByQRCodeButton.translatesAutoresizingMaskIntoConstraints = false
+        registeredByQRCodeGoBackButton.translatesAutoresizingMaskIntoConstraints = false
+        regsteredByQRCodeStackView.translatesAutoresizingMaskIntoConstraints = false
         
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
         let labelButtonHightPadding: CGFloat = 60
         
-        // 起きる時間をStack
-        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpTimeTextField)
-        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpDismissButton)
-        wakeUpTimeTextFieldAndSwitchStackView.axis = .horizontal
-        wakeUpTimeTextFieldAndSwitchStackView.alignment = .fill
-        wakeUpTimeTextFieldAndSwitchStackView.spacing = 20
-        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
-        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextFieldAndSwitchStackView)
-        wakeUpTimeStackView.axis = .vertical
-        wakeUpTimeStackView.alignment = .fill
-        wakeUpTimeStackView.spacing = 10
-        addSubview(wakeUpTimeStackView)
+        // チーム名の入力をStack
+        
+        invitedIDStackView.addArrangedSubview(invitedIDLabel)
+        invitedIDStackView.addArrangedSubview(invitedIDTextField)
+        invitedIDStackView.axis = .vertical
+        invitedIDStackView.alignment = .fill
+        invitedIDStackView.spacing = 10
+        addSubview(invitedIDStackView)
         
         // チャットチーム名をStack
-        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewRegisterButton)
-        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamGoBackButton)
-        
-        chatTeamNameAndRegstrationStackView.axis = .horizontal
-        chatTeamNameAndRegstrationStackView.alignment = .fill
-        chatTeamNameAndRegstrationStackView.distribution = .fillEqually
-        chatTeamNameAndRegstrationStackView.spacing = 20
-        chatTeamNameAndRegstrationStackView.axis = .vertical
-        chatTeamNameAndRegstrationStackView.alignment = .fill
-        chatTeamNameAndRegstrationStackView.spacing = 10
-        addSubview(chatTeamNameAndRegstrationStackView)
+        regsteredByQRCodeStackView.addArrangedSubview(registeredByQRCodeButton)
+        regsteredByQRCodeStackView.addArrangedSubview(registeredByQRCodeGoBackButton)
+        regsteredByQRCodeStackView.axis = .horizontal
+        regsteredByQRCodeStackView.alignment = .fill
+        regsteredByQRCodeStackView.distribution = .fillEqually
+        regsteredByQRCodeStackView.spacing = 20
+        addSubview(regsteredByQRCodeStackView)
         
         
         NSLayoutConstraint.activate([
             //起きる時間
-            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
-            wakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            invitedIDStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
+            invitedIDStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            invitedIDStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            invitedIDStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             // チャットチーム名
-            chatTeamNameAndRegstrationStackView.topAnchor.constraint(equalTo: wakeUpTimeTextFieldAndSwitchStackView.bottomAnchor, constant:  spacePadding),
-            chatTeamNameAndRegstrationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            chatTeamNameAndRegstrationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            chatTeamNameAndRegstrationStackView.heightAnchor.constraint(equalToConstant: 65)
+            regsteredByQRCodeStackView.topAnchor.constraint(equalTo: invitedIDStackView.bottomAnchor, constant:  spacePadding),
+            regsteredByQRCodeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            regsteredByQRCodeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            regsteredByQRCodeStackView.heightAnchor.constraint(equalToConstant: 65)
         ])
     }
 }

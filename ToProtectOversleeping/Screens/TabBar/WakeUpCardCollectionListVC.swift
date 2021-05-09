@@ -86,14 +86,10 @@ class WakeUpCardCollectionListVC: UIViewController {
     }
     
     @objc func goToWakeUpDetailCardVC() {
-        let setNewTeamMateNameVC = SetNewTeamMateNameVC()
-        self.present(setNewTeamMateNameVC, animated: true, completion: nil)
-        
-        
-//        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
-//        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
-//        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
-//        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
+        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
+        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
+        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
+        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
     }
 }
 

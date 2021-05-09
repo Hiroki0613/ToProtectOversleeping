@@ -112,7 +112,6 @@
 				7FE523BB26464C7300B7D1B0 /* Extention */,
 				7FA9B65D264141F40017985B /* JinrikishaGPS */,
 				7FABB9B026403E79001182DF /* Screens */,
-				7FABB9B226410686001182DF /* SlideButtonAciton */,
 				7FABB9AE26403E5D001182DF /* CustomViews */,
 				7FABB9AD26403E36001182DF /* Support */,
 				7F376B2226401A920063F2EC /* Info.plist */,
@@ -205,6 +204,7 @@
 		7FABB9AE26403E5D001182DF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7FABB9B226410686001182DF /* SlideButtonAciton */,
 				7FE523C12646836400B7D1B0 /* TabBarController */,
 				7F81A5CA2642DEB6009C839B /* Alarm */,
 				7F81A5C72642905C009C839B /* ViewController */,

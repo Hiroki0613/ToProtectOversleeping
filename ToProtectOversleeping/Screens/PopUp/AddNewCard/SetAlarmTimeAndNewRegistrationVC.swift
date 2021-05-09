@@ -46,12 +46,20 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
     
     // 新規登録
     @objc func registerNewTeam() {
-        print("新規登録しました")
+        print("新規登録します")
+        let setNewTeamMateNameVC = SetNewTeamMateNameVC()
+        setNewTeamMateNameVC.modalPresentationStyle = .overFullScreen
+        setNewTeamMateNameVC.modalTransitionStyle = .crossDissolve
+        self.present(setNewTeamMateNameVC, animated: true, completion: nil)
     }
     
     // 招待してもらう
     @objc func invitedToTeam() {
         print("招待してもらいました")
+        let setInvitedTeamMateVC = SetInvitedTeamMateVC()
+        setInvitedTeamMateVC.modalPresentationStyle = .overFullScreen
+        setInvitedTeamMateVC.modalTransitionStyle = .crossDissolve
+        self.present(setInvitedTeamMateVC, animated: true, completion: nil)
     }
     
     

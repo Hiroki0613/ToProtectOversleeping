@@ -9,7 +9,7 @@ import UIKit
 
 class SetNewTeamMateNameView: UIView {
     
-    // 起きる時間
+    //新しいチーム名を入力
     var newTeamMateLabel = WUBodyLabel(fontSize: 20)
     var newTeamMateTextField = WUTextFields()
 //    var wakeUpTimeTextFieldAndSwitchStackView = UIStackView(frame: .zero)
