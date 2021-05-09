@@ -1,17 +1,16 @@
 //
-//  WakeUpDetailCardVC.swift
+//  SetNewTeamMateNameVC.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/05/04.
+//  Created by 近藤宏輝 on 2021/05/09.
 //
 
 import UIKit
 
-class WakeUpDetailCardVC: BaseGpsVC {
+class SetNewTeamMateNameVC: UIViewController {
     
     // 起きる時間のカード
-    var wakeUpCardView = WakeUpCardView()
-
+    var setNewTeamMateNameView = SetNewTeamMateNameView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +27,13 @@ class WakeUpDetailCardVC: BaseGpsVC {
     }
     
     func configureAddTarget() {
-        wakeUpCardView.wakeUpDismissButton.addTarget(self, action: #selector(tapToDismiss), for: .touchUpInside)
-        if wakeUpCardView.isChatTeamRegistered {
-            wakeUpCardView.chatTeamInvitationButton.addTarget(self, action: #selector(invitedFromTeam), for: .touchUpInside)
-        } else {
-            wakeUpCardView.chatTeamNewRegisterButton.addTarget(self, action: #selector(registerNewTeam), for: .touchUpInside)
-            wakeUpCardView.chatTeamNewInvitedButton.addTarget(self, action: #selector(invitedToTeam), for: .touchUpInside)
-        }
+//        setNewTeamMateNameView.wakeUpDismissButton.addTarget(self, action: #selector(tapToDismiss), for: .touchUpInside)
+//        if setNewTeamMateNameView.isChatTeamRegistered {
+//            setNewTeamMateNameView.chatTeamInvitationButton.addTarget(self, action: #selector(invitedFromTeam), for: .touchUpInside)
+//        } else {
+            setNewTeamMateNameView.chatTeamNewRegisterButton.addTarget(self, action: #selector(registerNewTeam), for: .touchUpInside)
+            setNewTeamMateNameView.chatTeamGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+//        }
 
 //        wakeUpCardView.setChatButton.addTarget(self, action: #selector(tapChatButton), for: .touchUpInside)
     }
@@ -51,21 +50,21 @@ class WakeUpDetailCardVC: BaseGpsVC {
     }
     
     // 招待してもらう
-    @objc func invitedToTeam() {
-        print("招待してもらいました")
+    @objc func goBack() {
+        print("戻るボタン")
     }
     
     
     // チームへ招待する
     @objc func invitedFromTeam() {
-        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
-        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
+        setNewTeamMateNameView.newTeamMateTextField
+            .resignFirstResponder()
         print("招待しました")
-        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
-        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = setAlarmTimeAndNewRegistrationVC.datePicker.date
+//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     
@@ -96,8 +95,8 @@ class WakeUpDetailCardVC: BaseGpsVC {
     }
     
     func configureCardView(){
-        wakeUpCardView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
-        view.addSubview(wakeUpCardView)
+        setNewTeamMateNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
+        view.addSubview(setNewTeamMateNameView)
     }
     
     func configureBlurView() {
@@ -109,11 +108,11 @@ class WakeUpDetailCardVC: BaseGpsVC {
     
     // セルを装飾
     private func configureDecoration() {
-        wakeUpCardView.layer.shadowColor = UIColor.systemGray.cgColor
-        wakeUpCardView.layer.cornerRadius = 16
-        wakeUpCardView.layer.shadowOpacity = 0.1
-        wakeUpCardView.layer.shadowRadius = 10
-        wakeUpCardView.layer.shadowOffset = .init(width: 0, height: 10)
-        wakeUpCardView.layer.shouldRasterize = true
+        setNewTeamMateNameView.layer.shadowColor = UIColor.systemGray.cgColor
+        setNewTeamMateNameView.layer.cornerRadius = 16
+        setNewTeamMateNameView.layer.shadowOpacity = 0.1
+        setNewTeamMateNameView.layer.shadowRadius = 10
+        setNewTeamMateNameView.layer.shadowOffset = .init(width: 0, height: 10)
+        setNewTeamMateNameView.layer.shouldRasterize = true
     }
 }

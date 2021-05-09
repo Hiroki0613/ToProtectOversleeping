@@ -12,6 +12,9 @@ class WakeUpCardCollectionListVC: UIViewController {
     // 参考URL
     // https://www.hfoasi8fje3.work/entry/2019/02/14/000000
     // https://qiita.com/Queue0412/items/0984c8d1a757935f140f
+    
+    var wakeUpCardCollectionListCell = WakeUpCardCollectionListCell()
+    var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, title: "+")
 
     
     let screenSize: CGSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
@@ -24,6 +27,8 @@ class WakeUpCardCollectionListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        configureAddCardButton()
+        wakeUpCardCollectionListCell.goToChatNCDelegate = self
     }
     
     
@@ -62,16 +67,43 @@ class WakeUpCardCollectionListVC: UIViewController {
         collectionView.dataSource = self
         self.view.addSubview(collectionView)
     }
+    
+    func configureAddCardButton() {
+        addWakeUpCardButton.translatesAutoresizingMaskIntoConstraints = false
+        addWakeUpCardButton.layer.cornerRadius = 40
+        addWakeUpCardButton.layer.borderColor = UIColor.systemBackground.cgColor
+        addWakeUpCardButton.layer.borderWidth = 3.0
+        addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
+        view.addSubview(addWakeUpCardButton)
+        
+        NSLayoutConstraint.activate([
+            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 80),
+            addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 80),
+            addWakeUpCardButton.trailingAnchor.constraint(equalTo:view.trailingAnchor,constant: -30),
+            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+        ])
+        
+    }
+    
+    @objc func goToWakeUpDetailCardVC() {
+        let setNewTeamMateNameVC = SetNewTeamMateNameVC()
+        self.present(setNewTeamMateNameVC, animated: true, completion: nil)
+        
+        
+//        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
+//        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
+//        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
+//        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
+    }
 }
+
 
 
 extension WakeUpCardCollectionListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         print("タップされました: ", indexPath.row)
-        let wakeUpDetailCardVC = WakeUpDetailCardVC()
-        wakeUpDetailCardVC.modalPresentationStyle = .overFullScreen
-        wakeUpDetailCardVC.modalTransitionStyle = .crossDissolve
-        self.present(wakeUpDetailCardVC, animated: true, completion: nil)
+
     }
 }
 
@@ -100,5 +132,13 @@ extension WakeUpCardCollectionListVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    }
+}
+
+extension WakeUpCardCollectionListVC: GoToChatNCDelegate {
+    func goToChat() {
+        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+        wakeUpCommunicateChatVC.title = "チャット"
+        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
 }

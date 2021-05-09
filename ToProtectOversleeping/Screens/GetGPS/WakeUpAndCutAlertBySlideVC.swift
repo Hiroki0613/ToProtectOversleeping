@@ -10,9 +10,11 @@ import MapKit
 
 class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
+//    var myAddressLongitude = 139.65363018
+    
     // 暫定で家の近くに設定している
     var myAddressLatitude = 35.7140224101
-    var myAddressLongitude = 139.65362018
+    var myAddressLongitude = 139.65363018
     var mySettingAlarmTime = Date()
     
     var alarm = Alarm()

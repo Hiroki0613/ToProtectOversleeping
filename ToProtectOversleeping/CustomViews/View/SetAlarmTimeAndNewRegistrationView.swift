@@ -1,14 +1,13 @@
 //
-//  WakeUpCardView.swift
+//  SetAlarmTimeAndNewRegistrationView.swift
 //  ToProtectOversleeping
 //
 //  Created by 近藤宏輝 on 2021/05/04.
 //
 
 import UIKit
-import MapKit
 
-class WakeUpCardView: UIView {
+class SetAlarmTimeAndNewRegistrationView: UIView {
     
     // 起きる時間
     var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)

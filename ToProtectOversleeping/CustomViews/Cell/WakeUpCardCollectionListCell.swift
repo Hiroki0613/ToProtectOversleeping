@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol GoToChatNCDelegate {
+    func goToChat()
+}
+
 class WakeUpCardCollectionListCell: UICollectionViewCell {
+        
+    var goToChatNCDelegate: GoToChatNCDelegate?
     
     static let reuseID = "WakeUpCardCollectionListCell"
     
@@ -38,6 +44,8 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     var chatTeamNameStackView = UIStackView(frame: .zero)
     var isChatTeamRegistered = true
     
+
+    
     // チャットへ移動するボタン
     var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
     
@@ -66,6 +74,8 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         chatTeamLabel.text = "チーム"
         chatTeamNameLabel.text = "早起き"
         wakeUpTimeTextField.inputView = datePicker
+        
+
     }
     
     private func configure() {
@@ -128,6 +138,7 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         addSubview(chatTeamNameStackView)
                     
         // GPSセットをStack
+        setChatButton.addTarget(self, action: #selector(goToChatVC), for: .touchUpInside)
         addSubview(setChatButton)
         
         NSLayoutConstraint.activate([
@@ -147,6 +158,16 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
             setChatButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             setChatButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    @objc func goToChatVC() {
+        print("チャットボタンが押されました")
+//        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+//        wakeUpCommunicateChatVC.title = "目覚ましセット"
+//        wakeUpCommunicateChatNC = UINavigationController(rootViewController: wakeUpCommunicateChatVC)
+//
+//        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+        self.goToChatNCDelegate?.goToChat()
     }
     
     // セルを装飾

@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // ナビゲーションコントローラーを実装
     func createWakeUpDetailCardNC() -> UINavigationController {
-        let wakeUpDetailCardVC = WakeUpDetailCardVC()
+        let wakeUpDetailCardVC = SetAlarmTimeAndNewRegistrationVC()
         wakeUpDetailCardVC.title = "目覚ましセット"
         return UINavigationController(rootViewController: wakeUpDetailCardVC)
     }
