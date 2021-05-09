@@ -27,13 +27,13 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
     }
     
     func configureAddTarget() {
-        setAlarmTimeAndNewRegistrationView.wakeUpDismissButton.addTarget(self, action: #selector(tapToDismiss), for: .touchUpInside)
-        if setAlarmTimeAndNewRegistrationView.isChatTeamRegistered {
-            setAlarmTimeAndNewRegistrationView.chatTeamInvitationButton.addTarget(self, action: #selector(invitedFromTeam), for: .touchUpInside)
-        } else {
+        setAlarmTimeAndNewRegistrationView.wakeUpGoBuckButton.addTarget(self, action: #selector(tapToDismiss), for: .touchUpInside)
+//        if setAlarmTimeAndNewRegistrationView.isChatTeamRegistered {
+//            setAlarmTimeAndNewRegistrationView.chatTeamInvitationButton.addTarget(self, action: #selector(invitedFromTeam), for: .touchUpInside)
+//        } else {
             setAlarmTimeAndNewRegistrationView.chatTeamNewRegisterButton.addTarget(self, action: #selector(registerNewTeam), for: .touchUpInside)
             setAlarmTimeAndNewRegistrationView.chatTeamNewInvitedButton.addTarget(self, action: #selector(invitedToTeam), for: .touchUpInside)
-        }
+//        }
 
 //        wakeUpCardView.setChatButton.addTarget(self, action: #selector(tapChatButton), for: .touchUpInside)
     }
@@ -103,7 +103,7 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
     }
     
     func configureCardView(){
-        setAlarmTimeAndNewRegistrationView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
+        setAlarmTimeAndNewRegistrationView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 300)
         view.addSubview(setAlarmTimeAndNewRegistrationView)
     }
     
