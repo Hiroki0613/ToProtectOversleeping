@@ -14,7 +14,9 @@ class WakeUpCardCollectionListVC: UIViewController {
     // https://qiita.com/Queue0412/items/0984c8d1a757935f140f
     
     var wakeUpCardCollectionListCell = WakeUpCardCollectionListCell()
-    var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, title: "+")
+    
+    // 新しいカードを追加
+    var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
 
     
     let screenSize: CGSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
@@ -28,6 +30,7 @@ class WakeUpCardCollectionListVC: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureAddCardButton()
+        addWakeUpCardButton.tintColor = .systemBackground
         wakeUpCardCollectionListCell.goToChatNCDelegate = self
     }
     
