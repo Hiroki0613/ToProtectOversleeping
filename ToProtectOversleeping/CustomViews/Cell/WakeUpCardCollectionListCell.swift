@@ -47,7 +47,11 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
 
     
     // チャットへ移動するボタン
-    var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
+    var setChatButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "message")
+    // アラームへ移動するボタン
+    var setAlarmButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "alarm")
+    var setChatAndAlarmButtonStackView = UIStackView(frame: .zero)
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,6 +78,7 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         chatTeamLabel.text = "チーム"
         chatTeamNameLabel.text = "早起き"
         wakeUpTimeTextField.inputView = datePicker
+        setChatButton.tintColor = .systemBackground
         
 
     }
@@ -96,6 +101,10 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         chatTeamInvitationButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        setChatButton.translatesAutoresizingMaskIntoConstraints = false
+        setAlarmButton.translatesAutoresizingMaskIntoConstraints = false
+        setChatAndAlarmButtonStackView.translatesAutoresizingMaskIntoConstraints = false
                 
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
@@ -138,8 +147,14 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         addSubview(chatTeamNameStackView)
                     
         // GPSセットをStack
+        setChatAndAlarmButtonStackView.addArrangedSubview(setAlarmButton)
+        setChatAndAlarmButtonStackView.addArrangedSubview(setChatButton)
+        setChatAndAlarmButtonStackView.axis = .horizontal
+        setChatAndAlarmButtonStackView.alignment = .fill
+        setChatAndAlarmButtonStackView.distribution = .fillEqually
+        setChatAndAlarmButtonStackView.spacing = 20
         setChatButton.addTarget(self, action: #selector(goToChatVC), for: .touchUpInside)
-        addSubview(setChatButton)
+        addSubview(setChatAndAlarmButtonStackView)
         
         NSLayoutConstraint.activate([
             //起きる時間
@@ -153,10 +168,10 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
             chatTeamNameStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             chatTeamNameStackView.heightAnchor.constraint(equalToConstant: 65),
             // GPS
-            setChatButton.topAnchor.constraint(equalTo: chatTeamNameAndRegstrationStackView.bottomAnchor, constant: spacePadding),
-            setChatButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            setChatButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setChatButton.heightAnchor.constraint(equalToConstant: 40)
+            setChatAndAlarmButtonStackView.topAnchor.constraint(equalTo: chatTeamNameAndRegstrationStackView.bottomAnchor, constant: spacePadding),
+            setChatAndAlarmButtonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            setChatAndAlarmButtonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            setChatAndAlarmButtonStackView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

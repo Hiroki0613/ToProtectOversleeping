@@ -26,6 +26,13 @@ class WUButton: UIButton {
         self.setTitle(title, for: .normal)
     }
     
+    convenience init(backgroundColor: UIColor, sfSymbolString: String) {
+        self.init(frame: .zero)
+        self.backgroundColor = backgroundColor
+        let image = UIImage(systemName: sfSymbolString)?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 30,weight: .bold))
+        self.setImage(image, for: .normal)
+    }
+    
     
     private func configure() {
         layer.cornerRadius = 10

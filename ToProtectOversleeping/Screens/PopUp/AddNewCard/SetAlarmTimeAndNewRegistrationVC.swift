@@ -65,8 +65,8 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
     
     // チームへ招待する
     @objc func invitedFromTeam() {
-        setAlarmTimeAndNewRegistrationView.wakeUpTimeTextField.resignFirstResponder()
-        setAlarmTimeAndNewRegistrationView.chatTeamNameTextField.resignFirstResponder()
+//        setAlarmTimeAndNewRegistrationView.wakeUpTimeTextField.resignFirstResponder()
+//        setAlarmTimeAndNewRegistrationView.chatTeamNameTextField.resignFirstResponder()
         print("招待しました")
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
 //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
@@ -122,5 +122,11 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
         setAlarmTimeAndNewRegistrationView.layer.shadowRadius = 10
         setAlarmTimeAndNewRegistrationView.layer.shadowOffset = .init(width: 0, height: 10)
         setAlarmTimeAndNewRegistrationView.layer.shouldRasterize = true
+    }
+}
+
+extension SetAlarmTimeAndNewRegistrationVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        resignFirstResponder()
     }
 }

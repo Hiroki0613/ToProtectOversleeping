@@ -71,3 +71,11 @@ class SetNewTeamMateNameVC: UIViewController {
         setNewTeamMateNameView.layer.shouldRasterize = true
     }
 }
+
+
+extension SetNewTeamMateNameVC: UITableViewDelegate {
+//    override func resignFirstResponder() -> Bool {
+//        <#code#>
+//    }
+    
+}

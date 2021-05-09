@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SetAlarmTimeAndNewRegistrationView: UIView {
+class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     
     // 起きる時間
     var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)
@@ -223,14 +223,25 @@ class SetAlarmTimeAndNewRegistrationView: UIView {
 //            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        wakeUpTimeTextField.resignFirstResponder()
+    }
+    
 }
 
-//extension WakeUpCardView: UITextFieldDelegate {
+
+//extension SetAlarmTimeAndNewRegistrationView: UITextFieldDelegate {
 //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //        // キーボード入力や、カット/ペースによる変更を防ぐ
 //             return false
 //    }
-//    
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//    }
+//
+
 //    override func resignFirstResponder() -> Bool {
 //        return true
 //    }

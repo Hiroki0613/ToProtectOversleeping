@@ -205,7 +205,10 @@ extension WakeUpSettingView: UITextFieldDelegate {
              return false
     }
     
-    override func resignFirstResponder() -> Bool {
-        return true
+//    override func resignFirstResponder() -> Bool {
+//        return true
+//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }
