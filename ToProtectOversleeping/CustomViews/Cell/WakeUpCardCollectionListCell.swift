@@ -12,7 +12,7 @@ protocol GoToChatNCDelegate {
 }
 
 class WakeUpCardCollectionListCell: UICollectionViewCell {
-        
+    
     var goToChatNCDelegate: GoToChatNCDelegate?
     
     static let reuseID = "WakeUpCardCollectionListCell"
@@ -42,16 +42,13 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     var chatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
-    var isChatTeamRegistered = true
-    
-
     
     // チャットへ移動するボタン
     var setChatButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "message")
     // アラームへ移動するボタン
     var setAlarmButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "alarm")
     var setChatAndAlarmButtonStackView = UIStackView(frame: .zero)
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,13 +76,13 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         chatTeamNameLabel.text = "早起き"
         wakeUpTimeTextField.inputView = datePicker
         setChatButton.tintColor = .systemBackground
+        setAlarmButton.tintColor = .systemBackground
         
-
+        
     }
     
     private func configure() {
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
-        //        translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
         wakeUpSetAlarmSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +102,7 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         setChatButton.translatesAutoresizingMaskIntoConstraints = false
         setAlarmButton.translatesAutoresizingMaskIntoConstraints = false
         setChatAndAlarmButtonStackView.translatesAutoresizingMaskIntoConstraints = false
-                
+        
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
@@ -125,16 +122,8 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         addSubview(wakeUpTimeStackView)
         
         // チャットチーム名をStack
-        if isChatTeamRegistered {
-            // チームが登録済みの場合
-            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNameLabel)
-            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamInvitationButton)
-        } else {
-            // チームが未定の場合
-            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewRegisterButton)
-            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewInvitedButton)
-        }
-        
+        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNameLabel)
+        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamInvitationButton)
         chatTeamNameAndRegstrationStackView.axis = .horizontal
         chatTeamNameAndRegstrationStackView.alignment = .fill
         chatTeamNameAndRegstrationStackView.distribution = .fillEqually
@@ -145,7 +134,7 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         chatTeamNameStackView.alignment = .fill
         chatTeamNameStackView.spacing = 10
         addSubview(chatTeamNameStackView)
-                    
+        
         // GPSセットをStack
         setChatAndAlarmButtonStackView.addArrangedSubview(setAlarmButton)
         setChatAndAlarmButtonStackView.addArrangedSubview(setChatButton)
@@ -162,12 +151,12 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
             wakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             wakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
-            // チャットチーム名
+            // チャットチーム
             chatTeamNameStackView.topAnchor.constraint(equalTo: wakeUpTimeTextFieldAndSwitchStackView.bottomAnchor, constant:  spacePadding),
             chatTeamNameStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             chatTeamNameStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             chatTeamNameStackView.heightAnchor.constraint(equalToConstant: 65),
-            // GPS
+            // アラームとチャットへ遷移するボタン
             setChatAndAlarmButtonStackView.topAnchor.constraint(equalTo: chatTeamNameAndRegstrationStackView.bottomAnchor, constant: spacePadding),
             setChatAndAlarmButtonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             setChatAndAlarmButtonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
@@ -177,11 +166,11 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     
     @objc func goToChatVC() {
         print("チャットボタンが押されました")
-//        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-//        wakeUpCommunicateChatVC.title = "目覚ましセット"
-//        wakeUpCommunicateChatNC = UINavigationController(rootViewController: wakeUpCommunicateChatVC)
-//
-//        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+        //        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+        //        wakeUpCommunicateChatVC.title = "目覚ましセット"
+        //        wakeUpCommunicateChatNC = UINavigationController(rootViewController: wakeUpCommunicateChatVC)
+        //
+        //        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
         self.goToChatNCDelegate?.goToChat()
     }
     
