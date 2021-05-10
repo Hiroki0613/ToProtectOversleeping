@@ -17,15 +17,10 @@ class WakeUpCardCollectionListVC: UIViewController {
     
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
-
     
     let screenSize: CGSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-
-//    let collectionView = UICollectionView()
     let flowLayout = UICollectionViewFlowLayout()
 
-//    let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: flowLayout)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -41,31 +36,6 @@ class WakeUpCardCollectionListVC: UIViewController {
         collectionView.backgroundColor = .systemOrange
         
         collectionView.register(WakeUpCardCollectionListCell.self, forCellWithReuseIdentifier: WakeUpCardCollectionListCell.reuseID)
-        
-//        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height),collectionViewLayout: UICollectionViewLayout())
-        
-//        let collectionView: UICollectionView = {
-//                //セルのレイアウト設計
-//                let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-//
-//                //各々の設計に合わせて調整
-//                layout.scrollDirection = .vertical
-//                layout.minimumInteritemSpacing = 0
-//                layout.minimumLineSpacing = 0
-//
-//                let collectionView = UICollectionView( frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height ), collectionViewLayout: layout)
-//                collectionView.backgroundColor = UIColor.white
-//
-//
-//                //セルの登録
-//            collectionView.register(WakeUpCardCollectionListCell.self, forCellWithReuseIdentifier: WakeUpCardCollectionListCell.reuseID)
-//                return collectionView
-//            }()
-        
-        
-//        collectionView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//        collectionView.backgroundColor = .systemGreen
-//        collectionView.register(WakeUpCardCollectionListCell.self, forCellWithReuseIdentifier: WakeUpCardCollectionListCell.reuseID)
         collectionView.delegate = self
         collectionView.dataSource = self
         self.view.addSubview(collectionView)

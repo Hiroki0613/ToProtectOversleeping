@@ -21,8 +21,6 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         return dp
     }()
     var wakeUpTimeTextField = WUTextFields()
-//    let wakeUpDismissButton = WUButton(backgroundColor: .systemOrange, title: "×")
-//    var wakeUpTimeTextFieldAndSwitchStackView = UIStackView(frame: .zero)
     var wakeUpTimeStackView = UIStackView(frame: .zero)
     
     // チャットのチーム名、ワンタイムトークンにて招待制
@@ -31,34 +29,17 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     var chatTeamNameTextField = WUTextFields()
     var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "新規登録")
     var chatTeamNewInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待される")
-//    var chatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
+
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
-//    var isChatTeamRegistered = false
     
     // 戻るボタン
     let wakeUpGoBuckButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
     
-    // GPSを設定するボタン
-//    var setChatLabel = WUBodyLabel(fontSize: 20)
-//    var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
-//    var setGPSStackView = UIStackView(frame: .zero)
-    // 地図の表示は要望があったら
-    
-
-    // アドレスを格納
-//    var addressString = ""
-    // 住所の表示、プライバシーの保護のために市区町村まで
-//    var prefectureAndCityNameLabel = WUBodyLabel(fontSize: 18)
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-//        backgroundColor = .systemRed
         settingInformation()
         configure()
-        //        configureDecoration()
     }
     
     
@@ -73,73 +54,32 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
-//    // 位置から住所を取得
-//    func convert(latitude:CLLocationDegrees, longitude: CLLocationDegrees) {
-//        let geocoder = CLGeocoder()
-//        let location = CLLocation(latitude: latitude, longitude: longitude)
-//
-//        geocoder.reverseGeocodeLocation(location) { placemark, error in
-//
-//            if placemark != nil {
-//                if let pm = placemark?.first {
-//
-//                    if pm.administrativeArea != nil || pm.locality != nil {
-//
-//                        self.addressString = pm.name! + pm.administrativeArea! + pm.locality!
-//                    } else {
-//                        self.addressString = pm.name!
-//                    }
-//
-//                    self.prefectureAndCityNameLabel.text = self.addressString
-//                }
-//            }
-//        }
-//    }
-    
-    
+
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
         wakeUpTimeLabel.text = "起きる時間"
         chatTeamLabel.text = "チーム"
         chatTeamNameLabel.text = "早起き"
-//        setChatLabel.text = "住所"
-//        prefectureAndCityNameLabel.text = "GPSを取得すると、\nここに表示されます"
         
         wakeUpTimeTextField.inputView = datePicker
         wakeUpTimeTextField.delegate = self
     }
     
-    // ここでGPSを取得
-//    @objc func tapSetGPSButton() {
-//        wakeUpTimeTextField.resignFirstResponder()
-//        chatTeamNameTextField.resignFirstResponder()
-//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
-//    }
-    
     
     private func configure() {
-        //        translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-//        wakeUpDismissButton.translatesAutoresizingMaskIntoConstraints = false
-//        wakeUpTimeTextFieldAndSwitchStackView.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
-//        wakeUpSetAlarmSwitch.isOn = false
         
         chatTeamLabel.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameLabel.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameTextField.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNewRegisterButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNewInvitedButton.translatesAutoresizingMaskIntoConstraints = false
-//        chatTeamInvitationButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameStackView.translatesAutoresizingMaskIntoConstraints = false
         
         wakeUpGoBuckButton.translatesAutoresizingMaskIntoConstraints = false
-//        setGPSStackView.translatesAutoresizingMaskIntoConstraints = false
-//        prefectureAndCityNameLabel.translatesAutoresizingMaskIntoConstraints = false
-//        prefectureAndCityNameLabel.numberOfLines = 0
         
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
@@ -147,11 +87,6 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         let labelButtonHightPadding: CGFloat = 60
         
         // 起きる時間をStack
-//        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpTimeTextField)
-//        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpDismissButton)
-//        wakeUpTimeTextFieldAndSwitchStackView.axis = .horizontal
-//        wakeUpTimeTextFieldAndSwitchStackView.alignment = .fill
-//        wakeUpTimeTextFieldAndSwitchStackView.spacing = 20
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextField)
         wakeUpTimeStackView.axis = .vertical
@@ -160,16 +95,8 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         addSubview(wakeUpTimeStackView)
         
         // チャットチーム名をStack
-//        if isChatTeamRegistered {
-//            // チームが登録済みの場合
-//            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNameLabel)
-//            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamInvitationButton)
-//        } else {
-            // チームが未定の場合
-            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewRegisterButton)
-            chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewInvitedButton)
-//        }
-        
+        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewRegisterButton)
+        chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewInvitedButton)
         chatTeamNameAndRegstrationStackView.axis = .horizontal
         chatTeamNameAndRegstrationStackView.alignment = .fill
         chatTeamNameAndRegstrationStackView.distribution = .fillEqually
@@ -182,17 +109,6 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         addSubview(chatTeamNameStackView)
             
         addSubview(wakeUpGoBuckButton)
-        
-        // GPSセットをStack
-//        setGPSStackView.addArrangedSubview(setChatLabel)
-//        setGPSStackView.addArrangedSubview(setChatButton)
-//        setGPSStackView.axis = .vertical
-//        setGPSStackView.alignment = .fill
-//        setGPSStackView.spacing = 10
-//        addSubview(setChatButton)
-        
-        // 市区町村
-//        addSubview(prefectureAndCityNameLabel)
         
         NSLayoutConstraint.activate([
             //起きる時間
@@ -211,16 +127,6 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
             wakeUpGoBuckButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             wakeUpGoBuckButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             wakeUpGoBuckButton.heightAnchor.constraint(equalToConstant: 40)
-//            // GPS
-//            setChatButton.topAnchor.constraint(equalTo: chatTeamNameAndRegstrationStackView.bottomAnchor, constant: spacePadding),
-//            setChatButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-//            setChatButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-//            setChatButton.heightAnchor.constraint(equalToConstant: 40)
-//            // 市区町村
-//            prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setChatButton.bottomAnchor, constant: spacePadding),
-//            prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-//            prefectureAndCityNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-//            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
     

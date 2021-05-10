@@ -40,10 +40,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         print(myAddressLongitude)
         print(myAddressLatitude)
 
-        
-//        setAnnotation(location: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
-//        setAnnotation(location: myHomeLocation)
-//        drawCircle(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), meter: 10, times: 10)
         drawCircle(center: myHomeLocation, meter: 10, times: 10)
     }
     
@@ -106,7 +102,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = rank(location: location)
-//        annotation.subtitle = location.distanceTextFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
         annotation.subtitle = location.distanceTextFromHome(to: myHomeLocation)
         mapView.addAnnotation(annotation)
     }
@@ -125,7 +120,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     // 距離を測定して、コメントを分類
     private func rank(location: CLLocationCoordinate2D) -> String {
-//        let rawDistance = location.distanceFromHome(to: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude))
         let rawDistance = location.distanceFromHome(to: myHomeLocation)
         
         print("rawDistance: ", rawDistance)
@@ -153,9 +147,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             return "OK!、100m以上離れました！"
         }
     }
-    
-    
-    
     
     
     func configureUI() {

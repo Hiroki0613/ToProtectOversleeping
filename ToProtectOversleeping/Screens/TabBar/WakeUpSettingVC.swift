@@ -30,8 +30,6 @@ class WakeUpSettingVC: BaseGpsVC {
     }
     
     func configureAddTarget() {
-//        wakeUpCardView.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(setAlarmSwitch(sender:)), for: .valueChanged)
-//        wakeUpCardView.chatTeamRegistrationButton.addTarget(self, action: #selector(registerTeamMate), for: .touchUpInside)
         wakeUpSettingView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
     }
     
@@ -58,20 +56,15 @@ class WakeUpSettingVC: BaseGpsVC {
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
         wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     
     // ここでGPSを取得
     @objc func tapSetGPSButton() {
-//        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
-//        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
         getCurrentLocation()
         print(geoCoderLongitude)
         print(geoCoderLatitude)
-//        print("wakeUpCardView.datePicker.date:" ,wakeUpCardView.datePicker.date)
-//        print(wakeUpCardView.prefectureAndCityNameLabel.text)
         wakeUpSettingView.prefectureAndCityNameLabel.text = address
         
         // 情報は一時的にUserDefaultに保管する。
