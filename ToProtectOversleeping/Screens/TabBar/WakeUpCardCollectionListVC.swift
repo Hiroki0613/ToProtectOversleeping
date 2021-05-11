@@ -14,6 +14,7 @@ class WakeUpCardCollectionListVC: UIViewController {
     // https://qiita.com/Queue0412/items/0984c8d1a757935f140f
     
     var wakeUpCardCollectionListCell = WakeUpCardCollectionListCell()
+    var settingLists:[SettingList] = []
     
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
@@ -89,7 +90,40 @@ extension WakeUpCardCollectionListVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WakeUpCardCollectionListCell.reuseID, for: indexPath) as! WakeUpCardCollectionListCell
+//        let settingList = settingLists[indexPath.row]
+//        cell.set(settingList: settingList)
+        cell.wakeUpTimeLabel.text = "起きる時間"
+        cell.wakeUpTimeTextField.text = "空白"
+        cell.chatTeamLabel.text = "チーム"
+        cell.chatTeamNameLabel.text = "早起き"
+        
+        cell.chatTeamInvitationButton.addTarget(self, action: #selector(tapChatTeamInvitationButton(_:)), for: .touchUpInside)
+        cell.chatTeamInvitationButton.tag = indexPath.row
+        
+        cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
+        cell.setAlarmButton.tag = indexPath.row
+        
+        cell.setChatButton.addTarget(self, action: #selector(tapSetChatButton(_:)), for: .touchUpInside)
+        cell.setChatButton.tag = indexPath.row
         return cell
+    }
+}
+
+extension WakeUpCardCollectionListVC {
+    @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
+        print("招待するボタンがタップされました: ", sender.tag)
+    }
+    
+    @objc func tapSetAlarmButton(_ sender: UIButton) {
+        print("アラームボタンがタップされました: ",sender.tag)
+        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+    }
+    
+    @objc func tapSetChatButton(_ sender: UIButton) {
+        print("チャットボタンがタップされました: ", sender.tag)
+        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
 }
 

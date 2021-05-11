@@ -15,6 +15,7 @@
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
 		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
+		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
@@ -52,6 +53,7 @@
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
+		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
+				7F7E4AC426498F7C00A10929 /* Model */,
 				7FE523BE26464ED600B7D1B0 /* QRCode */,
 				7FE523BB26464C7300B7D1B0 /* Extention */,
 				7FA9B65D264141F40017985B /* JinrikishaGPS */,
@@ -134,6 +137,14 @@
 				7F1452E32641A9C600BAB44F /* WUButton.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		7F7E4AC426498F7C00A10929 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F7E4AC526498F9500A10929 /* SettingList.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7F81A5C72642905C009C839B /* ViewController */ = {
@@ -402,6 +413,7 @@
 				7FA9B65F264142100017985B /* JinrikishaGPS.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
+				7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */,
 				7FE523C72646840000B7D1B0 /* WakeUpSettingVC.swift in Sources */,
 				7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */,
 				7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */,

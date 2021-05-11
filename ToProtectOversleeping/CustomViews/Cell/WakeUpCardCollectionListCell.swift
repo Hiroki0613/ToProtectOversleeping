@@ -71,14 +71,20 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
-        wakeUpTimeLabel.text = "起きる時間"
-        chatTeamLabel.text = "チーム"
-        chatTeamNameLabel.text = "早起き"
+//        wakeUpTimeLabel.text = "起きる時間"
+//        chatTeamLabel.text = "チーム"
+//        chatTeamNameLabel.text = "早起き"
         wakeUpTimeTextField.inputView = datePicker
         setChatButton.tintColor = .systemBackground
         setAlarmButton.tintColor = .systemBackground
-        
-        
+    }
+    
+    func set(settingList: SettingList) {
+//        wakeUpTimeTextField.text = settingList.wakeUpTime
+        wakeUpSetAlarmSwitch.isOn = settingList.wakeUpSetAlarmSwitch
+        chatTeamNameLabel.text = settingList.chatTeamName
+        //　ここにchatID
+        //　ここにpersonalID
     }
     
     private func configure() {

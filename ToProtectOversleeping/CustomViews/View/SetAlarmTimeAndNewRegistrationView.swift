@@ -62,6 +62,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         chatTeamNameLabel.text = "早起き"
         
         wakeUpTimeTextField.inputView = datePicker
+        print("datePicker: ", datePicker)
         wakeUpTimeTextField.delegate = self
     }
     
