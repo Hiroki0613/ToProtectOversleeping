@@ -28,6 +28,8 @@
 		7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */; };
 		7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B32641069A001182DF /* SwipeButton.swift */; };
 		7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B6264106A2001182DF /* SwipeViewController.swift */; };
+		7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */; };
+		7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */; };
 		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
 		7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
@@ -66,6 +68,8 @@
 		7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardCollectionListCell.swift; sourceTree = "<group>"; };
 		7FABB9B32641069A001182DF /* SwipeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
 		7FABB9B6264106A2001182DF /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
+		7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListCell.swift; sourceTree = "<group>"; };
+		7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListVC.swift; sourceTree = "<group>"; };
 		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 			children = (
 				7FE523CE2646C29000B7D1B0 /* NotUse */,
 				7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */,
+				7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
+				7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */,
 				7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */,
 			);
 			path = TabBar;
@@ -436,6 +442,8 @@
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
 				7FE523DF2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift in Sources */,
 				7FE523D92647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift in Sources */,
+				7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */,
+				7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */,
 				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,
 				7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,

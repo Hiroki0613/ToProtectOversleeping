@@ -27,7 +27,7 @@ class WakeUpCardCollectionListVC: UIViewController {
         configureCollectionView()
         configureAddCardButton()
         addWakeUpCardButton.tintColor = .systemBackground
-        wakeUpCardCollectionListCell.goToChatNCDelegate = self
+//        wakeUpCardCollectionListCell.goToChatNCDelegate = self
     }
     
     
@@ -94,11 +94,11 @@ extension WakeUpCardCollectionListVC: UICollectionViewDataSource {
 //        cell.set(settingList: settingList)
         cell.wakeUpTimeLabel.text = "起きる時間"
         cell.wakeUpTimeTextField.text = "空白"
-        cell.chatTeamLabel.text = "チーム"
-        cell.chatTeamNameLabel.text = "早起き"
+        cell.wakeUpChatTeamLabel.text = "チーム"
+        cell.wakeUpChatTeamNameLabel.text = "早起き"
         
-        cell.chatTeamInvitationButton.addTarget(self, action: #selector(tapChatTeamInvitationButton(_:)), for: .touchUpInside)
-        cell.chatTeamInvitationButton.tag = indexPath.row
+        cell.wakeUpChatTeamInvitationButton.addTarget(self, action: #selector(tapChatTeamInvitationButton(_:)), for: .touchUpInside)
+        cell.wakeUpChatTeamInvitationButton.tag = indexPath.row
         
         cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
         cell.setAlarmButton.tag = indexPath.row
@@ -138,10 +138,10 @@ extension WakeUpCardCollectionListVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension WakeUpCardCollectionListVC: GoToChatNCDelegate {
-    func goToChat() {
-        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-        wakeUpCommunicateChatVC.title = "チャット"
-        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
-    }
-}
+//extension WakeUpCardCollectionListVC: GoToChatNCDelegate {
+//    func goToChat() {
+//        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+//        wakeUpCommunicateChatVC.title = "チャット"
+//        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+//    }
+//}

@@ -1,17 +1,13 @@
 //
-//  WakeUpCardCollectionListCell.swift
+//  WakeUpCardTableListCell.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/05/03.
+//  Created by 近藤宏輝 on 2021/05/12.
 //
 
 import UIKit
 
-protocol GoToChatNCDelegate {
-    func goToChat()
-}
-
-class WakeUpCardCollectionListCell: UICollectionViewCell {
+class WakeUpCardTableListCell: UITableViewCell {
     
     var goToChatNCDelegate: GoToChatNCDelegate?
     
@@ -47,8 +43,8 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     var setChatAndAlarmButtonStackView = UIStackView(frame: .zero)
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         settingInformation()
         configure()
         configureDecoration()
@@ -68,16 +64,12 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
-//        wakeUpTimeLabel.text = "起きる時間"
-//        chatTeamLabel.text = "チーム"
-//        chatTeamNameLabel.text = "早起き"
         wakeUpTimeTextField.inputView = datePicker
         setChatButton.tintColor = .systemBackground
         setAlarmButton.tintColor = .systemBackground
     }
     
     func set(settingList: SettingList) {
-//        wakeUpTimeTextField.text = settingList.wakeUpTime
         wakeUpSetAlarmSwitch.isOn = settingList.wakeUpSetAlarmSwitch
         wakeUpChatTeamNameLabel.text = settingList.chatTeamName
         //　ここにchatID
@@ -115,7 +107,6 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         wakeUpChatTeamNameAndRegstrationStackView.axis = .horizontal
         wakeUpChatTeamNameAndRegstrationStackView.alignment = .fill
         wakeUpChatTeamNameAndRegstrationStackView.spacing = 20
-        
         wakeUpChatTeamStack.addArrangedSubview(wakeUpChatTeamNameAndRegstrationStackView)
         wakeUpChatTeamStack.axis = .vertical
         wakeUpChatTeamStack.alignment = .fill
@@ -130,7 +121,6 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         wakeUpTimeTextFieldAndSwitchStackView.alignment = .fill
         wakeUpTimeTextFieldAndSwitchStackView.distribution = .fillEqually
         wakeUpTimeTextFieldAndSwitchStackView.spacing = 20
-
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextFieldAndSwitchStackView)
         wakeUpTimeStackView.axis = .vertical
         wakeUpTimeStackView.alignment = .fill
@@ -144,7 +134,6 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         setChatAndAlarmButtonStackView.alignment = .fill
         setChatAndAlarmButtonStackView.distribution = .fillEqually
         setChatAndAlarmButtonStackView.spacing = 20
-//        setChatButton.addTarget(self, action: #selector(goToChatVC), for: .touchUpInside)
         addSubview(setChatAndAlarmButtonStackView)
         
         NSLayoutConstraint.activate([
@@ -165,16 +154,6 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
             setChatAndAlarmButtonStackView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
-//    @objc func goToChatVC() {
-//        print("チャットボタンが押されました")
-//        //        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-//        //        wakeUpCommunicateChatVC.title = "目覚ましセット"
-//        //        wakeUpCommunicateChatNC = UINavigationController(rootViewController: wakeUpCommunicateChatVC)
-//        //
-//        //        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
-//        self.goToChatNCDelegate?.goToChat()
-//    }
     
     // セルを装飾
     private func configureDecoration() {

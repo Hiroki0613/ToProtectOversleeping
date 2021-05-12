@@ -12,7 +12,7 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
-        viewControllers = [createWakeUpCardCollectionListVC(),createWakeUpSettingVC(),createWakeUpAndCutAlertBySlideVC()]
+        viewControllers = [createWakeUpCardCollectionListVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
     
     
@@ -22,18 +22,24 @@ class WUTabBarController: UITabBarController {
         return UINavigationController(rootViewController: wakeUpCardCollectionListVC)
     }
     
+    func createWakeUpCardTableListVC() -> UINavigationController {
+        let wakeUpCardTableListVC = WakeUpCardTableListVC()
+        wakeUpCardTableListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "Table", tag: 1)
+        return UINavigationController(rootViewController: wakeUpCardTableListVC)
+    }
+    
     
     func createWakeUpSettingVC() -> UINavigationController {
         let wakeUpSettingVC = WakeUpSettingVC()
-        wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 1)
+        wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 2)
         return UINavigationController(rootViewController: wakeUpSettingVC)
     }
     
-    func createWakeUpAndCutAlertBySlideVC() -> UINavigationController {
-        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        wakeUpAndCutAlertBySlideVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "GPS暫定", tag: 2)
-        return UINavigationController(rootViewController: wakeUpAndCutAlertBySlideVC)
-    }
+//    func createWakeUpAndCutAlertBySlideVC() -> UINavigationController {
+//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+//        wakeUpAndCutAlertBySlideVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "GPS暫定", tag: 2)
+//        return UINavigationController(rootViewController: wakeUpAndCutAlertBySlideVC)
+//    }
     
 
     /// SFSymbolsをTabBarにいれる
