@@ -42,6 +42,13 @@ class WUTabBarController: UITabBarController {
 //        return UINavigationController(rootViewController: wakeUpAndCutAlertBySlideVC)
 //    }
     
+    func createQRCodeVC() -> UINavigationController {
+        let qRCodeVC = QRCodeVC()
+        qRCodeVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "QRコード", tag: 3)
+        return UINavigationController(rootViewController: qRCodeVC)
+    }
+//    QRCodeVC
+    
 
     /// SFSymbolsをTabBarにいれる
     /// - Parameters:

@@ -185,11 +185,11 @@ class WakeUpCardTableListCell: UITableViewCell {
     
     // セルを装飾
     private func configureDecoration() {
-        tableViewCell.layer.shadowColor = UIColor.systemGray.cgColor
+//        tableViewCell.layer.shadowColor = UIColor.systemGray.cgColor
         tableViewCell.layer.cornerRadius = 16
-        tableViewCell.layer.shadowOpacity = 0.1
-        tableViewCell.layer.shadowRadius = 10
-        tableViewCell.layer.shadowOffset = .init(width: 0, height: 10)
-        tableViewCell.layer.shouldRasterize = true
+//        tableViewCell.layer.shadowOpacity = 0.1
+//        tableViewCell.layer.shadowRadius = 10
+//        tableViewCell.layer.shadowOffset = .init(width: 0, height: 10)
+//        tableViewCell.layer.shouldRasterize = true
     }
 }

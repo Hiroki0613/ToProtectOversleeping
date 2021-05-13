@@ -13,12 +13,13 @@ class QRCodeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGray
         configureQRCodeView()
         let urlText = "https://kikuragechan.com"
 
-        let image = UIImage.makeQRCode(text: urlText)
-        
-        self.qrCodeImageView.image = image
+        guard let qrImage = UIImage.makeQRCode(text: urlText) else { return }
+        qrCodeImageView.backgroundColor = .red
+        self.qrCodeImageView.image = qrImage
     }
     
     func configureQRCodeView() {
@@ -26,10 +27,10 @@ class QRCodeVC: UIViewController {
         view.addSubview(qrCodeImageView)
         
         NSLayoutConstraint.activate([
-            qrCodeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            qrCodeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            qrCodeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            qrCodeImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width)
+            qrCodeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 50),
+            qrCodeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            qrCodeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -50),
+            qrCodeImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width - 100)
         ])
         
     }

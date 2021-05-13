@@ -178,11 +178,11 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
     
     // セルを装飾
     private func configureDecoration() {
-        layer.shadowColor = UIColor.systemGray.cgColor
+//        layer.shadowColor = UIColor.systemGray.cgColor
         layer.cornerRadius = 16
-        layer.shadowOpacity = 0.1
-        layer.shadowRadius = 10
-        layer.shadowOffset = .init(width: 0, height: 10)
-        layer.shouldRasterize = true
+//        layer.shadowOpacity = 0.1
+//        layer.shadowRadius = 10
+//        layer.shadowOffset = .init(width: 0, height: 10)
+//        layer.shouldRasterize = true
     }
 }
