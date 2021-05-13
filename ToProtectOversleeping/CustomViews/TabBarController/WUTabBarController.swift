@@ -12,7 +12,8 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
-        viewControllers = [createWakeUpCardCollectionListVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+        viewControllers = [
+            createWakeUpCardTableListVC(),createWakeUpCardCollectionListVC(),createWakeUpSettingVC()]
     }
     
     

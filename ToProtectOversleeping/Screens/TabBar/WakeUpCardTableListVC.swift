@@ -24,13 +24,15 @@ class WakeUpCardTableListVC: UIViewController {
     
     func configureTableView() {
 //        let tableView = UITableView(frame: view.frame)
-        let tableView = UITableView(frame: CGRect(x: 20, y: 0, width: view.frame.size.width - 40, height: view.frame.size.height))
+//        let tableView = UITableView(frame: CGRect(x: 20, y: 0, width: view.frame.size.width - 40, height: view.frame.size.height))
+        let tableView = UITableView(frame: view.bounds)
         tableView.backgroundColor = .systemOrange
         
         tableView.register(WakeUpCardTableListCell.self, forCellReuseIdentifier: WakeUpCardTableListCell.reuseID)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        tableView.delaysContentTouches = false
         self.view.addSubview(tableView)
     }
     
@@ -48,6 +50,7 @@ class WakeUpCardTableListVC: UIViewController {
             addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
         ])
+        addWakeUpCardButton.tintColor = .systemBackground
     }
     
     
@@ -64,6 +67,32 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
         print("タップされました: ", indexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // 編集処理
+            let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
+              // 編集処理を記述
+              print("Editがタップされた")
+
+            // 実行結果に関わらず記述
+            completionHandler(true)
+            }
+
+           // 削除処理
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+              //削除処理を記述
+              print("Deleteがタップされた")
+
+              // 実行結果に関わらず記述
+              completionHandler(true)
+            }
+
+            // 定義したアクションをセット
+            return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+    }
 }
 
 extension WakeUpCardTableListVC: UITableViewDataSource {
