@@ -111,17 +111,17 @@ extension WakeUpCardCollectionListVC: UICollectionViewDataSource {
 
 extension WakeUpCardCollectionListVC {
     @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
-        print("招待するボタンがタップされました: ", sender.tag)
+        print("collection招待するボタンがタップされました: ", sender.tag)
     }
     
     @objc func tapSetAlarmButton(_ sender: UIButton) {
-        print("アラームボタンがタップされました: ",sender.tag)
+        print("collectionアラームボタンがタップされました: ",sender.tag)
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     @objc func tapSetChatButton(_ sender: UIButton) {
-        print("チャットボタンがタップされました: ", sender.tag)
+        print("collectionチャットボタンがタップされました: ", sender.tag)
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }

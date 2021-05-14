@@ -109,7 +109,8 @@ class WakeUpCardTableListCell: UITableViewCell {
         let labelButtonHightPadding: CGFloat = 60
         
         // セルの空白を開ける透明ビューを追加
-        self.addSubview(transparentView)
+        contentView.addSubview(transparentView)
+//        self.addSubview(transparentView)
         transparentView.backgroundColor = .systemOrange
         
         // 透明セルの上にtableViewのcellを追加
