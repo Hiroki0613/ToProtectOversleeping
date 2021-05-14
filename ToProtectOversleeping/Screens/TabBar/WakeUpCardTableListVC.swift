@@ -9,7 +9,8 @@ import UIKit
 
 class WakeUpCardTableListVC: UIViewController {
     
-    var wakeUpCardTableListCell = WakeUpCardTableListCell()
+    let tableView = UITableView()
+//    var wakeUpCardTableListCell = WakeUpCardTableListCell()
     var settingLists: [SettingList] = []
     
     // 新しいカードを追加
@@ -17,7 +18,8 @@ class WakeUpCardTableListVC: UIViewController {
     
     
     override func viewDidLoad() {
-        view.backgroundColor = .systemOrange
+        super.viewDidLoad()
+//        view.backgroundColor = .systemOrange
         configureTableView()
         configureAddCardButton()
     }
@@ -25,15 +27,18 @@ class WakeUpCardTableListVC: UIViewController {
     func configureTableView() {
 //        let tableView = UITableView(frame: view.frame)
 //        let tableView = UITableView(frame: CGRect(x: 20, y: 0, width: view.frame.size.width - 40, height: view.frame.size.height))
-        let tableView = UITableView(frame: view.bounds)
-        tableView.backgroundColor = .systemOrange
-        
-        tableView.register(WakeUpCardTableListCell.self, forCellReuseIdentifier: WakeUpCardTableListCell.reuseID)
+//        let tableView = UITableView(frame: view.bounds)
+        view.addSubview(tableView)
+//        tableView.backgroundColor = .systemOrange
+        tableView.frame = view.bounds
+//        tableView.rowHeight = 400
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsSelection = false
-        tableView.delaysContentTouches = false
-        self.view.addSubview(tableView)
+//        tableView.allowsSelection = false
+//        tableView.delaysContentTouches = false
+        
+        tableView.register(WakeUpCardTableListCell.self, forCellReuseIdentifier: WakeUpCardTableListCell.reuseID)
+        
     }
     
     func configureAddCardButton() {
@@ -63,9 +68,9 @@ class WakeUpCardTableListVC: UIViewController {
 }
 
 extension WakeUpCardTableListVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("タップされました: ", indexPath.row)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("タップされました: ", indexPath.row)
+//    }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
@@ -105,7 +110,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID, for: indexPath) as! WakeUpCardTableListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
         
         cell.wakeUpChatTeamLabel.text = "チーム"
         cell.wakeUpChatTeamNameLabel.text = "早起き"
@@ -128,21 +133,21 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         return 300
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = .clear
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        view.tintColor = .clear
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 20
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 20
+//    }
+//
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        view.tintColor = .blue
+//    }
+//
+//    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+//        view.tintColor = .red
+//    }
     
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 class WakeUpCardTableListCell: UITableViewCell {
     
-    var goToChatNCDelegate: GoToChatNCDelegate?
+//    var goToChatNCDelegate: GoToChatNCDelegate?
     
     static let reuseID = "WakeUpCardCollectionListCell"
     
@@ -17,7 +17,7 @@ class WakeUpCardTableListCell: UITableViewCell {
     var transparentView = UIView()
     
     // tableViewのcell
-    var tableViewCell = UIView()
+    var tableCellView = UIView()
     
     // チャットのチーム名、ワンタイムトークンにて招待制
     var wakeUpChatTeamLabel = WUBodyLabel(fontSize: 20)
@@ -84,7 +84,8 @@ class WakeUpCardTableListCell: UITableViewCell {
     
     private func configure() {
         transparentView.translatesAutoresizingMaskIntoConstraints = false
-        tableViewCell.translatesAutoresizingMaskIntoConstraints = false
+        tableCellView.translatesAutoresizingMaskIntoConstraints = false
+        
         wakeUpChatTeamLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpChatTeamNameLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpSetAlarmSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -95,7 +96,7 @@ class WakeUpCardTableListCell: UITableViewCell {
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
         wakeUpChatTeamInvitationButton.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpChatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
+        wakeUpTimeTextFieldAndSwitchStackView.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
         
         setChatButton.translatesAutoresizingMaskIntoConstraints = false
@@ -108,12 +109,12 @@ class WakeUpCardTableListCell: UITableViewCell {
         let labelButtonHightPadding: CGFloat = 60
         
         // セルの空白を開ける透明ビューを追加
-        addSubview(transparentView)
+        self.addSubview(transparentView)
         transparentView.backgroundColor = .systemOrange
         
         // 透明セルの上にtableViewのcellを追加
-        transparentView.addSubview(tableViewCell)
-        tableViewCell.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        transparentView.addSubview(tableCellView)
+        tableCellView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
         
         
         // チャットチーム名をStack
@@ -127,7 +128,7 @@ class WakeUpCardTableListCell: UITableViewCell {
         wakeUpChatTeamStack.axis = .vertical
         wakeUpChatTeamStack.alignment = .fill
         wakeUpChatTeamStack.spacing = 10
-        tableViewCell.addSubview(wakeUpChatTeamStack)
+        tableCellView.addSubview(wakeUpChatTeamStack)
     
         // 起きる時間をStack
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
@@ -141,7 +142,7 @@ class WakeUpCardTableListCell: UITableViewCell {
         wakeUpTimeStackView.axis = .vertical
         wakeUpTimeStackView.alignment = .fill
         wakeUpTimeStackView.spacing = 10
-        tableViewCell.addSubview(wakeUpTimeStackView)
+        tableCellView.addSubview(wakeUpTimeStackView)
         
         // GPSセットをStack
         setChatAndAlarmButtonStackView.addArrangedSubview(setAlarmButton)
@@ -149,36 +150,37 @@ class WakeUpCardTableListCell: UITableViewCell {
         setChatAndAlarmButtonStackView.axis = .horizontal
         setChatAndAlarmButtonStackView.alignment = .fill
         setChatAndAlarmButtonStackView.distribution = .fillEqually
-        setChatAndAlarmButtonStackView.spacing = 20
-        tableViewCell.addSubview(setChatAndAlarmButtonStackView)
+        setChatAndAlarmButtonStackView.spacing = 10
+        tableCellView.addSubview(setChatAndAlarmButtonStackView)
         
         NSLayoutConstraint.activate([
             // 透明セル
-            transparentView.topAnchor.constraint(equalTo: self.topAnchor),
+            transparentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             transparentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             transparentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            transparentView.heightAnchor.constraint(equalToConstant: 320),
+//            transparentView.heightAnchor.constraint(equalToConstant: 320),
+            transparentView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             
             // tableViewのcell
-            tableViewCell.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: padding),
-            tableViewCell.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor, constant: padding),
-            tableViewCell.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor, constant: -padding),
-            tableViewCell.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor, constant: -padding),
+            tableCellView.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: padding),
+            tableCellView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor, constant: padding),
+            tableCellView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor, constant: -padding),
+            tableCellView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor, constant: -padding),
             
             // 起きる時間
-            wakeUpChatTeamStack.topAnchor.constraint(equalTo: tableViewCell.topAnchor, constant: padding),
-            wakeUpChatTeamStack.leadingAnchor.constraint(equalTo: tableViewCell.leadingAnchor, constant: padding),
-            wakeUpChatTeamStack.trailingAnchor.constraint(equalTo: tableViewCell.trailingAnchor, constant: -padding),
+            wakeUpChatTeamStack.topAnchor.constraint(equalTo: tableCellView.topAnchor, constant: padding),
+            wakeUpChatTeamStack.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
+            wakeUpChatTeamStack.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding),
             wakeUpChatTeamStack.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             // チャットチーム
-            wakeUpTimeStackView.topAnchor.constraint(equalTo: wakeUpChatTeamNameAndRegstrationStackView.bottomAnchor, constant:  spacePadding),
-            wakeUpTimeStackView.leadingAnchor.constraint(equalTo: tableViewCell.leadingAnchor, constant: padding),
-            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: tableViewCell.trailingAnchor, constant: -padding),
-            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: 65),
+            wakeUpTimeStackView.topAnchor.constraint(equalTo: wakeUpChatTeamStack.bottomAnchor, constant:  spacePadding),
+            wakeUpTimeStackView.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
+            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding),
+            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: 60),
             // アラームとチャットへ遷移するボタン
             setChatAndAlarmButtonStackView.topAnchor.constraint(equalTo: wakeUpTimeTextFieldAndSwitchStackView.bottomAnchor, constant: spacePadding),
-            setChatAndAlarmButtonStackView.leadingAnchor.constraint(equalTo: tableViewCell.leadingAnchor, constant: padding),
-            setChatAndAlarmButtonStackView.trailingAnchor.constraint(equalTo: tableViewCell.trailingAnchor, constant: -padding),
+            setChatAndAlarmButtonStackView.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
+            setChatAndAlarmButtonStackView.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding),
             setChatAndAlarmButtonStackView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
@@ -186,7 +188,7 @@ class WakeUpCardTableListCell: UITableViewCell {
     // セルを装飾
     private func configureDecoration() {
 //        tableViewCell.layer.shadowColor = UIColor.systemGray.cgColor
-        tableViewCell.layer.cornerRadius = 16
+        tableCellView.layer.cornerRadius = 16
 //        tableViewCell.layer.shadowOpacity = 0.1
 //        tableViewCell.layer.shadowRadius = 10
 //        tableViewCell.layer.shadowOffset = .init(width: 0, height: 10)
