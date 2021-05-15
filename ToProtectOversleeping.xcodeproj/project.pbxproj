@@ -31,6 +31,7 @@
 		7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */; };
 		7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */; };
 		7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */; };
+		7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */; };
 		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
 		7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
@@ -72,6 +73,7 @@
 		7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListCell.swift; sourceTree = "<group>"; };
 		7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListVC.swift; sourceTree = "<group>"; };
 		7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressView.swift; sourceTree = "<group>"; };
+		7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingVC.swift; sourceTree = "<group>"; };
 		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
 				7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */,
 				7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */,
+				7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
 				7FA9B65F264142100017985B /* JinrikishaGPS.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,

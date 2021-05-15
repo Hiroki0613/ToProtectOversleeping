@@ -26,7 +26,7 @@ class GetGpsAddressVC: BaseGpsVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func configureAddTarget() {
@@ -70,11 +70,11 @@ class GetGpsAddressVC: BaseGpsVC {
         // 情報は一時的にUserDefaultに保管する。
         
         
-        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = getGpsAddressView.datePicker.date
-        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+////        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = getGpsAddressView.datePicker.date
+//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     

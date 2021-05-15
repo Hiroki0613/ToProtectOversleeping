@@ -13,7 +13,7 @@ class WUTabBarController: UITabBarController {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
         viewControllers = [
-            createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+            createWakeUpSettingVC(),createWakeUpCardTableListVC()]
     }
     
     
@@ -31,7 +31,7 @@ class WUTabBarController: UITabBarController {
     
     
     func createWakeUpSettingVC() -> UINavigationController {
-        let wakeUpSettingVC = GetGpsAddressVC()
+        let wakeUpSettingVC = WakeUpSettingVC()
         wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 2)
         return UINavigationController(rootViewController: wakeUpSettingVC)
     }

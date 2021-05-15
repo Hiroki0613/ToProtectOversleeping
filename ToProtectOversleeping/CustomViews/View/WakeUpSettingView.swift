@@ -25,8 +25,8 @@ class WakeUpSettingView: UIView {
     var getGPSAddressLabel = WUBodyLabel(fontSize: 18)
     var getGPSAddressButton = WUButton(backgroundColor: .systemOrange, title: "取得")
     // リモート、ローカルのpush通知の設定
-    var setNotificationLabel = WUBodyLabel(fontSize: .zero)
-    var setNotificationButton = WUButton(backgroundColor: .systemOrange, title: "設定")
+    var setNotificationLabel = WUBodyLabel(fontSize: 18)
+    var setNotificationSwitch = UISwitch()
 
     
     // アプリ情報
@@ -61,8 +61,12 @@ class WakeUpSettingView: UIView {
     
     private func setUserInformation() {
         setUserNameLabel.text = "ユーザーネームが未登録です"
-        getGPSAddressLabel.text = "自宅の住所がセットされていません"
+        getGPSAddressLabel.text = "自宅の住所が未登録です"
         setNotificationLabel.text = "通知されます"
+//        setUserNameLabel.text = "ユ"
+//        getGPSAddressLabel.text = "自"
+//        setNotificationLabel.text = "通"
+
     }
     
     private func setAppInformation() {
@@ -83,21 +87,38 @@ class WakeUpSettingView: UIView {
         getGPSAddressLabel.translatesAutoresizingMaskIntoConstraints = false
         getGPSAddressButton.translatesAutoresizingMaskIntoConstraints = false
         setNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
-        setNotificationButton.translatesAutoresizingMaskIntoConstraints = false
+        setNotificationSwitch.translatesAutoresizingMaskIntoConstraints = false
+        
+        setNotificationSwitch.isOn = false
         
 //        userInformationCell.backgroundColor = .systemBackground.withAlphaComponent(0.7)
         
 //        addSubview(userInformationCell)
+        
+        setUserInformationStackView.axis = .vertical
+        setUserInformationStackView.alignment = .center
+        setUserInformationStackView.spacing = 20
         addSubview(setUserInformationStackView)
         
         setProfileStackView.addArrangedSubview(setUserNameLabel)
         setProfileStackView.addArrangedSubview(setUserNameButton)
+        setProfileStackView.axis = .horizontal
+        setProfileStackView.alignment = .center
+        setProfileStackView.spacing = 20
         setUserInformationStackView.addArrangedSubview(setProfileStackView)
+        
         getGPSAddressStackView.addArrangedSubview(getGPSAddressLabel)
         getGPSAddressStackView.addArrangedSubview(getGPSAddressButton)
+        getGPSAddressStackView.axis = .horizontal
+        getGPSAddressStackView.alignment = .center
+        getGPSAddressStackView.spacing = 20
         setUserInformationStackView.addArrangedSubview(getGPSAddressStackView)
+        
         setNotificationStackView.addArrangedSubview(setNotificationLabel)
-        setNotificationStackView.addArrangedSubview(setNotificationButton)
+        setNotificationStackView.addArrangedSubview(setNotificationSwitch)
+        setNotificationStackView.axis = .horizontal
+        setNotificationStackView.alignment = .center
+        setNotificationStackView.spacing = 20
         setUserInformationStackView.addArrangedSubview(setNotificationStackView)
         
         let padding: CGFloat = 20.0
@@ -108,7 +129,7 @@ class WakeUpSettingView: UIView {
             setUserInformationStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: spacePadding),
             setUserInformationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             setUserInformationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setUserInformationStackView.heightAnchor.constraint(equalToConstant: 500),
+            setUserInformationStackView.heightAnchor.constraint(equalToConstant: 270),
             
             setProfileStackView.topAnchor.constraint(equalTo: setUserInformationStackView.topAnchor, constant: padding),
             setProfileStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
@@ -123,7 +144,7 @@ class WakeUpSettingView: UIView {
             setNotificationStackView.topAnchor.constraint(equalTo: getGPSAddressStackView.bottomAnchor, constant: spacePadding),
             setNotificationStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
             setNotificationStackView.trailingAnchor.constraint(equalTo: setUserInformationStackView.trailingAnchor, constant: -padding),
-            setNotificationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+            setNotificationStackView.bottomAnchor.constraint(equalTo: setUserInformationStackView.bottomAnchor, constant: -padding)
         ])
         
     }
@@ -142,14 +163,26 @@ class WakeUpSettingView: UIView {
         evaluationButton.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(setAppInformationStackView)
-        
+        setAppInformationStackView.axis = .vertical
+        setAppInformationStackView.alignment = .center
+        setAppInformationStackView.spacing = 20
+
         setAppInformationStackView.addArrangedSubview(appVersionLabel)
+        
         setAppInformationStackView.addArrangedSubview(licenseButton)
+        
         setOpinionsAndRequestsStackView.addArrangedSubview(opinionsAndRequestsLabel)
         setOpinionsAndRequestsStackView.addArrangedSubview(opinionsAndRequestsButton)
+        setOpinionsAndRequestsStackView.axis = .horizontal
+        setOpinionsAndRequestsStackView.alignment = .center
+        setOpinionsAndRequestsStackView.spacing = 20
         setAppInformationStackView.addArrangedSubview(setOpinionsAndRequestsStackView)
+        
         setEvaluationStackView.addArrangedSubview(evaluationLabel)
         setEvaluationStackView.addArrangedSubview(evaluationButton)
+        setEvaluationStackView.axis = .horizontal
+        setEvaluationStackView.alignment = .center
+        setEvaluationStackView.spacing = 20
         setAppInformationStackView.addArrangedSubview(setEvaluationStackView)
         
         let padding: CGFloat = 20.0
@@ -160,7 +193,7 @@ class WakeUpSettingView: UIView {
             setAppInformationStackView.topAnchor.constraint(equalTo: setUserInformationStackView.bottomAnchor, constant: spacePadding),
             setAppInformationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             setAppInformationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setAppInformationStackView.heightAnchor.constraint(equalToConstant: 500),
+            setAppInformationStackView.heightAnchor.constraint(equalToConstant: 400),
             
             appVersionLabel.topAnchor.constraint(equalTo: setAppInformationStackView.topAnchor, constant: padding),
             appVersionLabel.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
@@ -180,7 +213,8 @@ class WakeUpSettingView: UIView {
             setEvaluationStackView.topAnchor.constraint(equalTo: setOpinionsAndRequestsStackView.bottomAnchor, constant: spacePadding),
             setEvaluationStackView.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
             setEvaluationStackView.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
-            setEvaluationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+//            setEvaluationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+            setEvaluationStackView.bottomAnchor.constraint(equalTo: setAppInformationStackView.bottomAnchor, constant: -padding)
         ])
         
     }
