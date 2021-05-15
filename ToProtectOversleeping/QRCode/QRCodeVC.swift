@@ -20,29 +20,10 @@ class QRCodeVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
-//        guard let qrImage = UIImage.makeQRCode(text: urlText) else { return }
-//        qrCodeImageView.backgroundColor = .red
-//        self.qrCodeImageView.image = qrImage
-        
-//        let qrCiImage = makeQRCode(str: "sample")
-//
-//        guard let qr = qrCiImage else{
-//                return
-//            }
-//            let imageView = UIImageView(image: UIImage(ciImage: qr))
-//            imageView.frame.size.width = 200
-//            imageView.frame.size.height = 200
-//
-//            imageView.center.x = self.view.frame.width / 2
-//            imageView.center.y = self.view.frame.height / 2
-//
-//            self.view.addSubview(imageView)
-        
-//        let swiftLeeOrangeColor = UIColor(red:0.93, green:0.31, blue:0.23, alpha:1.00)
         let qrColor:UIColor = .systemOrange
         let wakeUpLogo = UIImage(named: "jinrikisya_man")!
 
-        let qrURLImage = URL(string:"stample")?.qrImage(using: qrColor, logo: wakeUpLogo)
+        let qrURLImage = URL(string:"sample")?.qrImage(using: qrColor, logo: wakeUpLogo)
         
                 guard let qr = qrURLImage else{
                         return
@@ -56,17 +37,6 @@ class QRCodeVC: UIViewController {
         
                     self.view.addSubview(imageView)
     }
-   
-//    private func makeQRCode( str:String )->CIImage?{
-//        guard let data = str.data(using: .utf8) else { return nil }
-//        let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])
-//        if let qr = qr {
-//            let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
-//            return qr.outputImage!.transformed(by: sizeTransform)
-//        }
-//        return nil
-//    }
-
 }
 
 extension CIImage {
