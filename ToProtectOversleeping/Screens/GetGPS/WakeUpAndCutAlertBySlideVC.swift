@@ -49,6 +49,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         checkSettingAlarmWithinTwoHours(settingTime: mySettingAlarmTime)
         self.view.layoutIfNeeded()
         moveTo(center: myHomeLocation, animated: false)
+        self.tabBarController?.tabBar.isHidden = true
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

@@ -30,11 +30,12 @@
 		7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B6264106A2001182DF /* SwipeViewController.swift */; };
 		7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */; };
 		7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */; };
+		7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */; };
 		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
 		7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
 		7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */; };
-		7FE523C72646840000B7D1B0 /* WakeUpSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */; };
+		7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */; };
 		7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */; };
 		7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523CF2646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift */; };
 		7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523D22646C34B00B7D1B0 /* NotUseWakeUpCardView.swift */; };
@@ -70,11 +71,12 @@
 		7FABB9B6264106A2001182DF /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListCell.swift; sourceTree = "<group>"; };
 		7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListVC.swift; sourceTree = "<group>"; };
+		7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressView.swift; sourceTree = "<group>"; };
 		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
 		7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatVC.swift; sourceTree = "<group>"; };
-		7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingVC.swift; sourceTree = "<group>"; };
+		7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressVC.swift; sourceTree = "<group>"; };
 		7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingView.swift; sourceTree = "<group>"; };
 		7FE523CF2646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotUseWakeUpCardCollectionListCell.swift; sourceTree = "<group>"; };
 		7FE523D22646C34B00B7D1B0 /* NotUseWakeUpCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotUseWakeUpCardView.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				7FE523DA2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift */,
 				7FE523DE2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift */,
 				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
+				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -291,7 +294,7 @@
 			children = (
 				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
 				7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */,
-				7FE523C62646840000B7D1B0 /* WakeUpSettingVC.swift */,
+				7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -420,10 +423,11 @@
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
 				7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */,
-				7FE523C72646840000B7D1B0 /* WakeUpSettingVC.swift in Sources */,
+				7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */,
 				7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */,
 				7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */,
 				7FA9B65126411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift in Sources */,
+				7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */,
 				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
 				7FE523DB2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift in Sources */,

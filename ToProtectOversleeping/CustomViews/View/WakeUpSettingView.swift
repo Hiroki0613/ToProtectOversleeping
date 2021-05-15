@@ -9,111 +9,188 @@ import UIKit
 import MapKit
 
 class WakeUpSettingView: UIView {
+
+//    var userInformationCell = UIView()
+//    var appInformationCell = UIView()
     
-    // GPSを設定するボタン
-    var setGPSLabel = WUBodyLabel(fontSize: 20)
-    var setGPSButton = WUButton(backgroundColor: .systemOrange, title: "タップして取得")
-    var setGPSStackView = UIStackView(frame: .zero)
-    // 地図の表示は要望があったら
+    // ユーザー情報
+    var setUserInformationStackView = UIStackView(frame: .zero)
+    var setProfileStackView = UIStackView(frame: .zero)
+    var getGPSAddressStackView = UIStackView(frame: .zero)
+    var setNotificationStackView = UIStackView(frame: .zero)
+    // ユーザー名の設定
+    var setUserNameLabel = WUBodyLabel(fontSize: 18)
+    var setUserNameButton = WUButton(backgroundColor: .systemOrange, title: "設定")
+    // 自宅のGPS情報取得
+    var getGPSAddressLabel = WUBodyLabel(fontSize: 18)
+    var getGPSAddressButton = WUButton(backgroundColor: .systemOrange, title: "取得")
+    // リモート、ローカルのpush通知の設定
+    var setNotificationLabel = WUBodyLabel(fontSize: .zero)
+    var setNotificationButton = WUButton(backgroundColor: .systemOrange, title: "設定")
+
     
-    // アドレスを格納
-    var addressString = ""
-    // 住所の表示、プライバシーの保護のために市区町村まで
-    var prefectureAndCityNameLabel = WUBodyLabel(fontSize: 18)
+    // アプリ情報
+    var setAppInformationStackView = UIStackView(frame: .zero)
+    var setOpinionsAndRequestsStackView = UIStackView(frame: .zero)
+    var setEvaluationStackView = UIStackView(frame: .zero)
+    // バージョン
+    var appVersionLabel = WUBodyLabel(fontSize: 18)
+    // ライセンス
+    var licenseButton = WUButton(backgroundColor: .systemOrange, title: "ライセンス")
+    // ご意見・ご要望
+    var opinionsAndRequestsLabel = WUBodyLabel(fontSize: 18)
+    var opinionsAndRequestsButton = WUButton(backgroundColor: .systemOrange, title: "送る")
+    // アプリの評価
+    var evaluationLabel = WUBodyLabel(fontSize: 18)
+    var evaluationButton = WUButton(backgroundColor: .systemOrange, title: "送る")
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        settingInformation()
-        configure()
+        setUserInformation()
+        setAppInformation()
+        configureUserView()
+        configureAppView()
+        configureDecoration()
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
-    @objc func dateChange() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:MM"
+    private func setUserInformation() {
+        setUserNameLabel.text = "ユーザーネームが未登録です"
+        getGPSAddressLabel.text = "自宅の住所がセットされていません"
+        setNotificationLabel.text = "通知されます"
     }
     
-    // 位置から住所を取得
-    func convert(latitude:CLLocationDegrees, longitude: CLLocationDegrees) {
-        let geocoder = CLGeocoder()
-        let location = CLLocation(latitude: latitude, longitude: longitude)
+    private func setAppInformation() {
+        appVersionLabel.text = "バージョン　1.0.0"
+        opinionsAndRequestsLabel.text = "ご意見・ご要望"
+        evaluationLabel.text = "アプリを評価する"
+    }
+    
+    private func configureUserView() {
+//        userInformationCell.translatesAutoresizingMaskIntoConstraints = false
+        setUserInformationStackView.translatesAutoresizingMaskIntoConstraints = false
+        setProfileStackView.translatesAutoresizingMaskIntoConstraints = false
+        getGPSAddressStackView.translatesAutoresizingMaskIntoConstraints = false
+        setNotificationStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        geocoder.reverseGeocodeLocation(location) { placemark, error in
-            
-            if placemark != nil {
-                if let pm = placemark?.first {
-                    
-                    if pm.administrativeArea != nil || pm.locality != nil {
-                        
-                        self.addressString = pm.name! + pm.administrativeArea! + pm.locality!
-                    } else {
-                        self.addressString = pm.name!
-                    }
-                    
-                    self.prefectureAndCityNameLabel.text = self.addressString
-                }
-            }
-        }
-    }
-    
-    // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
-    private func settingInformation() {
-        setGPSLabel.text = "住所"
-        prefectureAndCityNameLabel.text = "GPSを取得すると、\nここに表示されます"
-    }
-    
-    private func configure() {
-        setGPSStackView.translatesAutoresizingMaskIntoConstraints = false
-        prefectureAndCityNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        prefectureAndCityNameLabel.numberOfLines = 0
+        setUserNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        setUserNameButton.translatesAutoresizingMaskIntoConstraints = false
+        getGPSAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        getGPSAddressButton.translatesAutoresizingMaskIntoConstraints = false
+        setNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
+        setNotificationButton.translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundColor = .systemBackground.withAlphaComponent(0.8)
+//        userInformationCell.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        
+//        addSubview(userInformationCell)
+        addSubview(setUserInformationStackView)
+        
+        setProfileStackView.addArrangedSubview(setUserNameLabel)
+        setProfileStackView.addArrangedSubview(setUserNameButton)
+        setUserInformationStackView.addArrangedSubview(setProfileStackView)
+        getGPSAddressStackView.addArrangedSubview(getGPSAddressLabel)
+        getGPSAddressStackView.addArrangedSubview(getGPSAddressButton)
+        setUserInformationStackView.addArrangedSubview(getGPSAddressStackView)
+        setNotificationStackView.addArrangedSubview(setNotificationLabel)
+        setNotificationStackView.addArrangedSubview(setNotificationButton)
+        setUserInformationStackView.addArrangedSubview(setNotificationStackView)
+        
         let padding: CGFloat = 20.0
-        let spacePadding: CGFloat = 20.0
-        let labelButtonHightPadding: CGFloat = 70
-        
-        // GPSセットをStack
-        setGPSStackView.addArrangedSubview(setGPSLabel)
-        setGPSStackView.addArrangedSubview(setGPSButton)
-        setGPSStackView.axis = .vertical
-        setGPSStackView.alignment = .fill
-        setGPSStackView.spacing = 10
-        addSubview(setGPSStackView)
-        
-        // 市区町村
-        addSubview(prefectureAndCityNameLabel)
+        let spacePadding: CGFloat = 30.0
+        let labelButtonHightPadding: CGFloat = 60
         
         NSLayoutConstraint.activate([
-            // GPS
-            setGPSStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
-            setGPSStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            setGPSStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setGPSStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
-            // 市区町村
-            prefectureAndCityNameLabel.topAnchor.constraint(equalTo: setGPSButton.bottomAnchor, constant: spacePadding),
-            prefectureAndCityNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            prefectureAndCityNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            prefectureAndCityNameLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+            setUserInformationStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: spacePadding),
+            setUserInformationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            setUserInformationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            setUserInformationStackView.heightAnchor.constraint(equalToConstant: 500),
+            
+            setProfileStackView.topAnchor.constraint(equalTo: setUserInformationStackView.topAnchor, constant: padding),
+            setProfileStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
+            setProfileStackView.trailingAnchor.constraint(equalTo: setUserInformationStackView.trailingAnchor, constant: -padding),
+            setProfileStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            getGPSAddressStackView.topAnchor.constraint(equalTo: setProfileStackView.bottomAnchor, constant: spacePadding),
+            getGPSAddressStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
+            getGPSAddressStackView.trailingAnchor.constraint(equalTo: setUserInformationStackView.trailingAnchor, constant: -padding),
+            getGPSAddressStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            setNotificationStackView.topAnchor.constraint(equalTo: getGPSAddressStackView.bottomAnchor, constant: spacePadding),
+            setNotificationStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
+            setNotificationStackView.trailingAnchor.constraint(equalTo: setUserInformationStackView.trailingAnchor, constant: -padding),
+            setNotificationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
-    }
-}
-
-extension WakeUpSettingView: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // キーボード入力や、カット/ペースによる変更を防ぐ
-             return false
+        
     }
     
-//    override func resignFirstResponder() -> Bool {
-//        return true
-//    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    private func configureAppView() {
+//        appInformationCell.translatesAutoresizingMaskIntoConstraints = false
+        setAppInformationStackView.translatesAutoresizingMaskIntoConstraints = false
+        setOpinionsAndRequestsStackView.translatesAutoresizingMaskIntoConstraints = false
+        setEvaluationStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        appVersionLabel.translatesAutoresizingMaskIntoConstraints = false
+        licenseButton.translatesAutoresizingMaskIntoConstraints = false
+        opinionsAndRequestsLabel.translatesAutoresizingMaskIntoConstraints = false
+        opinionsAndRequestsButton.translatesAutoresizingMaskIntoConstraints = false
+        evaluationLabel.translatesAutoresizingMaskIntoConstraints = false
+        evaluationButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(setAppInformationStackView)
+        
+        setAppInformationStackView.addArrangedSubview(appVersionLabel)
+        setAppInformationStackView.addArrangedSubview(licenseButton)
+        setOpinionsAndRequestsStackView.addArrangedSubview(opinionsAndRequestsLabel)
+        setOpinionsAndRequestsStackView.addArrangedSubview(opinionsAndRequestsButton)
+        setAppInformationStackView.addArrangedSubview(setOpinionsAndRequestsStackView)
+        setEvaluationStackView.addArrangedSubview(evaluationLabel)
+        setEvaluationStackView.addArrangedSubview(evaluationButton)
+        setAppInformationStackView.addArrangedSubview(setEvaluationStackView)
+        
+        let padding: CGFloat = 20.0
+        let spacePadding: CGFloat = 30.0
+        let labelButtonHightPadding: CGFloat = 60
+        
+        NSLayoutConstraint.activate([
+            setAppInformationStackView.topAnchor.constraint(equalTo: setUserInformationStackView.bottomAnchor, constant: spacePadding),
+            setAppInformationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            setAppInformationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            setAppInformationStackView.heightAnchor.constraint(equalToConstant: 500),
+            
+            appVersionLabel.topAnchor.constraint(equalTo: setAppInformationStackView.topAnchor, constant: padding),
+            appVersionLabel.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
+            appVersionLabel.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
+            appVersionLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            licenseButton.topAnchor.constraint(equalTo: appVersionLabel.bottomAnchor, constant: spacePadding),
+            licenseButton.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
+            licenseButton.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
+            licenseButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            setOpinionsAndRequestsStackView.topAnchor.constraint(equalTo: licenseButton.bottomAnchor, constant: spacePadding),
+            setOpinionsAndRequestsStackView.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
+            setOpinionsAndRequestsStackView.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
+            setOpinionsAndRequestsStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            setEvaluationStackView.topAnchor.constraint(equalTo: setOpinionsAndRequestsStackView.bottomAnchor, constant: spacePadding),
+            setEvaluationStackView.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
+            setEvaluationStackView.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
+            setEvaluationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+        ])
+        
     }
+    
+    private func configureDecoration() {
+        setUserInformationStackView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        setAppInformationStackView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        setUserInformationStackView.layer.cornerRadius = 16
+        setAppInformationStackView.layer.cornerRadius = 16
+    }
+    
 }
+

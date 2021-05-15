@@ -9,10 +9,10 @@ import UIKit
 
 
 // 暫定で住所を取得させる場所を用意しておく。
-class WakeUpSettingVC: BaseGpsVC {
+class GetGpsAddressVC: BaseGpsVC {
     
     // 起きる時間のカード
-    var wakeUpSettingView = WakeUpSettingView()
+    var getGpsAddressView = GetGpsAddressView()
 
     
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class WakeUpSettingVC: BaseGpsVC {
     }
     
     func configureAddTarget() {
-        wakeUpSettingView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
+        getGpsAddressView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
     }
     
     
@@ -65,32 +65,32 @@ class WakeUpSettingVC: BaseGpsVC {
         getCurrentLocation()
         print(geoCoderLongitude)
         print(geoCoderLatitude)
-        wakeUpSettingView.prefectureAndCityNameLabel.text = address
+        getGpsAddressView.prefectureAndCityNameLabel.text = address
         
         // 情報は一時的にUserDefaultに保管する。
         
         
-//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
-//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = getGpsAddressView.datePicker.date
+        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     
     func configureView() {
-        wakeUpSettingView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 200)
-        view.addSubview(wakeUpSettingView)
+        getGpsAddressView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 200)
+        view.addSubview(getGpsAddressView)
     }
     
     // セルを装飾
     private func configureDecoration() {
-        wakeUpSettingView.layer.shadowColor = UIColor.systemGray.cgColor
-        wakeUpSettingView.layer.cornerRadius = 16
-        wakeUpSettingView.layer.shadowOpacity = 0.1
-        wakeUpSettingView.layer.shadowRadius = 10
-        wakeUpSettingView.layer.shadowOffset = .init(width: 0, height: 10)
-        wakeUpSettingView.layer.shouldRasterize = true
+        getGpsAddressView.layer.shadowColor = UIColor.systemGray.cgColor
+        getGpsAddressView.layer.cornerRadius = 16
+        getGpsAddressView.layer.shadowOpacity = 0.1
+        getGpsAddressView.layer.shadowRadius = 10
+        getGpsAddressView.layer.shadowOffset = .init(width: 0, height: 10)
+        getGpsAddressView.layer.shouldRasterize = true
     }
 }
 
