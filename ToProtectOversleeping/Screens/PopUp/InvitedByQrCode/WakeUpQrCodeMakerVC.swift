@@ -12,7 +12,7 @@ import UIKit
 // https://www.letitride.jp/entry/2019/12/10/091751
 // https://www.avanderlee.com/swift/qr-code-generation-swift/
 
-class WakeUpQrCodeVC: UIViewController {
+class WakeUpQrCodeMakerVC: UIViewController {
     
     var qrCodeImageView = UIImageView()
 

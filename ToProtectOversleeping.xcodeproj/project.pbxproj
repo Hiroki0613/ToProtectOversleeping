@@ -32,7 +32,7 @@
 		7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */; };
 		7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */; };
 		7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */; };
-		7FD2F4A326502D3D006C684E /* WakeUpQrCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A226502D3D006C684E /* WakeUpQrCodeVC.swift */; };
+		7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */; };
 		7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */; };
 		7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */; };
 		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
@@ -77,7 +77,7 @@
 		7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListVC.swift; sourceTree = "<group>"; };
 		7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressView.swift; sourceTree = "<group>"; };
 		7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingVC.swift; sourceTree = "<group>"; };
-		7FD2F4A226502D3D006C684E /* WakeUpQrCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeVC.swift; sourceTree = "<group>"; };
+		7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeMakerVC.swift; sourceTree = "<group>"; };
 		7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderFunction.swift; sourceTree = "<group>"; };
 		7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderVC.swift; sourceTree = "<group>"; };
 		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
@@ -124,10 +124,9 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
+				7FD2F4A9265038BD006C684E /* NotUseSample */,
 				7F7E4AC426498F7C00A10929 /* Model */,
-				7FE523BE26464ED600B7D1B0 /* QRMaker */,
 				7FE523BB26464C7300B7D1B0 /* Extention */,
-				7FA9B65D264141F40017985B /* JinrikishaGPS */,
 				7FABB9B026403E79001182DF /* Screens */,
 				7FABB9AE26403E5D001182DF /* CustomViews */,
 				7FABB9AD26403E36001182DF /* Support */,
@@ -248,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				7FE523CE2646C29000B7D1B0 /* NotUse */,
-				7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */,
 				7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */,
 			);
 			path = Cell;
@@ -257,6 +255,7 @@
 		7FABB9B026403E79001182DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				7FD2F4AA26503957006C684E /* NotUse */,
 				7FD2F4A026502C66006C684E /* Setting */,
 				7FE523D72646CD6F00B7D1B0 /* PopUp */,
 				7FE523C82646841700B7D1B0 /* TabBar */,
@@ -285,7 +284,7 @@
 		7FD2F4A126502D17006C684E /* InvitedByQrCode */ = {
 			isa = PBXGroup;
 			children = (
-				7FD2F4A226502D3D006C684E /* WakeUpQrCodeVC.swift */,
+				7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */,
 			);
 			path = InvitedByQrCode;
 			sourceTree = "<group>";
@@ -299,10 +298,27 @@
 			path = QRReader;
 			sourceTree = "<group>";
 		};
-		7FE523BB26464C7300B7D1B0 /* Extention */ = {
+		7FD2F4A9265038BD006C684E /* NotUseSample */ = {
 			isa = PBXGroup;
 			children = (
 				7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */,
+				7FE523BE26464ED600B7D1B0 /* QRMaker */,
+				7FA9B65D264141F40017985B /* JinrikishaGPS */,
+			);
+			path = NotUseSample;
+			sourceTree = "<group>";
+		};
+		7FD2F4AA26503957006C684E /* NotUse */ = {
+			isa = PBXGroup;
+			children = (
+				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
+			);
+			path = NotUse;
+			sourceTree = "<group>";
+		};
+		7FE523BB26464C7300B7D1B0 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -326,7 +342,6 @@
 		7FE523C82646841700B7D1B0 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
 				7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */,
 				7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */,
 			);
@@ -336,6 +351,7 @@
 		7FE523CE2646C29000B7D1B0 /* NotUse */ = {
 			isa = PBXGroup;
 			children = (
+				7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */,
 				7FE523CF2646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift */,
 			);
 			path = NotUse;
@@ -466,7 +482,7 @@
 				7FA9B65126411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift in Sources */,
 				7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */,
 				7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */,
-				7FD2F4A326502D3D006C684E /* WakeUpQrCodeVC.swift in Sources */,
+				7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */,
 				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
