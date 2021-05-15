@@ -17,12 +17,6 @@ class WUTabBarController: UITabBarController {
     }
     
     
-    func createWakeUpCardCollectionListVC() -> UINavigationController {
-        let wakeUpCardCollectionListVC = WakeUpCardCollectionListVC()
-        wakeUpCardCollectionListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "Home", tag: 0)
-        return UINavigationController(rootViewController: wakeUpCardCollectionListVC)
-    }
-    
     func createWakeUpCardTableListVC() -> UINavigationController {
         let wakeUpCardTableListVC = WakeUpCardTableListVC()
         wakeUpCardTableListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "Table", tag: 1)
@@ -35,19 +29,6 @@ class WUTabBarController: UITabBarController {
         wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 2)
         return UINavigationController(rootViewController: wakeUpSettingVC)
     }
-    
-//    func createWakeUpAndCutAlertBySlideVC() -> UINavigationController {
-//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-//        wakeUpAndCutAlertBySlideVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "GPS暫定", tag: 2)
-//        return UINavigationController(rootViewController: wakeUpAndCutAlertBySlideVC)
-//    }
-    
-    func createQRCodeVC() -> UINavigationController {
-        let qRCodeVC = QRCodeVC()
-        qRCodeVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "QRコード", tag: 3)
-        return UINavigationController(rootViewController: qRCodeVC)
-    }
-//    QRCodeVC
     
 
     /// SFSymbolsをTabBarにいれる

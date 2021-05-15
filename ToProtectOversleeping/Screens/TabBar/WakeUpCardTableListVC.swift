@@ -162,8 +162,8 @@ extension WakeUpCardTableListVC {
     @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
         print("tableview招待するボタンがタップされました: ", sender.tag)
         print("collection招待するボタンがタップされました: ", sender.tag)
-        let qRCodeVC = QRCodeVC()
-        navigationController?.pushViewController(qRCodeVC, animated: true)
+        let wakeUpQrCodeVC = WakeUpQrCodeVC()
+        navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
     }
     
     @objc func tapSetAlarmButton(_ sender: UIButton) {

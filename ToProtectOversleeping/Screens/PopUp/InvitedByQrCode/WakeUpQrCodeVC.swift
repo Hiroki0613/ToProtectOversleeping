@@ -1,8 +1,8 @@
 //
-//  QRCodeVC.swift
+//  WakeUpQrCodeVC.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/05/08.
+//  Created by 近藤宏輝 on 2021/05/16.
 //
 
 import UIKit
@@ -12,7 +12,7 @@ import UIKit
 // https://www.letitride.jp/entry/2019/12/10/091751
 // https://www.avanderlee.com/swift/qr-code-generation-swift/
 
-class QRCodeVC: UIViewController {
+class WakeUpQrCodeVC: UIViewController {
     
     var qrCodeImageView = UIImageView()
 
@@ -37,7 +37,15 @@ class QRCodeVC: UIViewController {
         
                     self.view.addSubview(imageView)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+    }
 }
+
+
 
 extension CIImage {
     /// Inverts the colors and creates a transparent image by converting the mask to alpha.
