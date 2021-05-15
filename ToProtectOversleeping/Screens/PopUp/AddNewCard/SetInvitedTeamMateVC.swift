@@ -33,6 +33,10 @@ class SetInvitedTeamMateVC: UIViewController {
     // QRコードで登録
     @objc func registeredByQRCode() {
         print("QR読み取り")
+        let wakeUpQrCodeReaderVC = WakeUpQrCodeReaderVC()
+//        navigationController?.pushViewController(wakeUpQrCodeReaderVC, animated: true)
+        present(wakeUpQrCodeReaderVC, animated: true, completion: nil)
+
     }
     
     // 戻る

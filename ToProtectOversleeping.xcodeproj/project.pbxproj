@@ -33,6 +33,8 @@
 		7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */; };
 		7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */; };
 		7FD2F4A326502D3D006C684E /* WakeUpQrCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A226502D3D006C684E /* WakeUpQrCodeVC.swift */; };
+		7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */; };
+		7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */; };
 		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
 		7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
@@ -76,6 +78,8 @@
 		7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressView.swift; sourceTree = "<group>"; };
 		7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingVC.swift; sourceTree = "<group>"; };
 		7FD2F4A226502D3D006C684E /* WakeUpQrCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeVC.swift; sourceTree = "<group>"; };
+		7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderFunction.swift; sourceTree = "<group>"; };
+		7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderVC.swift; sourceTree = "<group>"; };
 		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
@@ -120,7 +124,6 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
-				7FD2F4A426502E18006C684E /* QRReader */,
 				7F7E4AC426498F7C00A10929 /* Model */,
 				7FE523BE26464ED600B7D1B0 /* QRMaker */,
 				7FE523BB26464C7300B7D1B0 /* Extention */,
@@ -290,6 +293,8 @@
 		7FD2F4A426502E18006C684E /* QRReader */ = {
 			isa = PBXGroup;
 			children = (
+				7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */,
+				7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */,
 			);
 			path = QRReader;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 		7FE523D42646C8BC00B7D1B0 /* AddNewCard */ = {
 			isa = PBXGroup;
 			children = (
+				7FD2F4A426502E18006C684E /* QRReader */,
 				7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */,
 				7FE523D82647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift */,
 				7FE523DC2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift */,
@@ -459,8 +465,10 @@
 				7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */,
 				7FA9B65126411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift in Sources */,
 				7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */,
+				7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */,
 				7FD2F4A326502D3D006C684E /* WakeUpQrCodeVC.swift in Sources */,
 				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
+				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
 				7FE523DB2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift in Sources */,
 				7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */,

@@ -23,7 +23,7 @@ class WakeUpQrCodeVC: UIViewController {
         let qrColor:UIColor = .systemOrange
         let wakeUpLogo = UIImage(named: "jinrikisya_man")!
 
-        let qrURLImage = URL(string:"sample")?.qrImage(using: qrColor, logo: wakeUpLogo)
+        let qrURLImage = URL(string:"HirokiSample")?.qrImage(using: qrColor, logo: wakeUpLogo)
         
                 guard let qr = qrURLImage else{
                         return
