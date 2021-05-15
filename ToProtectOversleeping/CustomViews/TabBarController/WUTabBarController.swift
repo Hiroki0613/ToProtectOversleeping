@@ -13,7 +13,7 @@ class WUTabBarController: UITabBarController {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
         viewControllers = [
-            createWakeUpCardTableListVC(),createWakeUpSettingVC(),createQRCodeReaderVC()]
+            createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
     
     
