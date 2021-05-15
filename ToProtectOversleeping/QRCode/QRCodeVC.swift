@@ -14,25 +14,34 @@ class QRCodeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray
-        configureQRCodeView()
-        let urlText = "https://kikuragechan.com"
 
-        guard let qrImage = UIImage.makeQRCode(text: urlText) else { return }
-        qrCodeImageView.backgroundColor = .red
-        self.qrCodeImageView.image = qrImage
+//        guard let qrImage = UIImage.makeQRCode(text: urlText) else { return }
+//        qrCodeImageView.backgroundColor = .red
+//        self.qrCodeImageView.image = qrImage
+        
+        let qrCiImage = makeQRCode(str: "sample")
+        
+        guard let qr = qrCiImage else{
+                return
+            }
+            let imageView = UIImageView(image: UIImage(ciImage: qr))
+            imageView.frame.size.width = 200
+            imageView.frame.size.height = 200
+
+            imageView.center.x = self.view.frame.width / 2
+            imageView.center.y = self.view.frame.height / 2
+
+            self.view.addSubview(imageView)
     }
-    
-    func configureQRCodeView() {
-        qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(qrCodeImageView)
-        
-        NSLayoutConstraint.activate([
-            qrCodeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 50),
-            qrCodeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            qrCodeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -50),
-            qrCodeImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width - 100)
-        ])
-        
+   
+    private func makeQRCode( str:String )->CIImage?{
+        guard let data = str.data(using: .utf8) else { return nil }
+        let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])
+        if let qr = qr {
+            let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
+            return qr.outputImage!.transformed(by: sizeTransform)
+        }
+        return nil
     }
 
 

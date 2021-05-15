@@ -138,7 +138,7 @@ class WakeUpCardTableListCell: UITableViewCell {
         wakeUpTimeTextFieldAndSwitchStackView.axis = .horizontal
         wakeUpTimeTextFieldAndSwitchStackView.alignment = .fill
         wakeUpTimeTextFieldAndSwitchStackView.distribution = .fillEqually
-        wakeUpTimeTextFieldAndSwitchStackView.spacing = 20
+        wakeUpTimeTextFieldAndSwitchStackView.spacing = 30
         wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextFieldAndSwitchStackView)
         wakeUpTimeStackView.axis = .vertical
         wakeUpTimeStackView.alignment = .fill
@@ -151,7 +151,7 @@ class WakeUpCardTableListCell: UITableViewCell {
         setChatAndAlarmButtonStackView.axis = .horizontal
         setChatAndAlarmButtonStackView.alignment = .fill
         setChatAndAlarmButtonStackView.distribution = .fillEqually
-        setChatAndAlarmButtonStackView.spacing = 10
+        setChatAndAlarmButtonStackView.spacing = 30
         tableCellView.addSubview(setChatAndAlarmButtonStackView)
         
         NSLayoutConstraint.activate([
