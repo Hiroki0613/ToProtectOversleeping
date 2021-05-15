@@ -24,6 +24,11 @@ class WakeUpCardTableListVC: UIViewController {
         configureAddCardButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     func configureTableView() {
 //        let tableView = UITableView(frame: view.frame)
 //        let tableView = UITableView(frame: CGRect(x: 20, y: 0, width: view.frame.size.width - 40, height: view.frame.size.height))
@@ -36,6 +41,7 @@ class WakeUpCardTableListVC: UIViewController {
         tableView.dataSource = self
 //        tableView.allowsSelection = false
 //        tableView.delaysContentTouches = false
+        tableView.separatorStyle = .none
         
         tableView.register(WakeUpCardTableListCell.self, forCellReuseIdentifier: WakeUpCardTableListCell.reuseID)
         
@@ -154,6 +160,9 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
 extension WakeUpCardTableListVC {
     @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
         print("tableview招待するボタンがタップされました: ", sender.tag)
+        print("collection招待するボタンがタップされました: ", sender.tag)
+        let qRCodeVC = QRCodeVC()
+        navigationController?.pushViewController(qRCodeVC, animated: true)
     }
     
     @objc func tapSetAlarmButton(_ sender: UIButton) {

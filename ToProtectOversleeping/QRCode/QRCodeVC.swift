@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+// 参考URL
+// https://www.letitride.jp/entry/2019/12/10/091751
 class QRCodeVC: UIViewController {
     
     var qrCodeImageView = UIImageView()

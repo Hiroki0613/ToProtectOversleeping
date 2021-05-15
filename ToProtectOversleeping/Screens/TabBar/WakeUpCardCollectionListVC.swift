@@ -112,6 +112,8 @@ extension WakeUpCardCollectionListVC: UICollectionViewDataSource {
 extension WakeUpCardCollectionListVC {
     @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
         print("collection招待するボタンがタップされました: ", sender.tag)
+        let qRCodeVC = QRCodeVC()
+        navigationController?.pushViewController(qRCodeVC, animated: true)
     }
     
     @objc func tapSetAlarmButton(_ sender: UIButton) {
