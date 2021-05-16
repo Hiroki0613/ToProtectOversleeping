@@ -12,6 +12,7 @@ class WakeUpCommunicateChatVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemOrange
 
     }
