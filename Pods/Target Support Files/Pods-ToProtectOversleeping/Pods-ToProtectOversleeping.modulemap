@@ -1,0 +1,6 @@
+framework module Pods_ToProtectOversleeping {
+  umbrella header "Pods-ToProtectOversleeping-umbrella.h"
+
+  export *
+  module * { export * }
+}
