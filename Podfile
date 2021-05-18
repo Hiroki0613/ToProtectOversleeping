@@ -7,10 +7,6 @@ target 'ToProtectOversleeping' do
 
   # Pods for ToProtectOversleeping
   
-pod 'MessageKit'
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
-pod 'Firebase/Storage'
-pod 'Firebase/Firestore'
+
 
 end
