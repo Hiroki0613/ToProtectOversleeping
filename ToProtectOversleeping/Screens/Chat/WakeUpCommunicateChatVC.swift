@@ -24,6 +24,11 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
         var name = String()
     }
     
+    struct SendDBModel {
+
+    }
+    
+    
     var userDataModel: UserdataModel?
     var userData = [String: Any]()
 
@@ -96,6 +101,10 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
         loadMessage()
+        
+        
+//        self.messages = []
+//        message = Message(sender: "1234567", messageId: "56790", sentDate: Date(timeIntervalSince1970: date), kind: .text("日本語"), userImagePath: "", date: date, messageImageString: "")
     }
     
 //    func makeButton(image: UIImage) -> InputBarButtonItem {
@@ -186,16 +195,25 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
 //    }
     
     // メッセージの下に文字を表示(日付)
-    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        print(message.sentDate.debugDescription)
-        let dateString = formatter.string(from: message.sentDate)
-        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
-    }
+//    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+//        print(message.sentDate.debugDescription)
+//        let dateString = formatter.string(from: message.sentDate)
+//        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
+//    }
     
+    func sendMessage(senderID: String, toID: String, text: String, displayName: String, imageUrlString: String) {
+        self.db.collection("Users").document(senderID).collection("chat").document(toID).setData(["text": text as Any, "senderID": senderID as Any, "displayName": displayName as Any, "imageUrlString": imageUrlString as Any, "date": Date().timeIntervalSince1970]
+        )
+        
+        self.db.collection("Users").document(toID).collection("chat").document(senderID).setData(["text": text as Any, "senderID": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "imageUrlString": imageUrlString as Any, "date": Date().timeIntervalSince1970]
+        )
+    }
 
 
 }
 
+
+// MARK: - MessagesDataSource
 extension WakeUpCommunicateChatVC: MessagesDataSource {
     func currentSender() -> SenderType {
         return currentUser
@@ -210,9 +228,29 @@ extension WakeUpCommunicateChatVC: MessagesDataSource {
     }
     
     
+    
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let name = message.sender.displayName
+        return NSAttributedString(string: name,
+                                  attributes: [.font: UIFont.preferredFont(forTextStyle: .caption1),
+                                               .foregroundColor: UIColor(white: 0.3, alpha: 1)])
+    }
 }
 
 extension WakeUpCommunicateChatVC: MessagesLayoutDelegate {
+    
+    
+    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+      return .zero
+    }
+    
+    func footerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+        return CGSize(width: 0, height: 8)
+    }
+    
+    func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+      return 0
+    }
     
 }
 
@@ -254,7 +292,7 @@ extension WakeUpCommunicateChatVC: MessagesDisplayDelegate {
     }
     
 }
-
+// MARK: -InputBarAccessoryViewDelegate
 extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
     
     // 送信ボタンが押されたときに呼ばれる箇所
@@ -269,6 +307,14 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
 //        inputBar.sendButton.stopAnimating()
         
         print("送信ボタンが押されました")
+        inputBar.sendButton.startAnimating()
+        let sendDBModel = SendDBModel()
+        
+        inputBar.inputTextView.text = ""
+        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid,toID:(userDataModel?.uid)!, text: text, displayName: userData["name"] as! String, imageUrlString: userData["profileImageString"] as! String)
+        
+        inputBar.sendButton.stopAnimating()
+        
     }
     
     func inputBar(_ inputBar: InputBarAccessoryView, didChangeIntrinsicContentTo size: CGSize) {
