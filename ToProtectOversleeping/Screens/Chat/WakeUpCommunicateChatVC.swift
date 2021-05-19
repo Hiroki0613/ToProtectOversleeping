@@ -25,7 +25,11 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
     }
     
     struct SendDBModel {
-
+        var senderID: String
+        var toID: String
+        var text: String
+        var displayName: String
+        var imageUrlString: String
     }
     
     
@@ -308,7 +312,7 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
         
         print("送信ボタンが押されました")
         inputBar.sendButton.startAnimating()
-        let sendDBModel = SendDBModel()
+        var sendDBModel = SendDBModel(senderID: "", toID: "", text: "", displayName: "", imageUrlString: "")
         
         inputBar.inputTextView.text = ""
         sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid,toID:(userDataModel?.uid)!, text: text, displayName: userData["name"] as! String, imageUrlString: userData["profileImageString"] as! String)

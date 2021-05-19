@@ -33,6 +33,7 @@
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
 		7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */; };
 		7FA2E1772654078000529B7F /* WakeUpCommunicateChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA2E1762654078000529B7F /* WakeUpCommunicateChatModel.swift */; };
+		7FA2E17926555E7C00529B7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */; };
 		7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */; };
 		7FA9B65126411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */; };
 		7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */; };
@@ -91,6 +92,7 @@
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
 		7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUBodyLabel.swift; sourceTree = "<group>"; };
 		7FA2E1762654078000529B7F /* WakeUpCommunicateChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatModel.swift; sourceTree = "<group>"; };
+		7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmTimeAndNewRegistrationView.swift; sourceTree = "<group>"; };
 		7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmTimeAndNewRegistrationVC.swift; sourceTree = "<group>"; };
 		7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpAndCutAlertBySlideVC.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 		7FABB9AD26403E36001182DF /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */,
 				7F376B1D26401A920063F2EC /* Assets.xcassets */,
 				7F376B1A26401A910063F2EC /* Main.storyboard */,
 				7F376B1826401A910063F2EC /* ViewController.swift */,
@@ -561,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */,
+				7FA2E17926555E7C00529B7F /* GoogleService-Info.plist in Resources */,
 				7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */,
 				7F376B1C26401A910063F2EC /* Main.storyboard in Resources */,
 			);
