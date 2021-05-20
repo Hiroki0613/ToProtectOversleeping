@@ -11,7 +11,6 @@ import FirebaseFirestore
 
 
 struct Message: MessageType {
-    
     // 必須
     var sender: SenderType
     var messageId: String

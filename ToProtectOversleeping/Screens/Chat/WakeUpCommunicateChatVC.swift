@@ -93,7 +93,7 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-//        loadMessage()
+        loadMessage()
         
         
         self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
@@ -349,7 +349,7 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
 //        // 画像がなかったとき場合の処理
 //        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid, toID:(userDataModel?.uid)!, text:text, displayName: userData["name"] as! String, imageURLString: userData["profileImageString"] as! String)
 //        inputBar.sendButton.stopAnimating()
-        
+//        sendDBModel.sendMessage()
         print("送信ボタンが押されました")
         inputBar.sendButton.startAnimating()
 //        var sendDBModel = SendDBModel(senderID: "", toID: "", text: "", displayName: "", imageUrlString: "")
