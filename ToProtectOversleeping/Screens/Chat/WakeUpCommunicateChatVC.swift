@@ -18,26 +18,12 @@ struct Sender: SenderType {
 
 class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-    
-    struct UserdataModel {
-        var uid = String()
-        var name = String()
-    }
-    
-    struct SendDBModel {
-        var senderID: String
-        var toID: String
-        var text: String
-        var displayName: String
-        var imageUrlString: String
-    }
-    
-    
     var userDataModel: UserdataModel?
+    var sendDBModel = SendDBModel()
     var userData = [String: Any]()
 
     // TODO:暫定で強制アンラップ
-    var currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: "")
+    var currentUser = Sender(senderId: "", displayName: "")
     var otherUser = Sender(senderId: "", displayName: "")
 //    let imageView = UIImageView()
 //    let blackView = UIView()
@@ -63,10 +49,13 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
         super.viewDidLoad()
         // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemOrange
+        messagesCollectionView.backgroundColor = .systemOrange
 
         // TODO: 一旦強制アンラップ
         // 自分
-        currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userData["name"] as! String )
+//        currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userData["name"] as! String )
+        currentUser = Sender(senderId: "1234", displayName: "近藤" )
+        
         // 他者
 //        otherUser = Sender(senderId: userDataModel!.uid, displayName:userDataModel!.name )
         otherUser = Sender(senderId: "1234567", displayName:"宏輝" )
@@ -104,7 +93,23 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-        loadMessage()
+//        loadMessage()
+        
+        
+        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+        let message1 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+        let message2 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+        let message3 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+        let message4 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+        self.messages.append(message1)
+        self.messages.append(message2)
+        self.messages.append(message3)
+        self.messages.append(message4)
+
+        
         
         
 //        self.messages = []
@@ -156,7 +161,7 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
 //    }
     
     func loadMessage() {
-        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
+        db.collection("Users").document("hirokiChat").collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
             if error != nil {
                 return
             }
@@ -186,6 +191,41 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
             
         }
     }
+
+    
+//    func loadMessage() {
+//        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
+//            if error != nil {
+//                return
+//            }
+//            if let snapShotDoc = snapshot?.documents {
+//                self.messages = []
+//                for doc in snapShotDoc {
+//                    let data = doc.data()
+//                    if let text = data["text"] as? String, let senderID = data["senderID"] as? String,
+//                       let imageURLString = data["imageURLString"] as? String,
+//                       let date = data["date"] as? TimeInterval {
+//
+//                        // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
+//                        if senderID == Auth.auth().currentUser?.uid {
+//                            self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: self.userData["name"] as! String)
+//                            let message = Message(sender: self.currentUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
+//                            self.messages.append(message)
+//                        } else {
+//                            self.otherUser = Sender(senderId: senderID, displayName: self.userData["name"] as! String)
+//                            let message = Message(sender: self.otherUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
+//                            self.messages.append(message)
+//                        }
+//                    }
+//                }
+//                self.messagesCollectionView.reloadData()
+//                self.messagesCollectionView.scrollToLastItem()
+//            }
+//
+//        }
+//    }
+
+    
     
 //    func getImageByUrl(url: String) -> UIImage {
 //        let url = URL(string: url)
@@ -312,10 +352,10 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
         
         print("送信ボタンが押されました")
         inputBar.sendButton.startAnimating()
-        var sendDBModel = SendDBModel(senderID: "", toID: "", text: "", displayName: "", imageUrlString: "")
+//        var sendDBModel = SendDBModel(senderID: "", toID: "", text: "", displayName: "", imageUrlString: "")
         
         inputBar.inputTextView.text = ""
-        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid,toID:(userDataModel?.uid)!, text: text, displayName: userData["name"] as! String, imageUrlString: userData["profileImageString"] as! String)
+//        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid,toID:(userDataModel?.uid)!, text: text, displayName: userData["name"] as! String, imageUrlString: userData["profileImageString"] as! String)
         
         inputBar.sendButton.stopAnimating()
         

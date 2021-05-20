@@ -27,18 +27,19 @@ class WakeUpCardTableListCell: UITableViewCell {
     var wakeUpChatTeamStack = UIStackView(frame: .zero)
     
     // 起きる時間
+    var wakeUpLabel = WUBodyLabel(fontSize: 20)
+//    let datePicker: UIDatePicker = {
+//        let dp = UIDatePicker()
+//        dp.datePickerMode = .time
+//        dp.preferredDatePickerStyle = .wheels
+//        dp.timeZone = NSTimeZone.local
+//        dp.locale = Locale.current
+//        dp.addTarget(self, action: #selector(dateChange), for: .valueChanged)
+//        return dp
+//    }()
+//    var wakeUpTimeTextField = WUTextFields()
     var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)
-    let datePicker: UIDatePicker = {
-        let dp = UIDatePicker()
-        dp.datePickerMode = .time
-        dp.preferredDatePickerStyle = .wheels
-        dp.timeZone = NSTimeZone.local
-        dp.locale = Locale.current
-        dp.addTarget(self, action: #selector(dateChange), for: .valueChanged)
-        return dp
-    }()
-    var wakeUpTimeTextField = WUTextFields()
-    var wakeUpChatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
+//    var wakeUpChatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
     var wakeUpTimeTextFieldAndSwitchStackView = UIStackView(frame: .zero)
     var wakeUpTimeStackView = UIStackView(frame: .zero)
     
@@ -62,15 +63,16 @@ class WakeUpCardTableListCell: UITableViewCell {
     }
     
     
-    @objc func dateChange() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:MM"
-        wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
-    }
+//    @objc func dateChange() {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "HH:MM"
+//        wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
+//    }
     
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
-        wakeUpTimeTextField.inputView = datePicker
+//        wakeUpTimeTextField.inputView = datePicker
+        wakeUpTimeLabel.text = "7:77"
         setChatButton.tintColor = .systemBackground
         setAlarmButton.tintColor = .systemBackground
     }
@@ -93,9 +95,10 @@ class WakeUpCardTableListCell: UITableViewCell {
         wakeUpChatTeamStack.translatesAutoresizingMaskIntoConstraints = false
         wakeUpSetAlarmSwitch.isOn = false
         
+        wakeUpLabel.translatesAutoresizingMaskIntoConstraints = false
+//        wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpChatTeamInvitationButton.translatesAutoresizingMaskIntoConstraints = false
+//        wakeUpChatTeamInvitationButton.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextFieldAndSwitchStackView.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -132,9 +135,10 @@ class WakeUpCardTableListCell: UITableViewCell {
         tableCellView.addSubview(wakeUpChatTeamStack)
     
         // 起きる時間をStack
-        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
-        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpTimeTextField)
-        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpChatTeamInvitationButton)
+        wakeUpTimeStackView.addArrangedSubview(wakeUpLabel)
+//        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpTimeTextField)
+        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview((wakeUpTimeLabel))
+//        wakeUpTimeTextFieldAndSwitchStackView.addArrangedSubview(wakeUpChatTeamInvitationButton)
         wakeUpTimeTextFieldAndSwitchStackView.axis = .horizontal
         wakeUpTimeTextFieldAndSwitchStackView.alignment = .fill
         wakeUpTimeTextFieldAndSwitchStackView.distribution = .fillEqually

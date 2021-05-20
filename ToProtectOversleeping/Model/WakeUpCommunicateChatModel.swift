@@ -23,3 +23,17 @@ struct Message: MessageType {
     var date:TimeInterval
     var messageImageString:String
 }
+
+struct UserdataModel {
+    var uid = String()
+    var name = String()
+}
+
+
+class SendDBModel {
+    var senderID: String = ""
+    var toID: String = ""
+    var text: String = ""
+    var displayName: String = ""
+    var imageUrlString: String = ""
+}

@@ -62,7 +62,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         
         
         //TODO: 暫定で2時間以上前に設定しています
-        if differenceFromCurrenTime < 7200 {
+        if differenceFromCurrenTime > 7200 {
             // ２時間以上前の時
             swipedActionLabel.text = "２時間以上前です"
             swipeButton.isHidden = true

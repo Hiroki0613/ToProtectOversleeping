@@ -85,13 +85,15 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // 編集処理
-            let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
-              // 編集処理を記述
-              print("Editがタップされた")
-
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
+            // 編集処理を記述
+            print("Editがタップされた")
+            let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
+            self.navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
+            
             // 実行結果に関わらず記述
             completionHandler(true)
-            }
+        }
 
            // 削除処理
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
@@ -121,11 +123,11 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         
         cell.wakeUpChatTeamLabel.text = "チーム"
         cell.wakeUpChatTeamNameLabel.text = "早起き"
-        cell.wakeUpTimeLabel.text = "起きる時間"
-        cell.wakeUpTimeTextField.text = "空白"
+        cell.wakeUpLabel.text = "起きる時間"
+//        cell.wakeUpTimeTextField.text = "空白"
         
-        cell.wakeUpChatTeamInvitationButton.addTarget(self, action: #selector(tapChatTeamInvitationButton(_:)), for: .touchUpInside)
-        cell.wakeUpChatTeamInvitationButton.tag = indexPath.row
+//        cell.wakeUpChatTeamInvitationButton.addTarget(self, action: #selector(tapChatTeamInvitationButton(_:)), for: .touchUpInside)
+//        cell.wakeUpChatTeamInvitationButton.tag = indexPath.row
         
         cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
         cell.setAlarmButton.tag = indexPath.row
@@ -159,12 +161,11 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
 }
 
 extension WakeUpCardTableListVC {
-    @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
-        print("tableview招待するボタンがタップされました: ", sender.tag)
-        print("collection招待するボタンがタップされました: ", sender.tag)
-        let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
-        navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
-    }
+//    @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
+//        print("tableview招待するボタンがタップされました: ", sender.tag)
+//        let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
+//        navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
+//    }
     
     @objc func tapSetAlarmButton(_ sender: UIButton) {
         print("tableviewアラームボタンがタップされました: ",sender.tag)
