@@ -46,8 +46,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // ここの背景にアプリのロゴを入れる？
-        view.backgroundColor = .systemOrange
-        messagesCollectionView.backgroundColor = .systemOrange
+        view.backgroundColor = .systemGray
+        messagesCollectionView.backgroundColor = .systemOrange.withAlphaComponent(0.5)
 
         // TODO: 一旦強制アンラップ
         // 自分
@@ -297,30 +297,61 @@ extension WakeUpCommunicateChatVC: MessagesDataSource {
         return messages.count
     }
     
-    
-    
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        let name = message.sender.displayName
-        return NSAttributedString(string: name,
-                                  attributes: [.font: UIFont.preferredFont(forTextStyle: .caption1),
-                                               .foregroundColor: UIColor(white: 0.3, alpha: 1)])
+        if indexPath.section % 3 == 0 {
+            return NSAttributedString(string: MessageKitDateFormatter.shared.string(from: message.sentDate), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        }
+        return nil
     }
+    
+    
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let name = message.sender.displayName
+        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+    }
+    
+    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let dateString = dateFormatter.string(from: message.sentDate)
+        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
+    }
+    
+//    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+//        return NSAttributedString(string: "既読", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+//    }
 }
 
 extension WakeUpCommunicateChatVC: MessagesLayoutDelegate {
+    
+    
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 18
+    }
+    
+    func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 17
+    }
+    
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 20
+    }
+    
+    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 16
+    }
+    
     
     
 //    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
 //      return .zero
 //    }
     
-    func footerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: 0, height: 8)
-    }
-    
-    func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-      return 0
-    }
+//    func footerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//        return CGSize(width: 0, height: 8)
+//    }
+//
+//    func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+//      return 0
+//    }
     
 }
 
@@ -359,6 +390,12 @@ extension WakeUpCommunicateChatVC: MessagesDisplayDelegate {
       let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
       
       return .bubbleTail(corner, .curved)
+    }
+  
+    // Avaterの画像を入れられる。
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        let avatar = Avatar(image: UIImage(systemName: "person.fill"), initials: "A")
+        avatarView.set(avatar: avatar)
     }
     
 }
