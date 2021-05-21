@@ -10,13 +10,10 @@ import MessageKit
 import Firebase
 import InputBarAccessoryView
 
-
-struct Sender: SenderType {
-    var senderId: String
-    var displayName: String
-}
-
-class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+//class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class WakeUpCommunicateChatVC: MessagesViewController {
+    
+    var messages = [Message]()
     
     var userDataModel: UserdataModel?
     var sendDBModel = SendDBModel()
@@ -28,18 +25,19 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
 //    let imageView = UIImageView()
 //    let blackView = UIView()
     
-    var messages = [Message]()
+
     
     // 一旦ここでaddSnapをさせる
     let db = Firestore.firestore()
     
-    lazy var formatter: DateFormatter = {
+    lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
         formatter.timeStyle = .short
         formatter.dateStyle = .short
         return formatter
     }()
+    
     
 //    var attachImage: UIImage?
 //    var attachImageString = String()
@@ -54,11 +52,11 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
         // TODO: 一旦強制アンラップ
         // 自分
 //        currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userData["name"] as! String )
-        currentUser = Sender(senderId: "1234", displayName: "近藤" )
+        currentUser = Sender(senderId: "1234567", displayName: "近藤" )
         
         // 他者
 //        otherUser = Sender(senderId: userDataModel!.uid, displayName:userDataModel!.name )
-        otherUser = Sender(senderId: "1234567", displayName:"宏輝" )
+        otherUser = Sender(senderId: "7654321", displayName:"宏輝" )
                 
 //        let items = [
 //            makeButton(image: UIImage(named: "album")!).onTextViewDidChange { button, textView in
@@ -67,25 +65,39 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
 //        messageInputBar.setLeftStackViewWidthConstant(to: 100, animated: true)
 //        messageInputBar.setStackViewItems(items, forStack: .left, animated: true)
         
-        configureDelegate()
+        configureMessageCollectionView()
+        configureMessageInputBar()
+        title = "トーク"
         reloadInputViews()
     }
     
-    func configureDelegate() {
+    func configureMessageCollectionView() {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate = self
+        scrollsToLastItemOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.tintColor = .black
         messageInputBar.sendButton.setTitle("送信", for: .normal)
         messageInputBar.delegate = self
         
-        let newMessageInputBar = InputBarAccessoryView()
-        newMessageInputBar.delegate = self
-        messageInputBar = newMessageInputBar
-        messageInputBar.separatorLine.isHidden = true
-        messageInputBar.inputTextView.layer.borderWidth = 0.0
+      
+    }
+    
+    func configureMessageInputBar() {
+//        let newMessageInputBar = InputBarAccessoryView()
+//        newMessageInputBar.delegate = self
+//        messageInputBar = newMessageInputBar
+//        messageInputBar.separatorLine.isHidden = true
+//        messageInputBar.inputTextView.layer.borderWidth = 0.0
+        messageInputBar.delegate = self
+        messageInputBar.inputTextView.tintColor = .systemGray
+        messageInputBar.sendButton.setTitleColor(.systemGray, for: .normal)
+        messageInputBar.sendButton.setTitleColor(
+            UIColor.systemOrange.withAlphaComponent(0.3),
+            for: .highlighted
+        )
     }
     
     
@@ -93,22 +105,32 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-        loadMessage()
+//        loadMessage()
         
         
-        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
-        let message1 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
-        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
-        let message2 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
-        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
-        let message3 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
-        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
-        let message4 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+//        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+//        let message1 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+//        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+//        let message2 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+//        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+//        let message3 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+//        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
+//        let message4 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+        let message1 = Message(text: "文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+        let message2 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+        let message3 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: otherUser, messageId: UUID().uuidString, date: Date())
+        let message4 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+        let message5 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+        let message6 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: otherUser, messageId: UUID().uuidString, date: Date())
+        let message7 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
         self.messages.append(message1)
         self.messages.append(message2)
         self.messages.append(message3)
         self.messages.append(message4)
-
+        self.messages.append(message5)
+        self.messages.append(message6)
+        self.messages.append(message7)
+        
         
         
         
@@ -160,37 +182,41 @@ class WakeUpCommunicateChatVC: MessagesViewController, UIImagePickerControllerDe
 //        }
 //    }
     
-    func loadMessage() {
-        db.collection("Users").document("hirokiChat").collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
-            if error != nil {
-                return
-            }
-            if let snapShotDoc = snapshot?.documents {
-                self.messages = []
-                for doc in snapShotDoc {
-                    let data = doc.data()
-                    if let text = data["text"] as? String, let senderID = data["senderID"] as? String,
-                       let imageURLString = data["imageURLString"] as? String,
-                       let date = data["date"] as? TimeInterval {
-                        
-                        // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
-                        if senderID == Auth.auth().currentUser?.uid {
-                            self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: self.userData["name"] as! String)
-                            let message = Message(sender: self.currentUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
-                            self.messages.append(message)
-                        } else {
-                            self.otherUser = Sender(senderId: senderID, displayName: self.userData["name"] as! String)
-                            let message = Message(sender: self.otherUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
-                            self.messages.append(message)
-                        }
-                    }
-                }
-                self.messagesCollectionView.reloadData()
-                self.messagesCollectionView.scrollToLastItem()
-            }
-            
-        }
-    }
+//    func loadMessage() {
+//        db.collection("Users").document("hirokiChat").collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
+//            if error != nil {
+//                return
+//            }
+//            if let snapShotDoc = snapshot?.documents {
+//                self.messages = []
+//                for doc in snapShotDoc {
+//                    let data = doc.data()
+//                    //                    if let text = data["text"] as? String, let senderID = data["senderID"] as? String,
+//                    //                       let imageURLString = data["imageURLString"] as? String,
+//                    //                       let date = data["date"] as? TimeInterval {
+//
+//                    if let text = data["text"] as? String, let senderID = data["senderID"] as? String,
+//                       let date = data["date"] as? TimeInterval {
+//                        // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
+//                        if senderID == Auth.auth().currentUser?.uid {
+//                            self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: self.userData["name"] as! String)
+//                            //                            let message = Message(sender: self.currentUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
+//                            let message = Message(sender: self.currentUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text))
+//                            self.messages.append(message)
+//                        } else {
+//                            self.otherUser = Sender(senderId: senderID, displayName: self.userData["name"] as! String)
+//                            //                            let message = Message(sender: self.otherUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
+//                            let message = Message(sender: self.otherUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text))
+//                            self.messages.append(message)
+//                        }
+//                    }
+//                }
+//                self.messagesCollectionView.reloadData()
+//                self.messagesCollectionView.scrollToLastItem()
+//            }
+//
+//        }
+//    }
 
     
 //    func loadMessage() {
@@ -284,9 +310,9 @@ extension WakeUpCommunicateChatVC: MessagesDataSource {
 extension WakeUpCommunicateChatVC: MessagesLayoutDelegate {
     
     
-    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-      return .zero
-    }
+//    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//      return .zero
+//    }
     
     func footerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return CGSize(width: 0, height: 8)
@@ -308,13 +334,13 @@ extension WakeUpCommunicateChatVC: MessagesDisplayDelegate {
 //        avatarView
 //    }
     
-    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 16
-    }
-    
-    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 16
-    }
+//    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+//        return 16
+//    }
+//
+//    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+//        return 16
+//    }
     
     // 送信時間がで出るようになる
     func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
@@ -324,7 +350,7 @@ extension WakeUpCommunicateChatVC: MessagesDisplayDelegate {
     // 本人、他人で色を変えている
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
       // 1
-      return isFromCurrentSender(message: message) ? .systemOrange : .systemGray
+        return isFromCurrentSender(message: message) ? .systemPink : .systemGray
     }
     
     // メッセージが本人か、そうでは無いかで方向を決めて、さらに尻尾も変更している
