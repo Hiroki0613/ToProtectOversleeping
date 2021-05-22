@@ -66,7 +66,8 @@ class WakeUpSettingView: UIView {
     }
     
     private func setAppInformation() {
-        appVersionLabel.text = "バージョン　1.0.0"
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        appVersionLabel.text = "バージョン \(version)"
         opinionsAndRequestsLabel.text = "ご意見・ご要望"
         evaluationLabel.text = "アプリを評価する"
     }
