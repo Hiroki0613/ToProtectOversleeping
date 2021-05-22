@@ -67,7 +67,7 @@ class SetNewTeamMateNameVC: UIViewController {
         setNewTeamMateNameView.layer.cornerRadius = 16
         setNewTeamMateNameView.layer.shadowOpacity = 0.1
         setNewTeamMateNameView.layer.shadowRadius = 10
-        setNewTeamMateNameView.layer.shadowOffset = .init(width: 0.0, height: 10.0)
+        setNewTeamMateNameView.layer.shadowOffset = .init(width: 0, height: 10)
         setNewTeamMateNameView.layer.shouldRasterize = true
     }
 }

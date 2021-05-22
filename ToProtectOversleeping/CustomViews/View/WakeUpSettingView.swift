@@ -94,7 +94,6 @@ class WakeUpSettingView: UIView {
         setUserInformationStackView.axis = .vertical
         setUserInformationStackView.alignment = .center
         setUserInformationStackView.spacing = 20
-//        setUserNameButton.frame = CGRect(x: 0, y: 0, width: 300, height: 600)
         addSubview(setUserInformationStackView)
         
         setProfileStackView.addArrangedSubview(setUserNameLabel)
