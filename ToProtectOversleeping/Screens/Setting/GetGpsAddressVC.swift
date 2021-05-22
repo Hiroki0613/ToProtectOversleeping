@@ -126,7 +126,7 @@ class GetGpsAddressVC: BaseGpsVC {
         print(geoCoderLatitude)
         
         
-        homeLocationLabel.text = address
+        homeLocationLabel.text = "登録されました。\n\n\(address)"
         print("GpsButtonが押されました")
         print(address)
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
@@ -174,6 +174,7 @@ class GetGpsAddressVC: BaseGpsVC {
         locationManager.delegate = self
         homeLocationLabel.text = "ここに住所が表示されます"
         homeLocationLabel.textAlignment = .center
+        homeLocationLabel.numberOfLines = 0
         
         // Mapの大きさを定義
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -183,7 +184,7 @@ class GetGpsAddressVC: BaseGpsVC {
         view.addSubview(homeLocationLabel)
         view.addSubview(homeLocationFetchButton)
         
-        let padding: CGFloat = 40.0;
+        let padding: CGFloat = 10.0;
         
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -194,7 +195,7 @@ class GetGpsAddressVC: BaseGpsVC {
             homeLocationLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor,constant:  padding),
             homeLocationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             homeLocationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            homeLocationLabel.heightAnchor.constraint(equalToConstant: padding),
+            homeLocationLabel.heightAnchor.constraint(equalToConstant: 80),
             
             homeLocationFetchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             homeLocationFetchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
