@@ -289,6 +289,4 @@ extension GetGpsAddressVC: GetGeocoderDelegate {
         print("geoCoderLatitude:", geoCoderLatitude)
         print("geoCoderLongitude:", geoCoderLongitude)
     }
-    
-    
 }

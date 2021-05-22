@@ -13,7 +13,7 @@ class WUTabBarController: UITabBarController {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
         viewControllers = [
-            createWakeUpSettingVC(),createWakeUpCardTableListVC()]
+            createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
     
     
@@ -35,9 +35,9 @@ class WUTabBarController: UITabBarController {
         qRCodeReaderVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 2)
         return UINavigationController(rootViewController: qRCodeReaderVC)
     }
-//    QRCodeReaderVC
+    //    QRCodeReaderVC
     
-
+    
     /// SFSymbolsをTabBarにいれる
     /// - Parameters:
     ///   - symbolSystemName: SFSymbolsの名前

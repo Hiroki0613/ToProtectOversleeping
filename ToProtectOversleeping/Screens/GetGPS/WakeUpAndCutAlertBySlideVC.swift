@@ -35,12 +35,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         configureUI()
         swipeButton.getGeocoderDelegate = self
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
-//        moveTo(center: CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude), animated: false)
-        moveTo(center: myHomeLocation, animated: false)
         print(myAddressLongitude)
         print(myAddressLatitude)
-
-        drawCircle(center: myHomeLocation, meter: 10, times: 10)
     }
     
     
@@ -48,7 +44,9 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         super.viewWillAppear(animated)
         checkSettingAlarmWithinTwoHours(settingTime: mySettingAlarmTime)
         self.view.layoutIfNeeded()
+        // ここでUserDefaultsで記録した住所を入れる。
         moveTo(center: myHomeLocation, animated: false)
+        drawCircle(center: myHomeLocation, meter: 10, times: 10)
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -258,11 +256,14 @@ extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
         getCurrentLocation()
         swipedActionLabel.text = "取得完了しました"
 //        setAnnotation(location: myHomeLocation)
-        setAnnotation(location: CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude))
+        let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
+        setAnnotation(location: geoCoderLocation)
+        moveTo(center: geoCoderLocation, animated: false)
         print("geoCoderLatitude:", geoCoderLatitude)
         print("geoCoderLongitude:", geoCoderLongitude)
     }
     
     
 }
+
 
