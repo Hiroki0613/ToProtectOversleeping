@@ -9,7 +9,7 @@ import UIKit
 
 class RegisterNameVC: UIViewController {
     
-    var setNewNameView = RegisterNameView()
+    var registerNewNameView = RegisterNameView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +26,22 @@ class RegisterNameVC: UIViewController {
     }
     
     func configureAddTarget() {
-        setNewNameView.registerNameButton.addTarget(self, action: #selector(registerName), for: .touchUpInside)
-        setNewNameView.registerNameGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        registerNewNameView.registerNameButton.addTarget(self, action: #selector(registerName), for: .touchUpInside)
+        registerNewNameView.registerNameGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
     }
     
     @objc func registerName() {
         print("ユーザー登録しました")
-        setNewNameView.newNameLabel.text = "ユーザー登録しました"
+        registerNewNameView.newNameLabel.text = "ユーザー登録しました"
     }
     
     @objc func goBack() {
         print("戻るボタンが押されました")
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        registerNewNameView.newNameTextField.resignFirstResponder()
     }
     
     func configureView() {
@@ -53,16 +57,16 @@ class RegisterNameVC: UIViewController {
     }
     
     func configuteCardView() {
-        setNewNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
-        view.addSubview(setNewNameView)
+        registerNewNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
+        view.addSubview(registerNewNameView)
     }
     
     private func configureDecoration() {
-        setNewNameView.layer.shadowColor = UIColor.systemGray.cgColor
-        setNewNameView.layer.cornerRadius = 16
-        setNewNameView.layer.shadowOpacity = 0.1
-        setNewNameView.layer.shadowRadius = 10
-        setNewNameView.layer.shadowOffset = .init(width: 0.0, height: 10.0)
-        setNewNameView.layer.shouldRasterize = true
+        registerNewNameView.layer.shadowColor = UIColor.systemGray.cgColor
+        registerNewNameView.layer.cornerRadius = 16
+        registerNewNameView.layer.shadowOpacity = 0.1
+        registerNewNameView.layer.shadowRadius = 10
+        registerNewNameView.layer.shadowOffset = .init(width: 0.0, height: 10.0)
+        registerNewNameView.layer.shouldRasterize = true
     }
 }

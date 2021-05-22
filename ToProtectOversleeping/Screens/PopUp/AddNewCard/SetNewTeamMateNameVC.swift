@@ -43,6 +43,10 @@ class SetNewTeamMateNameVC: UIViewController {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        setNewTeamMateNameView.newTeamMateTextField.resignFirstResponder()
+    }
+    
     
     func configureView() {
         configureBlurView()
@@ -70,12 +74,4 @@ class SetNewTeamMateNameVC: UIViewController {
         setNewTeamMateNameView.layer.shadowOffset = .init(width: 0, height: 10)
         setNewTeamMateNameView.layer.shouldRasterize = true
     }
-}
-
-
-extension SetNewTeamMateNameVC: UITableViewDelegate {
-//    override func resignFirstResponder() -> Bool {
-//        <#code#>
-//    }
-    
 }

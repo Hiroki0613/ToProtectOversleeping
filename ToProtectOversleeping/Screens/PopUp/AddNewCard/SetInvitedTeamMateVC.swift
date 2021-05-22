@@ -46,6 +46,10 @@ class SetInvitedTeamMateVC: UIViewController {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        setInvitedTeamMateNameView.invitedIDTextField.resignFirstResponder()
+    }
+    
     
     func configureView() {
         configureBlurView()

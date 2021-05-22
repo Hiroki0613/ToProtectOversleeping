@@ -47,6 +47,8 @@ class SetInvitedTeamMateView: UIView {
         registeredByQRCodeGoBackButton.translatesAutoresizingMaskIntoConstraints = false
         regsteredByQRCodeStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        invitedIDTextField.delegate = self
+        
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
@@ -83,5 +85,11 @@ class SetInvitedTeamMateView: UIView {
             regsteredByQRCodeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             regsteredByQRCodeStackView.heightAnchor.constraint(equalToConstant: 65)
         ])
+    }
+}
+
+extension SetInvitedTeamMateView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

@@ -48,6 +48,8 @@ class SetNewTeamMateNameView: UIView {
         chatTeamGoBackButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        newTeamMateTextField.delegate = self
+        
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
@@ -84,5 +86,12 @@ class SetNewTeamMateNameView: UIView {
             chatTeamNameAndRegstrationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             chatTeamNameAndRegstrationStackView.heightAnchor.constraint(equalToConstant: 65)
         ])
+    }
+}
+
+extension SetNewTeamMateNameView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

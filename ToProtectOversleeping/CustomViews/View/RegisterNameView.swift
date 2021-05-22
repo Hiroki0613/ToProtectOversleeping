@@ -43,6 +43,7 @@ class RegisterNameView: UIView {
         registerNameGoBackButton.translatesAutoresizingMaskIntoConstraints = false
         registerNameStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        newNameTextField.delegate = self
         
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
@@ -79,5 +80,11 @@ class RegisterNameView: UIView {
     }
 }
 
+extension RegisterNameView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
 
