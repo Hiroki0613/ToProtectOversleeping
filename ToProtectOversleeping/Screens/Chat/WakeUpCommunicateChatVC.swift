@@ -381,7 +381,7 @@ extension WakeUpCommunicateChatVC: MessagesDisplayDelegate {
     // 本人、他人で色を変えている
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
       // 1
-        return isFromCurrentSender(message: message) ? .systemPink : .systemGray
+        return isFromCurrentSender(message: message) ? .systemOrange : .systemGray
     }
     
     // メッセージが本人か、そうでは無いかで方向を決めて、さらに尻尾も変更している

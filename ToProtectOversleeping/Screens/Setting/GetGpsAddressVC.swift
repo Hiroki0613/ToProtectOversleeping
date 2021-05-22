@@ -29,6 +29,9 @@ class GetGpsAddressVC: BaseGpsVC {
     
     var myHomeLocation = CLLocationCoordinate2D()
     
+    // アドレスを格納
+    var addressString = ""
+    
 
     
     override func viewDidLoad() {
@@ -37,6 +40,7 @@ class GetGpsAddressVC: BaseGpsVC {
         configureView()
 //        configureDecoration()
 //        configureAddTarget()
+        // ここにdefaultで設定した住まいを入れる渡す。
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
         moveTo(center: myHomeLocation, animated: false)
         drawCircle(center: myHomeLocation, meter: 10, times: 10)
@@ -45,14 +49,15 @@ class GetGpsAddressVC: BaseGpsVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
+        // ここにUserDefaultsで設定した住まいを入れる。nilの場合(住所未設定の場合は、defaultsの場所にしておく)
         moveTo(center: myHomeLocation, animated: false)
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-//    func configureAddTarget() {
-//        getGpsAddressView.setGPSButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
-//    }
+    func configureAddTarget() {
+        homeLocationFetchButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
+    }
     
     
     // ここで目覚ましをセット
@@ -122,10 +127,35 @@ class GetGpsAddressVC: BaseGpsVC {
 //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
+    // 位置から住所を取得
+    func convert(latitude:CLLocationDegrees, longitude: CLLocationDegrees) {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        
+        geocoder.reverseGeocodeLocation(location) { placemark, error in
+            
+            if placemark != nil {
+                if let pm = placemark?.first {
+                    
+                    if pm.administrativeArea != nil || pm.locality != nil {
+                        
+                        self.addressString = pm.name! + pm.administrativeArea! + pm.locality!
+                    } else {
+                        self.addressString = pm.name!
+                    }
+                    
+                    self.homeLocationLabel.text = self.addressString
+                }
+            }
+        }
+    }
+    
     
     func configureView() {
         mapView.delegate = self
         locationManager.delegate = self
+        homeLocationLabel.text = "ここに住所が表示されます"
+        homeLocationLabel.textAlignment = .center
         
         // Mapの大きさを定義
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +176,12 @@ class GetGpsAddressVC: BaseGpsVC {
             homeLocationLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor,constant:  padding),
             homeLocationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             homeLocationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            homeLocationLabel.heightAnchor.constraint(equalToConstant: padding)
+            homeLocationLabel.heightAnchor.constraint(equalToConstant: padding),
+            
+            homeLocationFetchButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            homeLocationFetchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            homeLocationFetchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+            homeLocationFetchButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
 //        getGpsAddressView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 200)

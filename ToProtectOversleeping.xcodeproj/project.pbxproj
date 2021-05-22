@@ -30,6 +30,8 @@
 		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
+		7F8211DE2659023D00AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211DD2659023D00AA747E /* RegisterNameVC.swift */; };
+		7F8211E0265902BA00AA747E /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211DF265902BA00AA747E /* RegisterNameView.swift */; };
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
 		7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */; };
 		7FA2E1772654078000529B7F /* WakeUpCommunicateChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA2E1762654078000529B7F /* WakeUpCommunicateChatModel.swift */; };
@@ -89,6 +91,8 @@
 		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		7F8211DD2659023D00AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
+		7F8211DF265902BA00AA747E /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
 		7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUBodyLabel.swift; sourceTree = "<group>"; };
 		7FA2E1762654078000529B7F /* WakeUpCommunicateChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatModel.swift; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 				7FE523DE2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift */,
 				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
 				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
+				7F8211DF265902BA00AA747E /* RegisterNameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */,
+				7F8211DD2659023D00AA747E /* RegisterNameVC.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -620,6 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
+				7F8211DE2659023D00AA747E /* RegisterNameVC.swift in Sources */,
 				7FA9B65F264142100017985B /* JinrikishaGPS.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F1228C726515FB10038EC3D /* ChatViewController.swift in Sources */,
@@ -643,6 +650,7 @@
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
 				7FE523DB2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift in Sources */,
+				7F8211E0265902BA00AA747E /* RegisterNameView.swift in Sources */,
 				7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */,
 				7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */,
 				7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */,

@@ -29,7 +29,7 @@ class WakeUpSettingVC: UIViewController {
     func configureAddTarget() {
         wakeUpSettingView.setUserNameButton.addTarget(self, action: #selector(tapSetUserNameButton), for: .touchUpInside)
         wakeUpSettingView.getGPSAddressButton.addTarget(self, action: #selector(tapGetGPSAddressButton), for: .touchUpInside)
-        wakeUpSettingView.setNotificationSwitch.addTarget(self, action: #selector(tapSetNotificationSwitch), for: .touchUpInside)
+//        wakeUpSettingView.setNotificationSwitch.addTarget(self, action: #selector(tapSetNotificationSwitch), for: .touchUpInside)
         
         wakeUpSettingView.licenseButton.addTarget(self, action: #selector(tapLicenseButton), for: .touchUpInside)
         wakeUpSettingView.opinionsAndRequestsButton.addTarget(self, action: #selector(tapOpinionsAndRequestsButton), for: .touchUpInside)
@@ -38,6 +38,8 @@ class WakeUpSettingVC: UIViewController {
     
     @objc func tapSetUserNameButton() {
         print("setUserNameButtonが押されました")
+        let registerNameVC = RegisterNameVC()
+        navigationController?.pushViewController(registerNameVC, animated: true)
     }
     
     @objc func tapGetGPSAddressButton() {
