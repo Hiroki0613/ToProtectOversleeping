@@ -55,8 +55,22 @@ class WakeUpSettingVC: UIViewController {
         print("setNotificationSwitchが押されました")
     }
     
+    // 設定画面へ遷移
     @objc func tapLicenseButton() {
         print("licenseButtonが押されました")
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+          return
+        }
+        if UIApplication.shared.canOpenURL(settingsUrl)  {
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+            })
+          }
+          else  {
+            UIApplication.shared.openURL(settingsUrl)
+          }
+        }
+
     }
     
     @objc func tapOpinionsAndRequestsButton() {
