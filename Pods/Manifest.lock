@@ -331,6 +331,7 @@ PODS:
     - InputBarAccessoryView/Core (= 5.2.3)
   - InputBarAccessoryView/Core (5.2.3)
   - leveldb-library (1.22)
+  - LicensePlist (3.11.0)
   - MessageKit (3.5.0):
     - InputBarAccessoryView (~> 5.2.1)
   - nanopb (2.30907.0):
@@ -345,6 +346,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Storage
+  - LicensePlist
   - MessageKit
 
 SPEC REPOS:
@@ -367,6 +369,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - InputBarAccessoryView
     - leveldb-library
+    - LicensePlist
     - MessageKit
     - nanopb
     - PromisesObjC
@@ -390,10 +393,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   InputBarAccessoryView: f814a0317d47687fafc6bac9e4df6015eaf5b764
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  LicensePlist: 16b82fb3425b255749127ca42c1a941c9fed4241
   MessageKit: fb539583599cd914e8e2d41fe7bdceb4bf686565
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 23bbbf039e603e381e858f1a36448f3481a887a9
+PODFILE CHECKSUM: 843abbc20fd4919decc1590f0f351e7e4890c1ba
 
 COCOAPODS: 1.10.1

@@ -105,7 +105,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-//        loadMessage()
+        loadMessage()
         
         
 //        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
@@ -116,6 +116,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //        let message3 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
 //        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
 //        let message4 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
+        
+        
         let message1 = Message(text: "文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
         let message2 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
         let message3 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: otherUser, messageId: UUID().uuidString, date: Date())
@@ -217,39 +219,38 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //
 //        }
 //    }
-
     
-//    func loadMessage() {
-//        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
-//            if error != nil {
-//                return
-//            }
-//            if let snapShotDoc = snapshot?.documents {
-//                self.messages = []
-//                for doc in snapShotDoc {
-//                    let data = doc.data()
-//                    if let text = data["text"] as? String, let senderID = data["senderID"] as? String,
-//                       let imageURLString = data["imageURLString"] as? String,
-//                       let date = data["date"] as? TimeInterval {
-//
-//                        // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
-//                        if senderID == Auth.auth().currentUser?.uid {
-//                            self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: self.userData["name"] as! String)
-//                            let message = Message(sender: self.currentUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
-//                            self.messages.append(message)
-//                        } else {
-//                            self.otherUser = Sender(senderId: senderID, displayName: self.userData["name"] as! String)
-//                            let message = Message(sender: self.otherUser, messageId: senderID, sentDate: Date(timeIntervalSince1970: date), kind: .text(text), userImagePath: imageURLString, date: date, messageImageString: "")
-//                            self.messages.append(message)
-//                        }
-//                    }
-//                }
-//                self.messagesCollectionView.reloadData()
-//                self.messagesCollectionView.scrollToLastItem()
-//            }
-//
-//        }
-//    }
+    
+    func loadMessage() {
+        db.collection("Users").document("123456").collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
+            if error != nil {
+                return
+            }
+            if let snapShotDoc = snapshot?.documents {
+                self.messages = []
+                for doc in snapShotDoc {
+                    let data = doc.data()
+                    if let text = data["text"] as? String, let senderID = data["senderID"] as? String
+                       {
+
+                        // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
+                        if senderID == "1234567" {
+                            self.currentUser = Sender(senderId: "1234567", displayName: self.userData["name"] as! String)
+                            let message = Message(text: text, user: self.currentUser, messageId: UUID().uuidString, date: Date())
+                            self.messages.append(message)
+                        } else {
+                            self.otherUser = Sender(senderId: "7654321", displayName: self.userData["name"] as! String)
+                            let message = Message(text: text, user: self.otherUser, messageId: UUID().uuidString, date: Date())
+                            self.messages.append(message)
+                        }
+                    }
+                }
+                self.messagesCollectionView.reloadData()
+                self.messagesCollectionView.scrollToLastItem()
+            }
+
+        }
+    }
 
     
     
@@ -270,12 +271,12 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //        let dateString = formatter.string(from: message.sentDate)
 //        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
 //    }
-    
-    func sendMessage(senderID: String, toID: String, text: String, displayName: String, imageUrlString: String) {
-        self.db.collection("Users").document(senderID).collection("chat").document(toID).setData(["text": text as Any, "senderID": senderID as Any, "displayName": displayName as Any, "imageUrlString": imageUrlString as Any, "date": Date().timeIntervalSince1970]
+        
+    func sendMessage(text: String, user: String, messageID: String, date: Date) {
+        self.db.collection("Users").document("1234567").collection("chat").document(messageID).setData(["text": text as Any, "user": currentUser,"messageID": messageID ,"date": Date().timeIntervalSince1970]
         )
         
-        self.db.collection("Users").document(toID).collection("chat").document(senderID).setData(["text": text as Any, "senderID": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "imageUrlString": imageUrlString as Any, "date": Date().timeIntervalSince1970]
+        self.db.collection("Users").document("7654321").collection("chat").document(messageID).setData(["text": text as Any, "user": otherUser as Any, "messageID": messageID,"date": Date().timeIntervalSince1970]
         )
     }
 
@@ -417,6 +418,7 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
         inputBar.sendButton.startAnimating()
 //        var sendDBModel = SendDBModel(senderID: "", toID: "", text: "", displayName: "", imageUrlString: "")
         
+        sendMessage(text: text, user: "currentuser", messageID: "1234567", date: Date())
         inputBar.inputTextView.text = ""
 //        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid,toID:(userDataModel?.uid)!, text: text, displayName: userData["name"] as! String, imageUrlString: userData["profileImageString"] as! String)
         

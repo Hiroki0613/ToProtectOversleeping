@@ -30,6 +30,9 @@
 		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
+		7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* RegisterNameView.swift */; };
+		7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E32659105700AA747E /* RegisterNameVC.swift */; };
+		7F8211EB26591F3000AA747E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F8211EA26591F3000AA747E /* Settings.bundle */; };
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
 		7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */; };
 		7FA2E1772654078000529B7F /* WakeUpCommunicateChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA2E1762654078000529B7F /* WakeUpCommunicateChatModel.swift */; };
@@ -89,6 +92,9 @@
 		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		7F8211E126590FF600AA747E /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
+		7F8211E32659105700AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
+		7F8211EA26591F3000AA747E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ToProtectOversleeping/Settings.bundle; sourceTree = "<group>"; };
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
 		7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUBodyLabel.swift; sourceTree = "<group>"; };
 		7FA2E1762654078000529B7F /* WakeUpCommunicateChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatModel.swift; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 		7F376B0826401A910063F2EC = {
 			isa = PBXGroup;
 			children = (
+				7F8211EA26591F3000AA747E /* Settings.bundle */,
 				7F376B1326401A910063F2EC /* ToProtectOversleeping */,
 				7F376B1226401A910063F2EC /* Products */,
 				333E84D1A8F16DA8F00DA5A4 /* Pods */,
@@ -295,6 +302,7 @@
 				7FE523DE2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift */,
 				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
 				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
+				7F8211E126590FF600AA747E /* RegisterNameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 				7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */,
 				7FE523D82647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift */,
 				7FE523DC2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift */,
+				7F8211E32659105700AA747E /* RegisterNameVC.swift */,
 			);
 			path = AddNewCard;
 			sourceTree = "<group>";
@@ -516,6 +525,7 @@
 				7F376B0E26401A910063F2EC /* Frameworks */,
 				7F376B0F26401A910063F2EC /* Resources */,
 				D1D1D53A703E4AC5FD850693 /* [CP] Embed Pods Frameworks */,
+				7F8211E526591C0E00AA747E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -567,6 +577,7 @@
 				7FA2E17926555E7C00529B7F /* GoogleService-Info.plist in Resources */,
 				7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */,
 				7F376B1C26401A910063F2EC /* Main.storyboard in Resources */,
+				7F8211EB26591F3000AA747E /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +605,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7F8211E526591C0E00AA747E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n${PODS_ROOT}/LicensePlist/license-plist --output-path $PRODUCT_NAME/Settings.bundle --github-token YOUR_GITHUB_TOKEN\nfi\n";
 		};
 		D1D1D53A703E4AC5FD850693 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -639,6 +667,7 @@
 				7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */,
 				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
 				7F1228BE26515F320038EC3D /* Channel.swift in Sources */,
+				7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */,
 				7F1228C526515F920038EC3D /* ChannelsViewController.swift in Sources */,
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
@@ -648,6 +677,7 @@
 				7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */,
 				7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */,
 				7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */,
+				7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */,
 				7F376B1926401A910063F2EC /* ViewController.swift in Sources */,
 				7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,

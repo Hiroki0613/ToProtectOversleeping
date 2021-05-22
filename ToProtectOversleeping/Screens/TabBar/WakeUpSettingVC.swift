@@ -39,7 +39,9 @@ class WakeUpSettingVC: UIViewController {
     @objc func tapSetUserNameButton() {
         print("setUserNameButtonが押されました")
         let registerNameVC = RegisterNameVC()
-        navigationController?.pushViewController(registerNameVC, animated: true)
+        registerNameVC.modalPresentationStyle = .overFullScreen
+        registerNameVC.modalTransitionStyle = .crossDissolve
+        self.present(registerNameVC, animated: true, completion: nil)
     }
     
     @objc func tapGetGPSAddressButton() {
