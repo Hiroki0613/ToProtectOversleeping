@@ -13,8 +13,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
 //    var myAddressLongitude = 139.65363018
     
     // 暫定で家の近くに設定している
-    var myAddressLatitude = 35.7140224101
-    var myAddressLongitude = 139.65363018
+    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
+    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
     var mySettingAlarmTime = Date()
     
     var alarm = Alarm()
@@ -35,7 +35,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         configureUI()
         swipeButton.getGeocoderDelegate = self
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
-        print(myAddressLongitude)
+        print("ゲット",myAddressLongitude)
         print(myAddressLatitude)
     }
     
