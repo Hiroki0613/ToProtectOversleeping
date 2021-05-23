@@ -22,12 +22,31 @@ class WakeUpCardTableListVC: UIViewController {
 //        view.backgroundColor = .systemOrange
         configureTableView()
         configureAddCardButton()
+        setUserDefaults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func setUserDefaults() {
+        let userDefaults = UserDefaults.standard
+            //ディクショナリ形式で初期値を指定できる
+            userDefaults.register(defaults: [
+                "UserName" : "NoName",
+                "myAddressLatitude" : 0.0,
+                "myAddressLongitude" : 0.0
+            ])
+
+            //値を取り出す
+            let name = userDefaults.object(forKey: "UserName") as! String
+            let myAddressLatitude = userDefaults.integer(forKey: "UserID")
+            let myAddressLongitude = userDefaults.bool(forKey: "Flag")
+        print("UserDefaluts_name:",name)
+        print("UserDefaluts_myAddressLatitude:",myAddressLatitude)
+        print("UserDefaluts_myAddressLongitude:",myAddressLongitude)
     }
     
     func configureTableView() {
