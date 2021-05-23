@@ -223,7 +223,6 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
-				7F1228AB26515E000038EC3D /* ChatSample */,
 				7FD2F4A9265038BD006C684E /* NotUseSample */,
 				7F7E4AC426498F7C00A10929 /* Model */,
 				7FE523BB26464C7300B7D1B0 /* Extention */,
@@ -404,6 +403,7 @@
 		7FD2F4A9265038BD006C684E /* NotUseSample */ = {
 			isa = PBXGroup;
 			children = (
+				7F1228AB26515E000038EC3D /* ChatSample */,
 				7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */,
 				7FE523BE26464ED600B7D1B0 /* QRMaker */,
 				7FA9B65D264141F40017985B /* JinrikishaGPS */,

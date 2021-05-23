@@ -60,22 +60,6 @@ class GetGpsAddressVC: BaseGpsVC {
         homeLocationFetchButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
     }
     
-    
-    // ここで目覚ましをセット
-    @objc func setAlarmSwitch(sender: UISwitch) {
-        let onCheck: Bool = sender.isOn
-        // UISwitch値を確認
-        if onCheck {
-            // viewのalphaを1.0にする。
-            // 目覚ましをONにする
-            print("スイッチの状態はオンです。値: \(onCheck)")
-        } else {
-            // viewのalphaを0.8にする。
-            // 目覚ましをOFFにする
-            print("スイッチの状態はオフです。値: \(onCheck)")
-        }
-    }
-    
     // 地図を任意の場所へ移動させる
     private func moveTo(
         center location: CLLocationCoordinate2D,
@@ -202,20 +186,7 @@ class GetGpsAddressVC: BaseGpsVC {
             homeLocationFetchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             homeLocationFetchButton.heightAnchor.constraint(equalToConstant: 40)
         ])
-        
-        //        getGpsAddressView.frame = CGRect(x: 10, y: 50, width: view.frame.size.width - 20, height: 200)
-        //        view.addSubview(getGpsAddressView)
     }
-    
-    // セルを装飾
-    //    private func configureDecoration() {
-    //        getGpsAddressView.layer.shadowColor = UIColor.systemGray.cgColor
-    //        getGpsAddressView.layer.cornerRadius = 16
-    //        getGpsAddressView.layer.shadowOpacity = 0.1
-    //        getGpsAddressView.layer.shadowRadius = 10
-    //        getGpsAddressView.layer.shadowOffset = .init(width: 0, height: 10)
-    //        getGpsAddressView.layer.shouldRasterize = true
-    //    }
 }
 
 
@@ -253,33 +224,6 @@ extension GetGpsAddressVC: MKMapViewDelegate {
     
 }
 
-
-// 2点間の距離を測定
-extension CLLocationCoordinate2D {
-    //    func distanceFromHome(
-    //        to targetLoacation: CLLocationCoordinate2D) -> CLLocationDistance {
-    //
-    //        let location1 = CLLocation(latitude: latitude, longitude: longitude)
-    //        let location2 = CLLocation(latitude: targetLoacation.latitude, longitude: targetLoacation.longitude)
-    //        return location1.distance(from: location2)
-    //    }
-    
-    // 距離をStringで表示
-    //    func distanceTextFromHome(to targetLocation: CLLocationCoordinate2D) -> String {
-    //
-    //        let rawDistance = distanceFromHome(to: targetLocation)
-    //        print("distanceTextFromHome. rawDistance", rawDistance)
-    //
-    //        // 1km未満は四捨五入で10m単位
-    //        if rawDistance < 1000 {
-    //            let roundedDistance = (rawDistance / 10).rounded() * 10
-    //            return "\(Int(roundedDistance))m"
-    //        }
-    //        // 1km以上は四捨五入で0.1km単位
-    //        let roundedDistance = (rawDistance / 100).rounded() * 100
-    //        return "\(roundedDistance / 1000)km"
-    //    }
-}
 
 extension GetGpsAddressVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
