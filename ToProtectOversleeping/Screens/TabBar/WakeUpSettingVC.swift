@@ -24,6 +24,31 @@ class WakeUpSettingVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
+        setUserInformation()
+    }
+    
+    private func setUserInformation() {
+        
+        let checkUserNameLabel = UserDefaults.standard.object(forKey: "userName") as! String
+        
+        if checkUserNameLabel == "NoName777" {
+            wakeUpSettingView.setUserNameLabel.text = "ユーザーネームが未登録です"
+        } else {
+            wakeUpSettingView.setUserNameLabel.text = "ユーザネーム\n\(checkUserNameLabel)"
+        }
+        
+        let checkAddress = UserDefaults.standard.object(forKey: "myAddress") as! String
+        
+        if checkAddress == "未登録" {
+            wakeUpSettingView.getGPSAddressLabel.text = "自宅の住所が未登録です"
+        } else {
+            wakeUpSettingView.getGPSAddressLabel.text = "住所\n\(checkAddress)"
+        }
+
+        
+        
+
+//        setNotificationLabel.text = "通知されます"
     }
     
     func configureAddTarget() {
@@ -39,9 +64,10 @@ class WakeUpSettingVC: UIViewController {
     @objc func tapSetUserNameButton() {
         print("setUserNameButtonが押されました")
         let registerNameVC = RegisterNameVC()
-        registerNameVC.modalPresentationStyle = .overFullScreen
-        registerNameVC.modalTransitionStyle = .crossDissolve
-        self.present(registerNameVC, animated: true, completion: nil)
+//        registerNameVC.modalPresentationStyle = .overFullScreen
+//        registerNameVC.modalTransitionStyle = .crossDissolve
+//        self.present(registerNameVC, animated: true, completion: nil)
+        navigationController?.pushViewController(registerNameVC, animated: true)
     }
     
     @objc func tapGetGPSAddressButton() {

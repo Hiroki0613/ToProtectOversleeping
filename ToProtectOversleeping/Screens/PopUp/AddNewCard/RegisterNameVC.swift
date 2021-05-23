@@ -33,11 +33,19 @@ class RegisterNameVC: UIViewController {
     @objc func registerName() {
         print("ユーザー登録しました")
         registerNewNameView.newNameLabel.text = "ユーザー登録しました"
+            
+        if let newNameTextFieldText = registerNewNameView.newNameTextField.text {
+            UserDefaults.standard.set(newNameTextFieldText, forKey: "userName")
+        }
+        
+
+        print("UserDefaults_ユーザネーム",UserDefaults.standard.object(forKey: "userName") as! String )
     }
     
     @objc func goBack() {
         print("戻るボタンが押されました")
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

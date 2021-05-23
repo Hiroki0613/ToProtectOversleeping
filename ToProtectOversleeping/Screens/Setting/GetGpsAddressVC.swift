@@ -106,13 +106,18 @@ class GetGpsAddressVC: BaseGpsVC {
     // ここでGPSを取得
     @objc func tapSetGPSButton() {
         getCurrentLocation()
-        print(geoCoderLongitude)
+        print("gps取得:", geoCoderLongitude)
         print(geoCoderLatitude)
         
         
         homeLocationLabel.text = "登録されました。\n\n\(address)"
         print("GpsButtonが押されました")
         print(address)
+        
+        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
+        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
+        UserDefaults.standard.set(address, forKey: "myAddress")
+        
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         moveTo(center: geoCoderLocation, animated: true)
         drawCircle(center: geoCoderLocation, meter: 10, times: 10)

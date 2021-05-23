@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol RegiseterUserNameDelegate {
+    func registerUserName()
+}
+
 class RegisterNameView: UIView {
     var newNameLabel = WUBodyLabel(fontSize: 20)
     var newNameTextField = WUTextFields()
@@ -82,6 +86,10 @@ class RegisterNameView: UIView {
 
 extension RegisterNameView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let newNameTextFieldText = textField.text {
+            newNameTextField.text = newNameTextFieldText
+        }
         textField.resignFirstResponder()
         return true
     }

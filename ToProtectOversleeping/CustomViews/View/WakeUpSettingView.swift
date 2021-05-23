@@ -47,7 +47,7 @@ class WakeUpSettingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUserInformation()
+//        setUserInformation()
         setAppInformation()
         configureUserView()
         configureAppView()
@@ -59,11 +59,20 @@ class WakeUpSettingView: UIView {
     }
     
     
-    private func setUserInformation() {
-        setUserNameLabel.text = "ユーザーネームが未登録です"
-        getGPSAddressLabel.text = "自宅の住所が未登録です"
-//        setNotificationLabel.text = "通知されます"
-    }
+//    private func setUserInformation() {
+//
+//        let checkLabelText = UserDefaults.standard.object(forKey: "userName") as! String
+//
+//        if checkLabelText == "NoName777" {
+//            setUserNameLabel.text = "ユーザーネームが未登録です"
+//        } else {
+//            setUserNameLabel.text = "ユーザネーム\n\(checkLabelText)"
+//        }
+//
+//
+//        getGPSAddressLabel.text = "自宅の住所が未登録です"
+////        setNotificationLabel.text = "通知されます"
+//    }
     
     private func setAppInformation() {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
@@ -83,6 +92,8 @@ class WakeUpSettingView: UIView {
         setUserNameButton.translatesAutoresizingMaskIntoConstraints = false
         getGPSAddressLabel.translatesAutoresizingMaskIntoConstraints = false
         getGPSAddressButton.translatesAutoresizingMaskIntoConstraints = false
+        setUserNameLabel.numberOfLines = 2
+        getGPSAddressLabel.numberOfLines = 2
 //        setNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
 //        setNotificationSwitch.translatesAutoresizingMaskIntoConstraints = false
 //

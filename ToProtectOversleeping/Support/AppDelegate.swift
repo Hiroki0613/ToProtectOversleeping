@@ -11,12 +11,34 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        setUserDefaults()
         return true
+    }
+    
+    
+    func setUserDefaults() {
+        let userDefaults = UserDefaults.standard
+            //ディクショナリ形式で初期値を指定できる
+            userDefaults.register(defaults: [
+                "userName" : "NoName777",
+                "myAddressLatitude" : 0.0,
+                "myAddressLongitude" : 0.0,
+                "myAddress": "未登録"
+            ])
+
+            //値を取り出す
+        let userName = userDefaults.object(forKey: "userName") as! String
+        let myAddressLatitude = userDefaults.double(forKey: "myAddressLatitude")
+            let myAddressLongitude = userDefaults.double(forKey: "myAddressLongitude")
+        let myAddress = userDefaults.object(forKey: "myAddress") as! String
+        
+        print("UserDefaluts_name:",userName)
+        print("UserDefaluts_myAddressLatitude:",myAddressLatitude)
+        print("UserDefaluts_myAddressLongitude:",myAddressLongitude)
+        print("UserDefaluts_myAddress", myAddress)
     }
 
     // MARK: UISceneSession Lifecycle
