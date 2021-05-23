@@ -16,7 +16,7 @@ class GetGpsAddressVC: BaseGpsVC {
     //    var getGpsAddressView = GetGpsAddressView()
     
     // 暫定で家の近くに設定している
-    var myAddressLatitude = 25.7140224101
+    var myAddressLatitude = 35.7140224101
     var myAddressLongitude = 139.65363018
     var mySettingAlarmTime = Date()
     
@@ -42,8 +42,8 @@ class GetGpsAddressVC: BaseGpsVC {
         //        configureAddTarget()
         // ここにdefaultで設定した住まいを入れる渡す。
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
-        moveTo(center: myHomeLocation, animated: false)
-        drawCircle(center: myHomeLocation, meter: 10, times: 10)
+//        moveTo(center: myHomeLocation, animated: false)
+//        drawCircle(center: myHomeLocation, meter: 10, times: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,14 +85,14 @@ class GetGpsAddressVC: BaseGpsVC {
     }
     
     
-    // ここで登録を確認
-    @objc func registerTeamMate() {
-        print("登録されました")
-        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
-    }
+//    // ここで登録を確認
+//    @objc func registerTeamMate() {
+//        print("登録されました")
+//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+//    }
     
     private func setAnnotation(location: CLLocationCoordinate2D) {
         mapView.removeAnnotations(mapView.annotations)

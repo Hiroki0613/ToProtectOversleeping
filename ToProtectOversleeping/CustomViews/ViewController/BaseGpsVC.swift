@@ -50,6 +50,7 @@ class BaseGpsVC: UIViewController {
         locationManager.delegate = self
         // 10m単位での精度に設定
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        getCurrentLocation()
     }
     
     
