@@ -15,7 +15,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     var messages = [Message]()
     
-    var userDataModel: UserdataModel?
+    var userDataModel: UserDataModel?
     var sendDBModel = SendDBModel()
     var userData = [String: Any]()
 

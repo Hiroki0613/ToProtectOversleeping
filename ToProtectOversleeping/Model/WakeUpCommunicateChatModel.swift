@@ -49,7 +49,7 @@ struct Message: MessageType {
     }
 }
 
-struct UserdataModel {
+struct UserDataModel {
     var uid = String()
     var name = String()
 }
