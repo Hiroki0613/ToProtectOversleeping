@@ -105,7 +105,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-        loadMessage()
+//        loadMessage()
         
         
 //        self.currentUser = Sender(senderId: "1234", displayName: "hiroki")
@@ -118,22 +118,22 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //        let message4 = Message(sender: self.currentUser, messageId: "1234", sentDate: Date(timeIntervalSince1970: 1.0), kind: .text("日本語を話す"), userImagePath: "", date: 1.0, messageImageString: "")
         
         
-        let message1 = Message(text: "文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
-        let message2 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
-        let message3 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: otherUser, messageId: UUID().uuidString, date: Date())
-        let message4 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
-        let message5 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
-        let message6 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: otherUser, messageId: UUID().uuidString, date: Date())
-        let message7 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
-        self.messages.append(message1)
-        self.messages.append(message2)
-        self.messages.append(message3)
-        self.messages.append(message4)
-        self.messages.append(message5)
-        self.messages.append(message6)
-        self.messages.append(message7)
-        
-        
+//        let message1 = Message(text: "文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+//        let message2 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+//        let message3 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: otherUser, messageId: UUID().uuidString, date: Date())
+//        let message4 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+//        let message5 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+//        let message6 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: otherUser, messageId: UUID().uuidString, date: Date())
+//        let message7 = Message(text: "文章文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。文章を入力しています。", user: currentUser, messageId: UUID().uuidString, date: Date())
+//        self.messages.append(message1)
+//        self.messages.append(message2)
+//        self.messages.append(message3)
+//        self.messages.append(message4)
+//        self.messages.append(message5)
+//        self.messages.append(message6)
+//        self.messages.append(message7)
+//
+//
         
         
 //        self.messages = []
@@ -220,9 +220,24 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //        }
 //    }
     
+    // ここで部屋のdocumentIDが揃う
+    func loadRoomName() {
+        db.collection("Chats").addSnapshotListener { snapshot, error in
+            guard let error = error else { return }
+            if let snapshotDoc = snapshot?.documents {
+                for doc in snapshotDoc {
+                    print(doc.documentID)
+                    var docIDArray = [String]()
+                    docIDArray.append(doc.documentID)
+                }
+            }
+        }
+    }
     
-    func loadMessage() {
-        db.collection("Users").document("123456").collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
+    
+    
+    func loadMessage(indexPath: Int) {
+        db.collection("Chats").document().collection("chat").order(by: "date").addSnapshotListener { snapshot, error in
             if error != nil {
                 return
             }
@@ -234,14 +249,14 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                        {
 
                         // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
-                        if senderID == "1234567" {
-                            self.currentUser = Sender(senderId: "1234567", displayName: self.userData["name"] as! String)
-                            let message = Message(text: text, user: self.currentUser, messageId: UUID().uuidString, date: Date())
-                            self.messages.append(message)
+                        if senderID == Auth.auth().currentUser?.uid {
+                            self.currentUser = Sender(senderId: senderID, displayName: self.userData["name"] as! String)
+//                            let message = Message(text: text, messageId: UUID().uuidString, date: Date())
+//                            self.messages.append(message)
                         } else {
-                            self.otherUser = Sender(senderId: "7654321", displayName: self.userData["name"] as! String)
-                            let message = Message(text: text, user: self.otherUser, messageId: UUID().uuidString, date: Date())
-                            self.messages.append(message)
+                            self.otherUser = Sender(senderId: senderID, displayName: self.userData["name"] as! String)
+//                            let message = Message(text: text, messageId: UUID().uuidString, date: Date())
+//                            self.messages.append(message)
                         }
                     }
                 }
@@ -272,12 +287,12 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
 //    }
         
-    func sendMessage(text: String, user: String, messageID: String, date: Date) {
-        self.db.collection("Users").document("1234567").collection("chat").document(messageID).setData(["text": text as Any, "user": currentUser,"messageID": messageID ,"date": Date().timeIntervalSince1970]
+    func sendMessage(senderID:String,text: String, user: String, messageID: String, date: Date) {
+        self.db.collection("Users").document(senderID).collection("chat").document(messageID).setData(["text": text as Any, "user": currentUser,"messageID": messageID ,"date": Date().timeIntervalSince1970]
         )
         
-        self.db.collection("Users").document("7654321").collection("chat").document(messageID).setData(["text": text as Any, "user": otherUser as Any, "messageID": messageID,"date": Date().timeIntervalSince1970]
-        )
+//        self.db.collection("Users").document("7654321").collection("chat").document(messageID).setData(["text": text as Any, "user": otherUser as Any, "messageID": messageID,"date": Date().timeIntervalSince1970]
+//        )
     }
 
 
@@ -418,7 +433,7 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
         inputBar.sendButton.startAnimating()
 //        var sendDBModel = SendDBModel(senderID: "", toID: "", text: "", displayName: "", imageUrlString: "")
         
-        sendMessage(text: text, user: "currentuser", messageID: "1234567", date: Date())
+        sendMessage(senderID: Auth.auth().currentUser!.uid, text: text, user: "currentuser", messageID: "1234567", date: Date())
         inputBar.inputTextView.text = ""
 //        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid,toID:(userDataModel?.uid)!, text: text, displayName: userData["name"] as! String, imageUrlString: userData["profileImageString"] as! String)
         
