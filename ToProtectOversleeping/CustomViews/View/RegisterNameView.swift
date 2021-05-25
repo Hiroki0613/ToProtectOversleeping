@@ -12,6 +12,10 @@ protocol RegiseterUserNameDelegate {
 }
 
 class RegisterNameView: UIView {
+    
+    // キーボード出現によるスクロール量
+    var scrollByKeyboard : CGFloat = 0
+    
     var newNameLabel = WUBodyLabel(fontSize: 20)
     var newNameTextField = WUTextFields()
     
@@ -27,6 +31,7 @@ class RegisterNameView: UIView {
         super.init(frame: frame)
         settingInformation()
         configure()
+        configureKeyBoardPlace()
     }
     
     required init?(coder: NSCoder) {
@@ -37,6 +42,47 @@ class RegisterNameView: UIView {
         newNameLabel.text = "ユーザーネームを入力してください"
         newNameTextField.text = ""
     }
+    
+    private func configureKeyBoardPlace() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // キーボードが現れたときに実行
+    @objc func keyboardWillShow(notification: Notification?) {
+        print("キーボードが表示された")
+        //
+        //           // キーボードの大きさを取得
+        let keyboardFrame : CGRect = (notification?.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        // キーボードのすぐ上にテキストフィールドが来るように調整する
+        self.scrollByKeyboard = keyboardFrame.size.height - (self.frame.height - self.newNameTextField.frame.maxY)
+        
+        // 画面をスクロールさせる
+        let affine = CGAffineTransform.init(translationX: 0.0, y: -self.scrollByKeyboard)
+        // 画面のスクロールをアニメーションさせる
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.transform = affine
+                       },
+                       completion: nil)
+    }
+    
+    // キーボードが消えたときに実行
+    @objc func keyboardWillHide(notification: Notification?) {
+        print("キーボードが消された")
+        
+        // 画面のスクロールを元に戻す
+        let affine = CGAffineTransform.init(translationX: 0.0, y: 0.0)
+        // 画面のスクロールをアニメーションさせる
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.transform = affine
+                       },
+                       completion: { (true) in
+                        self.scrollByKeyboard = 0.0
+                       })
+    }
+    
     
     private func configure() {
         newNameLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -36,7 +36,7 @@ class SetNewTeamMateNameView: UIView {
                        object: self.window)
                NotificationCenter.default.removeObserver(self,
                         name: UIResponder.keyboardDidHideNotification,
-                       object: self.window)
+                        object: self.window)
     }
     
     
@@ -75,21 +75,21 @@ class SetNewTeamMateNameView: UIView {
                        completion: nil)
     }
     
-       // キーボードが消えたときに実行
-       @objc func keyboardWillHide(notification: Notification?) {
-           print("キーボードが消された")
-
-           // 画面のスクロールを元に戻す
-           let affine = CGAffineTransform.init(translationX: 0.0, y: 0.0)
-           // 画面のスクロールをアニメーションさせる
-           UIView.animate(withDuration: 0.3,
-                          animations: {
-                           self.transform = affine
-           },
-                          completion: { (true) in
-                           self.scrollByKeyboard = 0.0
-           })
-       }
+    // キーボードが消えたときに実行
+    @objc func keyboardWillHide(notification: Notification?) {
+        print("キーボードが消された")
+        
+        // 画面のスクロールを元に戻す
+        let affine = CGAffineTransform.init(translationX: 0.0, y: 0.0)
+        // 画面のスクロールをアニメーションさせる
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.transform = affine
+                       },
+                       completion: { (true) in
+                        self.scrollByKeyboard = 0.0
+                       })
+    }
 
     
     
