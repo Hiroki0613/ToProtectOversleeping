@@ -6,17 +6,22 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class SetNewTeamMateNameVC: UIViewController {
     
     // チームを新規登録
     var setNewTeamMateNameView = SetNewTeamMateNameView()
     
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureDecoration()
         configureAddTarget()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +39,15 @@ class SetNewTeamMateNameVC: UIViewController {
     // 新規登録
     @objc func registerNewTeam() {
         print("新規登録しました")
+        
+        // 無理矢理ログインしています
+        Auth.auth().signInAnonymously { result, error in
+            guard let error = error else { return }
+        }
+        
+        let  newTeamMateString = setNewTeamMateNameView.newTeamMateTextField.text
+        
+        db.collection("Chats").document().setData(["roomName": newTeamMateString as Any])
     }
     
     // 招待してもらう
