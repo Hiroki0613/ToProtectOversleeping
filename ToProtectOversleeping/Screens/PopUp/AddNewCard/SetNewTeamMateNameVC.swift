@@ -47,7 +47,11 @@ class SetNewTeamMateNameVC: UIViewController {
         
         let  newTeamMateString = setNewTeamMateNameView.newTeamMateTextField.text
         
-        db.collection("Chats").document().setData(["roomName": newTeamMateString as Any])
+        db.collection("Chats").document().setData([
+                                                    
+            "roomName": newTeamMateString as Any,
+            "timer": "OKOKOK\(newTeamMateString)"
+        ])
     }
     
     // 招待してもらう
