@@ -8,6 +8,9 @@
 import UIKit
 
 class SetInvitedTeamMateVC: UIViewController {
+    
+    var wakeUpTimeText = ""
+    
     // チームを新規登録
     var setInvitedTeamMateNameView = SetInvitedTeamMateView()
     

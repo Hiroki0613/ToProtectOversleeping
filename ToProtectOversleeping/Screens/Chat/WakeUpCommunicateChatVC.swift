@@ -259,7 +259,10 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
         
         
         //TODO: toIDのuserDataModel、displayNameのuserData["name"]が繋がっていない。
-        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid, toID: userDataModel.name, text: text, displayName: userData["name"] as! String)
+//        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid, toID: userDataModel.name, text: text, displayName: userData["name"] as! String)
+        
+        
+        
 //        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid, toID: "1234567", text: text, displayName: "宏輝だよ")
         inputBar.sendButton.stopAnimating()
         

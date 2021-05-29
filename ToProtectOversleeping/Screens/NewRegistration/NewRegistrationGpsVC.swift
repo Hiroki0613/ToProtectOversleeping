@@ -7,12 +7,15 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 // 新規登録時のユーザーネームを登録
 class NewRegistrationGpsVC: BaseGpsVC {
     
+    let db = Firestore.firestore()
+    
     // 画面遷移時にユーザ名がここに渡っている。
-    var newUserName: String?
+    var newUserName = ""
     
     // GPSの書籍設定値が入っている。
     var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
@@ -44,7 +47,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
     }
     
     private func configureAddTarget() {
-        
+        homeLocationFetchButton.addTarget(self, action: #selector(tapSetGpsButton), for: .touchUpInside)
     }
     
     private func moveTo(
@@ -75,6 +78,12 @@ class NewRegistrationGpsVC: BaseGpsVC {
     }
     
     @objc func tapSetGpsButton() {
+        let sendDBModel = SendDBModel()
+        sendDBModel.doneCreateUser = self
+        
+        // アプリのバージョン
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        
         getCurrentLocation()
         print("gps取得: ", geoCoderLongitude)
         print(geoCoderLongitude)
@@ -88,8 +97,17 @@ class NewRegistrationGpsVC: BaseGpsVC {
         drawCircle(center: geoCoderLocation, meter: 10, times: 10)
         setAnnotation(location: geoCoderLocation)
         
-        //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
-        //ここでFirebaseFireStoreにUserModelとして登録する。
+        // GPS情報、住所が取得出来なかった場合は反応なし
+        if geoCoderLatitude == 0.0,
+           geoCoderLongitude == 0.0,
+           address == "" {
+            return
+        } else {
+            //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
+            //ここでFirebaseFireStoreにUserModelとして登録する。
+            sendDBModel.createNewUser(name: newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
+            UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
+        }
     }
     
     private func convert(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
@@ -186,5 +204,13 @@ extension NewRegistrationGpsVC: GetGeocoderDelegate {
         
         print("geoCoderLatitude: ", geoCoderLatitude)
         print("geoCoderLongitude: ", geoCoderLongitude)
+    }
+}
+
+extension NewRegistrationGpsVC: DoneCreateUser {
+    func doneCreateUser() {
+        // 新規登録が終わった後に行う処理
+        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }

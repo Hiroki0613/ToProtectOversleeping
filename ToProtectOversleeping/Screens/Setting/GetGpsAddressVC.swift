@@ -1,5 +1,5 @@
 //
-//  WakeUpSettingVC.swift
+//  GetGpsAddressVC.swift
 //  ToProtectOversleeping
 //
 //  Created by 近藤宏輝 on 2021/05/08.

@@ -11,6 +11,9 @@ import FirebaseAuth
 
 class SetNewTeamMateNameVC: UIViewController {
     
+    var wakeUpTimeText = ""
+    var newTeamMateString = ""
+    
     // チームを新規登録
     var setNewTeamMateNameView = SetNewTeamMateNameView()
     
@@ -45,13 +48,21 @@ class SetNewTeamMateNameVC: UIViewController {
             guard let error = error else { return }
         }
         
-        let  newTeamMateString = setNewTeamMateNameView.newTeamMateTextField.text
+        newTeamMateString = setNewTeamMateNameView.newTeamMateTextField.text ?? ""
         
-        db.collection("Chats").document().setData([
-                                                    
-            "roomName": newTeamMateString as Any,
-            "timer": "OKOKOK\(newTeamMateString)"
-        ])
+        if newTeamMateString == "" {
+            return
+        } else {
+            
+            //TODO: ここのsetDataは要検討
+            db.collection("Chats").document().setData([
+                                                        
+                "roomName": newTeamMateString as Any,
+                "timer": "OKOKOK\(newTeamMateString)"
+            ])
+        }
+        
+
     }
     
     // 招待してもらう

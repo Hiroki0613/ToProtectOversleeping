@@ -8,8 +8,14 @@
 import Foundation
 import Firebase
 
+protocol DoneCreateUser {
+    func doneCreateUser()
+}
+
 class SendDBModel {
     let db = Firestore.firestore()
+    
+    var doneCreateUser:DoneCreateUser?
     
 //    var senderID: String = ""
 //    var toID: String = ""
@@ -23,13 +29,14 @@ class SendDBModel {
     ///   - name: ユーザー名
     ///   - uid: FirebaseのAuth.auth()
     ///   - appVersion: アプリのバージョン
-    ///   - isWakeUpBool: 起きた時に使われるBool
+    ///   - isWakeUpBool: 起きた時に使われるBool(暫定的に用意)
     func createNewUser(name: String,uid: String,appVersion: String, isWakeUpBool: Bool) {
         // ここでUserModelを作成。
         self.db.collection("Users").document(Auth.auth().currentUser!.uid).setData(
             ["name": name as Any,"uid": uid as Any, "appVersion": appVersion as Any,
              "isWakeUpBool": isWakeUpBool as Any,"date": Date().timeIntervalSince1970]
         )
+        self.doneCreateUser?.doneCreateUser()
     }
     
         

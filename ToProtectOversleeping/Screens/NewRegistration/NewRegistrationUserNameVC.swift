@@ -27,7 +27,7 @@ class NewRegistrationUserNameVC: UIViewController {
     
     private func configureAddTarget() {
         registerNewNameView.registerNameButton.addTarget(self, action: #selector(registerName), for: .touchUpInside)
-        registerNewNameView.registerNameGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+//        registerNewNameView.registerNameGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
     }
     
     @objc func registerName() {
@@ -35,19 +35,23 @@ class NewRegistrationUserNameVC: UIViewController {
         
         // ここでGPS画面に画面遷移する。
         let newRegistrationGpsVC = NewRegistrationGpsVC()
-        guard let newNameTextFieldText = registerNewNameView.newNameTextField.text else { return }
-        newRegistrationGpsVC.newUserName = newNameTextFieldText
-        newRegistrationGpsVC.modalPresentationStyle = .overFullScreen
-        newRegistrationGpsVC.modalTransitionStyle = .crossDissolve
+//        guard let newNameTextFieldText = registerNewNameView.newNameTextField.text else { return }
+        newRegistrationGpsVC.newUserName = registerNewNameView.newNameTextField.text ?? ""
         
-        //TODO: 1秒後に画面遷移するようにする
-        self.present(newRegistrationGpsVC, animated: true, completion: nil)
+        if newRegistrationGpsVC.newUserName == "" {
+            return
+        } else {
+            newRegistrationGpsVC.modalPresentationStyle = .overFullScreen
+            newRegistrationGpsVC.modalTransitionStyle = .crossDissolve
+            //TODO: 1秒後に画面遷移するようにする
+            navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
+        }
     }
     
-    @objc func goBack() {
-        print("戻るボタンが押されました")
-        self.navigationController?.popViewController(animated: true)
-    }
+//    @objc func goBack() {
+//        print("戻るボタンが押されました")
+//        self.navigationController?.popViewController(animated: true)
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         registerNewNameView.newNameTextField.resignFirstResponder()
@@ -66,6 +70,7 @@ class NewRegistrationUserNameVC: UIViewController {
     }
     
     private func configureCardView() {
+        registerNewNameView.registerNameGoBackButton.isHidden = true
         registerNewNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2, width: view.frame.size.width - 20, height: 200)
         view.addSubview(registerNewNameView)
     }

@@ -28,14 +28,14 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
     
     func configureAddTarget() {
         setAlarmTimeAndNewRegistrationView.wakeUpGoBuckButton.addTarget(self, action: #selector(tapToDismiss), for: .touchUpInside)
-//        if setAlarmTimeAndNewRegistrationView.isChatTeamRegistered {
-//            setAlarmTimeAndNewRegistrationView.chatTeamInvitationButton.addTarget(self, action: #selector(invitedFromTeam), for: .touchUpInside)
-//        } else {
-            setAlarmTimeAndNewRegistrationView.chatTeamNewRegisterButton.addTarget(self, action: #selector(registerNewTeam), for: .touchUpInside)
-            setAlarmTimeAndNewRegistrationView.chatTeamNewInvitedButton.addTarget(self, action: #selector(invitedToTeam), for: .touchUpInside)
-//        }
-
-//        wakeUpCardView.setChatButton.addTarget(self, action: #selector(tapChatButton), for: .touchUpInside)
+        //        if setAlarmTimeAndNewRegistrationView.isChatTeamRegistered {
+        //            setAlarmTimeAndNewRegistrationView.chatTeamInvitationButton.addTarget(self, action: #selector(invitedFromTeam), for: .touchUpInside)
+        //        } else {
+        setAlarmTimeAndNewRegistrationView.chatTeamNewRegisterButton.addTarget(self, action: #selector(registerNewTeam), for: .touchUpInside)
+        setAlarmTimeAndNewRegistrationView.chatTeamNewInvitedButton.addTarget(self, action: #selector(invitedToTeam), for: .touchUpInside)
+        //        }
+        
+        //        wakeUpCardView.setChatButton.addTarget(self, action: #selector(tapChatButton), for: .touchUpInside)
     }
     
     
@@ -48,53 +48,71 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
     @objc func registerNewTeam() {
         print("新規登録します")
         let setNewTeamMateNameVC = SetNewTeamMateNameVC()
-        setNewTeamMateNameVC.modalPresentationStyle = .overFullScreen
-        setNewTeamMateNameVC.modalTransitionStyle = .crossDissolve
-        self.present(setNewTeamMateNameVC, animated: true, completion: nil)
+        
+        // 新規登録時にアラームも同時タイミングでセットしたいので、値を渡して画面遷移を行う
+        setNewTeamMateNameVC.wakeUpTimeText = setAlarmTimeAndNewRegistrationView.wakeUpTimeText
+        
+        print("setNewTeamMateNameVC.wakeUpTimeText: ",setNewTeamMateNameVC.wakeUpTimeText)
+        
+        if setNewTeamMateNameVC.wakeUpTimeText == "" {
+            return
+        } else {
+            setNewTeamMateNameVC.modalPresentationStyle = .overFullScreen
+            setNewTeamMateNameVC.modalTransitionStyle = .crossDissolve
+            self.present(setNewTeamMateNameVC, animated: true, completion: nil)
+        }
     }
     
     // 招待してもらう
     @objc func invitedToTeam() {
         print("招待してもらいました")
         let setInvitedTeamMateVC = SetInvitedTeamMateVC()
-        setInvitedTeamMateVC.modalPresentationStyle = .overFullScreen
-        setInvitedTeamMateVC.modalTransitionStyle = .crossDissolve
-        self.present(setInvitedTeamMateVC, animated: true, completion: nil)
+        // 招待時にアラームも同時タイミングでセットしたいので、値を渡して画面遷移を行う
+        setInvitedTeamMateVC.wakeUpTimeText = setAlarmTimeAndNewRegistrationView.wakeUpTimeText
+        print("setInvitedTeamMateVC.wakeUpTimeText: ",setInvitedTeamMateVC.wakeUpTimeText)
+        if setInvitedTeamMateVC.wakeUpTimeText == "" {
+            return
+        } else {
+            setInvitedTeamMateVC.modalPresentationStyle = .overFullScreen
+            setInvitedTeamMateVC.modalTransitionStyle = .crossDissolve
+            self.present(setInvitedTeamMateVC, animated: true, completion: nil)
+        }
+        
     }
     
     
     // チームへ招待する
     @objc func invitedFromTeam() {
-//        setAlarmTimeAndNewRegistrationView.wakeUpTimeTextField.resignFirstResponder()
-//        setAlarmTimeAndNewRegistrationView.chatTeamNameTextField.resignFirstResponder()
+        //        setAlarmTimeAndNewRegistrationView.wakeUpTimeTextField.resignFirstResponder()
+        //        setAlarmTimeAndNewRegistrationView.chatTeamNameTextField.resignFirstResponder()
         print("招待しました")
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+        //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+        //        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
         wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = setAlarmTimeAndNewRegistrationView.datePicker.date
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     
-//    // チャットビューへ画面遷移
-//    @objc func tapChatButton() {
-//        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
-//        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
-//        getCurrentLocation()
-//        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-//        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
-//        print(geoCoderLongitude)
-//        print(geoCoderLatitude)
-//        print("wakeUpCardView.datePicker.date:" ,wakeUpCardView.datePicker.date)
-//        print(wakeUpCardView.prefectureAndCityNameLabel.text)
-//        wakeUpCardView.prefectureAndCityNameLabel.text = address
-        
-//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
-//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
-//    }
+    //    // チャットビューへ画面遷移
+    //    @objc func tapChatButton() {
+    //        wakeUpCardView.wakeUpTimeTextField.resignFirstResponder()
+    //        wakeUpCardView.chatTeamNameTextField.resignFirstResponder()
+    //        getCurrentLocation()
+    //        let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+    //        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+    //        print(geoCoderLongitude)
+    //        print(geoCoderLatitude)
+    //        print("wakeUpCardView.datePicker.date:" ,wakeUpCardView.datePicker.date)
+    //        print(wakeUpCardView.prefectureAndCityNameLabel.text)
+    //        wakeUpCardView.prefectureAndCityNameLabel.text = address
+    
+    //        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+    //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+    //        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+    //        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = wakeUpCardView.datePicker.date
+    //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+    //    }
     
     
     func configureView() {

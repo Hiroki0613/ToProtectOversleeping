@@ -9,6 +9,9 @@ import UIKit
 
 class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     
+    // アラーム時間を一時的に格納する
+    var wakeUpTimeText = ""
+    
     // 起きる時間
     var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)
     let datePicker: UIDatePicker = {
@@ -29,7 +32,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     var chatTeamNameTextField = WUTextFields()
     var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "新規登録")
     var chatTeamNewInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待される")
-
+    
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
     
@@ -50,11 +53,11 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     
     @objc func dateChange() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:MM"
+        formatter.dateFormat = "HH:mm"
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
-
+    
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
         wakeUpTimeLabel.text = "起きる時間"
@@ -66,8 +69,27 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         wakeUpTimeTextField.delegate = self
     }
     
+    // UIDatePickerのDoneを押したら発火
+    @objc func done() {
+        wakeUpTimeTextField.endEditing(true)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        guard let wakeUpTimeTextFieldText = wakeUpTimeTextField.text else { return }
+        wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
+        wakeUpTimeText = wakeUpTimeTextFieldText
+        print("wakeUpTimeText: ", wakeUpTimeText)
+    }
+    
     
     private func configure() {
+        // 決定バーの生成
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 35))
+        let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        toolbar.setItems([spacelItem, doneItem], animated: true)
+        
+        wakeUpTimeTextField.inputAccessoryView = toolbar
+        
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +130,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         chatTeamNameStackView.alignment = .fill
         chatTeamNameStackView.spacing = 10
         addSubview(chatTeamNameStackView)
-            
+        
         addSubview(wakeUpGoBuckButton)
         
         NSLayoutConstraint.activate([
@@ -132,6 +154,10 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         wakeUpTimeTextField.resignFirstResponder()
     }
     

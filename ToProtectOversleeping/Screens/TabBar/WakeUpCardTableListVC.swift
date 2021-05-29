@@ -19,15 +19,21 @@ class WakeUpCardTableListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .systemOrange
-        configureTableView()
-        configureAddCardButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
+        // UserDefaultの値で最初の画面を分岐させる
+        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == false {
+            configureTableView()
+            configureAddCardButton()
+        } else {
+            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
+            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+        }
     }
     
     func configureTableView() {
