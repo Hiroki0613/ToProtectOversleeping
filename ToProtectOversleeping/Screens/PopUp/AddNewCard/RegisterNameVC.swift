@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterNameVC: UIViewController {
     
     var registerNameView = RegisterNameView()
+    
+    // ユーザ名を一時的に保管
+    var userName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,20 +35,31 @@ class RegisterNameVC: UIViewController {
     }
     
     @objc func registerName() {
-        print("ユーザー登録しました")
-        registerNameView.newNameLabel.text = "ユーザー登録しました"
-            
-        if let newNameTextFieldText = registerNameView.newNameTextField.text {
-            UserDefaults.standard.set(newNameTextFieldText, forKey: "userName")
-        }
+        let sendDBModel = SendDBModel()
         
+        // アプリのバージョン
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        
+        userName = registerNameView.newNameTextField.text ?? ""
+        
+        if userName == "" {
+            return
+        } else {
+            print("ユーザー登録しました")
+            registerNameView.newNameLabel.text = "ユーザー登録しました"
+            
+            
+            UserDefaults.standard.set(userName, forKey: "userName")
+            
+            sendDBModel.createUser(name: userName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
 
-        print("UserDefaults_ユーザネーム",UserDefaults.standard.object(forKey: "userName") as! String )
+            print("UserDefaults_ユーザネーム",UserDefaults.standard.object(forKey: "userName") as! String )
+        }
     }
     
     @objc func goBack() {
         print("戻るボタンが押されました")
-//        dismiss(animated: true, completion: nil)
+        //        dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
     

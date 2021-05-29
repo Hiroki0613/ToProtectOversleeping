@@ -92,6 +92,10 @@ class NewRegistrationGpsVC: BaseGpsVC {
         print("GpsButtonが押されました")
         print(address)
         
+        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
+        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
+        UserDefaults.standard.set(address, forKey: "myAddress")
+        
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         moveTo(center: geoCoderLocation, animated: true)
         drawCircle(center: geoCoderLocation, meter: 10, times: 10)
@@ -105,7 +109,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
         } else {
             //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
             //ここでFirebaseFireStoreにUserModelとして登録する。
-            sendDBModel.createNewUser(name: newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
+            UserDefaults.standard.set(newUserName,forKey: "userName")
+            sendDBModel.createUser(name: newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
             UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
         }
     }
