@@ -39,21 +39,4 @@ struct UserDataModel {
 }
 
 
-class SendDBModel {
-    // 一旦ここでaddSnapをさせる
-    let db = Firestore.firestore()
-    
-    var senderID: String = ""
-    var toID: String = ""
-    var text: String = ""
-    var displayName: String = ""
-    
-    func sendMessage(senderID: String, toID: String, text: String, displayName: String) {
-        self.db.collection("Chats").document(senderID).collection("talk").document(toID).setData([
-            "text": text as Any,"senderID": senderID as Any,"displayName": displayName as Any, "date": Date().timeIntervalSince1970]
-        )
-        self.db.collection("Chats").document(toID).collection("talk").document(senderID).setData(
-            ["text": text as Any, "senderID": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
-        )
-    }
-}
+

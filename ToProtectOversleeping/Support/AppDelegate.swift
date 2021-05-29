@@ -21,18 +21,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setUserDefaults() {
         let userDefaults = UserDefaults.standard
-            //ディクショナリ形式で初期値を指定できる
-            userDefaults.register(defaults: [
-                "userName" : "NoName777",
-                "myAddressLatitude" : 0.0,
-                "myAddressLongitude" : 0.0,
-                "myAddress": "未登録"
-            ])
-
-            //値を取り出す
+        //ディクショナリ形式で初期値を指定できる。
+        //ユーザネーム
+        //お住まいのGPS
+        //新規登録時かどうかのBool
+        userDefaults.register(defaults: [
+            "userName" : "NoName777",
+            "myAddressLatitude" : 0.0,
+            "myAddressLongitude" : 0.0,
+            "myAddress": "未登録",
+            "isFirstOpenApp": true
+        ])
+        
+        //値を取り出す
         let userName = userDefaults.object(forKey: "userName") as! String
         let myAddressLatitude = userDefaults.double(forKey: "myAddressLatitude")
-            let myAddressLongitude = userDefaults.double(forKey: "myAddressLongitude")
+        let myAddressLongitude = userDefaults.double(forKey: "myAddressLongitude")
         let myAddress = userDefaults.object(forKey: "myAddress") as! String
         
         print("UserDefaluts_name:",userName)

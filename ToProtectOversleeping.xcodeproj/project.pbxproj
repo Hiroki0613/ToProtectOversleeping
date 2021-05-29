@@ -26,6 +26,7 @@
 		7F376B1C26401A910063F2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1A26401A910063F2EC /* Main.storyboard */; };
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
+		7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B6338266225E90057C12B /* SendDBModel.swift */; };
 		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
 		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
@@ -88,6 +89,7 @@
 		7F376B1D26401A920063F2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F5B6338266225E90057C12B /* SendDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDBModel.swift; sourceTree = "<group>"; };
 		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
 		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			children = (
 				7F7E4AC526498F9500A10929 /* SettingList.swift */,
 				7FA2E1762654078000529B7F /* WakeUpCommunicateChatModel.swift */,
+				7F5B6338266225E90057C12B /* SendDBModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
 				7F1228BE26515F320038EC3D /* Channel.swift in Sources */,
 				7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */,
+				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
 				7F1228C526515F920038EC3D /* ChannelsViewController.swift in Sources */,
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
