@@ -1,144 +1,98 @@
 //
-//  WakeUpSettingVC.swift
+//  NewRegistrationGpsVC.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/05/08.
+//  Created by 近藤宏輝 on 2021/05/29.
 //
 
 import UIKit
 import MapKit
 
-
-// 暫定で住所を取得させる場所を用意しておく。
-class GetGpsAddressVC: BaseGpsVC {
+// 新規登録時のユーザーネームを登録
+class NewRegistrationGpsVC: BaseGpsVC {
     
-    // 起きる時間のカード
-    //    var getGpsAddressView = GetGpsAddressView()
+    // 画面遷移時にユーザ名がここに渡っている。
+    var newUserName: String?
     
-    // 暫定で家の近くに設定している
-//    var myAddressLatitude = 35.7140224101
-//    var myAddressLongitude = 139.65363018
+    // GPSの書籍設定値が入っている。
     var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
     var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
-    
-    var mySettingAlarmTime = Date()
-    
-    var alarm = Alarm()
-    
+
     // 地図
     var mapView = MKMapView()
     var homeLocationLabel = WUBodyLabel(fontSize: 20)
     var homeLocationFetchButton = WUButton(backgroundColor: .systemBlue, title: "タップして取得")
-    
     var myHomeLocation = CLLocationCoordinate2D()
-    
     // アドレスを格納
     var addressString = ""
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemOrange
         configureView()
-        //        configureDecoration()
-        //        configureAddTarget()
-        // ここにdefaultで設定した住まいを入れる渡す。
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
-//        moveTo(center: myHomeLocation, animated: false)
-//        drawCircle(center: myHomeLocation, meter: 10, times: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
-        // ここにUserDefaultsで設定した住まいを入れる。nilの場合(住所未設定の場合は、defaultsの場所にしておく)
         moveTo(center: myHomeLocation, animated: false)
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.setNavigationBarHidden(false, animated: true)
         configureAddTarget()
     }
     
-    func configureAddTarget() {
-        homeLocationFetchButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
+    private func configureAddTarget() {
+        
     }
     
-    // 地図を任意の場所へ移動させる
     private func moveTo(
         center location: CLLocationCoordinate2D,
         animated: Bool,
         span: CLLocationDegrees = 0.0025) {
-        
         let coordinateSpan = MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span)
         let coordinateRegion = MKCoordinateRegion(center: location, span: coordinateSpan)
-        
         mapView.setRegion(coordinateRegion, animated: animated)
     }
     
-    // 地図上にサークルを描く
     private func drawCircle(
         center location: CLLocationCoordinate2D,
         meter: CLLocationDistance,
         times: Int) {
-        
-        mapView.addOverlays((1...times).map { i -> MKCircle in
+        mapView.addOverlays((1...times).map{ i -> MKCircle in
             let radius = meter * CLLocationDistance(i)
             return MKCircle(center: location, radius: radius)
         })
     }
     
-    
-//    // ここで登録を確認
-//    @objc func registerTeamMate() {
-//        print("登録されました")
-//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
-//    }
-    
     private func setAnnotation(location: CLLocationCoordinate2D) {
         mapView.removeAnnotations(mapView.annotations)
         
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        mapView.addAnnotation(annotation)
+        let annotaiton = MKPointAnnotation()
+        annotaiton.coordinate = location
+        mapView.addAnnotation(annotaiton)
     }
     
-    
-    // ここでGPSを取得
-    @objc func tapSetGPSButton() {
+    @objc func tapSetGpsButton() {
         getCurrentLocation()
-        print("gps取得:", geoCoderLongitude)
-        print(geoCoderLatitude)
+        print("gps取得: ", geoCoderLongitude)
+        print(geoCoderLongitude)
         
-        
-        homeLocationLabel.text = "登録されました。\n\n\(address)"
+        homeLocationLabel.text = "登録されました。 \n\n\(address)"
         print("GpsButtonが押されました")
         print(address)
-        
-        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
-        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
-        UserDefaults.standard.set(address, forKey: "myAddress")
         
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         moveTo(center: geoCoderLocation, animated: true)
         drawCircle(center: geoCoderLocation, meter: 10, times: 10)
         setAnnotation(location: geoCoderLocation)
-        //        getGpsAddressView.prefectureAndCityNameLabel.text = address
         
-        // 情報は一時的にUserDefaultに保管する。
-        
-        
-        //        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-        //        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-        ////        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = getGpsAddressView.datePicker.date
-        //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+        //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
+        //ここでFirebaseFireStoreにUserModelとして登録する。
     }
     
-    // 位置から住所を取得
-    func convert(latitude:CLLocationDegrees, longitude: CLLocationDegrees) {
+    private func convert(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)
         
@@ -146,22 +100,19 @@ class GetGpsAddressVC: BaseGpsVC {
             
             if placemark != nil {
                 if let pm = placemark?.first {
-                    
                     if pm.administrativeArea != nil || pm.locality != nil {
-                        
                         self.addressString = pm.name! + pm.administrativeArea! + pm.locality!
                     } else {
                         self.addressString = pm.name!
                     }
-                    
                     self.homeLocationLabel.text = self.addressString
                 }
             }
         }
     }
-    
-    
-    func configureView() {
+
+
+    private func configureView() {
         mapView.delegate = self
         locationManager.delegate = self
         homeLocationLabel.text = "ここに住所が表示されます"
@@ -184,7 +135,7 @@ class GetGpsAddressVC: BaseGpsVC {
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
             
-            homeLocationLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor,constant:  padding),
+            homeLocationLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: padding),
             homeLocationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             homeLocationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             homeLocationLabel.heightAnchor.constraint(equalToConstant: 80),
@@ -194,11 +145,11 @@ class GetGpsAddressVC: BaseGpsVC {
             homeLocationFetchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             homeLocationFetchButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+        
     }
 }
 
-
-extension GetGpsAddressVC: MKMapViewDelegate {
+extension NewRegistrationGpsVC: MKMapViewDelegate {
     // アノテーションビューについて、設定するdelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "annotation"
@@ -207,10 +158,8 @@ extension GetGpsAddressVC: MKMapViewDelegate {
             annotationView.annotation = annotation
             return annotationView
         } else {
-            // アノテーションを画像にする
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            //            annotationView.image = UIImage(named: "jinrikisya_man")
-            // figure.waveのサイズを大きくしたい
+            
             annotationView.image = UIImage(systemName: "house")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 30, weight: .bold))
             annotationView.canShowCallout = true
             return annotationView
@@ -229,17 +178,13 @@ extension GetGpsAddressVC: MKMapViewDelegate {
         guard let annotation = views.first?.annotation else { return }
         mapView.selectAnnotation(annotation, animated: true)
     }
-    
 }
 
-
-extension GetGpsAddressVC: GetGeocoderDelegate {
+extension NewRegistrationGpsVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
-        //        swipedActionLabel.text = "取得完了しました"
-        //        setAnnotation(location: myHomeLocation)
-        //        setAnnotation(location: CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude))
-        print("geoCoderLatitude:", geoCoderLatitude)
-        print("geoCoderLongitude:", geoCoderLongitude)
+        
+        print("geoCoderLatitude: ", geoCoderLatitude)
+        print("geoCoderLongitude: ", geoCoderLongitude)
     }
 }

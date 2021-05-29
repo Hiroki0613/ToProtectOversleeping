@@ -9,7 +9,7 @@ import UIKit
 
 class RegisterNameVC: UIViewController {
     
-    var registerNewNameView = RegisterNameView()
+    var registerNameView = RegisterNameView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +26,15 @@ class RegisterNameVC: UIViewController {
     }
     
     func configureAddTarget() {
-        registerNewNameView.registerNameButton.addTarget(self, action: #selector(registerName), for: .touchUpInside)
-        registerNewNameView.registerNameGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        registerNameView.registerNameButton.addTarget(self, action: #selector(registerName), for: .touchUpInside)
+        registerNameView.registerNameGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
     }
     
     @objc func registerName() {
         print("ユーザー登録しました")
-        registerNewNameView.newNameLabel.text = "ユーザー登録しました"
+        registerNameView.newNameLabel.text = "ユーザー登録しました"
             
-        if let newNameTextFieldText = registerNewNameView.newNameTextField.text {
+        if let newNameTextFieldText = registerNameView.newNameTextField.text {
             UserDefaults.standard.set(newNameTextFieldText, forKey: "userName")
         }
         
@@ -49,7 +49,7 @@ class RegisterNameVC: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        registerNewNameView.newNameTextField.resignFirstResponder()
+        registerNameView.newNameTextField.resignFirstResponder()
     }
     
     func configureView() {
@@ -65,16 +65,16 @@ class RegisterNameVC: UIViewController {
     }
     
     func configuteCardView() {
-        registerNewNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
-        view.addSubview(registerNewNameView)
+        registerNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
+        view.addSubview(registerNameView)
     }
     
     private func configureDecoration() {
-        registerNewNameView.layer.shadowColor = UIColor.systemGray.cgColor
-        registerNewNameView.layer.cornerRadius = 16
-        registerNewNameView.layer.shadowOpacity = 0.1
-        registerNewNameView.layer.shadowRadius = 10
-        registerNewNameView.layer.shadowOffset = .init(width: 0.0, height: 10.0)
-        registerNewNameView.layer.shouldRasterize = true
+        registerNameView.layer.shadowColor = UIColor.systemGray.cgColor
+        registerNameView.layer.cornerRadius = 16
+        registerNameView.layer.shadowOpacity = 0.1
+        registerNameView.layer.shadowRadius = 10
+        registerNameView.layer.shadowOffset = .init(width: 0.0, height: 10.0)
+        registerNameView.layer.shouldRasterize = true
     }
 }

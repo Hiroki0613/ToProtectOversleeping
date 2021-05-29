@@ -27,6 +27,8 @@
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
 		7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B6338266225E90057C12B /* SendDBModel.swift */; };
+		7F5B633E26623C740057C12B /* NewRegistrationUserNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B633D26623C740057C12B /* NewRegistrationUserNameVC.swift */; };
+		7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B633F26623C910057C12B /* NewRegistrationGpsVC.swift */; };
 		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
 		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
@@ -90,6 +92,8 @@
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F5B6338266225E90057C12B /* SendDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDBModel.swift; sourceTree = "<group>"; };
+		7F5B633D26623C740057C12B /* NewRegistrationUserNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationUserNameVC.swift; sourceTree = "<group>"; };
+		7F5B633F26623C910057C12B /* NewRegistrationGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationGpsVC.swift; sourceTree = "<group>"; };
 		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
 		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
@@ -236,6 +240,15 @@
 			path = ToProtectOversleeping;
 			sourceTree = "<group>";
 		};
+		7F5B633C26623BA50057C12B /* NewRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				7F5B633D26623C740057C12B /* NewRegistrationUserNameVC.swift */,
+				7F5B633F26623C910057C12B /* NewRegistrationGpsVC.swift */,
+			);
+			path = NewRegistration;
+			sourceTree = "<group>";
+		};
 		7F68CD0126416AFA00D362B0 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +373,7 @@
 		7FABB9B026403E79001182DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				7F5B633C26623BA50057C12B /* NewRegistration */,
 				7FD2F4AA26503957006C684E /* NotUse */,
 				7FD2F4A026502C66006C684E /* Setting */,
 				7FE523D72646CD6F00B7D1B0 /* PopUp */,
@@ -669,6 +683,7 @@
 				7F1228B926515EE60038EC3D /* UIImage+Additions.swift in Sources */,
 				7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */,
 				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
+				7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */,
 				7F1228BE26515F320038EC3D /* Channel.swift in Sources */,
 				7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */,
 				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
@@ -686,6 +701,7 @@
 				7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,
 				7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */,
+				7F5B633E26623C740057C12B /* NewRegistrationUserNameVC.swift in Sources */,
 				7FE523DD2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift in Sources */,
 				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,
 				7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */,
