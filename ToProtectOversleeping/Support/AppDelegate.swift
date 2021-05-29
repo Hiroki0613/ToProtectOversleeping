@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //新規登録時かどうかのBool
         userDefaults.register(defaults: [
             "userName" : "NoName777",
-            "myAddressLatitude" : 0.0,
-            "myAddressLongitude" : 0.0,
+            "myAddressLatitude" : 35.637375,
+            "myAddressLongitude" : 139.756308,
             "myAddress": "未登録",
             "isFirstOpenApp": true
         ])

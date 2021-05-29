@@ -102,8 +102,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
         setAnnotation(location: geoCoderLocation)
         
         // GPS情報、住所が取得出来なかった場合は反応なし
-        if geoCoderLatitude == 0.0,
-           geoCoderLongitude == 0.0,
+        if geoCoderLatitude == 35.637375,
+           geoCoderLongitude == 139.756308,
            address == "" {
             return
         } else {
