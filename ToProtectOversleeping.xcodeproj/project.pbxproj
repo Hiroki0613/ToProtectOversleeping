@@ -379,8 +379,8 @@
 		7FABB9B026403E79001182DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				7F5B633C26623BA50057C12B /* NewRegistration */,
 				7FD2F4AA26503957006C684E /* NotUse */,
+				7F5B633C26623BA50057C12B /* NewRegistration */,
 				7FD2F4A026502C66006C684E /* Setting */,
 				7FE523D72646CD6F00B7D1B0 /* PopUp */,
 				7FE523C82646841700B7D1B0 /* TabBar */,

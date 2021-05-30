@@ -12,6 +12,8 @@ class WakeUpCardTableListVC: UIViewController {
     let tableView = UITableView()
 //    var wakeUpCardTableListCell = WakeUpCardTableListCell()
     var settingLists: [SettingList] = []
+    var chatRoomNameModel:ChatRoomNameModel?
+    var chatRoomNameModelArray = [ChatRoomNameModel]()
     
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
@@ -127,9 +129,10 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
         
-        cell.wakeUpChatTeamLabel.text = "チーム"
-        cell.wakeUpChatTeamNameLabel.text = "早起き"
-        cell.wakeUpLabel.text = "起きる時間"
+        cell.set(chatRoomNameModel: chatRoomNameModel)
+//        cell.wakeUpChatTeamLabel.text = "チーム"
+//        cell.wakeUpChatTeamNameLabel.text = "早起き"
+//        cell.wakeUpLabel.text = "起きる時間"
 //        cell.wakeUpTimeTextField.text = "空白"
         
 //        cell.wakeUpChatTeamInvitationButton.addTarget(self, action: #selector(tapChatTeamInvitationButton(_:)), for: .touchUpInside)

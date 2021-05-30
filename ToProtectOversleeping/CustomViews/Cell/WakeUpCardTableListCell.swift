@@ -53,7 +53,7 @@ class WakeUpCardTableListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         settingInformation()
-        configure()
+        configureUI()
         configureDecoration()
     }
     
@@ -72,19 +72,24 @@ class WakeUpCardTableListCell: UITableViewCell {
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
 //        wakeUpTimeTextField.inputView = datePicker
-        wakeUpTimeLabel.text = "7:77"
+//        wakeUpTimeLabel.text = "7:77"
         setChatButton.tintColor = .systemBackground
         setAlarmButton.tintColor = .systemBackground
     }
     
-    func set(settingList: SettingList) {
-        wakeUpSetAlarmSwitch.isOn = settingList.wakeUpSetAlarmSwitch
-        wakeUpChatTeamNameLabel.text = settingList.chatTeamName
-        //　ここにchatID
-        //　ここにpersonalID
+//    func set(settingList: SettingList) {
+//        wakeUpSetAlarmSwitch.isOn = settingList.wakeUpSetAlarmSwitch
+//        wakeUpChatTeamNameLabel.text = settingList.chatTeamName
+//        //　ここにchatID
+//        //　ここにpersonalID
+//    }
+    
+    func set(chatRoomNameModel: ChatRoomNameModel) {
+        wakeUpChatTeamLabel.text = chatRoomNameModel.roomName
+        wakeUpLabel.text = chatRoomNameModel.wakeUpTimeText
     }
     
-    private func configure() {
+    private func configureUI() {
         transparentView.translatesAutoresizingMaskIntoConstraints = false
         tableCellView.translatesAutoresizingMaskIntoConstraints = false
         

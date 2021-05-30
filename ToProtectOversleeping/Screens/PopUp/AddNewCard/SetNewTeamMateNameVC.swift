@@ -56,7 +56,7 @@ class SetNewTeamMateNameVC: UIViewController {
         if newTeamMateString == "" {
             return
         } else {
-            sendDBModel.createChatRoom(roomName: newTeamMateString, wakeUpTime: wakeUpTimeDate)
+            sendDBModel.createChatRoom(roomName: newTeamMateString, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
         }
     }
     

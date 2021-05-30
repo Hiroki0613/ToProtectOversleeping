@@ -49,9 +49,9 @@ class SendDBModel {
     /// - Parameters:
     ///   - roomName: チャットルームの名前
     ///   - wakeUpTime: 起きる時間
-    func createChatRoom(roomName: String, wakeUpTime: Date) {
+    func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String) {
         self.db.collection("Chats").document().setData(
-            ["roomName": roomName as Any, "wakeUpTime": wakeUpTime as Any, "uid": Auth.auth().currentUser!.uid as Any, "registerDate": Date().timeIntervalSince1970]
+            ["roomName": roomName as Any, "wakeUpTime": wakeUpTimeDate as Any,"wakeUpTimeText": wakeUpTimeText, "uid": Auth.auth().currentUser!.uid as Any, "registerDate": Date().timeIntervalSince1970]
         )
         self.doneCreateChatRoom?.doneCreateChatRoom()
     }
