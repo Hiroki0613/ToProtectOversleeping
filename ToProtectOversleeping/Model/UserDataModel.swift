@@ -12,4 +12,5 @@ struct UserDataModel {
     var uid: String
     var appVersion: String
     var isWakeUpBool: Bool
+    var date: Double
 }

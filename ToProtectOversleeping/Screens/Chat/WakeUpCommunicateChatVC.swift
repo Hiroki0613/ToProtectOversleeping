@@ -14,6 +14,9 @@ import InputBarAccessoryView
 class WakeUpCommunicateChatVC: MessagesViewController {
     var messages = [Message]()
     
+    var chatRoomNameModel: ChatRoomNameModel?
+    var userDataModel: UserDataModel?
+    
 //    var userDataModel = UserDataModel(name: <#String#>, uid: <#String#>, appVersion: <#String#>, isWakeUpBool: <#Bool#>)
 //    var userDataModel = UserDataModel(uid: "55555", name: "渋谷")
     var sendDBModel = SendDBModel()
@@ -42,6 +45,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         view.backgroundColor = .systemGray
         messagesCollectionView.backgroundColor = .systemOrange.withAlphaComponent(0.5)
 
+        print("chatRoomNameModel: ",chatRoomNameModel)
+        print("userDataModel: ",userDataModel)
+        
         // TODO: 一旦強制アンラップ
         // 自分
         //TODO: userData["name"] as! Stringが繋がっていない。 ここはユーザー名を別のFireStore or UserDefaultsから取ってくる必要がある。

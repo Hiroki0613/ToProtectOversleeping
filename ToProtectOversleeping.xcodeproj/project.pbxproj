@@ -32,6 +32,7 @@
 		7F5B634226638E3B0057C12B /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B634126638E3B0057C12B /* MessageModel.swift */; };
 		7F5B634426638E780057C12B /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B634326638E780057C12B /* UserDataModel.swift */; };
 		7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B634526638EA70057C12B /* ChatRoomNameModel.swift */; };
+		7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B63472663ACA10057C12B /* LoadDBModel.swift */; };
 		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
 		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
@@ -99,6 +100,7 @@
 		7F5B634126638E3B0057C12B /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		7F5B634326638E780057C12B /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		7F5B634526638EA70057C12B /* ChatRoomNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomNameModel.swift; sourceTree = "<group>"; };
+		7F5B63472663ACA10057C12B /* LoadDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDBModel.swift; sourceTree = "<group>"; };
 		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
 		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				7F5B6338266225E90057C12B /* SendDBModel.swift */,
 				7F5B634126638E3B0057C12B /* MessageModel.swift */,
 				7F5B634326638E780057C12B /* UserDataModel.swift */,
+				7F5B63472663ACA10057C12B /* LoadDBModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */,
 				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
 				7F1228C526515F920038EC3D /* ChannelsViewController.swift in Sources */,
+				7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */,
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
 				7FE523DB2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift in Sources */,

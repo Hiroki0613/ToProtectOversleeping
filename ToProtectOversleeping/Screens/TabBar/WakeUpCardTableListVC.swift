@@ -13,6 +13,7 @@ class WakeUpCardTableListVC: UIViewController {
 //    var wakeUpCardTableListCell = WakeUpCardTableListCell()
     var settingLists: [SettingList] = []
     var chatRoomNameModel:ChatRoomNameModel?
+    var userDataModel: UserDataModel?
     var chatRoomNameModelArray = [ChatRoomNameModel]()
     
     // 新しいカードを追加
@@ -28,14 +29,27 @@ class WakeUpCardTableListVC: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
         // UserDefaultの値で最初の画面を分岐させる
         if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == false {
             configureTableView()
             configureAddCardButton()
+            
+            let loadDBModel = LoadDBModel()
+            
+            // チャットルームのデータを取得
+            loadDBModel.getChatRoomNameDelegate = self
+            loadDBModel.loadChatRoomNameData()
+
+            loadDBModel.getUserDataDelegate = self
+            loadDBModel.loadProfileData()
+            
         } else {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
             navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
         }
+        
+        
     }
     
     func configureTableView() {
@@ -122,27 +136,20 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         return 1
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.chatRoomNameModelArray.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
         
-        cell.set(chatRoomNameModel: chatRoomNameModel)
-//        cell.wakeUpChatTeamLabel.text = "チーム"
-//        cell.wakeUpChatTeamNameLabel.text = "早起き"
-//        cell.wakeUpLabel.text = "起きる時間"
-//        cell.wakeUpTimeTextField.text = "空白"
-        
-//        cell.wakeUpChatTeamInvitationButton.addTarget(self, action: #selector(tapChatTeamInvitationButton(_:)), for: .touchUpInside)
-//        cell.wakeUpChatTeamInvitationButton.tag = indexPath.row
-        
         cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
         cell.setAlarmButton.tag = indexPath.row
-        
         cell.setChatButton.addTarget(self, action: #selector(tapSetChatButton(_:)), for: .touchUpInside)
         cell.setChatButton.tag = indexPath.row
+        cell.set(chatRoomNameModel: self.chatRoomNameModelArray[indexPath.row])
         
         return cell
     }
@@ -185,6 +192,23 @@ extension WakeUpCardTableListVC {
     @objc func tapSetChatButton(_ sender: UIButton) {
         print("tableviewチャットボタンがタップされました: ", sender.tag)
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+        wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag]
+        wakeUpCommunicateChatVC.userDataModel = self.userDataModel
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+    }
+}
+
+// チャット情報を取得して、tableViewをreloadData
+extension WakeUpCardTableListVC: GetChatRoomNameDelegate {
+    func getChatRoomName(chatRoomNameModel: [ChatRoomNameModel]) {
+        self.chatRoomNameModelArray = chatRoomNameModel
+        tableView.reloadData()
+    }
+}
+
+// プロフィール情報を取得
+extension WakeUpCardTableListVC: GetUserDataDelegate {
+    func getUserData(userDataModel: UserDataModel) {
+        self.userDataModel = userDataModel
     }
 }

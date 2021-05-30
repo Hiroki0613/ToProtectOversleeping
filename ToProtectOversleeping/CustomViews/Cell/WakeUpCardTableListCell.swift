@@ -85,8 +85,11 @@ class WakeUpCardTableListCell: UITableViewCell {
 //    }
     
     func set(chatRoomNameModel: ChatRoomNameModel) {
-        wakeUpChatTeamLabel.text = chatRoomNameModel.roomName
-        wakeUpLabel.text = chatRoomNameModel.wakeUpTimeText
+        wakeUpChatTeamLabel.text = "チーム名"
+        wakeUpChatTeamNameLabel.text = chatRoomNameModel.roomName
+        wakeUpLabel.text = "起きる時間"
+        wakeUpTimeLabel.text = chatRoomNameModel.wakeUpTimeText
+        
     }
     
     private func configureUI() {

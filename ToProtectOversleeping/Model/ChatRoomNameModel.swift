@@ -9,8 +9,8 @@ import Foundation
 
 struct ChatRoomNameModel {
     var roomName: String
-    var wakeUpTimeDate: Date
+//    var wakeUpTimeDate: Double
     var wakeUpTimeText: String
     var uid: String
-    var registerDate:Date
+    var registerDate:Double
 }
