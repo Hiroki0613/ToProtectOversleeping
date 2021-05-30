@@ -11,6 +11,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     
     // アラーム時間を一時的に格納する
     var wakeUpTimeText = ""
+    var wakeUpTimeDate = Date()
     
     // 起きる時間
     var wakeUpTimeLabel = WUBodyLabel(fontSize: 20)
@@ -77,6 +78,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         guard let wakeUpTimeTextFieldText = wakeUpTimeTextField.text else { return }
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
         wakeUpTimeText = wakeUpTimeTextFieldText
+        wakeUpTimeDate = datePicker.date
         print("wakeUpTimeText: ", wakeUpTimeText)
     }
     

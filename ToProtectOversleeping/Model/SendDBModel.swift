@@ -12,10 +12,15 @@ protocol DoneCreateUser {
     func doneCreateUser()
 }
 
+protocol DoneCreateChatRoom {
+    func doneCreateChatRoom()
+}
+
 class SendDBModel {
     let db = Firestore.firestore()
     
-    var doneCreateUser:DoneCreateUser?
+    var doneCreateUser: DoneCreateUser?
+    var doneCreateChatRoom: DoneCreateChatRoom?
     
 //    var senderID: String = ""
 //    var toID: String = ""
@@ -48,6 +53,7 @@ class SendDBModel {
         self.db.collection("Chats").document().setData(
             ["roomName": roomName as Any, "wakeUpTime": wakeUpTime as Any, "uid": Auth.auth().currentUser!.uid as Any, "registerDate": Date().timeIntervalSince1970]
         )
+        self.doneCreateChatRoom?.doneCreateChatRoom()
     }
     
     

@@ -217,7 +217,7 @@ extension NewRegistrationGpsVC: GetGeocoderDelegate {
 extension NewRegistrationGpsVC: DoneCreateUser {
     func doneCreateUser() {
         // 新規登録が終わった後に行う処理
-        navigationController?.popViewController(animated: true)
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
+        navigationController?.popViewController(animated: false)
     }
 }

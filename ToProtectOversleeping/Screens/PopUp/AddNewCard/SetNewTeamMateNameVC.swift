@@ -12,6 +12,7 @@ import FirebaseAuth
 class SetNewTeamMateNameVC: UIViewController {
     
     var wakeUpTimeText = ""
+    var wakeUpTimeDate = Date()
     var newTeamMateString = ""
     
     // チームを新規登録
@@ -42,6 +43,8 @@ class SetNewTeamMateNameVC: UIViewController {
     // 新規登録
     @objc func registerNewTeam() {
         print("新規登録しました")
+        let sendDBModel = SendDBModel()
+        sendDBModel.doneCreateChatRoom = self
         
         // 無理矢理ログインしています
         Auth.auth().signInAnonymously { result, error in
@@ -53,17 +56,10 @@ class SetNewTeamMateNameVC: UIViewController {
         if newTeamMateString == "" {
             return
         } else {
-            
-            //TODO: ここのsetDataは要検討
-            db.collection("Chats").document().setData([
-                                                        
-                "roomName": newTeamMateString as Any,
-                "timer": "OKOKOK\(newTeamMateString)"
-            ])
+            sendDBModel.createChatRoom(roomName: newTeamMateString, wakeUpTime: wakeUpTimeDate)
         }
-        
-
     }
+    
     
     // 招待してもらう
     @objc func goBack() {
@@ -102,5 +98,11 @@ class SetNewTeamMateNameVC: UIViewController {
         setNewTeamMateNameView.layer.shadowRadius = 10
         setNewTeamMateNameView.layer.shadowOffset = .init(width: 0, height: 10)
         setNewTeamMateNameView.layer.shouldRasterize = true
+    }
+}
+
+extension SetNewTeamMateNameVC: DoneCreateChatRoom {
+    func doneCreateChatRoom() {
+        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
