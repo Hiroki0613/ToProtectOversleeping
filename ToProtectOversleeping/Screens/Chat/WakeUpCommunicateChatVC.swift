@@ -14,8 +14,8 @@ import InputBarAccessoryView
 class WakeUpCommunicateChatVC: MessagesViewController {
     var messages = [Message]()
     
-//    var userDataModel = UserDataModel?
-    var userDataModel = UserDataModel(uid: "55555", name: "渋谷")
+//    var userDataModel = UserDataModel(name: <#String#>, uid: <#String#>, appVersion: <#String#>, isWakeUpBool: <#Bool#>)
+//    var userDataModel = UserDataModel(uid: "55555", name: "渋谷")
     var sendDBModel = SendDBModel()
 //    var userData = [String: Any]()
     var userData = ["name": "六本木"]
@@ -51,7 +51,10 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
         // 他者
         //TODO: userDataModelが繋がっていない。 ここはFireStoreの一覧リストからとる感じ? 構造がわかっていなかった・・・。
-        otherUser = Sender(senderId: userDataModel.uid, displayName:userDataModel.name )
+//        otherUser = Sender(senderId: userDataModel.uid, displayName:userDataModel.name )
+        
+        
+        
 //        otherUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: "近藤")
 //        otherUser = Sender(senderId: "777", displayName: "宏輝2")
         
@@ -116,18 +119,18 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     
     // 部屋の名前を習得
-    func loadRoomName(indexPath: Int) {
-        var roomNameModelArray = [RoomNameModel]()
-        db.collection("Chats").addSnapshotListener { snapshot, error in
-            if let snapShotDoc = snapshot?.documents {
-                for doc in snapShotDoc {
-                    let data = doc.data()
-                    let roomNameModel = RoomNameModel(roomName: data["roomName"] as! String)
-                    roomNameModelArray.append(roomNameModel)
-                }
-            }
-        }
-    }
+//    func loadRoomName(indexPath: Int) {
+//        var roomNameModelArray = [ChatRoomNameModel]()
+//        db.collection("Chats").addSnapshotListener { snapshot, error in
+//            if let snapShotDoc = snapshot?.documents {
+//                for doc in snapShotDoc {
+//                    let data = doc.data()
+//                    let roomNameModel = ChatRoomNameModel(roomName: data["roomName"] as! String)
+//                    roomNameModelArray.append(roomNameModel)
+//                }
+//            }
+//        }
+//    }
     
     
     //どこかのチャットルームで開かれているトークを日付順で並べている。
