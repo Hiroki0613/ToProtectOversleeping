@@ -10,6 +10,7 @@ import Firebase
 
 protocol GetChatRoomNameDelegate {
     func getChatRoomName(chatRoomNameModel:[ChatRoomNameModel])
+    func getChatDocumentId(chatRoomDocumentId:[String])
 }
 
 protocol GetUserDataDelegate {
@@ -21,6 +22,7 @@ class LoadDBModel {
     var getChatRoomNameDelegate:GetChatRoomNameDelegate?
     var getUserDataDelegate:GetUserDataDelegate?
     var chatRoomNameArray = [ChatRoomNameModel]()
+    var chatDocumentIdArray = [""]
     
     
     func loadProfileData() {
@@ -53,7 +55,10 @@ class LoadDBModel {
             }
             if let snapShotDoc = snapShot?.documents {
                 self.chatRoomNameArray = []
+                self.chatDocumentIdArray = []
                 for doc in snapShotDoc {
+                    
+                    // chatRoomNameArray
                     let data = doc.data()
                     print("data: ",data)
                     if let roomName = data["roomName"] as? String,
@@ -69,11 +74,52 @@ class LoadDBModel {
                             registerDate: registerDate)
                         self.chatRoomNameArray.append(chatRoomNameModel)
                     }
+                    
+                    // chatDocumentIDArray
+                    self.chatDocumentIdArray.append(doc.documentID)
+                    
+                    
                 }
                 print(self.chatRoomNameArray)
                 self.getChatRoomNameDelegate?.getChatRoomName(chatRoomNameModel: self.chatRoomNameArray)
+                self.getChatRoomNameDelegate?.getChatDocumentId(chatRoomDocumentId: self.chatDocumentIdArray)
             }
         }
+    }
+    
+    
+    // ChatRoomのdocumentIDが揃う
+    func loadChatRoomDocumentID(indexPath: Int) {
+        db.collection("Chats").addSnapshotListener { snapShot, error in
+            if error != nil {
+                print(error.debugDescription)
+                return
+            }
+            if let snapShotDoc = snapShot?.documents {
+                self.chatDocumentIdArray = []
+                for doc in snapShotDoc {
+                    print("doc.documentID: ", doc.documentID)
+                
+                }
+            }
+        }
+
+        
+//        db.collection("Chats").addSnapshotListener { snapshot, error in
+//            if error != nil {
+//                print(error.deb)
+//            }
+//
+//
+//
+//            if let snapshotDoc = snapshot?.documents {
+//                for doc in snapshotDoc {
+//                    print("doc.documentID: ", doc.documentID)
+//                    var docIDArray = [String]()
+//                    docIDArray.append(doc.documentID)
+//                }
+//            }
+//        }
     }
     
 }

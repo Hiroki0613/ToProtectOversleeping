@@ -65,8 +65,8 @@ class SendDBModel {
         self.db.collection("Chats").document(senderId).collection("Talk").document(toID).setData(
             ["text": text as Any, "senderId": senderId as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
         )
-        self.db.collection("Chats").document(toID).collection("Talk").document(senderId).setData(
-            ["text": text as Any, "senderId": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
-        )
+//        self.db.collection("Chats").document(toID).collection("Talk").document(senderId).setData(
+//            ["text": text as Any, "senderId": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
+//        )
     }
 }

@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B8A2FF59-6816-417D-8FAB-5C7239FAEF64"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "loadRoomDocumentID(indexPath:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6104944F-F235-4D4B-AAFA-8DC7BFC7AD87"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -50,6 +34,70 @@
             endingLineNumber = "218"
             landmarkName = "doneCreateUser()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A1DE5B15-347E-4843-882B-B4F8192BB964"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A93F7BAC-8DF8-4F42-B4F8-59900F9FD546"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "loadMessage()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A93F7BAC-8DF8-4F42-B4F8-59900F9FD546 - c7de60f42a91455d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToProtectOversleeping.WakeUpCommunicateChatVC.loadMessage() -&gt; ()"
+                  moduleName = "ToProtectOversleeping"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kondouhiroshiakira/Desktop/ToProtectOversleeping/ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "A93F7BAC-8DF8-4F42-B4F8-59900F9FD546 - 7d7dd18764945664"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ToProtectOversleeping.WakeUpCommunicateChatVC.loadMessage() -&gt; ()"
+                  moduleName = "ToProtectOversleeping"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kondouhiroshiakira/Desktop/ToProtectOversleeping/ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "416">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

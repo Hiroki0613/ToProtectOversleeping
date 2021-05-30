@@ -15,6 +15,7 @@ class WakeUpCardTableListVC: UIViewController {
     var chatRoomNameModel:ChatRoomNameModel?
     var userDataModel: UserDataModel?
     var chatRoomNameModelArray = [ChatRoomNameModel]()
+    var chatRoomDocumentIdArray = [String]()
     
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
@@ -194,6 +195,8 @@ extension WakeUpCardTableListVC {
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
+        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
+        wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
 }
@@ -203,6 +206,10 @@ extension WakeUpCardTableListVC: GetChatRoomNameDelegate {
     func getChatRoomName(chatRoomNameModel: [ChatRoomNameModel]) {
         self.chatRoomNameModelArray = chatRoomNameModel
         tableView.reloadData()
+    }
+    
+    func getChatDocumentId(chatRoomDocumentId: [String]) {
+        self.chatRoomDocumentIdArray = chatRoomDocumentId
     }
 }
 
