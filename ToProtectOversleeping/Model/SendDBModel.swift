@@ -24,7 +24,7 @@ class SendDBModel {
     
     
     // 新規作成の時は、ユーザー登録画面に画面遷移させる。
-    /// 新規ユーザー作成
+    /// ユーザー作成
     /// - Parameters:
     ///   - name: ユーザー名
     ///   - uid: FirebaseのAuth.auth()
@@ -39,16 +39,24 @@ class SendDBModel {
         self.doneCreateUser?.doneCreateUser()
     }
     
-        
-//    func sendMessage(senderID: String, toID: String, text: String, displayName: String) {
-//        self.db.collection("Chats").document(senderID).collection("talk").document(toID).setData([
-//            "text": text as Any,"senderID": senderID as Any,"displayName": displayName as Any, "date": Date().timeIntervalSince1970]
-//        )
-//        self.db.collection("Chats").document(toID).collection("talk").document(senderID).setData(
-//            ["text": text as Any, "senderID": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
-//        )
-//    }
+    
+    /// チャットルーム作成
+    /// - Parameters:
+    ///   - roomName: チャットルームの名前
+    ///   - wakeUpTime: 起きる時間
+    func createChatRoom(roomName: String, wakeUpTime: Date) {
+        self.db.collection("Chats").document().setData(
+            ["roomName": roomName as Any, "wakeUpTime": wakeUpTime as Any, "uid": Auth.auth().currentUser!.uid as Any, "registerDate": Date().timeIntervalSince1970]
+        )
+    }
     
     
-    
+    func sendMessage(senderId: String, toID: String, text: String, displayName: String) {
+        self.db.collection("Chats").document(senderId).collection("Talk").document(toID).setData(
+            ["text": text as Any, "senderId": senderId as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
+        )
+        self.db.collection("Chats").document(toID).collection("Talk").document(senderId).setData(
+            ["text": text as Any, "senderId": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
+        )
+    }
 }

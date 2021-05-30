@@ -17,9 +17,10 @@ class NewRegistrationGpsVC: BaseGpsVC {
     // 画面遷移時にユーザ名がここに渡っている。
     var newUserName = ""
     
-    // GPSの書籍設定値が入っている。
+    // GPSの初期設定値が入っている。
     var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
     var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
+//    var myAddressLongLongtitude = UserDefaults.standard.double(forKey: "myAddressLongLongtitude")
 
     // 地図
     var mapView = MKMapView()
@@ -94,6 +95,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
         
         UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
         UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
+//        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")
         UserDefaults.standard.set(address, forKey: "myAddress")
         
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)

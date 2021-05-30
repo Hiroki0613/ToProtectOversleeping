@@ -119,6 +119,7 @@ class GetGpsAddressVC: BaseGpsVC {
         
         UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
         UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
+//        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")
         UserDefaults.standard.set(address, forKey: "myAddress")
         
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)

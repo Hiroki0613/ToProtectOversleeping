@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "userName" : "NoName777",
             "myAddressLatitude" : 35.637375,
             "myAddressLongitude" : 139.756308,
+//            "myAddressLongLongtitude" : 0.0,
             "myAddress": "未登録",
             "isFirstOpenApp": true
         ])
@@ -37,11 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userName = userDefaults.object(forKey: "userName") as! String
         let myAddressLatitude = userDefaults.double(forKey: "myAddressLatitude")
         let myAddressLongitude = userDefaults.double(forKey: "myAddressLongitude")
+//        let myAddressLongLongtiude = userDefaults.double(forKey: "myAddressLongLongtitude")
         let myAddress = userDefaults.object(forKey: "myAddress") as! String
         
         print("UserDefaluts_name:",userName)
         print("UserDefaluts_myAddressLatitude:",myAddressLatitude)
         print("UserDefaluts_myAddressLongitude:",myAddressLongitude)
+//        print("UserDefaults_myAddressLongLongTitude: ",  myAddressLongLongtiude)
         print("UserDefaluts_myAddress", myAddress)
     }
 
