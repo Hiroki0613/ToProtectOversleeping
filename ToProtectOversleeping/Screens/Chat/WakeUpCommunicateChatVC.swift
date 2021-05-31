@@ -102,7 +102,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-        loadMessage()
+        loadMessage(toID: chatRoomDocumentId!)
     }
     
     
@@ -125,8 +125,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     
     //どこかのチャットルームで開かれているトークを日付順で並べている。
-    func loadMessage() {
-        db.collection("Chats").document().collection("talk").order(by: "date").addSnapshotListener { snapshot, error in
+    func loadMessage(toID: String) {
+        db.collection("Chats").document(toID).collection("Talk").order(by: "date").addSnapshotListener { snapshot, error in
             if error != nil {
                 return
             }
@@ -134,15 +134,17 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                 self.messages = []
                 for doc in snapShotDoc {
                     let data = doc.data()
+                    print("data: ",data)
                     if let text = data["text"] as? String,
-                       let senderID = data["senderID"] as? String,
+                       let senderID = data["senderId"] as? String,
+                       let displayName = data["displayName"] as? String,
                        let date = data["date"] as? Double
                        {
                         // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
                         if senderID == Auth.auth().currentUser?.uid {
                             
                             // 自分
-                            self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: "")
+                            self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
                             let message = Message(
                                 sender: self.currentUser,
                                 messageId: senderID,
@@ -152,7 +154,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                             
                         } else {
                             // 他人
-                            self.otherUser = Sender(senderId: senderID, displayName: "")
+                            self.otherUser = Sender(senderId: senderID, displayName: displayName)
                             let message = Message(
                                 sender: self.otherUser,
                                 messageId: senderID,

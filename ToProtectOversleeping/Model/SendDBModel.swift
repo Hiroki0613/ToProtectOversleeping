@@ -19,6 +19,8 @@ protocol DoneCreateChatRoom {
 class SendDBModel {
     let db = Firestore.firestore()
     
+    var loadDBModel = LoadDBModel()
+    
     var doneCreateUser: DoneCreateUser?
     var doneCreateChatRoom: DoneCreateChatRoom?
     
@@ -61,10 +63,32 @@ class SendDBModel {
     }
     
     
+    /// チャットルーム招待
+    /// - Parameters:
+    ///   - roomNameID: チャットルームのID
+    ///   - wakeUpTime: 起きる時間
+//    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date,
+//                         wakeUpTimeText: String) {
+//        var loadDBModel = LoadDBModel()
+//        loadDBModel.loadChatRoomNameData()
+//        self.db.collection("Chats").document(roomNameID).setData(
+//            ["roomNameId":
+//
+//            ]
+//        )
+//    }
+    
+    
     func sendMessage(senderId: String, toID: String, text: String, displayName: String) {
-        self.db.collection("Chats").document(senderId).collection("Talk").document(toID).setData(
-            ["text": text as Any, "senderId": senderId as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
+        
+        self.db.collection("Chats").document(toID).collection("Talk").document().setData(
+            ["text":text as Any, "senderId": senderId as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
         )
+        
+        
+//        self.db.collection("Chats").document(senderId).collection("Talk").document(toID).setData(
+//            ["text": text as Any, "senderId": senderId as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
+//        )
 //        self.db.collection("Chats").document(toID).collection("Talk").document(senderId).setData(
 //            ["text": text as Any, "senderId": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
 //        )
