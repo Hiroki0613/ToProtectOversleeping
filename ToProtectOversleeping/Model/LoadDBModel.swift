@@ -89,38 +89,19 @@ class LoadDBModel {
     
     
     // ChatRoomのdocumentIDが揃う
-    func loadChatRoomDocumentID(indexPath: Int) {
-        db.collection("Chats").addSnapshotListener { snapShot, error in
+    func loadChatRoomDocumentID(roomNameId: String) -> String {
+        var roomName = ""
+        db.collection("Chats").document(roomNameId).addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)
                 return
             }
-            if let snapShotDoc = snapShot?.documents {
-                self.chatDocumentIdArray = []
-                for doc in snapShotDoc {
-                    print("doc.documentID: ", doc.documentID)
-                
-                }
+            if let data = snapShot?.data() {
+                roomName = data["roomName"] as! String
+                print("data.roomName: ", roomName)
             }
         }
-
-        
-//        db.collection("Chats").addSnapshotListener { snapshot, error in
-//            if error != nil {
-//                print(error.deb)
-//            }
-//
-//
-//
-//            if let snapshotDoc = snapshot?.documents {
-//                for doc in snapshotDoc {
-//                    print("doc.documentID: ", doc.documentID)
-//                    var docIDArray = [String]()
-//                    docIDArray.append(doc.documentID)
-//                }
-//            }
-//        }
+        return roomName
     }
-    
 }
 

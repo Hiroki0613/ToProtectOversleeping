@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import Firebase
 
 class SetInvitedTeamMateVC: UIViewController {
     
     var wakeUpTimeText = ""
-    
-    // チームを新規登録
+    var wakeUpTimeDate = Date()
+    var newInvitedTeamMateId = ""
+        
+    // チームから招待してもらって新規登録
     var setInvitedTeamMateNameView = SetInvitedTeamMateView()
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +41,8 @@ class SetInvitedTeamMateVC: UIViewController {
     // QRコードで登録
     @objc func registeredByQRCode() {
         print("QR読み取り")
+        let sendDBModel = SendDBModel()
+        
         let wakeUpQrCodeReaderVC = WakeUpQrCodeReaderVC()
 //        navigationController?.pushViewController(wakeUpQrCodeReaderVC, animated: true)
         present(wakeUpQrCodeReaderVC, animated: true, completion: nil)
@@ -43,9 +50,25 @@ class SetInvitedTeamMateVC: UIViewController {
     }
     
     // 戻る
+    //TODO: 暫定的に招待IDの承認ボタンに変更
     @objc func goBack() {
-        print("戻るボタン2")
-        dismiss(animated: true, completion: nil)
+//        print("戻るボタン2")
+//        dismiss(animated: true, completion: nil)
+        print("招待して新規登録しました")
+        let sendDBModel = SendDBModel()
+        sendDBModel.doneInvitedChatRoom = self
+        
+        Auth.auth().signInAnonymously { result, error in
+            guard let _ = error else { return }
+        }
+        
+        newInvitedTeamMateId = setInvitedTeamMateNameView.invitedIDTextField.text ?? ""
+        
+        if newInvitedTeamMateId == "" {
+            return
+        } else {
+            sendDBModel.invitedChatRoom(roomNameId: newInvitedTeamMateId, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
+        }
         
     }
     
@@ -79,5 +102,11 @@ class SetInvitedTeamMateVC: UIViewController {
         setInvitedTeamMateNameView.layer.shadowRadius = 10
         setInvitedTeamMateNameView.layer.shadowOffset = .init(width: 0, height: 10)
         setInvitedTeamMateNameView.layer.shouldRasterize = true
+    }
+}
+
+extension SetInvitedTeamMateVC: DoneInvitedChatRoom {
+    func doneInvitedChatRoom() {
+        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

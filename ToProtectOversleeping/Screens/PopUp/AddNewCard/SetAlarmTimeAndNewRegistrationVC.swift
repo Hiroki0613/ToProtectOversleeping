@@ -70,7 +70,9 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
         let setInvitedTeamMateVC = SetInvitedTeamMateVC()
         // 招待時にアラームも同時タイミングでセットしたいので、値を渡して画面遷移を行う
         setInvitedTeamMateVC.wakeUpTimeText = setAlarmTimeAndNewRegistrationView.wakeUpTimeText
+        setInvitedTeamMateVC.wakeUpTimeDate = setAlarmTimeAndNewRegistrationView.wakeUpTimeDate
         print("setInvitedTeamMateVC.wakeUpTimeText: ",setInvitedTeamMateVC.wakeUpTimeText)
+        print("setInvitedTeamMateVC.wakeUpTimeDate: ", setInvitedTeamMateVC.wakeUpTimeDate)
         if setInvitedTeamMateVC.wakeUpTimeText == "" {
             return
         } else {

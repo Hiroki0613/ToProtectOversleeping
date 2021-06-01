@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
-import FirebaseAuth
+import Firebase
 
 class SetNewTeamMateNameVC: UIViewController {
     
@@ -48,7 +47,7 @@ class SetNewTeamMateNameVC: UIViewController {
         
         // 無理矢理ログインしています
         Auth.auth().signInAnonymously { result, error in
-            guard let error = error else { return }
+            guard let _ = error else { return }
         }
         
         newTeamMateString = setNewTeamMateNameView.newTeamMateTextField.text ?? ""

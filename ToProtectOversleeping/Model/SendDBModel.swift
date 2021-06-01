@@ -16,6 +16,10 @@ protocol DoneCreateChatRoom {
     func doneCreateChatRoom()
 }
 
+protocol DoneInvitedChatRoom {
+    func doneInvitedChatRoom()
+}
+
 class SendDBModel {
     let db = Firestore.firestore()
     
@@ -23,6 +27,7 @@ class SendDBModel {
     
     var doneCreateUser: DoneCreateUser?
     var doneCreateChatRoom: DoneCreateChatRoom?
+    var doneInvitedChatRoom: DoneInvitedChatRoom?
     
 //    var senderID: String = ""
 //    var toID: String = ""
@@ -67,16 +72,17 @@ class SendDBModel {
     /// - Parameters:
     ///   - roomNameID: チャットルームのID
     ///   - wakeUpTime: 起きる時間
-//    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date,
-//                         wakeUpTimeText: String) {
-//        var loadDBModel = LoadDBModel()
-//        loadDBModel.loadChatRoomNameData()
-//        self.db.collection("Chats").document(roomNameID).setData(
-//            ["roomNameId":
-//
-//            ]
-//        )
-//    }
+    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date,
+                         wakeUpTimeText: String) {
+        let loadDBModel = LoadDBModel()
+        self.db.collection("Chats").document(roomNameId).setData(
+            ["roomName": loadDBModel.loadChatRoomDocumentID(roomNameId: roomNameId) as Any,
+             "wakeUpTimeText": wakeUpTimeText as Any,
+             "uid": Auth.auth().currentUser!.uid as Any,
+             "registerDate": Date().timeIntervalSince1970]
+        )
+        self.doneInvitedChatRoom?.doneInvitedChatRoom()
+    }
     
     
     func sendMessage(senderId: String, toID: String, text: String, displayName: String) {
