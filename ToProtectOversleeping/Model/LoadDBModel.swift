@@ -48,7 +48,7 @@ class LoadDBModel {
     
     
     func loadChatRoomNameData() {
-        db.collection("Chats").addSnapshotListener { snapShot, error in
+        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)
                 return
@@ -68,7 +68,7 @@ class LoadDBModel {
                        let registerDate = data["registerDate"] as? Double {
                         let chatRoomNameModel = ChatRoomNameModel(
                             roomName: roomName,
-                            //                            wakeUpTimeDate:wakeUpTimeDate,
+//                                                        wakeUpTimeDate:wakeUpTimeDate,
                             wakeUpTimeText: wakeUpTimeText,
                             uid: uid,
                             registerDate: registerDate)
