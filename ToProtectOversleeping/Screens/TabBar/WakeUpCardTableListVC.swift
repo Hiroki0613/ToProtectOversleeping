@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class WakeUpCardTableListVC: UIViewController {
     
@@ -27,6 +28,12 @@ class WakeUpCardTableListVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // 無理矢理ログインしています
+        Auth.auth().signInAnonymously { result, error in
+            guard let _ = error else { return }
+        }
+        
         
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -112,6 +119,8 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             // 編集処理を記述
             print("Editがタップされた")
             let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
+            wakeUpQrCodeVC.invitedDocumentId = self.chatRoomDocumentIdArray[indexPath.row]
+            
             self.navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
             
             // 実行結果に関わらず記述

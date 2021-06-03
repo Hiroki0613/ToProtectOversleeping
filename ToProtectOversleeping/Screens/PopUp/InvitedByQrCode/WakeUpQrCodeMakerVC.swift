@@ -15,6 +15,10 @@ import UIKit
 class WakeUpQrCodeMakerVC: UIViewController {
     
     var qrCodeImageView = UIImageView()
+    
+    // カード式から招待documentIDを持ってくる。
+    var invitedDocumentId = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +27,7 @@ class WakeUpQrCodeMakerVC: UIViewController {
         let qrColor:UIColor = .systemOrange
         let wakeUpLogo = UIImage(named: "jinrikisya_man")!
 
-        let qrURLImage = URL(string:"HirokiSample")?.qrImage(using: qrColor, logo: wakeUpLogo)
+        let qrURLImage = URL(string: invitedDocumentId)?.qrImage(using: qrColor, logo: wakeUpLogo)
         
                 guard let qr = qrURLImage else{
                         return
