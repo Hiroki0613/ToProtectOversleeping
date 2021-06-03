@@ -89,19 +89,35 @@ class LoadDBModel {
     
     
     // ChatRoomのdocumentIDが揃う
-    func loadChatRoomDocumentID(roomNameId: String) -> String {
-        var roomName = ""
+//    func loadChatRoomDocumentID(roomNameId: String) -> String {
+//        var roomName = ""
+//        db.collection("Chats").document(roomNameId).addSnapshotListener { snapShot, error in
+//            if error != nil {
+//                print(error.debugDescription)
+//                return
+//            }
+//            if let data = snapShot?.data() {
+//                roomName = data["roomName"] as! String
+//                print("data.roomName: ", roomName)
+//            }
+//        }
+//        return roomName
+//    }
+    
+    func loadChatRoomDocumentId(roomNameId: String, complition:(@escaping(String) -> Void)) {
+        var roomNameString = "空白"
         db.collection("Chats").document(roomNameId).addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)
                 return
             }
             if let data = snapShot?.data() {
-                roomName = data["roomName"] as! String
-                print("data.roomName: ", roomName)
+                roomNameString = data["roomName"] as! String
+                print("data.roomName: ", roomNameString)
             }
+            complition(roomNameString)
         }
-        return roomName
+
     }
 }
 

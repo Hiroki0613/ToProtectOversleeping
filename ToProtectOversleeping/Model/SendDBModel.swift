@@ -65,7 +65,7 @@ class SendDBModel {
     ///   - wakeUpTime: 起きる時間
     func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String) {
         //"Chats"のdocumentIDのために、ランダムStringを作成
-        let generatedRandomString = randomString(length: 20)
+        let generatedRandomString = "WU\(randomString(length: 18))"
         print("SendDB_generatedRandomString: ", generatedRandomString)
         
         // Userでチャットルームを作成。こちらでカード一覧を表示
@@ -112,21 +112,35 @@ class SendDBModel {
     /// - Parameters:
     ///   - roomNameID: チャットルームのID
     ///   - wakeUpTime: 起きる時間
-    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date,
-                         wakeUpTimeText: String) {
+//    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date,
+//                         wakeUpTimeText: String) {
+//        let loadDBModel = LoadDBModel()
+//        let roomName = loadDBModel.loadChatRoomDocumentID(roomNameId: roomNameId)
+//
+//        print("SendDBModel_roomName: ", roomName)
+//
+//        self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).setData(
+//            ["roomName": roomName as Any,
+//             "uid": Auth.auth().currentUser!.uid as Any,
+//             "wakeUpTimeText": wakeUpTimeText as Any,
+//             "registerDate": Date().timeIntervalSince1970]
+//        )
+//        self.doneInvitedChatRoom?.doneInvitedChatRoom()
+//    }
+    
+    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date, wakeUpTimeText: String) {
+        
         let loadDBModel = LoadDBModel()
-        let roomName = loadDBModel.loadChatRoomDocumentID(roomNameId: roomNameId)
-        
-        print("SendDBModel_roomName: ", roomName)
-        
-        self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).setData(
-            ["roomName": roomName as Any,
-             "uid": Auth.auth().currentUser!.uid as Any,
-             "wakeUpTimeText": wakeUpTimeText as Any,
-             "registerDate": Date().timeIntervalSince1970]
-        )
-        self.doneInvitedChatRoom?.doneInvitedChatRoom()
+        loadDBModel.loadChatRoomDocumentId(roomNameId: roomNameId) { roomNameString in
+            self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).setData(
+                ["roomName": roomNameString as Any,
+                 "uid": Auth.auth().currentUser!.uid as Any,
+                 "wakeUpTimeText": wakeUpTimeText as Any,
+                 "registerDate": Date().timeIntervalSince1970]
+            )
+        }
     }
+    
     
     
     func sendMessage(senderId: String, toID: String, text: String, displayName: String) {

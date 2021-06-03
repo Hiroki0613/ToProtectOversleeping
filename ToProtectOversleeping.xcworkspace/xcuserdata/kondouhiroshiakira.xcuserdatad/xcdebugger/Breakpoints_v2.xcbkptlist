@@ -32,8 +32,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"
             endingLineNumber = "218"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "doneCreateUser()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,8 +112,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "tapSetGpsButton()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,8 +142,8 @@
             filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -208,38 +208,102 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
             endingLineNumber = "93"
-            landmarkName = "loadChatRoomDocumentID(roomNameId:)"
+            landmarkName = "LoadDBModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "05BB316D-B44D-4550-8469-804B2536A3DD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/Model/LoadDBModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "loadChatRoomDocumentId(roomNameId:complition:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C6A3C493-492A-4285-B1A8-2EF54FC597BA - ea9e41cf570c468d"
+                  uuid = "05BB316D-B44D-4550-8469-804B2536A3DD - e2acc7ee7324f81d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ToProtectOversleeping.LoadDBModel.loadChatRoomDocumentID(roomNameId: Swift.String) -&gt; Swift.String"
+                  symbolName = "ToProtectOversleeping.LoadDBModel.loadChatRoomDocumentId(roomNameId: Swift.String, complition: (Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "ToProtectOversleeping"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kondouhiroshiakira/Desktop/ToProtectOversleeping/ToProtectOversleeping/Model/LoadDBModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "128">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "172">
                </Location>
                <Location
-                  uuid = "C6A3C493-492A-4285-B1A8-2EF54FC597BA - 72fef4d0bf292118"
+                  uuid = "05BB316D-B44D-4550-8469-804B2536A3DD - f8d5ec522cc9c7c4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ToProtectOversleeping.LoadDBModel.loadChatRoomDocumentID(roomNameId: Swift.String) -&gt; Swift.String"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ToProtectOversleeping.LoadDBModel.loadChatRoomDocumentId(roomNameId: Swift.String, complition: (Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "ToProtectOversleeping"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kondouhiroshiakira/Desktop/ToProtectOversleeping/ToProtectOversleeping/Model/LoadDBModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66EAC647-E2B1-4D74-9446-6052BBDEEAC5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/Model/SendDBModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "invitedChatRoom(roomNameId:wakeUpTimeDate:wakeUpTimeText:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "66EAC647-E2B1-4D74-9446-6052BBDEEAC5 - 6669eb5375b31496"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToProtectOversleeping.SendDBModel.invitedChatRoom(roomNameId: Swift.String, wakeUpTimeDate: Foundation.Date, wakeUpTimeText: Swift.String) -&gt; ()"
+                  moduleName = "ToProtectOversleeping"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kondouhiroshiakira/Desktop/ToProtectOversleeping/ToProtectOversleeping/Model/SendDBModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
+                  offsetFromSymbolStart = "252">
+               </Location>
+               <Location
+                  uuid = "66EAC647-E2B1-4D74-9446-6052BBDEEAC5 - 59e743a8bebfbfb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in ToProtectOversleeping.SendDBModel.invitedChatRoom(roomNameId: Swift.String, wakeUpTimeDate: Foundation.Date, wakeUpTimeText: Swift.String) -&gt; ()"
+                  moduleName = "ToProtectOversleeping"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kondouhiroshiakira/Desktop/ToProtectOversleeping/ToProtectOversleeping/Model/SendDBModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "356">
                </Location>
             </Locations>
          </BreakpointContent>
