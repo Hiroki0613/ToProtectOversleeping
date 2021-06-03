@@ -7,8 +7,13 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    let sendDBModel = SendDBModel()
+    var wakeUpTimeText = ""
+    var wakeUpTimeDate = Date()
     
     let qrCodeReader = WakeUpQrCodeReaderFunction()
     let qrCodeReadLabel = UILabel()
@@ -65,7 +70,13 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
             if let str = metadata.stringValue {
                 print(str)
                 qrCodeReadLabel.text = str
+                
+                sendDBModel.invitedChatRoom(roomNameId: str, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
+                
+                
             }
+            dismiss(animated: true, completion: nil)
+
         }
     }
 }

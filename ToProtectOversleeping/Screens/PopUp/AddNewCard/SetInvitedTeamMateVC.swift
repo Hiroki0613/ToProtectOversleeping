@@ -41,10 +41,11 @@ class SetInvitedTeamMateVC: UIViewController {
     // QRコードで登録
     @objc func registeredByQRCode() {
         print("QR読み取り")
-        let sendDBModel = SendDBModel()
+
         
         let wakeUpQrCodeReaderVC = WakeUpQrCodeReaderVC()
-//        navigationController?.pushViewController(wakeUpQrCodeReaderVC, animated: true)
+        wakeUpQrCodeReaderVC.wakeUpTimeText = wakeUpTimeText
+        wakeUpQrCodeReaderVC.wakeUpTimeDate = wakeUpTimeDate
         present(wakeUpQrCodeReaderVC, animated: true, completion: nil)
 
     }
@@ -69,6 +70,8 @@ class SetInvitedTeamMateVC: UIViewController {
         } else {
             sendDBModel.invitedChatRoom(roomNameId: newInvitedTeamMateId, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
         }
+        
+        dismiss(animated: true, completion: nil)
         
     }
     
