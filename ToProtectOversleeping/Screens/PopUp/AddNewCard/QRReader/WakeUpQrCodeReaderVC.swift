@@ -26,7 +26,7 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
         // 読み込めるカメラ範囲
         qrCodeReader.readRange()
         qrCodeReadLabel.text = "空白"
-        qrCodeReadLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
+        qrCodeReadLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         qrCodeReadLabel.frame = CGRect(x: 70, y: 130, width: view.frame.size.width, height: 100)
         view.addSubview(qrCodeReadLabel)
         configureUI()
