@@ -46,6 +46,8 @@ class SetInvitedTeamMateVC: UIViewController {
         let wakeUpQrCodeReaderVC = WakeUpQrCodeReaderVC()
         wakeUpQrCodeReaderVC.wakeUpTimeText = wakeUpTimeText
         wakeUpQrCodeReaderVC.wakeUpTimeDate = wakeUpTimeDate
+        
+        
         present(wakeUpQrCodeReaderVC, animated: true, completion: nil)
 
     }
@@ -71,7 +73,11 @@ class SetInvitedTeamMateVC: UIViewController {
             sendDBModel.invitedChatRoom(roomNameId: newInvitedTeamMateId, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
         }
         
-        dismiss(animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
+
+        }
         
     }
     

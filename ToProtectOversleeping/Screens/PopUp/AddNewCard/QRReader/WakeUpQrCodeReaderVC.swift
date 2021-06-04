@@ -75,8 +75,9 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
                 
                 
             }
-            dismiss(animated: true, completion: nil)
-
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
         }
     }
 }
