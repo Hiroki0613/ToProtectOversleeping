@@ -48,7 +48,7 @@ class LoadDBModel {
     
     
     func loadChatRoomNameData() {
-        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").addSnapshotListener { snapShot, error in
+        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "registerDate").addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)
                 return

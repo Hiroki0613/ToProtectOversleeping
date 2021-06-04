@@ -18,6 +18,8 @@ class WakeUpCardTableListVC: UIViewController {
     var chatRoomNameModelArray = [ChatRoomNameModel]()
     var chatRoomDocumentIdArray = [String]()
     
+    var indexNumber = 0
+    
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
     
@@ -161,6 +163,9 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         cell.setChatButton.tag = indexPath.row
         cell.set(chatRoomNameModel: self.chatRoomNameModelArray[indexPath.row])
         
+        indexNumber = indexPath.row
+//        print("tableviewチャットボタン_cellForRowAt: ", indexPath.row)
+        
         return cell
     }
     
@@ -201,11 +206,17 @@ extension WakeUpCardTableListVC {
     
     @objc func tapSetChatButton(_ sender: UIButton) {
         print("tableviewチャットボタンがタップされました: ", sender.tag)
+        print("tableviewチャットボタン sender.tag: ", sender.tag)
+        print("tableviewチャットボタン indexNumber: ", indexNumber)
+     
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag]
+//        wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[indexNumber]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
         wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
+//        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[indexNumber]
         wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag
+//        wakeUpCommunicateChatVC.chatTableViewIndexPath = indexNumber
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
 }

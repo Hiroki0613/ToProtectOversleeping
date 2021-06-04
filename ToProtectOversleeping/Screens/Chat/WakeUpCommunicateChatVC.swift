@@ -63,7 +63,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
         configureMessageCollectionView()
         configureMessageInputBar()
-        title = "トーク"
+//        title = "トーク"
+        title = chatRoomNameModel?.roomName
         reloadInputViews()
     }
     
