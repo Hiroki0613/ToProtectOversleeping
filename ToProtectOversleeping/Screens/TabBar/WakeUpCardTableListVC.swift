@@ -54,11 +54,48 @@ class WakeUpCardTableListVC: UIViewController {
             loadDBModel.getUserDataDelegate = self
             loadDBModel.loadProfileData()
             
+           configureLocalPushNotification()
+            
         } else {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
             navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
         }
         
+        
+    }
+    
+    func configureLocalPushNotification() {
+        
+        // アプリの通知を許可
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if granted {
+                print("ローカル通知が許可されました")
+                let center = UNUserNotificationCenter.current()
+                center.delegate = self
+            } else {
+                print("ローカル通知が許可されませんでした")
+            }
+        }
+        
+        // アプリのローカル通知内容
+        let content: UNMutableNotificationContent = UNMutableNotificationContent()
+        content.title = "WakeUp!"
+        content.body = "チャットに投稿しておきました😁"
+        
+        // 毎日正午にアラームを通知する
+        var notificationTime = DateComponents()
+        notificationTime.hour = 22
+        notificationTime.minute = 18
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime, repeats: true)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("ローカル通知成功")
+            }
+        }
         
     }
     
@@ -239,5 +276,16 @@ extension WakeUpCardTableListVC: GetChatRoomNameDelegate {
 extension WakeUpCardTableListVC: GetUserDataDelegate {
     func getUserData(userDataModel: UserDataModel) {
         self.userDataModel = userDataModel
+    }
+}
+
+extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.banner, .list])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
     }
 }

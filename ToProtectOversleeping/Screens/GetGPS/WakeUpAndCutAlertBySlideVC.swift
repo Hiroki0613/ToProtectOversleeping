@@ -147,6 +147,12 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             return "OK!、100m以上離れました！"
         }
     }
+
+    // アラームを消す(予約している投稿を削除する)
+    func clearAlarm(){
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+    }
     
     
     func configureUI() {
@@ -261,6 +267,7 @@ extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
         moveTo(center: geoCoderLocation, animated: false)
         print("geoCoderLatitude:", geoCoderLatitude)
         print("geoCoderLongitude:", geoCoderLongitude)
+        clearAlarm()
     }
     
     
