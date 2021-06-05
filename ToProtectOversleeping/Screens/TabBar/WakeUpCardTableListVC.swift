@@ -13,7 +13,7 @@ class WakeUpCardTableListVC: UIViewController {
     let tableView = UITableView()
 //    var wakeUpCardTableListCell = WakeUpCardTableListCell()
     var settingLists: [SettingList] = []
-    var chatRoomNameModel:ChatRoomNameModel?
+//    var chatRoomNameModel:ChatRoomNameModel?
     var userDataModel: UserDataModel?
     var chatRoomNameModelArray = [ChatRoomNameModel]()
     var chatRoomDocumentIdArray = [String]()
@@ -201,6 +201,8 @@ extension WakeUpCardTableListVC {
     @objc func tapSetAlarmButton(_ sender: UIButton) {
         print("tableviewアラームボタンがタップされました: ",sender.tag)
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
+        print(self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     

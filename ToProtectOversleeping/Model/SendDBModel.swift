@@ -74,7 +74,7 @@ class SendDBModel {
                 "roomName": roomName as Any,
                 "uid": Auth.auth().currentUser!.uid as Any,
                 "wakeUpTimeText": wakeUpTimeText as Any,
-//                "wakeupTimeDate": wakeUpTimeDate as Any,
+                "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
                 "registerDate": Date().timeIntervalSince1970
             ]
         )
@@ -86,6 +86,7 @@ class SendDBModel {
 //                "chatRoomId": generatedRandomString,
                 "uid": Auth.auth().currentUser!.uid as Any,
                 "wakeUpTimeText": wakeUpTimeText as Any,
+                "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
                 "registerDate": Date().timeIntervalSince1970,
                 "chatRoomId": generatedRandomString
             ]
@@ -135,6 +136,7 @@ class SendDBModel {
             self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).setData(
                 ["roomName": roomNameString as Any,
                  "uid": Auth.auth().currentUser!.uid as Any,
+                 "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
                  "wakeUpTimeText": wakeUpTimeText as Any,
                  "registerDate": Date().timeIntervalSince1970]
             )

@@ -9,7 +9,7 @@ import Foundation
 
 struct ChatRoomNameModel {
     var roomName: String
-//    var wakeUpTimeDate: Double
+    var wakeUpTimeDate: Double
     var wakeUpTimeText: String
     var uid: String
     var registerDate:Double

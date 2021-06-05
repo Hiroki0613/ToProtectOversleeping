@@ -12,7 +12,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
 //    var myAddressLongitude = 139.65363018
     
-    // 暫定で家の近くに設定している
+    // 暫定でUserDefaultsで設定
     var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
     var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
     var mySettingAlarmTime = Date()
@@ -143,6 +143,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         case (90)..<(100):
             return "惜しい！、10m離れてください"
         default:
+            print("離れました離れたぜ")
             return "OK!、100m以上離れました！"
         }
     }
@@ -255,7 +256,6 @@ extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
         swipedActionLabel.text = "取得完了しました"
-//        setAnnotation(location: myHomeLocation)
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         setAnnotation(location: geoCoderLocation)
         moveTo(center: geoCoderLocation, animated: false)

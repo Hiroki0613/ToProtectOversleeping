@@ -60,15 +60,16 @@ class LoadDBModel {
                     
                     // chatRoomNameArray
                     let data = doc.data()
-                    print("data: ",data)
+                    print("dataだぜ: ",data)
                     if let roomName = data["roomName"] as? String,
                        //                       let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double,
                        let wakeUpTimeText = data["wakeUpTimeText"] as? String,
                        let uid = data["uid"] as? String,
-                       let registerDate = data["registerDate"] as? Double {
+                       let registerDate = data["registerDate"] as? Double,
+                       let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double {
                         let chatRoomNameModel = ChatRoomNameModel(
                             roomName: roomName,
-//                                                        wakeUpTimeDate:wakeUpTimeDate,
+                            wakeUpTimeDate:wakeUpTimeDate,
                             wakeUpTimeText: wakeUpTimeText,
                             uid: uid,
                             registerDate: registerDate)
