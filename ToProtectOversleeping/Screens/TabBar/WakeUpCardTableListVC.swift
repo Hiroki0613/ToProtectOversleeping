@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 
+protocol SendWakeUpReportToChatDelegate {
+    func sendWakeUpReport()
+}
+
 class WakeUpCardTableListVC: UIViewController {
     
     let tableView = UITableView()
@@ -18,6 +22,8 @@ class WakeUpCardTableListVC: UIViewController {
     var chatRoomNameModelArray = [ChatRoomNameModel]()
     var chatRoomDocumentIdArray = [String]()
     
+    var sendWakeUpReportToChatDelegate: SendWakeUpReportToChatDelegate?
+        
     var indexNumber = 0
     
     // 新しいカードを追加
@@ -84,8 +90,8 @@ class WakeUpCardTableListVC: UIViewController {
         
         // 毎日正午にアラームを通知する
         var notificationTime = DateComponents()
-        notificationTime.hour = 22
-        notificationTime.minute = 18
+        notificationTime.hour = 00
+        notificationTime.minute = 13
         let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
@@ -280,12 +286,16 @@ extension WakeUpCardTableListVC: GetUserDataDelegate {
 }
 
 extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
+        //TODO: ここにチャットの投稿文を書く
+        self.sendWakeUpReportToChatDelegate?.sendWakeUpReport()
         completionHandler([.banner, .list])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("バックグラウンド処理")
         completionHandler()
     }
 }

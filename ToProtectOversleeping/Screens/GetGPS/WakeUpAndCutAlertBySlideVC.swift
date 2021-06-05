@@ -144,6 +144,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             return "惜しい！、10m離れてください"
         default:
             print("離れました離れたぜ")
+            clearAlarm()
             return "OK!、100m以上離れました！"
         }
     }
@@ -267,7 +268,9 @@ extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
         moveTo(center: geoCoderLocation, animated: false)
         print("geoCoderLatitude:", geoCoderLatitude)
         print("geoCoderLongitude:", geoCoderLongitude)
-        clearAlarm()
+        
+        //近藤： ここだと、スライドしたら100m以内でもアラートが消えてしまう。
+//        clearAlarm()
     }
     
     
