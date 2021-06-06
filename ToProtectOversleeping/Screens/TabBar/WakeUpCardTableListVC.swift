@@ -8,9 +8,9 @@
 import UIKit
 import Firebase
 
-protocol SendWakeUpReportToChatDelegate {
-    func sendWakeUpReport()
-}
+//protocol SendWakeUpReportToChatDelegate {
+//    func sendWakeUpReport()
+//}
 
 class WakeUpCardTableListVC: UIViewController {
     
@@ -22,7 +22,7 @@ class WakeUpCardTableListVC: UIViewController {
     var chatRoomNameModelArray = [ChatRoomNameModel]()
     var chatRoomDocumentIdArray = [String]()
     
-    var sendWakeUpReportToChatDelegate: SendWakeUpReportToChatDelegate?
+//    var sendWakeUpReportToChatDelegate: SendWakeUpReportToChatDelegate?
         
     var indexNumber = 0
     
@@ -32,6 +32,20 @@ class WakeUpCardTableListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        NotificationCenter.default.addObserver(
+//                    self,
+//                    selector: #selector(viewWillEnterForeground(_:)),
+//                    name: UIApplication.willEnterForegroundNotification,
+//                    object: nil)
+//
+//                NotificationCenter.default.addObserver(
+//                    self,
+//                    selector: #selector(viewDidEnterBackground(_:)),
+//                    name: UIApplication.didEnterBackgroundNotification,
+//                    object: nil)
+//
+//
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,8 +104,8 @@ class WakeUpCardTableListVC: UIViewController {
         
         // 毎日正午にアラームを通知する
         var notificationTime = DateComponents()
-        notificationTime.hour = 00
-        notificationTime.minute = 13
+        notificationTime.hour = 23
+        notificationTime.minute = 44
         let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
@@ -253,7 +267,9 @@ extension WakeUpCardTableListVC {
         print("tableviewチャットボタンがタップされました: ", sender.tag)
         print("tableviewチャットボタン sender.tag: ", sender.tag)
         print("tableviewチャットボタン indexNumber: ", indexNumber)
-     
+        
+//        indexNumber = sender.tag
+        
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag]
 //        wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[indexNumber]
@@ -290,7 +306,9 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         //TODO: ここにチャットの投稿文を書く
-        self.sendWakeUpReportToChatDelegate?.sendWakeUpReport()
+        let messageModel = MessageModel()
+        messageModel.sendMessageToChat(documentID: self.chatRoomDocumentIdArray[indexNumber], displayName: self.userDataModel!.name)
+//        self.sendWakeUpReportToChatDelegate?.sendWakeUpReport()
         completionHandler([.banner, .list])
     }
     
@@ -298,4 +316,6 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
         print("バックグラウンド処理")
         completionHandler()
     }
+    
+    
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import MessageKit
+import Firebase
 
 
 struct Sender: SenderType {
@@ -21,4 +22,13 @@ struct Message: MessageType {
     var messageId: String
     var sentDate: Date
     var kind: MessageKind
+}
+
+
+class MessageModel {
+    
+    func sendMessageToChat(documentID toID: String,displayName: String) {
+        let sendDBModel = SendDBModel()
+        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+    }
 }

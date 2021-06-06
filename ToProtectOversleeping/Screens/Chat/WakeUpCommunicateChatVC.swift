@@ -72,7 +72,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     
     func configureMessageCollectionView() {
-        wakeUpCardTableListVC.sendWakeUpReportToChatDelegate = self
+//        wakeUpCardTableListVC.sendWakeUpReportToChatDelegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -299,12 +299,12 @@ extension WakeUpCommunicateChatVC: MessageCellDelegate {
     
 }
 
-extension WakeUpCommunicateChatVC: SendWakeUpReportToChatDelegate {
-    func sendWakeUpReport() {
-        
-        let sendDBModel = SendDBModel()
-        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: chatRoomDocumentId!, text: "\(userDataModel!.name)。残念ながら起きれませんでした", displayName: userDataModel!.name)
-        
-        print("delegate動作確認")
-    }
-}
+//extension WakeUpCommunicateChatVC: SendWakeUpReportToChatDelegate {
+//    func sendWakeUpReport() {
+//        
+//        let sendDBModel = SendDBModel()
+//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: chatRoomDocumentId!, text: "\(userDataModel!.name)。残念ながら起きれませんでした", displayName: userDataModel!.name)
+//        
+//        print("delegate動作確認")
+//    }
+//}

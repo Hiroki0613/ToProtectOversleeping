@@ -125,6 +125,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         
         switch rawDistance {
         case 0..<(10):
+//            clearAlarm()
             return "あと、90m離れてください"
         case (10)..<(20):
             return "あと、80m離れてください"
