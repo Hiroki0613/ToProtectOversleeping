@@ -112,7 +112,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
                   endingLineNumber = "109"
-                  offsetFromSymbolStart = "172">
+                  offsetFromSymbolStart = "140">
                </Location>
                <Location
                   uuid = "05BB316D-B44D-4550-8469-804B2536A3DD - f8d5ec522cc9c62b"
@@ -127,7 +127,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
                   endingLineNumber = "109"
-                  offsetFromSymbolStart = "96">
+                  offsetFromSymbolStart = "213">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -160,7 +160,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "135"
                   endingLineNumber = "135"
-                  offsetFromSymbolStart = "508">
+                  offsetFromSymbolStart = "594">
                </Location>
                <Location
                   uuid = "66EAC647-E2B1-4D74-9446-6052BBDEEAC5 - 59e743a8bebfa1a"
@@ -175,7 +175,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "136"
                   endingLineNumber = "136"
-                  offsetFromSymbolStart = "388">
+                  offsetFromSymbolStart = "254">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -241,6 +241,22 @@
             startingLineNumber = "309"
             endingLineNumber = "309"
             landmarkName = "userNotificationCenter(_:willPresent:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D501B42C-DC88-4D64-AA9E-2A3EB4AD02C5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/Screens/GetGPS/WakeUpAndCutAlertBySlideVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "clearAlarm()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

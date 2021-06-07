@@ -107,6 +107,11 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
         loadMessage(toID: chatRoomDocumentId!)
+        
+        let center = UNUserNotificationCenter.current()
+        print("宏輝_通知pending: ", center.getPendingNotificationRequests(completionHandler: { request in
+            print("宏輝_通知request: ",request)
+        }))
     }
     
     

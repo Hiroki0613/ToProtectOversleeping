@@ -105,7 +105,7 @@ class WakeUpCardTableListVC: UIViewController {
         // 毎日正午にアラームを通知する
         var notificationTime = DateComponents()
         notificationTime.hour = 23
-        notificationTime.minute = 44
+        notificationTime.minute = 17
         let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
@@ -220,7 +220,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         cell.setChatButton.tag = indexPath.row
         cell.set(chatRoomNameModel: self.chatRoomNameModelArray[indexPath.row])
         
-        indexNumber = indexPath.row
+//        indexNumber = indexPath.row
 //        print("tableviewチャットボタン_cellForRowAt: ", indexPath.row)
         
         return cell
