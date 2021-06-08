@@ -55,9 +55,13 @@ class SetNewTeamMateNameVC: UIViewController {
         if newTeamMateString == "" {
             return
         } else {
+            // FireStoreにデータを送る
             sendDBModel.createChatRoom(roomName: newTeamMateString, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
+            
         }
     }
+    
+    
     
     
     // 招待してもらう

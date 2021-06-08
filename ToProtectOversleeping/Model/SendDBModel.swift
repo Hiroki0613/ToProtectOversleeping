@@ -91,6 +91,8 @@ class SendDBModel {
                 "chatRoomId": generatedRandomString
             ]
         )
+//         同時にUNNotificationCenterにも通知登録identifier付きで行う。
+        alarmSet(identifierString: generatedRandomString)
         self.doneCreateChatRoom?.doneCreateChatRoom()
     }
     
@@ -140,6 +142,8 @@ class SendDBModel {
                  "wakeUpTimeText": wakeUpTimeText as Any,
                  "registerDate": Date().timeIntervalSince1970]
             )
+            
+            self.alarmSet(identifierString: roomNameId)
         }
     }
     
@@ -159,4 +163,42 @@ class SendDBModel {
 //            ["text": text as Any, "senderId": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
 //        )
     }
+    
+    //アラート設定
+    func alarmSet(identifierString: String){
+        // identifierは一位にするため、Auth.auth()+roomIdにする
+        let identifiers = Auth.auth().currentUser!.uid + identifierString
+        removeAlarm(identifiers: identifiers)
+
+        //通知設定
+        let content = UNMutableNotificationContent()
+        content.title = "通知です"
+        
+        content.categoryIdentifier = identifiers
+        var dateComponents = DateComponents()
+        
+        //近藤　カレンダー形式で通知
+        dateComponents.hour = 23
+        dateComponents.minute = 45
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
+        let request = UNNotificationRequest(identifier: Auth.auth().currentUser!.uid + "hiroki", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
+    
+    //アラート設定削除
+    func removeAlarm(identifiers:String){
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifiers])
+    }
+   
+    
+    
+    
 }
