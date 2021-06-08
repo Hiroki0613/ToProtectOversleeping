@@ -12,6 +12,10 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
 //    var myAddressLongitude = 139.65363018
     
+    // roomID
+    var chatRoomDocumentId = ""
+    var authId = ""
+    
     // 暫定でUserDefaultsで設定
     var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
     var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
@@ -118,10 +122,12 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     }
     
     // 距離を測定して、コメントを分類
+    
+    //TODO: 暫定で距離を100m遠くしている
     private func rank(location: CLLocationCoordinate2D) -> String {
-        let rawDistance = location.distanceFromHome(to: myHomeLocation)
+        let rawDistance = location.distanceFromHome(to: myHomeLocation) + 100
         
-        print("rawDistance: ", rawDistance)
+        print("rawDistance: ", rawDistance + 100)
         
         switch rawDistance {
         case 0..<(10):
@@ -151,9 +157,11 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     }
 
     // アラームを消す(予約している投稿を削除する)
+    // ここでAuth、roomIDを入れる。
     func clearAlarm(){
+        let identifier = authId + chatRoomDocumentId
         let center = UNUserNotificationCenter.current()
-        center.removeAllPendingNotificationRequests()
+        center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
     
     

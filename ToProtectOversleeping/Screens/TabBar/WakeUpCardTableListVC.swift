@@ -74,7 +74,7 @@ class WakeUpCardTableListVC: UIViewController {
             loadDBModel.getUserDataDelegate = self
             loadDBModel.loadProfileData()
             
-           configureLocalPushNotification()
+//           configureLocalPushNotification()
             
         } else {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
@@ -84,40 +84,40 @@ class WakeUpCardTableListVC: UIViewController {
         
     }
     
-    func configureLocalPushNotification() {
-        
-        // アプリの通知を許可
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            if granted {
-                print("ローカル通知が許可されました")
-                let center = UNUserNotificationCenter.current()
-                center.delegate = self
-            } else {
-                print("ローカル通知が許可されませんでした")
-            }
-        }
-        
-        // アプリのローカル通知内容
-        let content: UNMutableNotificationContent = UNMutableNotificationContent()
-        content.title = "WakeUp!"
-        content.body = "チャットに投稿しておきました😁"
-        
-        // 毎日正午にアラームを通知する
-        var notificationTime = DateComponents()
-        notificationTime.hour = 23
-        notificationTime.minute = 17
-        let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime, repeats: true)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("ローカル通知成功")
-            }
-        }
-        
-    }
+//    func configureLocalPushNotification() {
+//
+//        // アプリの通知を許可
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+//            if granted {
+//                print("ローカル通知が許可されました")
+//                let center = UNUserNotificationCenter.current()
+//                center.delegate = self
+//            } else {
+//                print("ローカル通知が許可されませんでした")
+//            }
+//        }
+//
+//        // アプリのローカル通知内容
+//        let content: UNMutableNotificationContent = UNMutableNotificationContent()
+//        content.title = "WakeUp!"
+//        content.body = "チャットに投稿しておきました😁"
+//
+//        // 毎日正午にアラームを通知する
+//        var notificationTime = DateComponents()
+//        notificationTime.hour = 23
+//        notificationTime.minute = 17
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime, repeats: true)
+//        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+//
+//        UNUserNotificationCenter.current().add(request) { error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                print("ローカル通知成功")
+//            }
+//        }
+//
+//    }
     
     func configureTableView() {
 //        let tableView = UITableView(frame: view.frame)
@@ -259,6 +259,8 @@ extension WakeUpCardTableListVC {
         print("tableviewアラームボタンがタップされました: ",sender.tag)
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
+        wakeUpAndCutAlertBySlideVC.authId = Auth.auth().currentUser!.uid
+        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag]
         print(self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }

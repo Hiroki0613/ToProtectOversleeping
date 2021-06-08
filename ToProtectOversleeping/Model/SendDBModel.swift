@@ -167,22 +167,22 @@ class SendDBModel {
     //アラート設定
     func alarmSet(identifierString: String){
         // identifierは一位にするため、Auth.auth()+roomIdにする
-        let identifiers = Auth.auth().currentUser!.uid + identifierString
-        removeAlarm(identifiers: identifiers)
+        let identifier = Auth.auth().currentUser!.uid + identifierString
+        removeAlarm(identifiers: identifier)
 
         //通知設定
         let content = UNMutableNotificationContent()
         content.title = "通知です"
         
-        content.categoryIdentifier = identifiers
+        content.categoryIdentifier = identifier
         var dateComponents = DateComponents()
         
         //近藤　カレンダー形式で通知
-        dateComponents.hour = 23
-        dateComponents.minute = 45
+        dateComponents.hour = 0
+        dateComponents.minute = 15
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
-        let request = UNNotificationRequest(identifier: Auth.auth().currentUser!.uid + "hiroki", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { (error) in
             if let error = error {
