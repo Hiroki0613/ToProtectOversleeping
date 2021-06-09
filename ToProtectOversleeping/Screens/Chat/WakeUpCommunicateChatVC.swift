@@ -147,29 +147,33 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                     if let text = data["text"] as? String,
                        let senderID = data["senderId"] as? String,
                        let displayName = data["displayName"] as? String,
-                       let date = data["date"] as? Double
+                       let date = data["date"] as? Double,
+                       let messageAppVersion = data["messageAppVersion"] as? String
                        {
-                        // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
-                        if senderID == Auth.auth().currentUser?.uid {
-                            
-                            // 自分
-                            self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
-                            let message = Message(
-                                sender: self.currentUser,
-                                messageId: senderID,
-                                sentDate: Date(timeIntervalSince1970: date),
-                                kind: .text(text))
-                            self.messages.append(message)
-                            
-                        } else {
-                            // 他人
-                            self.otherUser = Sender(senderId: senderID, displayName: displayName)
-                            let message = Message(
-                                sender: self.otherUser,
-                                messageId: senderID,
-                                sentDate: Date(timeIntervalSince1970: date),
-                                kind: .text(text))
-                            self.messages.append(message)
+                        
+                        if messageAppVersion == "1.0.0" {
+                            // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
+                            if senderID == Auth.auth().currentUser?.uid {
+                                
+                                // 自分
+                                self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
+                                let message = Message(
+                                    sender: self.currentUser,
+                                    messageId: senderID,
+                                    sentDate: Date(timeIntervalSince1970: date),
+                                    kind: .text(text))
+                                self.messages.append(message)
+                                
+                            } else {
+                                // 他人
+                                self.otherUser = Sender(senderId: senderID, displayName: displayName)
+                                let message = Message(
+                                    sender: self.otherUser,
+                                    messageId: senderID,
+                                    sentDate: Date(timeIntervalSince1970: date),
+                                    kind: .text(text))
+                                self.messages.append(message)
+                            }
                         }
                     }
                 }
@@ -274,7 +278,17 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
         inputBar.inputTextView.text = ""
         print("送信ボタンが押されました")
         
-        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: chatRoomDocumentId!, text: text, displayName: userDataModel!.name)
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        
+        
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: chatRoomDocumentId!,
+            text: text,
+            displayName: userDataModel!.name,
+            messageAppVersion: version
+        )
         //TODO: toIDのuserDataModel、displayNameのuserData["name"]が繋がっていない。
 //        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid, toID: userDataModel.name, text: text, displayName: userData["name"] as! String)
         

@@ -27,8 +27,31 @@ struct Message: MessageType {
 
 class MessageModel {
     
-    func sendMessageToChat(documentID toID: String,displayName: String) {
+    func sendMessageToChatWakeUpLate(documentID toID: String,displayName: String) {
         let sendDBModel = SendDBModel()
-        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "\(displayName)は寝坊しました",
+            displayName: displayName,
+            messageAppVersion: version
+        )
+    }
+    
+    func sendMessageToChatDeclarationWakeUpEarly(documentID toID: String,displayName: String) {
+        let sendDBModel = SendDBModel()
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "\(displayName)は早起きします！",
+            displayName: displayName,
+            messageAppVersion: version
+        )
     }
 }

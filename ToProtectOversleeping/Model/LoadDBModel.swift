@@ -66,13 +66,21 @@ class LoadDBModel {
                        let wakeUpTimeText = data["wakeUpTimeText"] as? String,
                        let uid = data["uid"] as? String,
                        let registerDate = data["registerDate"] as? Double,
-                       let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double {
+                       let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double,
+                       let isWakeUpBool = data["isWakeUpBool"] as? Bool,
+                       let isWakeUpRoop = data["isWakeUpRoop"] as? Bool,
+                       let appVersion = data["appVersion"] as? String
+                       {
                         let chatRoomNameModel = ChatRoomNameModel(
                             roomName: roomName,
                             wakeUpTimeDate:wakeUpTimeDate,
                             wakeUpTimeText: wakeUpTimeText,
                             uid: uid,
-                            registerDate: registerDate)
+                            registerDate: registerDate,
+                            isWakeUpBool: isWakeUpBool,
+                            isWakeUpRoop: isWakeUpRoop,
+                            appVersion: appVersion)
+                        
                         self.chatRoomNameArray.append(chatRoomNameModel)
                     }
                     

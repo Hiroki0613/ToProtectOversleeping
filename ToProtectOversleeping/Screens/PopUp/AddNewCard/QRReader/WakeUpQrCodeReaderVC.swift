@@ -71,7 +71,17 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
                 print(str)
                 qrCodeReadLabel.text = str
                 
-                sendDBModel.invitedChatRoom(roomNameId: str, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
+                // メッセージがアプリのバージョンアップで変更した時に使用
+                let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+                
+                sendDBModel.invitedChatRoom(
+                    roomNameId: str,
+                    wakeUpTimeDate: wakeUpTimeDate,
+                    wakeUpTimeText: wakeUpTimeText,
+                    isWakeUpBool: true,
+                    isWakeUpRoop: false,
+                    appVersion: version
+                )
                 
                 
             }

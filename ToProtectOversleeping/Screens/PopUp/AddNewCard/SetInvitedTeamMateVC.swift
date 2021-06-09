@@ -67,10 +67,21 @@ class SetInvitedTeamMateVC: UIViewController {
         
         newInvitedTeamMateId = setInvitedTeamMateNameView.invitedIDTextField.text ?? ""
         
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+       
+        
         if newInvitedTeamMateId == "" {
             return
         } else {
-            sendDBModel.invitedChatRoom(roomNameId: newInvitedTeamMateId, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
+            sendDBModel.invitedChatRoom(
+                roomNameId: newInvitedTeamMateId,
+                wakeUpTimeDate: wakeUpTimeDate,
+                wakeUpTimeText: wakeUpTimeText,
+                isWakeUpBool: true,
+                isWakeUpRoop: false,
+                appVersion: version
+            )
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

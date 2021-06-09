@@ -43,6 +43,10 @@ class SetNewTeamMateNameVC: UIViewController {
     @objc func registerNewTeam() {
         print("新規登録しました")
         let sendDBModel = SendDBModel()
+        
+        // アプリのバージョン
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        
         sendDBModel.doneCreateChatRoom = self
         
         // 無理矢理ログインしています
@@ -56,8 +60,13 @@ class SetNewTeamMateNameVC: UIViewController {
             return
         } else {
             // FireStoreにデータを送る
-            sendDBModel.createChatRoom(roomName: newTeamMateString, wakeUpTimeDate: wakeUpTimeDate, wakeUpTimeText: wakeUpTimeText)
-            
+            sendDBModel.createChatRoom(
+                roomName: newTeamMateString,
+                wakeUpTimeDate: wakeUpTimeDate,
+                wakeUpTimeText: wakeUpTimeText,
+                isWakeUpBool: true,
+                isWakeUpRoop: false,
+                appVersion: version)
         }
     }
     

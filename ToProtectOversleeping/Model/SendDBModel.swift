@@ -41,12 +41,16 @@ class SendDBModel {
     ///   - name: ユーザー名
     ///   - uid: FirebaseのAuth.auth()
     ///   - appVersion: アプリのバージョン
-    ///   - isWakeUpBool: 起きた時に使われるBool(暫定的に用意)
+    ///   - isWakeUpBool: 起きた時に使われるBool
     func createUser(name: String,uid: String,appVersion: String, isWakeUpBool: Bool) {
         // ここでUserModelを作成。
         self.db.collection("Users").document(Auth.auth().currentUser!.uid).setData(
-            ["name": name as Any,"uid": uid as Any, "appVersion": appVersion as Any,
-             "isWakeUpBool": isWakeUpBool as Any,"date": Date().timeIntervalSince1970]
+            ["name": name as Any,
+             "uid": uid as Any,
+             "appVersion": appVersion as Any,
+             "isWakeUpBool": isWakeUpBool as Any,
+             "date": Date().timeIntervalSince1970 as Any
+            ]
         )
         self.doneCreateUser?.doneCreateUser()
     }
@@ -63,7 +67,9 @@ class SendDBModel {
     /// - Parameters:
     ///   - roomName: チャットルームの名前
     ///   - wakeUpTime: 起きる時間
-    func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String) {
+    ///   - isWakeUpBool: 起きた時に使われるBool
+    ///   - isWakeUpRoop: 繰り返しループの設定(暫定的に用意)
+    func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, isWakeUpRoop: Bool, appVersion: String) {
         //"Chats"のdocumentIDのために、ランダムStringを作成
         let generatedRandomString = "WU\(randomString(length: 18))"
         print("SendDB_generatedRandomString: ", generatedRandomString)
@@ -75,7 +81,11 @@ class SendDBModel {
                 "uid": Auth.auth().currentUser!.uid as Any,
                 "wakeUpTimeText": wakeUpTimeText as Any,
                 "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
-                "registerDate": Date().timeIntervalSince1970
+                "registerDate": Date().timeIntervalSince1970 as
+                Any,
+                "isWakeUpBool": isWakeUpBool as Any,
+                "isWakeUpRoop": isWakeUpRoop as Any,
+                "appVersion": appVersion as Any
             ]
         )
         
@@ -87,8 +97,11 @@ class SendDBModel {
                 "uid": Auth.auth().currentUser!.uid as Any,
                 "wakeUpTimeText": wakeUpTimeText as Any,
                 "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
-                "registerDate": Date().timeIntervalSince1970,
-                "chatRoomId": generatedRandomString
+                "registerDate": Date().timeIntervalSince1970 as
+                Any,
+                "chatRoomId": generatedRandomString as Any,
+                "appVersion": appVersion as
+                Any
             ]
         )
 //         同時にUNNotificationCenterにも通知登録identifier付きで行う。
@@ -131,7 +144,7 @@ class SendDBModel {
 //        self.doneInvitedChatRoom?.doneInvitedChatRoom()
 //    }
     
-    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date, wakeUpTimeText: String) {
+    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, isWakeUpRoop: Bool, appVersion: String) {
         
         let loadDBModel = LoadDBModel()
         loadDBModel.loadChatRoomDocumentId(roomNameId: roomNameId) { roomNameString in
@@ -140,7 +153,11 @@ class SendDBModel {
                  "uid": Auth.auth().currentUser!.uid as Any,
                  "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
                  "wakeUpTimeText": wakeUpTimeText as Any,
-                 "registerDate": Date().timeIntervalSince1970]
+                 "registerDate": Date().timeIntervalSince1970,
+                "isWakeUpBool": isWakeUpBool as Any,
+                "isWakeUpRoop": isWakeUpRoop as Any,
+                "appVersion": appVersion as Any
+                ]
             )
             
             self.alarmSet(identifierString: roomNameId)
@@ -149,10 +166,16 @@ class SendDBModel {
     
     
     
-    func sendMessage(senderId: String, toID: String, text: String, displayName: String) {
+    func sendMessage(senderId: String, toID: String, text: String, displayName: String, messageAppVersion: String) {
         
         self.db.collection("Chats").document(toID).collection("Talk").document().setData(
-            ["text":text as Any, "senderId": senderId as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
+            [
+                "text":text as Any,
+                "senderId": senderId as Any,
+                "displayName": displayName as Any,
+                "date": Date().timeIntervalSince1970,
+                "messageAppVersion": messageAppVersion as Any
+            ]
         )
         
         
@@ -179,7 +202,7 @@ class SendDBModel {
         var dateComponents = DateComponents()
         
         //近藤　カレンダー形式で通知
-        dateComponents.hour = 0
+        dateComponents.hour = 1
         dateComponents.minute = 15
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
