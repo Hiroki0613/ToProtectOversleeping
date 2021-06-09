@@ -74,7 +74,7 @@ class WakeUpCardTableListVC: UIViewController {
             loadDBModel.getUserDataDelegate = self
             loadDBModel.loadProfileData()
             
-//           configureLocalPushNotification()
+           getPermissionLocalPushNotification()
             
         } else {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
@@ -84,19 +84,19 @@ class WakeUpCardTableListVC: UIViewController {
         
     }
     
-//    func configureLocalPushNotification() {
-//
-//        // アプリの通知を許可
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-//            if granted {
-//                print("ローカル通知が許可されました")
-//                let center = UNUserNotificationCenter.current()
-//                center.delegate = self
-//            } else {
-//                print("ローカル通知が許可されませんでした")
-//            }
-//        }
-//
+    func getPermissionLocalPushNotification() {
+
+        // アプリの通知を許可
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if granted {
+                print("ローカル通知が許可されました")
+                let center = UNUserNotificationCenter.current()
+                center.delegate = self
+            } else {
+                print("ローカル通知が許可されませんでした")
+            }
+        }
+
 //        // アプリのローカル通知内容
 //        let content: UNMutableNotificationContent = UNMutableNotificationContent()
 //        content.title = "WakeUp!"
@@ -116,8 +116,8 @@ class WakeUpCardTableListVC: UIViewController {
 //                print("ローカル通知成功")
 //            }
 //        }
-//
-//    }
+
+    }
     
     func configureTableView() {
 //        let tableView = UITableView(frame: view.frame)
@@ -263,6 +263,7 @@ extension WakeUpCardTableListVC {
         
         //chatRoomIDが必要
         var chatRoomDocumentIdForSwitch = chatRoomDocumentIdArray[sender.tag]
+        print("chatRoomDocumentIdForSwitch: ", chatRoomDocumentIdForSwitch)
         
         if onCheck {
             print("スイッチの状態はオンです。値: \(onCheck),sender\(sender.tag)")
@@ -324,8 +325,8 @@ extension WakeUpCardTableListVC {
         var dateComponents = DateComponents()
         
         //近藤　カレンダー形式で通知
-        dateComponents.hour = 23
-        dateComponents.minute = 10
+        dateComponents.hour = 1
+        dateComponents.minute = 33
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
@@ -377,7 +378,7 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
         
         //TODO: ここにチャットの投稿文を書く
         let messageModel = MessageModel()
-        messageModel.sendMessageToChat(documentID: self.chatRoomDocumentIdArray[indexNumber], displayName: self.userDataModel!.name)
+        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdArray[indexNumber], displayName: self.userDataModel!.name)
 //        self.sendWakeUpReportToChatDelegate?.sendWakeUpReport()
         completionHandler([.banner, .list])
     }
