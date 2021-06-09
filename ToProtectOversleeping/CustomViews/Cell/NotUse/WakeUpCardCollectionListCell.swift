@@ -76,13 +76,13 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         setAlarmButton.tintColor = .systemBackground
     }
     
-    func set(settingList: SettingList) {
-//        wakeUpTimeTextField.text = settingList.wakeUpTime
-        wakeUpSetAlarmSwitch.isOn = settingList.wakeUpSetAlarmSwitch
-        wakeUpChatTeamNameLabel.text = settingList.chatTeamName
-        //　ここにchatID
-        //　ここにpersonalID
-    }
+//    func set(settingList: SettingList) {
+////        wakeUpTimeTextField.text = settingList.wakeUpTime
+//        wakeUpSetAlarmSwitch.isOn = settingList.wakeUpSetAlarmSwitch
+//        wakeUpChatTeamNameLabel.text = settingList.chatTeamName
+//        //　ここにchatID
+//        //　ここにpersonalID
+//    }
     
     private func configure() {
         backgroundColor = .systemBackground.withAlphaComponent(0.7)

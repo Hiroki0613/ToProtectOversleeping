@@ -164,6 +164,7 @@ class SendDBModel {
 //        )
     }
     
+    
     //アラート設定
     func alarmSet(identifierString: String){
         // identifierは一位にするため、Auth.auth()+roomIdにする

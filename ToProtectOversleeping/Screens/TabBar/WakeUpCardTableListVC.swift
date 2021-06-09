@@ -16,7 +16,7 @@ class WakeUpCardTableListVC: UIViewController {
     
     let tableView = UITableView()
 //    var wakeUpCardTableListCell = WakeUpCardTableListCell()
-    var settingLists: [SettingList] = []
+//    var settingLists: [SettingList] = []
 //    var chatRoomNameModel:ChatRoomNameModel?
     var userDataModel: UserDataModel?
     var chatRoomNameModelArray = [ChatRoomNameModel]()
@@ -213,7 +213,8 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
-        
+        cell.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(tapWakeUpSetAlarmSwitch), for: .touchUpInside)
+        cell.wakeUpSetAlarmSwitch.tag = indexPath.row
         cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
         cell.setAlarmButton.tag = indexPath.row
         cell.setChatButton.addTarget(self, action: #selector(tapSetChatButton(_:)), for: .touchUpInside)
@@ -248,12 +249,35 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     
 }
 
+
+// WakeUpCardTableListCellのボタン関係
 extension WakeUpCardTableListVC {
 //    @objc func tapChatTeamInvitationButton(_ sender: UIButton) {
 //        print("tableview招待するボタンがタップされました: ", sender.tag)
 //        let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
 //        navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
 //    }
+    
+    @objc func tapWakeUpSetAlarmSwitch(_ sender: UISwitch) {
+        let onCheck: Bool = sender.isOn
+        
+        //chatRoomIDが必要
+        var chatRoomDocumentIdForSwitch = chatRoomDocumentIdArray[sender.tag]
+        
+        if onCheck {
+            print("スイッチの状態はオンです。値: \(onCheck),sender\(sender.tag)")
+            // ここでonにすると、目覚ましセット
+            alarmSet(identifierString: chatRoomDocumentIdForSwitch)
+        } else {
+            print("スイッチの状態はオフです。値: \(onCheck),sender\(sender.tag)")
+            // ここでoffにすると、目覚まし解除
+            clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
+        }
+    }
+    
+    
+    
+    
     
     @objc func tapSetAlarmButton(_ sender: UIButton) {
         print("tableviewアラームボタンがタップされました: ",sender.tag)
@@ -281,6 +305,50 @@ extension WakeUpCardTableListVC {
         wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag
 //        wakeUpCommunicateChatVC.chatTableViewIndexPath = indexNumber
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+    }
+}
+
+// 目覚まし時計のfunc
+extension WakeUpCardTableListVC {
+    //アラート設定
+    func alarmSet(identifierString: String){
+        // identifierは一位にするため、Auth.auth()+roomIdにする
+        let identifier = Auth.auth().currentUser!.uid + identifierString
+        removeAlarm(identifiers: identifier)
+
+        //通知設定
+        let content = UNMutableNotificationContent()
+        content.title = "通知です"
+        
+        content.categoryIdentifier = identifier
+        var dateComponents = DateComponents()
+        
+        //近藤　カレンダー形式で通知
+        dateComponents.hour = 23
+        dateComponents.minute = 10
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
+    
+    //アラート設定削除
+    func removeAlarm(identifiers:String){
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifiers])
+    }
+   
+    
+    func clearAlarm(identifiers: String){
+        let identifier = Auth.auth().currentUser!.uid + identifiers
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
 }
 
