@@ -260,19 +260,30 @@ extension WakeUpCardTableListVC {
     
     @objc func tapWakeUpSetAlarmSwitch(_ sender: UISwitch) {
         let onCheck: Bool = sender.isOn
+        let messageModel = MessageModel()
+
         
         //chatRoomIDが必要
-        var chatRoomDocumentIdForSwitch = chatRoomDocumentIdArray[sender.tag]
+        let chatRoomDocumentIdForSwitch = chatRoomDocumentIdArray[sender.tag]
         print("chatRoomDocumentIdForSwitch: ", chatRoomDocumentIdForSwitch)
+        
+        let sendDBModel = SendDBModel()
+        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: onCheck)
+        
         
         if onCheck {
             print("スイッチの状態はオンです。値: \(onCheck),sender\(sender.tag)")
             // ここでonにすると、目覚ましセット
             alarmSet(identifierString: chatRoomDocumentIdForSwitch)
+            
+            // アラームをセットしたことを投稿
+            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+            
         } else {
             print("スイッチの状態はオフです。値: \(onCheck),sender\(sender.tag)")
             // ここでoffにすると、目覚まし解除
             clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
+            messageModel.sendMessageToChatAlarmCut(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
         }
     }
     

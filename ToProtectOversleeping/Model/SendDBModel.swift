@@ -164,6 +164,16 @@ class SendDBModel {
         }
     }
     
+    // アラームをセットした時に論理の反転をfireStoreに記録させる。
+    func switchedChatRoomWakeUpAlarm(roomNameId: String, isWakeUpBool: Bool) {
+        let loadDBModel = LoadDBModel()
+        loadDBModel.loadChatRoomDocumentId(roomNameId: roomNameId) { _ in
+            self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).updateData(
+                ["isWakeUpBool": isWakeUpBool as Any]
+            )
+        }
+    }
+    
     
     
     func sendMessage(senderId: String, toID: String, text: String, displayName: String, messageAppVersion: String) {

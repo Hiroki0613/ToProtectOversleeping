@@ -82,6 +82,7 @@ class SetInvitedTeamMateVC: UIViewController {
                 isWakeUpRoop: false,
                 appVersion: version
             )
+            
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

@@ -54,4 +54,40 @@ class MessageModel {
             messageAppVersion: version
         )
     }
+    
+    func sendMessageToChatAlarmCut(documentID toID: String,displayName: String) {
+        let sendDBModel = SendDBModel()
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "\(displayName)のアラームはカットされました！",
+            displayName: displayName,
+            messageAppVersion: version
+        )
+    }
+    
+    func newInvitedToTeam(documentID toID: String,displayName: String) {
+        let sendDBModel = SendDBModel()
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "\(displayName)は招待されました！",
+            displayName: displayName,
+            messageAppVersion: version
+        )
+        
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "さっそく、\(displayName)のアラームがセットされました！",
+            displayName: displayName,
+            messageAppVersion: version
+        )
+    }
 }

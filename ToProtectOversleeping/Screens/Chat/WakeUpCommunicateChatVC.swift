@@ -139,41 +139,46 @@ class WakeUpCommunicateChatVC: MessagesViewController {
             if error != nil {
                 return
             }
+            
+            // アプリバージョンごとにif letでunlapさせて
             if let snapShotDoc = snapshot?.documents {
                 self.messages = []
                 for doc in snapShotDoc {
                     let data = doc.data()
                     print("data: ",data)
-                    if let text = data["text"] as? String,
-                       let senderID = data["senderId"] as? String,
-                       let displayName = data["displayName"] as? String,
-                       let date = data["date"] as? Double,
-                       let messageAppVersion = data["messageAppVersion"] as? String
-                       {
-                        
-                        if messageAppVersion == "1.0.0" {
-                            // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
-                            if senderID == Auth.auth().currentUser?.uid {
-                                
-                                // 自分
-                                self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
-                                let message = Message(
-                                    sender: self.currentUser,
-                                    messageId: senderID,
-                                    sentDate: Date(timeIntervalSince1970: date),
-                                    kind: .text(text))
-                                self.messages.append(message)
-                                
-                            } else {
-                                // 他人
-                                self.otherUser = Sender(senderId: senderID, displayName: displayName)
-                                let message = Message(
-                                    sender: self.otherUser,
-                                    messageId: senderID,
-                                    sentDate: Date(timeIntervalSince1970: date),
-                                    kind: .text(text))
-                                self.messages.append(message)
-                            }
+                    
+                    guard let messageAppVersion = data["messageAppVersion"] as? String else { return }
+                    
+                    if messageAppVersion == "1.0.0" {
+                        if let text = data["text"] as? String,
+                           let senderID = data["senderId"] as? String,
+                           let displayName = data["displayName"] as? String,
+                           let date = data["date"] as? Double,
+                           let messageAppVersion = data["messageAppVersion"] as? String
+                           {
+                            
+                                // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
+                                if senderID == Auth.auth().currentUser?.uid {
+                                    
+                                    // 自分
+                                    self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
+                                    let message = Message(
+                                        sender: self.currentUser,
+                                        messageId: senderID,
+                                        sentDate: Date(timeIntervalSince1970: date),
+                                        kind: .text(text))
+                                    self.messages.append(message)
+                                    
+                                } else {
+                                    // 他人
+                                    self.otherUser = Sender(senderId: senderID, displayName: displayName)
+                                    let message = Message(
+                                        sender: self.otherUser,
+                                        messageId: senderID,
+                                        sentDate: Date(timeIntervalSince1970: date),
+                                        kind: .text(text))
+                                    self.messages.append(message)
+                                }
                         }
                     }
                 }

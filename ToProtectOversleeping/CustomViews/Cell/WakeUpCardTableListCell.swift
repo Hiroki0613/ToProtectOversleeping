@@ -87,6 +87,7 @@ class WakeUpCardTableListCell: UITableViewCell {
     func set(chatRoomNameModel: ChatRoomNameModel) {
         wakeUpChatTeamLabel.text = "チーム名"
         wakeUpChatTeamNameLabel.text = chatRoomNameModel.roomName
+        wakeUpSetAlarmSwitch.isOn = chatRoomNameModel.isWakeUpBool
         wakeUpLabel.text = "起きる時間"
         wakeUpTimeLabel.text = chatRoomNameModel.wakeUpTimeText
         
@@ -101,7 +102,7 @@ class WakeUpCardTableListCell: UITableViewCell {
         wakeUpSetAlarmSwitch.translatesAutoresizingMaskIntoConstraints = false
         wakeUpChatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
         wakeUpChatTeamStack.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpSetAlarmSwitch.isOn = false
+//        wakeUpSetAlarmSwitch.isOn = true
         
         wakeUpLabel.translatesAutoresizingMaskIntoConstraints = false
 //        wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
