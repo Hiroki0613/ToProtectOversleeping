@@ -214,7 +214,10 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
               //削除処理を記述
               print("Deleteがタップされた")
-
+                let deleteDBModel = DeleteDBModel()
+                self.clearAlarm(identifiers: self.chatRoomDocumentIdArray[indexPath.row])
+                deleteDBModel.deleteChatRoomDocumentId(roomNameId: self.chatRoomDocumentIdArray[indexPath.row])
+                tableView.reloadData()
               // 実行結果に関わらず記述
               completionHandler(true)
             }
@@ -360,7 +363,7 @@ extension WakeUpCardTableListVC {
         var dateComponents = DateComponents()
         
         //近藤　カレンダー形式で通知
-        dateComponents.hour = 23
+        dateComponents.hour = 1
         dateComponents.minute = 11
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。

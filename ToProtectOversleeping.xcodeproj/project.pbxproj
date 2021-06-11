@@ -37,6 +37,7 @@
 		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */; };
 		7F7E9B182673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */; };
+		7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
 		7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* RegisterNameView.swift */; };
@@ -107,6 +108,7 @@
 		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeView.swift; sourceTree = "<group>"; };
 		7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeVC.swift; sourceTree = "<group>"; };
+		7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDBModel.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		7F8211E126590FF600AA747E /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				7F5B634126638E3B0057C12B /* MessageModel.swift */,
 				7F5B634326638E780057C12B /* UserDataModel.swift */,
 				7F5B63472663ACA10057C12B /* LoadDBModel.swift */,
+				7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */,
 				7F1228BE26515F320038EC3D /* Channel.swift in Sources */,
 				7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */,
+				7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */,
 				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
 				7F1228C526515F920038EC3D /* ChannelsViewController.swift in Sources */,
 				7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */,
