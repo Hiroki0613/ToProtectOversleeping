@@ -12,6 +12,9 @@ class EditWakeUpAlarmTimeView: UIView {
     var changeWakeUpTimeText = ""
     var changeWakeUpTimeDate = Date()
     
+    // チャットのdocumentID
+    var chatRoomDocumentID = ""
+    
     // 起きる時間
     var changeWakeUpTimeLabel = WUBodyLabel(fontSize: 20)
     let changeDatePicker: UIDatePicker = {
@@ -67,6 +70,10 @@ class EditWakeUpAlarmTimeView: UIView {
         changeWakeUpTimeText = changeWakeUpTimeTextFieldText
         changeWakeUpTimeDate = changeDatePicker.date
         print("wakeUpTimeText: ", changeWakeUpTimeText)
+        changeWakeUpTimeLabel.text = "時間が変更されました"
+        //ここで、時間を変更するfireStoreのコードを入れる
+        let sendDBModel = SendDBModel()
+        sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: changeDatePicker.date, wakeUpTimeText: changeWakeUpTimeText)
     }
     
     

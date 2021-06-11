@@ -151,16 +151,15 @@ class SendDBModel {
             self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).setData(
                 ["roomName": roomNameString as Any,
                  "uid": Auth.auth().currentUser!.uid as Any,
-                 "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
                  "wakeUpTimeText": wakeUpTimeText as Any,
-                 "registerDate": Date().timeIntervalSince1970,
+                 "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
+                 "registerDate": Date().timeIntervalSince1970 as Any,
                 "isWakeUpBool": isWakeUpBool as Any,
                 "isWakeUpRoop": isWakeUpRoop as Any,
                 "appVersion": appVersion as Any
                 ]
             )
-            
-            self.alarmSet(identifierString: roomNameId)
+//            self.alarmSet(identifierString: roomNameId)
         }
     }
     
@@ -172,6 +171,17 @@ class SendDBModel {
                 ["isWakeUpBool": isWakeUpBool as Any]
             )
         }
+    }
+    
+    // アラームの時間を変更した時に、時間をfireStoreに記録させる
+    func changedChatRoomWakeUpAlarmTime(roomNameId: String, wakeUpTimeDate: Date,wakeUpTimeText: String ) {
+        self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).updateData(
+            [
+                "wakeUpTimeText": wakeUpTimeText as Any,
+                "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any
+            ]
+        )
+        
     }
     
     
@@ -212,8 +222,8 @@ class SendDBModel {
         var dateComponents = DateComponents()
         
         //近藤　カレンダー形式で通知
-        dateComponents.hour = 1
-        dateComponents.minute = 15
+        dateComponents.hour = 23
+        dateComponents.minute = 07
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)

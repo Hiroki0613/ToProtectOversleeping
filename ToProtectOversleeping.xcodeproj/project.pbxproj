@@ -35,6 +35,8 @@
 		7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B63472663ACA10057C12B /* LoadDBModel.swift */; };
 		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
 		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
+		7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */; };
+		7F7E9B182673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
 		7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* RegisterNameView.swift */; };
@@ -103,6 +105,8 @@
 		7F5B63472663ACA10057C12B /* LoadDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDBModel.swift; sourceTree = "<group>"; };
 		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
 		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
+		7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeView.swift; sourceTree = "<group>"; };
+		7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeVC.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		7F8211E126590FF600AA747E /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
@@ -285,6 +289,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7F7E9B192673AB8C0081C7F8 /* EditAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */,
+			);
+			path = EditAlarm;
+			sourceTree = "<group>";
+		};
 		7F81A5C72642905C009C839B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE523D12646C33600B7D1B0 /* NotUse */,
+				7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */,
 				7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */,
 				7FE523DA2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift */,
 				7FE523DE2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift */,
@@ -382,6 +395,7 @@
 		7FABB9B026403E79001182DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				7F7E9B192673AB8C0081C7F8 /* EditAlarm */,
 				7FD2F4AA26503957006C684E /* NotUse */,
 				7F5B633C26623BA50057C12B /* NewRegistration */,
 				7FD2F4A026502C66006C684E /* Setting */,
@@ -704,6 +718,7 @@
 				7FE523DB2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift in Sources */,
 				7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */,
 				7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */,
+				7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */,
 				7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */,
 				7F5B634226638E3B0057C12B /* MessageModel.swift in Sources */,
 				7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */,
@@ -712,6 +727,7 @@
 				7F376B1926401A910063F2EC /* ViewController.swift in Sources */,
 				7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,
+				7F7E9B182673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift in Sources */,
 				7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */,
 				7F5B633E26623C740057C12B /* NewRegistrationUserNameVC.swift in Sources */,
 				7FE523DD2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift in Sources */,

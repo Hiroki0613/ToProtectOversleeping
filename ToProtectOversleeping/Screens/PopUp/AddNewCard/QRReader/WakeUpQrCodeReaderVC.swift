@@ -78,7 +78,7 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
                     roomNameId: str,
                     wakeUpTimeDate: wakeUpTimeDate,
                     wakeUpTimeText: wakeUpTimeText,
-                    isWakeUpBool: true,
+                    isWakeUpBool: false,
                     isWakeUpRoop: false,
                     appVersion: version
                 )

@@ -9,7 +9,7 @@ import UIKit
 
 class EditWakeUpAlarmTimeVC: UIViewController {
     
-    var chatRoomDocumentID = ""
+
     var editWakeUpAlarmTimeView = EditWakeUpAlarmTimeView()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class EditWakeUpAlarmTimeVC: UIViewController {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     func configureAddTarget() {
@@ -31,19 +31,17 @@ class EditWakeUpAlarmTimeVC: UIViewController {
     }
     
     @objc func tapToDismiss() {
-        //ここで、時間を変更するfireStoreのコードを入れる
-        let sendDBModel = SendDBModel()
-        sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: editWakeUpAlarmTimeView.changeDatePicker.date, wakeUpTimeText: editWakeUpAlarmTimeView.changeWakeUpTimeText)
         
-        
-//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = setAlarmTimeAndNewRegistrationView.datePicker.date
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
     
     func configureView() {
-        
+        configureBlurView()
+        configureCardView()
+
     }
     
     func configureCardView() {

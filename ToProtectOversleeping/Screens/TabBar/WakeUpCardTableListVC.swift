@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+//import UserNotifications
+//import NotificationCenter
 
 //protocol SendWakeUpReportToChatDelegate {
 //    func sendWakeUpReport()
@@ -178,6 +180,10 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
             print("Editがタップされた")
+            
+            let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
+            editWakeUpAlarmTimeVC.editWakeUpAlarmTimeView.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row]
+            self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
             
             completionHandler(true)
         }
@@ -354,8 +360,8 @@ extension WakeUpCardTableListVC {
         var dateComponents = DateComponents()
         
         //近藤　カレンダー形式で通知
-        dateComponents.hour = 0
-        dateComponents.minute = 38
+        dateComponents.hour = 23
+        dateComponents.minute = 11
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
@@ -405,6 +411,8 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
+        print("willPresent")
+        
         //TODO: ここにチャットの投稿文を書く
         let messageModel = MessageModel()
         let sendDBModel = SendDBModel()
@@ -428,6 +436,19 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        //TODO: ここにチャットの投稿文を書く
+        let messageModel = MessageModel()
+        let sendDBModel = SendDBModel()
+        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+        
+        // アラームの削除
+        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
+        // ここでswitchをoffに変更する。
+        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
+        
+        tableView.reloadData()
+   
         print("バックグラウンド処理")
         completionHandler()
     }
