@@ -15,15 +15,13 @@ class SetInvitedTeamMateView: UIView {
     //招待IDを入力
     var invitedIDLabel = WUBodyLabel(fontSize: 20)
     var invitedIDTextField = WUTextFields()
-    var invitedIDStackView = UIStackView(frame: .zero)
+    //    var invitedIDStackView = UIStackView(frame: .zero)
     
     // チャットのチーム名、ワンタイムトークンにて招待制
     var registeredByQRCodeButton = WUButton(backgroundColor: .systemOrange, title: "QR読み取り")
-    
-    //TODO: 暫定で招待ボタンに変更
-//    var registeredByQRCodeGoBackButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
-        var registeredByQRCodeGoBackButton = WUButton(backgroundColor: .systemOrange, title: "招待")
+    var registeredByQRCodeInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待")
     var regsteredByQRCodeStackView = UIStackView(frame: .zero)
+    var registeredByQRCodeGoBackButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +42,7 @@ class SetInvitedTeamMateView: UIView {
         invitedIDTextField.text = ""
     }
     
+    
     private func configureKeyBoardPlace() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil)
@@ -52,8 +51,7 @@ class SetInvitedTeamMateView: UIView {
     // キーボードが現れたときに実行
     @objc func keyboardWillShow(notification: Notification?) {
         print("キーボードが表示された")
-        //
-        //           // キーボードの大きさを取得
+        // キーボードの大きさを取得
         let keyboardFrame : CGRect = (notification?.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         // キーボードのすぐ上にテキストフィールドが来るように調整する
         self.scrollByKeyboard = keyboardFrame.size.height - (self.frame.height - self.invitedIDTextField.frame.maxY)
@@ -84,16 +82,14 @@ class SetInvitedTeamMateView: UIView {
                        })
     }
     
-    
-    
     private func configure() {
         invitedIDLabel.translatesAutoresizingMaskIntoConstraints = false
         invitedIDTextField.translatesAutoresizingMaskIntoConstraints = false
-        invitedIDStackView.translatesAutoresizingMaskIntoConstraints = false
         
         registeredByQRCodeButton.translatesAutoresizingMaskIntoConstraints = false
-        registeredByQRCodeGoBackButton.translatesAutoresizingMaskIntoConstraints = false
+        registeredByQRCodeInvitedButton.translatesAutoresizingMaskIntoConstraints = false
         regsteredByQRCodeStackView.translatesAutoresizingMaskIntoConstraints = false
+        registeredByQRCodeGoBackButton.translatesAutoresizingMaskIntoConstraints = false
         
         invitedIDTextField.delegate = self
         
@@ -103,35 +99,41 @@ class SetInvitedTeamMateView: UIView {
         let labelButtonHightPadding: CGFloat = 60
         
         // チーム名の入力をStack
-        
-        invitedIDStackView.addArrangedSubview(invitedIDLabel)
-        invitedIDStackView.addArrangedSubview(invitedIDTextField)
-        invitedIDStackView.axis = .vertical
-        invitedIDStackView.alignment = .fill
-        invitedIDStackView.spacing = 10
-        addSubview(invitedIDStackView)
+        addSubview(invitedIDLabel)
+        addSubview(invitedIDTextField)
         
         // チャットチーム名をStack
         regsteredByQRCodeStackView.addArrangedSubview(registeredByQRCodeButton)
-        regsteredByQRCodeStackView.addArrangedSubview(registeredByQRCodeGoBackButton)
+        regsteredByQRCodeStackView.addArrangedSubview(registeredByQRCodeInvitedButton)
         regsteredByQRCodeStackView.axis = .horizontal
         regsteredByQRCodeStackView.alignment = .fill
         regsteredByQRCodeStackView.distribution = .fillEqually
         regsteredByQRCodeStackView.spacing = 20
         addSubview(regsteredByQRCodeStackView)
         
+        addSubview(registeredByQRCodeGoBackButton)
         
         NSLayoutConstraint.activate([
             //起きる時間
-            invitedIDStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
-            invitedIDStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            invitedIDStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            invitedIDStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            invitedIDLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            invitedIDLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            invitedIDLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            invitedIDLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            invitedIDTextField.topAnchor.constraint(equalTo: invitedIDLabel.bottomAnchor, constant: spacePadding),
+            invitedIDTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            invitedIDTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            invitedIDTextField.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
             // チャットチーム名
-            regsteredByQRCodeStackView.topAnchor.constraint(equalTo: invitedIDStackView.bottomAnchor, constant:  spacePadding),
+            regsteredByQRCodeStackView.topAnchor.constraint(equalTo: invitedIDTextField.bottomAnchor, constant:  spacePadding),
             regsteredByQRCodeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             regsteredByQRCodeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            regsteredByQRCodeStackView.heightAnchor.constraint(equalToConstant: 65)
+            regsteredByQRCodeStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            registeredByQRCodeGoBackButton.topAnchor.constraint(equalTo: regsteredByQRCodeStackView.bottomAnchor, constant: spacePadding),
+            registeredByQRCodeGoBackButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            registeredByQRCodeGoBackButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            registeredByQRCodeGoBackButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
 }

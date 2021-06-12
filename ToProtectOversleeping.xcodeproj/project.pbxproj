@@ -40,7 +40,7 @@
 		7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
-		7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* RegisterNameView.swift */; };
+		7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* ChangeNameView.swift */; };
 		7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E32659105700AA747E /* RegisterNameVC.swift */; };
 		7F8211EB26591F3000AA747E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F8211EA26591F3000AA747E /* Settings.bundle */; };
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
@@ -61,6 +61,7 @@
 		7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */; };
 		7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */; };
 		7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */; };
+		7FDC68A82674F3E700C3267B /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC68A72674F3E700C3267B /* RegisterNameView.swift */; };
 		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
 		7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
@@ -111,7 +112,7 @@
 		7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDBModel.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
-		7F8211E126590FF600AA747E /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
+		7F8211E126590FF600AA747E /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		7F8211E32659105700AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
 		7F8211EA26591F3000AA747E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ToProtectOversleeping/Settings.bundle; sourceTree = "<group>"; };
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeMakerVC.swift; sourceTree = "<group>"; };
 		7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderFunction.swift; sourceTree = "<group>"; };
 		7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderVC.swift; sourceTree = "<group>"; };
+		7FDC68A72674F3E700C3267B /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
 		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
@@ -342,7 +344,8 @@
 				7FE523DE2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift */,
 				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
 				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
-				7F8211E126590FF600AA747E /* RegisterNameView.swift */,
+				7F8211E126590FF600AA747E /* ChangeNameView.swift */,
+				7FDC68A72674F3E700C3267B /* RegisterNameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -706,13 +709,14 @@
 				7F1228C026515F530038EC3D /* DatabaseRepresentation.swift in Sources */,
 				7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */,
 				7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */,
+				7FDC68A82674F3E700C3267B /* RegisterNameView.swift in Sources */,
 				7F5B634426638E780057C12B /* UserDataModel.swift in Sources */,
 				7F1228B926515EE60038EC3D /* UIImage+Additions.swift in Sources */,
 				7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */,
 				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
 				7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */,
 				7F1228BE26515F320038EC3D /* Channel.swift in Sources */,
-				7F8211E226590FF600AA747E /* RegisterNameView.swift in Sources */,
+				7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */,
 				7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */,
 				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
 				7F1228C526515F920038EC3D /* ChannelsViewController.swift in Sources */,

@@ -14,7 +14,6 @@ class NewRegistrationUserNameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureDecoration()
         configureAddTarget()
     }
     
@@ -27,7 +26,6 @@ class NewRegistrationUserNameVC: UIViewController {
     
     private func configureAddTarget() {
         registerNewNameView.registerNameButton.addTarget(self, action: #selector(registerName), for: .touchUpInside)
-//        registerNewNameView.registerNameGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
     }
     
     @objc func registerName() {
@@ -35,7 +33,6 @@ class NewRegistrationUserNameVC: UIViewController {
         
         // ここでGPS画面に画面遷移する。
         let newRegistrationGpsVC = NewRegistrationGpsVC()
-//        guard let newNameTextFieldText = registerNewNameView.newNameTextField.text else { return }
         newRegistrationGpsVC.newUserName = registerNewNameView.newNameTextField.text ?? ""
         
         if newRegistrationGpsVC.newUserName == "" {
@@ -47,11 +44,6 @@ class NewRegistrationUserNameVC: UIViewController {
             navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
         }
     }
-    
-//    @objc func goBack() {
-//        print("戻るボタンが押されました")
-//        self.navigationController?.popViewController(animated: true)
-//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         registerNewNameView.newNameTextField.resignFirstResponder()
@@ -70,19 +62,15 @@ class NewRegistrationUserNameVC: UIViewController {
     }
     
     private func configureCardView() {
-        registerNewNameView.registerNameGoBackButton.isHidden = true
-        registerNewNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2, width: view.frame.size.width - 20, height: 200)
-        view.addSubview(registerNewNameView)
-    }
-    
-    private func configureDecoration() {
-        registerNewNameView.layer.shadowColor = UIColor.systemGray.cgColor
+        registerNewNameView.translatesAutoresizingMaskIntoConstraints = false
         registerNewNameView.layer.cornerRadius = 16
-        registerNewNameView.layer.shadowOpacity = 0.1
-        registerNewNameView.layer.shadowRadius = 10
-        registerNewNameView.layer.shadowOffset = .init(width: 0.0, height: 10.0)
-        registerNewNameView.layer.shouldRasterize = true
+        view.addSubview(registerNewNameView)
+        
+        NSLayoutConstraint.activate([
+            registerNewNameView.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
+            registerNewNameView.heightAnchor.constraint(equalToConstant: 300),
+            registerNewNameView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            registerNewNameView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
-
-
 }

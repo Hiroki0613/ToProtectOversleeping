@@ -26,7 +26,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     // 地図
     var mapView = MKMapView()
     // 測定結果を表示するラベル
-    var swipedActionLabel = WUBodyLabel(fontSize: 20)
+    var swipedActionLabel = WUBodyLabel(fontSize: 18)
     //　スワイプボタン
     var swipeButton: SwipeButton!
     
@@ -66,11 +66,14 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         //TODO: 暫定で2時間以上前に設定しています
         if differenceFromCurrenTime > 7200 {
             // ２時間以上前の時
-            swipedActionLabel.text = "２時間以上前です"
+//            swipedActionLabel.text = "２時間以上前です"
+            swipedActionLabel.text = "現在はアラームを解除できません。\n\n設定した2時間以内になりましたら、\n解除ボタンが表示されます。"
+//            swipedActionLabel.text = "現在はアラームを解除できません"
             swipeButton.isHidden = true
         } else {
             // ２時間以内の時
-            swipedActionLabel.text = "2時間以内です"
+//            swipedActionLabel.text = "2時間以内です"
+            swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
             swipeButton.isHidden = false
         }
         
@@ -172,10 +175,13 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         swipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
-        swipedActionLabel.text = "100m離れたところでスワイプ"
+        swipedActionLabel.numberOfLines = 0
+//        swipedActionLabel.text = "100m離れたところでスワイプ"
+     
         swipedActionLabel.textAlignment = .center
         view.addSubview(swipedActionLabel)
-        let padding:CGFloat = 40.0;
+
+        let padding:CGFloat = 20.0;
         setupSwipeButton()
         swipeButton.isHidden = true
         
@@ -185,10 +191,10 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
             
-            swipedActionLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 40),
+            swipedActionLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: padding),
             swipedActionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             swipedActionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            swipedActionLabel.heightAnchor.constraint(equalToConstant: 40)
+            swipedActionLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     

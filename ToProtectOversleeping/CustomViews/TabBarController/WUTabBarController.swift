@@ -12,8 +12,7 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
-        viewControllers = [
-            createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+        viewControllers = [createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
     
     
@@ -29,6 +28,25 @@ class WUTabBarController: UITabBarController {
         wakeUpSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 2)
         return UINavigationController(rootViewController: wakeUpSettingVC)
     }
+    
+    func createSetAlarmTimeAndNewRegistrationVC() -> UINavigationController {
+        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
+        setAlarmTimeAndNewRegistrationVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 3)
+        return UINavigationController(rootViewController: setAlarmTimeAndNewRegistrationVC)
+    }
+    
+    func createSetNewTeamMateNameVC() -> UINavigationController {
+        let setNewTeamMateNameVC = SetNewTeamMateNameVC()
+        setNewTeamMateNameVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 3)
+        return UINavigationController(rootViewController: setNewTeamMateNameVC)
+    }
+    
+    func createSetInvitedTeamMateVC() -> UINavigationController {
+        let setInvitedTeamMateVC = SetInvitedTeamMateVC()
+        setInvitedTeamMateVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 3)
+        return UINavigationController(rootViewController: setInvitedTeamMateVC)
+    }
+    
     
     func createQRCodeReaderVC() -> UINavigationController {
         let qRCodeReaderVC = WakeUpQrCodeReaderVC()

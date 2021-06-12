@@ -25,7 +25,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         return dp
     }()
     var wakeUpTimeTextField = WUTextFields()
-    var wakeUpTimeStackView = UIStackView(frame: .zero)
+    var wakeUpTimeView = UIView(frame: .zero)
     
     // チャットのチーム名、ワンタイムトークンにて招待制
     var chatTeamLabel = WUBodyLabel(fontSize: 20)
@@ -33,9 +33,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     var chatTeamNameTextField = WUTextFields()
     var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "新規登録")
     var chatTeamNewInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待される")
-    
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
-    var chatTeamNameStackView = UIStackView(frame: .zero)
     
     // 戻るボタン
     let wakeUpGoBuckButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
@@ -63,8 +61,6 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     private func settingInformation() {
         wakeUpTimeLabel.text = "起きる時間"
         chatTeamLabel.text = "チーム"
-        chatTeamNameLabel.text = "早起き"
-        
         wakeUpTimeTextField.inputView = datePicker
         print("datePicker: ", datePicker)
         wakeUpTimeTextField.delegate = self
@@ -92,66 +88,71 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         
         wakeUpTimeTextField.inputAccessoryView = toolbar
         
+        wakeUpTimeView.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         wakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-        wakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
         
         chatTeamLabel.translatesAutoresizingMaskIntoConstraints = false
-        chatTeamNameLabel.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameTextField.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNewRegisterButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNewInvitedButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamNameAndRegstrationStackView.translatesAutoresizingMaskIntoConstraints = false
-        chatTeamNameStackView.translatesAutoresizingMaskIntoConstraints = false
         
         wakeUpGoBuckButton.translatesAutoresizingMaskIntoConstraints = false
         
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
         let padding: CGFloat = 20.0
-        let spacePadding: CGFloat = 30.0
-        let labelButtonHightPadding: CGFloat = 60
+        let spacePadding: CGFloat = 10.0
+        let labelSpacePadding: CGFloat = 30
+        let labelButtonHightPadding: CGFloat = 50
         
         // 起きる時間をStack
-        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeLabel)
-        wakeUpTimeStackView.addArrangedSubview(wakeUpTimeTextField)
-        wakeUpTimeStackView.axis = .vertical
-        wakeUpTimeStackView.alignment = .fill
-        wakeUpTimeStackView.spacing = 10
-        addSubview(wakeUpTimeStackView)
+        addSubview(wakeUpTimeView)
+        wakeUpTimeView.addSubview(wakeUpTimeLabel)
+        wakeUpTimeView.addSubview(wakeUpTimeTextField)
         
         // チャットチーム名をStack
+        wakeUpTimeView.addSubview(chatTeamLabel)
         chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewRegisterButton)
         chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewInvitedButton)
         chatTeamNameAndRegstrationStackView.axis = .horizontal
-        chatTeamNameAndRegstrationStackView.alignment = .fill
         chatTeamNameAndRegstrationStackView.distribution = .fillEqually
         chatTeamNameAndRegstrationStackView.spacing = 20
-        chatTeamNameStackView.addArrangedSubview(chatTeamLabel)
-        chatTeamNameStackView.addArrangedSubview(chatTeamNameAndRegstrationStackView)
-        chatTeamNameStackView.axis = .vertical
-        chatTeamNameStackView.alignment = .fill
-        chatTeamNameStackView.spacing = 10
-        addSubview(chatTeamNameStackView)
-        
-        addSubview(wakeUpGoBuckButton)
+        wakeUpTimeView.addSubview(chatTeamNameAndRegstrationStackView)
+        wakeUpTimeView.addSubview(wakeUpGoBuckButton)
         
         NSLayoutConstraint.activate([
             //起きる時間
-            wakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
-            wakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            wakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            wakeUpTimeStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            wakeUpTimeView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            wakeUpTimeView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            wakeUpTimeView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            wakeUpTimeView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            
+            wakeUpTimeLabel.topAnchor.constraint(equalTo: wakeUpTimeView.topAnchor, constant: padding),
+            wakeUpTimeLabel.leadingAnchor.constraint(equalTo: wakeUpTimeView.leadingAnchor, constant: padding),
+            wakeUpTimeLabel.trailingAnchor.constraint(equalTo: wakeUpTimeView.trailingAnchor, constant: -padding),
+            wakeUpTimeLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            wakeUpTimeTextField.topAnchor.constraint(equalTo: wakeUpTimeLabel.bottomAnchor, constant: spacePadding),
+            wakeUpTimeTextField.leadingAnchor.constraint(equalTo: wakeUpTimeView.leadingAnchor, constant: padding),
+            wakeUpTimeTextField.trailingAnchor.constraint(equalTo: wakeUpTimeView.trailingAnchor, constant: -padding),
+            wakeUpTimeTextField.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
             // チャットチーム名
-            chatTeamNameStackView.topAnchor.constraint(equalTo: wakeUpTimeStackView.bottomAnchor, constant:  spacePadding),
-            chatTeamNameStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            chatTeamNameStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            chatTeamNameStackView.heightAnchor.constraint(equalToConstant: 65),
+            chatTeamLabel.topAnchor.constraint(equalTo: wakeUpTimeTextField.bottomAnchor, constant: spacePadding),
+            chatTeamLabel.leadingAnchor.constraint(equalTo: wakeUpTimeView.leadingAnchor, constant: padding),
+            chatTeamLabel.trailingAnchor.constraint(equalTo: wakeUpTimeView.trailingAnchor, constant: -padding),
+            chatTeamLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            chatTeamNameAndRegstrationStackView.topAnchor.constraint(equalTo: chatTeamLabel.bottomAnchor, constant: spacePadding),
+            chatTeamNameAndRegstrationStackView.leadingAnchor.constraint(equalTo: wakeUpTimeView.leadingAnchor, constant: padding),
+            chatTeamNameAndRegstrationStackView.trailingAnchor.constraint(equalTo: wakeUpTimeView.trailingAnchor, constant: -padding),
+            chatTeamNameAndRegstrationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             
             // 戻るボタン
-            wakeUpGoBuckButton.topAnchor.constraint(equalTo: chatTeamNameStackView.bottomAnchor, constant: spacePadding),
-            wakeUpGoBuckButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            wakeUpGoBuckButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            wakeUpGoBuckButton.heightAnchor.constraint(equalToConstant: 40)
+            wakeUpGoBuckButton.topAnchor.constraint(equalTo: chatTeamNameAndRegstrationStackView.bottomAnchor, constant: labelSpacePadding),
+            wakeUpGoBuckButton.leadingAnchor.constraint(equalTo: wakeUpTimeView.leadingAnchor, constant: padding),
+            wakeUpGoBuckButton.trailingAnchor.constraint(equalTo: wakeUpTimeView.trailingAnchor, constant: -padding),
+            wakeUpGoBuckButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
     
@@ -164,20 +165,3 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     }
     
 }
-
-
-//extension SetAlarmTimeAndNewRegistrationView: UITextFieldDelegate {
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        // キーボード入力や、カット/ペースによる変更を防ぐ
-//             return false
-//    }
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//    }
-//
-
-//    override func resignFirstResponder() -> Bool {
-//        return true
-//    }
-//}

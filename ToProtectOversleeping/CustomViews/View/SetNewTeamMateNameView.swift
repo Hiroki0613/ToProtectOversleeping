@@ -15,8 +15,6 @@ class SetNewTeamMateNameView: UIView {
     //新しいチーム名を入力
     var newTeamMateLabel = WUBodyLabel(fontSize: 20)
     var newTeamMateTextField = WUTextFields()
-//    var wakeUpTimeTextFieldAndSwitchStackView = UIStackView(frame: .zero)
-    var newTeamMateStackView = UIStackView(frame: .zero)
     
     // チャットのチーム名、ワンタイムトークンにて招待制
     var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "登録")
@@ -32,18 +30,16 @@ class SetNewTeamMateNameView: UIView {
     
     deinit {
         NotificationCenter.default.removeObserver(self,
-                        name: UIResponder.keyboardWillShowNotification,
-                       object: self.window)
-               NotificationCenter.default.removeObserver(self,
-                        name: UIResponder.keyboardDidHideNotification,
-                        object: self.window)
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: self.window)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardDidHideNotification,
+                                                  object: self.window)
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
@@ -59,8 +55,8 @@ class SetNewTeamMateNameView: UIView {
     // キーボードが現れたときに実行
     @objc func keyboardWillShow(notification: Notification?) {
         print("キーボードが表示された")
-        //
-        //           // キーボードの大きさを取得
+        
+        // キーボードの大きさを取得
         let keyboardFrame : CGRect = (notification?.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         // キーボードのすぐ上にテキストフィールドが来るように調整する
         self.scrollByKeyboard = keyboardFrame.size.height - (self.frame.height - self.newTeamMateTextField.frame.maxY)
@@ -90,13 +86,12 @@ class SetNewTeamMateNameView: UIView {
                         self.scrollByKeyboard = 0.0
                        })
     }
-
+    
     
     
     private func configure() {
         newTeamMateLabel.translatesAutoresizingMaskIntoConstraints = false
         newTeamMateTextField.translatesAutoresizingMaskIntoConstraints = false
-        newTeamMateStackView.translatesAutoresizingMaskIntoConstraints = false
         
         chatTeamNewRegisterButton.translatesAutoresizingMaskIntoConstraints = false
         chatTeamGoBackButton.translatesAutoresizingMaskIntoConstraints = false
@@ -110,13 +105,8 @@ class SetNewTeamMateNameView: UIView {
         let labelButtonHightPadding: CGFloat = 60
         
         // チーム名の入力をStack
-        
-        newTeamMateStackView.addArrangedSubview(newTeamMateLabel)
-        newTeamMateStackView.addArrangedSubview(newTeamMateTextField)
-        newTeamMateStackView.axis = .vertical
-        newTeamMateStackView.alignment = .fill
-        newTeamMateStackView.spacing = 10
-        addSubview(newTeamMateStackView)
+        addSubview(newTeamMateLabel)
+        addSubview(newTeamMateTextField)
         
         // チャットチーム名をStack
         chatTeamNameAndRegstrationStackView.addArrangedSubview(chatTeamNewRegisterButton)
@@ -130,15 +120,20 @@ class SetNewTeamMateNameView: UIView {
         
         NSLayoutConstraint.activate([
             //起きる時間
-            newTeamMateStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
-            newTeamMateStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            newTeamMateStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            newTeamMateStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            newTeamMateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            newTeamMateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            newTeamMateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            newTeamMateLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            newTeamMateTextField.topAnchor.constraint(equalTo: newTeamMateLabel.bottomAnchor, constant: spacePadding),
+            newTeamMateTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            newTeamMateTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            newTeamMateTextField.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
             // チャットチーム名
-            chatTeamNameAndRegstrationStackView.topAnchor.constraint(equalTo: newTeamMateStackView.bottomAnchor, constant:  spacePadding),
+            chatTeamNameAndRegstrationStackView.topAnchor.constraint(equalTo: newTeamMateTextField.bottomAnchor, constant:  spacePadding),
             chatTeamNameAndRegstrationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             chatTeamNameAndRegstrationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            chatTeamNameAndRegstrationStackView.heightAnchor.constraint(equalToConstant: 65)
+            chatTeamNameAndRegstrationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
 }

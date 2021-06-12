@@ -1,20 +1,27 @@
 //
-//  RegisterNameView.swift
+//  ChangeNameView.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/06/12.
+//  Created by 近藤宏輝 on 2021/05/22.
 //
 
 import UIKit
 
-class RegisterNameView: UIView {
+protocol RegiseterUserNameDelegate {
+    func registerUserName()
+}
+
+class ChangeNameView: UIView {
     
     // キーボード出現によるスクロール量
     var scrollByKeyboard : CGFloat = 0
     
     var newNameLabel = WUBodyLabel(fontSize: 20)
     var newNameTextField = WUTextFields()
+    
     var registerNameButton = WUButton(backgroundColor: .systemOrange, title: "登録")
+    var registerNameGoBackButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,7 +79,9 @@ class RegisterNameView: UIView {
     private func configure() {
         newNameLabel.translatesAutoresizingMaskIntoConstraints = false
         newNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        
         registerNameButton.translatesAutoresizingMaskIntoConstraints = false
+        registerNameGoBackButton.translatesAutoresizingMaskIntoConstraints = false
         
         newNameTextField.delegate = self
         
@@ -86,6 +95,7 @@ class RegisterNameView: UIView {
         addSubview(newNameTextField)
         
         addSubview(registerNameButton)
+        addSubview(registerNameGoBackButton)
         
         NSLayoutConstraint.activate([
             newNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
@@ -100,12 +110,17 @@ class RegisterNameView: UIView {
             registerNameButton.topAnchor.constraint(equalTo: newNameTextField.bottomAnchor, constant: spacePadding),
             registerNameButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             registerNameButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            registerNameButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+            registerNameButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            
+            registerNameGoBackButton.topAnchor.constraint(equalTo: registerNameButton.bottomAnchor, constant: spacePadding),
+            registerNameGoBackButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            registerNameGoBackButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            registerNameGoBackButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
 }
 
-extension RegisterNameView: UITextFieldDelegate {
+extension ChangeNameView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let newNameTextFieldText = textField.text {
@@ -115,3 +130,5 @@ extension RegisterNameView: UITextFieldDelegate {
         return true
     }
 }
+
+

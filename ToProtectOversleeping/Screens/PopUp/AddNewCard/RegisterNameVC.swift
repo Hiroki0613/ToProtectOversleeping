@@ -10,7 +10,7 @@ import Firebase
 
 class RegisterNameVC: UIViewController {
     
-    var registerNameView = RegisterNameView()
+    var registerNameView = ChangeNameView()
     
     // ユーザ名を一時的に保管
     var userName = ""
@@ -18,7 +18,6 @@ class RegisterNameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureDecoration()
         configureAddTarget()
     }
     
@@ -36,10 +35,8 @@ class RegisterNameVC: UIViewController {
     
     @objc func registerName() {
         let sendDBModel = SendDBModel()
-        
         // アプリのバージョン
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-        
         userName = registerNameView.newNameTextField.text ?? ""
         
         if userName == "" {
@@ -47,8 +44,6 @@ class RegisterNameVC: UIViewController {
         } else {
             print("ユーザー登録しました")
             registerNameView.newNameLabel.text = "ユーザー登録しました"
-            
-            
             UserDefaults.standard.set(userName, forKey: "userName")
             
             sendDBModel.createUser(name: userName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
@@ -58,9 +53,7 @@ class RegisterNameVC: UIViewController {
     }
     
     @objc func goBack() {
-        print("戻るボタンが押されました")
-        //        dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -80,16 +73,15 @@ class RegisterNameVC: UIViewController {
     }
     
     func configuteCardView() {
-        registerNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
-        view.addSubview(registerNameView)
-    }
-    
-    private func configureDecoration() {
-        registerNameView.layer.shadowColor = UIColor.systemGray.cgColor
+        registerNameView.translatesAutoresizingMaskIntoConstraints = false
         registerNameView.layer.cornerRadius = 16
-        registerNameView.layer.shadowOpacity = 0.1
-        registerNameView.layer.shadowRadius = 10
-        registerNameView.layer.shadowOffset = .init(width: 0.0, height: 10.0)
-        registerNameView.layer.shouldRasterize = true
+        view.addSubview(registerNameView)
+        
+        NSLayoutConstraint.activate([
+            registerNameView.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
+            registerNameView.heightAnchor.constraint(equalToConstant: 400),
+            registerNameView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            registerNameView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }

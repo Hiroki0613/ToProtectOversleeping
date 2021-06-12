@@ -44,18 +44,11 @@ class WakeUpSettingVC: UIViewController {
         } else {
             wakeUpSettingView.getGPSAddressLabel.text = "住所\n\(checkAddress)"
         }
-
-        
-        
-
-//        setNotificationLabel.text = "通知されます"
     }
     
     func configureAddTarget() {
         wakeUpSettingView.setUserNameButton.addTarget(self, action: #selector(tapSetUserNameButton), for: .touchUpInside)
         wakeUpSettingView.getGPSAddressButton.addTarget(self, action: #selector(tapGetGPSAddressButton), for: .touchUpInside)
-//        wakeUpSettingView.setNotificationSwitch.addTarget(self, action: #selector(tapSetNotificationSwitch), for: .touchUpInside)
-        
         wakeUpSettingView.licenseButton.addTarget(self, action: #selector(tapLicenseButton), for: .touchUpInside)
         wakeUpSettingView.opinionsAndRequestsButton.addTarget(self, action: #selector(tapOpinionsAndRequestsButton), for: .touchUpInside)
         wakeUpSettingView.evaluationButton.addTarget(self, action: #selector(tapEvaluationButton), for: .touchUpInside)
@@ -64,9 +57,6 @@ class WakeUpSettingVC: UIViewController {
     @objc func tapSetUserNameButton() {
         print("setUserNameButtonが押されました")
         let registerNameVC = RegisterNameVC()
-//        registerNameVC.modalPresentationStyle = .overFullScreen
-//        registerNameVC.modalTransitionStyle = .crossDissolve
-//        self.present(registerNameVC, animated: true, completion: nil)
         navigationController?.pushViewController(registerNameVC, animated: true)
     }
     
@@ -74,11 +64,6 @@ class WakeUpSettingVC: UIViewController {
         print("getGPSAddressButtonが押されました")
         let getGpsAddressVC = GetGpsAddressVC()
         navigationController?.pushViewController(getGpsAddressVC, animated: true)
-    }
-    
-    //TODO: このままではUISwitchの機能が生かせない。
-    @objc func tapSetNotificationSwitch() {
-        print("setNotificationSwitchが押されました")
     }
     
     // 設定画面へ遷移
@@ -96,7 +81,6 @@ class WakeUpSettingVC: UIViewController {
             UIApplication.shared.openURL(settingsUrl)
           }
         }
-
     }
     
     @objc func tapOpinionsAndRequestsButton() {
@@ -106,9 +90,6 @@ class WakeUpSettingVC: UIViewController {
     @objc func tapEvaluationButton() {
         print("evaluationButtonが押されました")
     }
-    
-    
-    
     
     
     private func configureView() {
@@ -129,9 +110,7 @@ class WakeUpSettingVC: UIViewController {
             wakeUpSettingView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             wakeUpSettingView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             wakeUpSettingView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            wakeUpSettingView.heightAnchor.constraint(equalToConstant: 800)
+            wakeUpSettingView.heightAnchor.constraint(equalToConstant: 500)
         ])
     }
-
-
 }

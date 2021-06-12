@@ -15,7 +15,6 @@ class EditWakeUpAlarmTimeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureDecoration()
         configureAddTarget()
     }
     
@@ -45,8 +44,16 @@ class EditWakeUpAlarmTimeVC: UIViewController {
     }
     
     func configureCardView() {
-        editWakeUpAlarmTimeView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 300)
+        editWakeUpAlarmTimeView.translatesAutoresizingMaskIntoConstraints = false
+        editWakeUpAlarmTimeView.layer.cornerRadius = 16
         view.addSubview(editWakeUpAlarmTimeView)
+        
+        NSLayoutConstraint.activate([
+            editWakeUpAlarmTimeView.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
+            editWakeUpAlarmTimeView.heightAnchor.constraint(equalToConstant: 300),
+            editWakeUpAlarmTimeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            editWakeUpAlarmTimeView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        ])
     }
     
     func configureBlurView() {
@@ -54,14 +61,5 @@ class EditWakeUpAlarmTimeVC: UIViewController {
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.frame = self.view.frame
         view.addSubview(visualEffectView)
-    }
-    
-    func configureDecoration() {
-        editWakeUpAlarmTimeView.layer.shadowColor = UIColor.systemGray.cgColor
-        editWakeUpAlarmTimeView.layer.cornerRadius = 16
-        editWakeUpAlarmTimeView.layer.shadowOpacity = 0.1
-        editWakeUpAlarmTimeView.layer.shadowRadius = 10
-        editWakeUpAlarmTimeView.layer.shadowOffset = .init(width: 0, height: 10)
-        editWakeUpAlarmTimeView.layer.shouldRasterize = true
     }
 }

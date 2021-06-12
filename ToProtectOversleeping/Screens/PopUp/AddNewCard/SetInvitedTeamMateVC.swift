@@ -22,7 +22,6 @@ class SetInvitedTeamMateVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureDecoration()
         configureAddTarget()
     }
     
@@ -35,6 +34,7 @@ class SetInvitedTeamMateVC: UIViewController {
     
     func configureAddTarget() {
         setInvitedTeamMateNameView.registeredByQRCodeButton.addTarget(self, action: #selector(registeredByQRCode), for: .touchUpInside)
+        setInvitedTeamMateNameView.registeredByQRCodeInvitedButton.addTarget(self, action: #selector(setInvitedCode), for: .touchUpInside)
         setInvitedTeamMateNameView.registeredByQRCodeGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
     }
     
@@ -52,11 +52,8 @@ class SetInvitedTeamMateVC: UIViewController {
 
     }
     
-    // 戻る
-    //TODO: 暫定的に招待IDの承認ボタンに変更
-    @objc func goBack() {
-//        print("戻るボタン2")
-//        dismiss(animated: true, completion: nil)
+    // IDを打ち込んで招待
+    @objc func setInvitedCode() {
         print("招待して新規登録しました")
         let sendDBModel = SendDBModel()
         sendDBModel.doneInvitedChatRoom = self
@@ -69,11 +66,9 @@ class SetInvitedTeamMateVC: UIViewController {
         
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-       
         
-        if newInvitedTeamMateId == "" {
-            return
-        } else {
+        if (newInvitedTeamMateId.hasPrefix("WU")) {
+            print("WUから始まる文字")
             sendDBModel.invitedChatRoom(
                 roomNameId: newInvitedTeamMateId,
                 wakeUpTimeDate: wakeUpTimeDate,
@@ -82,15 +77,19 @@ class SetInvitedTeamMateVC: UIViewController {
                 isWakeUpRoop: false,
                 appVersion: version
             )
-            
+        } else {
+            setInvitedTeamMateNameView.invitedIDLabel.text = "招待IDが違います"
+            return
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-//            dismiss(animated: true, completion: nil)
-
         }
         
+    }
+    
+    @objc func goBack() {
+        dismiss(animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -104,8 +103,16 @@ class SetInvitedTeamMateVC: UIViewController {
     }
     
     func configureCardView(){
-        setInvitedTeamMateNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
+        setInvitedTeamMateNameView.translatesAutoresizingMaskIntoConstraints = false
+        setInvitedTeamMateNameView.layer.cornerRadius = 16
         view.addSubview(setInvitedTeamMateNameView)
+        
+        NSLayoutConstraint.activate([
+            setInvitedTeamMateNameView.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
+            setInvitedTeamMateNameView.heightAnchor.constraint(equalToConstant: 400),
+            setInvitedTeamMateNameView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            setInvitedTeamMateNameView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     func configureBlurView() {
@@ -113,16 +120,6 @@ class SetInvitedTeamMateVC: UIViewController {
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.frame = self.view.frame
         view.addSubview(visualEffectView)
-    }
-    
-    // セルを装飾
-    private func configureDecoration() {
-        setInvitedTeamMateNameView.layer.shadowColor = UIColor.systemGray.cgColor
-        setInvitedTeamMateNameView.layer.cornerRadius = 16
-        setInvitedTeamMateNameView.layer.shadowOpacity = 0.1
-        setInvitedTeamMateNameView.layer.shadowRadius = 10
-        setInvitedTeamMateNameView.layer.shadowOffset = .init(width: 0, height: 10)
-        setInvitedTeamMateNameView.layer.shouldRasterize = true
     }
 }
 

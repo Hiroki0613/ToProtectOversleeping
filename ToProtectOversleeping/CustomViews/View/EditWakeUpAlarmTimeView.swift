@@ -27,7 +27,6 @@ class EditWakeUpAlarmTimeView: UIView {
         return dp
     }()
     var changeWakeUpTimeTextField = WUTextFields()
-    var changeWakeUpTimeStackView = UIStackView(frame: .zero)
     
     
     // 戻るボタン
@@ -74,6 +73,7 @@ class EditWakeUpAlarmTimeView: UIView {
         //ここで、時間を変更するfireStoreのコードを入れる
         let sendDBModel = SendDBModel()
         sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: changeDatePicker.date, wakeUpTimeText: changeWakeUpTimeText)
+        //TODO: ここで時間が変更されたことをチャットで知らせる。
     }
     
     
@@ -88,8 +88,6 @@ class EditWakeUpAlarmTimeView: UIView {
         
         changeWakeUpTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         changeWakeUpTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-        changeWakeUpTimeStackView.translatesAutoresizingMaskIntoConstraints = false
-        
         changeWakeUpGoBuckButton.translatesAutoresizingMaskIntoConstraints = false
         
         backgroundColor = .systemBackground.withAlphaComponent(0.7)
@@ -98,27 +96,26 @@ class EditWakeUpAlarmTimeView: UIView {
         let labelButtonHightPadding: CGFloat = 60
         
         // 起きる時間をStack
-        changeWakeUpTimeStackView.addArrangedSubview(changeWakeUpTimeLabel)
-        changeWakeUpTimeStackView.addArrangedSubview(changeWakeUpTimeTextField)
-        changeWakeUpTimeStackView.axis = .vertical
-        changeWakeUpTimeStackView.alignment = .fill
-        changeWakeUpTimeStackView.spacing = 10
-        addSubview(changeWakeUpTimeStackView)
-        
+        addSubview(changeWakeUpTimeLabel)
+        addSubview(changeWakeUpTimeTextField)
         addSubview(changeWakeUpGoBuckButton)
         
         NSLayoutConstraint.activate([
             //起きる時間
-            changeWakeUpTimeStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
-            changeWakeUpTimeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            changeWakeUpTimeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            changeWakeUpTimeStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            changeWakeUpTimeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            changeWakeUpTimeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            changeWakeUpTimeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            changeWakeUpTimeLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            changeWakeUpTimeTextField.topAnchor.constraint(equalTo: changeWakeUpTimeLabel.bottomAnchor, constant: spacePadding),
+            changeWakeUpTimeTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            changeWakeUpTimeTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            changeWakeUpTimeTextField.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             
             // 戻るボタン
-            changeWakeUpGoBuckButton.topAnchor.constraint(equalTo: changeWakeUpTimeStackView.bottomAnchor, constant: spacePadding),
+            changeWakeUpGoBuckButton.topAnchor.constraint(equalTo: changeWakeUpTimeTextField.bottomAnchor, constant: spacePadding),
             changeWakeUpGoBuckButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             changeWakeUpGoBuckButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            changeWakeUpGoBuckButton.heightAnchor.constraint(equalToConstant: 40)
+            changeWakeUpGoBuckButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
 }

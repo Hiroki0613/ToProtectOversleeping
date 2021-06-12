@@ -10,29 +10,19 @@ import MapKit
 
 class WakeUpSettingView: UIView {
 
-//    var userInformationCell = UIView()
-//    var appInformationCell = UIView()
-    
     // ユーザー情報
-    var setUserInformationStackView = UIStackView(frame: .zero)
-    var setProfileStackView = UIStackView(frame: .zero)
-    var getGPSAddressStackView = UIStackView(frame: .zero)
-//    var setNotificationStackView = UIStackView(frame: .zero)
+    var setUserInformationView = UIView(frame: .zero)
+    
     // ユーザー名の設定
     var setUserNameLabel = WUBodyLabel(fontSize: 18)
     var setUserNameButton = WUButton(backgroundColor: .systemOrange, title: "設定")
     // 自宅のGPS情報取得
     var getGPSAddressLabel = WUBodyLabel(fontSize: 18)
     var getGPSAddressButton = WUButton(backgroundColor: .systemOrange, title: "取得")
-    // リモート、ローカルのpush通知の設定
-//    var setNotificationLabel = WUBodyLabel(fontSize: 18)
-//    var setNotificationSwitch = UISwitch()
-
     
     // アプリ情報
-    var setAppInformationStackView = UIStackView(frame: .zero)
-    var setOpinionsAndRequestsStackView = UIStackView(frame: .zero)
-    var setEvaluationStackView = UIStackView(frame: .zero)
+    var setAppInformationView = UIView(frame: .zero)
+    
     // バージョン
     var appVersionLabel = WUBodyLabel(fontSize: 18)
     // ライセンス
@@ -47,7 +37,6 @@ class WakeUpSettingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        setUserInformation()
         setAppInformation()
         configureUserView()
         configureAppView()
@@ -59,109 +48,57 @@ class WakeUpSettingView: UIView {
     }
     
     
-//    private func setUserInformation() {
-//
-//        let checkLabelText = UserDefaults.standard.object(forKey: "userName") as! String
-//
-//        if checkLabelText == "NoName777" {
-//            setUserNameLabel.text = "ユーザーネームが未登録です"
-//        } else {
-//            setUserNameLabel.text = "ユーザネーム\n\(checkLabelText)"
-//        }
-//
-//
-//        getGPSAddressLabel.text = "自宅の住所が未登録です"
-////        setNotificationLabel.text = "通知されます"
-//    }
-    
     private func setAppInformation() {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-        appVersionLabel.text = "バージョン \(version)"
+        appVersionLabel.text = "アプリバージョン\n\n\(version)"
         opinionsAndRequestsLabel.text = "ご意見・ご要望"
         evaluationLabel.text = "アプリを評価する"
     }
     
     private func configureUserView() {
-//        userInformationCell.translatesAutoresizingMaskIntoConstraints = false
-        setUserInformationStackView.translatesAutoresizingMaskIntoConstraints = false
-        setProfileStackView.translatesAutoresizingMaskIntoConstraints = false
-        getGPSAddressStackView.translatesAutoresizingMaskIntoConstraints = false
-//        setNotificationStackView.translatesAutoresizingMaskIntoConstraints = false
-        
+        setUserInformationView.translatesAutoresizingMaskIntoConstraints = false
         setUserNameLabel.translatesAutoresizingMaskIntoConstraints = false
         setUserNameButton.translatesAutoresizingMaskIntoConstraints = false
         getGPSAddressLabel.translatesAutoresizingMaskIntoConstraints = false
         getGPSAddressButton.translatesAutoresizingMaskIntoConstraints = false
         setUserNameLabel.numberOfLines = 2
-        getGPSAddressLabel.numberOfLines = 2
-//        setNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
-//        setNotificationSwitch.translatesAutoresizingMaskIntoConstraints = false
-//
-//        setNotificationSwitch.isOn = false
+        getGPSAddressLabel.numberOfLines = 3
         
-//        userInformationCell.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        addSubview(setUserInformationView)
         
-//        addSubview(userInformationCell)
-        
-        setUserInformationStackView.axis = .vertical
-        setUserInformationStackView.alignment = .center
-        setUserInformationStackView.spacing = 20
-        addSubview(setUserInformationStackView)
-        
-        setProfileStackView.addArrangedSubview(setUserNameLabel)
-        setProfileStackView.addArrangedSubview(setUserNameButton)
-        setProfileStackView.axis = .horizontal
-        setProfileStackView.alignment = .center
-        setProfileStackView.spacing = 20
-        setUserInformationStackView.addArrangedSubview(setProfileStackView)
-        
-        getGPSAddressStackView.addArrangedSubview(getGPSAddressLabel)
-        getGPSAddressStackView.addArrangedSubview(getGPSAddressButton)
-        getGPSAddressStackView.axis = .horizontal
-        getGPSAddressStackView.alignment = .center
-        getGPSAddressStackView.spacing = 20
-        setUserInformationStackView.addArrangedSubview(getGPSAddressStackView)
-        
-//        setNotificationStackView.addArrangedSubview(setNotificationLabel)
-//        setNotificationStackView.addArrangedSubview(setNotificationSwitch)
-//        setNotificationStackView.axis = .horizontal
-//        setNotificationStackView.alignment = .center
-//        setNotificationStackView.spacing = 20
-//        setUserInformationStackView.addArrangedSubview(setNotificationStackView)
+        setUserInformationView.addSubview(setUserNameLabel)
+        setUserInformationView.addSubview(setUserNameButton)
+        setUserInformationView.addSubview(getGPSAddressLabel)
+        setUserInformationView.addSubview(getGPSAddressButton)
         
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
         let labelButtonHightPadding: CGFloat = 60
         
         NSLayoutConstraint.activate([
-            setUserInformationStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: spacePadding),
-            setUserInformationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            setUserInformationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setUserInformationStackView.heightAnchor.constraint(equalToConstant: 270),
+            setUserInformationView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
+            setUserInformationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            setUserInformationView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            setUserInformationView.heightAnchor.constraint(equalToConstant: 200),
             
-            setProfileStackView.topAnchor.constraint(equalTo: setUserInformationStackView.topAnchor, constant: padding),
-            setProfileStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
-            setProfileStackView.trailingAnchor.constraint(equalTo: setUserInformationStackView.trailingAnchor, constant: -padding),
-            setProfileStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            setUserNameLabel.topAnchor.constraint(equalTo: setUserInformationView.topAnchor, constant: padding),
+            setUserNameLabel.leadingAnchor.constraint(equalTo: setUserInformationView.leadingAnchor, constant: padding),
+            setUserNameLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            setUserNameButton.topAnchor.constraint(equalTo: setUserInformationView.topAnchor, constant: padding),
+            setUserNameButton.trailingAnchor.constraint(equalTo: setUserInformationView.trailingAnchor, constant: -padding),
+            setUserNameButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             
-            getGPSAddressStackView.topAnchor.constraint(equalTo: setProfileStackView.bottomAnchor, constant: spacePadding),
-            getGPSAddressStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
-            getGPSAddressStackView.trailingAnchor.constraint(equalTo: setUserInformationStackView.trailingAnchor, constant: -padding),
-            getGPSAddressStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
-            
-//            setNotificationStackView.topAnchor.constraint(equalTo: getGPSAddressStackView.bottomAnchor, constant: spacePadding),
-//            setNotificationStackView.leadingAnchor.constraint(equalTo: setUserInformationStackView.leadingAnchor, constant: padding),
-//            setNotificationStackView.trailingAnchor.constraint(equalTo: setUserInformationStackView.trailingAnchor, constant: -padding),
-//            setNotificationStackView.bottomAnchor.constraint(equalTo: setUserInformationStackView.bottomAnchor, constant: -padding)
+            getGPSAddressLabel.topAnchor.constraint(equalTo: setUserNameButton.bottomAnchor, constant: spacePadding),
+            getGPSAddressLabel.leadingAnchor.constraint(equalTo: setUserInformationView.leadingAnchor, constant: padding),
+            getGPSAddressLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            getGPSAddressButton.topAnchor.constraint(equalTo: setUserNameButton.bottomAnchor, constant: spacePadding),
+            getGPSAddressButton.trailingAnchor.constraint(equalTo: setUserInformationView.trailingAnchor, constant: -padding),
+            getGPSAddressButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
-        
     }
     
     private func configureAppView() {
-//        appInformationCell.translatesAutoresizingMaskIntoConstraints = false
-        setAppInformationStackView.translatesAutoresizingMaskIntoConstraints = false
-        setOpinionsAndRequestsStackView.translatesAutoresizingMaskIntoConstraints = false
-        setEvaluationStackView.translatesAutoresizingMaskIntoConstraints = false
+        setAppInformationView.translatesAutoresizingMaskIntoConstraints = false
         
         appVersionLabel.translatesAutoresizingMaskIntoConstraints = false
         licenseButton.translatesAutoresizingMaskIntoConstraints = false
@@ -170,69 +107,47 @@ class WakeUpSettingView: UIView {
         evaluationLabel.translatesAutoresizingMaskIntoConstraints = false
         evaluationButton.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(setAppInformationStackView)
-        setAppInformationStackView.axis = .vertical
-        setAppInformationStackView.alignment = .center
-        setAppInformationStackView.spacing = 20
-
-        setAppInformationStackView.addArrangedSubview(appVersionLabel)
-        
-        setAppInformationStackView.addArrangedSubview(licenseButton)
-        
-        setOpinionsAndRequestsStackView.addArrangedSubview(opinionsAndRequestsLabel)
-        setOpinionsAndRequestsStackView.addArrangedSubview(opinionsAndRequestsButton)
-        setOpinionsAndRequestsStackView.axis = .horizontal
-        setOpinionsAndRequestsStackView.alignment = .center
-        setOpinionsAndRequestsStackView.spacing = 20
-        setAppInformationStackView.addArrangedSubview(setOpinionsAndRequestsStackView)
-        
-        setEvaluationStackView.addArrangedSubview(evaluationLabel)
-        setEvaluationStackView.addArrangedSubview(evaluationButton)
-        setEvaluationStackView.axis = .horizontal
-        setEvaluationStackView.alignment = .center
-        setEvaluationStackView.spacing = 20
-        setAppInformationStackView.addArrangedSubview(setEvaluationStackView)
+        appVersionLabel.numberOfLines = 3
+        addSubview(setAppInformationView)
+        setAppInformationView.addSubview(appVersionLabel)
+        setAppInformationView.addSubview(licenseButton)
+        setAppInformationView.addSubview(opinionsAndRequestsLabel)
+        setAppInformationView.addSubview(opinionsAndRequestsButton)
         
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
-        let labelButtonHightPadding: CGFloat = 60
+        let labelButtonHightPadding: CGFloat = 60.0
         
         NSLayoutConstraint.activate([
-            setAppInformationStackView.topAnchor.constraint(equalTo: setUserInformationStackView.bottomAnchor, constant: spacePadding),
-            setAppInformationStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            setAppInformationStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            setAppInformationStackView.heightAnchor.constraint(equalToConstant: 400),
+            setAppInformationView.topAnchor.constraint(equalTo: setUserInformationView.bottomAnchor, constant: spacePadding),
+            setAppInformationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            setAppInformationView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            setAppInformationView.heightAnchor.constraint(equalToConstant: 300),
             
-            appVersionLabel.topAnchor.constraint(equalTo: setAppInformationStackView.topAnchor, constant: padding),
-            appVersionLabel.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
-            appVersionLabel.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
+            appVersionLabel.topAnchor.constraint(equalTo: setAppInformationView.topAnchor, constant: padding),
+            appVersionLabel.leadingAnchor.constraint(equalTo: setAppInformationView.leadingAnchor, constant: padding),
             appVersionLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             
             licenseButton.topAnchor.constraint(equalTo: appVersionLabel.bottomAnchor, constant: spacePadding),
-            licenseButton.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
-            licenseButton.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
+            licenseButton.leadingAnchor.constraint(equalTo: setAppInformationView.leadingAnchor, constant: padding),
+            licenseButton.trailingAnchor.constraint(equalTo: setAppInformationView.trailingAnchor, constant: -padding),
             licenseButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             
-            setOpinionsAndRequestsStackView.topAnchor.constraint(equalTo: licenseButton.bottomAnchor, constant: spacePadding),
-            setOpinionsAndRequestsStackView.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
-            setOpinionsAndRequestsStackView.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
-            setOpinionsAndRequestsStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            opinionsAndRequestsLabel.topAnchor.constraint(equalTo: licenseButton.bottomAnchor, constant: spacePadding),
+            opinionsAndRequestsLabel.leadingAnchor.constraint(equalTo: setAppInformationView.leadingAnchor, constant: padding),
+            opinionsAndRequestsLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             
-            setEvaluationStackView.topAnchor.constraint(equalTo: setOpinionsAndRequestsStackView.bottomAnchor, constant: spacePadding),
-            setEvaluationStackView.leadingAnchor.constraint(equalTo: setAppInformationStackView.leadingAnchor, constant: padding),
-            setEvaluationStackView.trailingAnchor.constraint(equalTo: setAppInformationStackView.trailingAnchor, constant: -padding),
-//            setEvaluationStackView.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
-            setEvaluationStackView.bottomAnchor.constraint(equalTo: setAppInformationStackView.bottomAnchor, constant: -padding)
+            opinionsAndRequestsButton.topAnchor.constraint(equalTo: licenseButton.bottomAnchor, constant: spacePadding),
+            opinionsAndRequestsButton.trailingAnchor.constraint(equalTo: setAppInformationView.trailingAnchor, constant: -padding),
+            opinionsAndRequestsButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
-        
     }
     
     private func configureDecoration() {
-        setUserInformationStackView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
-        setAppInformationStackView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
-        setUserInformationStackView.layer.cornerRadius = 16
-        setAppInformationStackView.layer.cornerRadius = 16
+        setUserInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        setAppInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        setUserInformationView.layer.cornerRadius = 16
+        setAppInformationView.layer.cornerRadius = 16
     }
-    
 }
 

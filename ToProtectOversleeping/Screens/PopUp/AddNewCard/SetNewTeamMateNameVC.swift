@@ -22,7 +22,6 @@ class SetNewTeamMateNameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureDecoration()
         configureAddTarget()
         
     }
@@ -70,14 +69,11 @@ class SetNewTeamMateNameVC: UIViewController {
         }
     }
     
-    
-    
-    
-    // 招待してもらう
+
+    // 戻る
     @objc func goBack() {
         print("戻るボタン")
         dismiss(animated: true, completion: nil)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,8 +87,16 @@ class SetNewTeamMateNameVC: UIViewController {
     }
     
     func configureCardView(){
-        setNewTeamMateNameView.frame = CGRect(x: 10, y: view.frame.size.height / 2 - 60, width: view.frame.size.width - 20, height: 200)
+        setNewTeamMateNameView.translatesAutoresizingMaskIntoConstraints = false
+        setNewTeamMateNameView.layer.cornerRadius = 16
         view.addSubview(setNewTeamMateNameView)
+        
+        NSLayoutConstraint.activate([
+            setNewTeamMateNameView.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
+            setNewTeamMateNameView.heightAnchor.constraint(equalToConstant: 300),
+            setNewTeamMateNameView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            setNewTeamMateNameView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     func configureBlurView() {
@@ -100,16 +104,6 @@ class SetNewTeamMateNameVC: UIViewController {
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.frame = self.view.frame
         view.addSubview(visualEffectView)
-    }
-    
-    // セルを装飾
-    private func configureDecoration() {
-        setNewTeamMateNameView.layer.shadowColor = UIColor.systemGray.cgColor
-        setNewTeamMateNameView.layer.cornerRadius = 16
-        setNewTeamMateNameView.layer.shadowOpacity = 0.1
-        setNewTeamMateNameView.layer.shadowRadius = 10
-        setNewTeamMateNameView.layer.shadowOffset = .init(width: 0, height: 10)
-        setNewTeamMateNameView.layer.shouldRasterize = true
     }
 }
 
