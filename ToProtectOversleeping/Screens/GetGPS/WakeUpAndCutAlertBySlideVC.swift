@@ -14,6 +14,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     // roomID
     var chatRoomDocumentId = ""
+    var userName = ""
+    var wakeUpTimeText = ""
     var authId = ""
     
     // 暫定でUserDefaultsで設定
@@ -155,6 +157,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         default:
             print("離れました離れたぜ")
             clearAlarm()
+            let messageModel = MessageModel()
+            messageModel.sendMessageToChaWakeUpBeforeSettingAlarmTime(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
             return "OK!、100m以上離れました！"
         }
     }

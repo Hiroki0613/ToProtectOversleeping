@@ -69,6 +69,32 @@ class MessageModel {
         )
     }
     
+    func sendMessageToChatEditAlarmTime(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+        let sendDBModel = SendDBModel()
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "\(displayName)のアラーム時間が\(wakeUpTimeText)に変更されました",
+            displayName: displayName,
+            messageAppVersion: version
+        )
+    }
+    
+    func sendMessageToChaWakeUpBeforeSettingAlarmTime(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+        let sendDBModel = SendDBModel()
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "\(displayName)は設定した\(wakeUpTimeText)より前におきました",
+            displayName: displayName,
+            messageAppVersion: version
+        )
+    }
+    
     func newInvitedToTeam(documentID toID: String,displayName: String) {
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用

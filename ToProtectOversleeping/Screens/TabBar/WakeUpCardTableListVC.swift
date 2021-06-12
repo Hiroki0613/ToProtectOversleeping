@@ -183,6 +183,7 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
             editWakeUpAlarmTimeVC.editWakeUpAlarmTimeView.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row]
+            editWakeUpAlarmTimeVC.editWakeUpAlarmTimeView.userName = self.userDataModel!.name
             self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
             
             completionHandler(true)
@@ -324,6 +325,8 @@ extension WakeUpCardTableListVC {
         wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
         wakeUpAndCutAlertBySlideVC.authId = Auth.auth().currentUser!.uid
         wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag]
+        wakeUpAndCutAlertBySlideVC.userName =  self.userDataModel!.name
+        wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag].wakeUpTimeText
         print(self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }

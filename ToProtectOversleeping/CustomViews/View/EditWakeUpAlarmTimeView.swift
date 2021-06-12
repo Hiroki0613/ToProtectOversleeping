@@ -14,6 +14,7 @@ class EditWakeUpAlarmTimeView: UIView {
     
     // チャットのdocumentID
     var chatRoomDocumentID = ""
+    var userName = ""
     
     // 起きる時間
     var changeWakeUpTimeLabel = WUBodyLabel(fontSize: 20)
@@ -74,6 +75,8 @@ class EditWakeUpAlarmTimeView: UIView {
         let sendDBModel = SendDBModel()
         sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: changeDatePicker.date, wakeUpTimeText: changeWakeUpTimeText)
         //TODO: ここで時間が変更されたことをチャットで知らせる。
+        let messageModel = MessageModel()
+        messageModel.sendMessageToChatEditAlarmTime(documentID: chatRoomDocumentID, displayName: userName, wakeUpTimeText: changeWakeUpTimeText)
     }
     
     
