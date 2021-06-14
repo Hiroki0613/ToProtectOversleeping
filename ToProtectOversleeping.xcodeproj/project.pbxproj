@@ -26,6 +26,7 @@
 		7F376B1C26401A910063F2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1A26401A910063F2EC /* Main.storyboard */; };
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
+		7F5A9E4F2677993B00754C93 /* ResultWakeUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E4E2677993B00754C93 /* ResultWakeUpVC.swift */; };
 		7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B6338266225E90057C12B /* SendDBModel.swift */; };
 		7F5B633E26623C740057C12B /* NewRegistrationUserNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B633D26623C740057C12B /* NewRegistrationUserNameVC.swift */; };
 		7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B633F26623C910057C12B /* NewRegistrationGpsVC.swift */; };
@@ -98,6 +99,7 @@
 		7F376B1D26401A920063F2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F5A9E4E2677993B00754C93 /* ResultWakeUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpVC.swift; sourceTree = "<group>"; };
 		7F5B6338266225E90057C12B /* SendDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDBModel.swift; sourceTree = "<group>"; };
 		7F5B633D26623C740057C12B /* NewRegistrationUserNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationUserNameVC.swift; sourceTree = "<group>"; };
 		7F5B633F26623C910057C12B /* NewRegistrationGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationGpsVC.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */,
+				7F5A9E4E2677993B00754C93 /* ResultWakeUpVC.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */,
 				7F1228B526515EB80038EC3D /* UICollectionView+Additions.swift in Sources */,
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
+				7F5A9E4F2677993B00754C93 /* ResultWakeUpVC.swift in Sources */,
 				7FE523DF2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift in Sources */,
 				7FE523D92647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift in Sources */,
 				7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */,

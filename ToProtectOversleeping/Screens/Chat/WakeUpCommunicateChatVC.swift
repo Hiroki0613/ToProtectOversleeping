@@ -9,6 +9,7 @@ import UIKit
 import MessageKit
 import Firebase
 import InputBarAccessoryView
+import FloatingPanel
 
 
 class WakeUpCommunicateChatVC: MessagesViewController {
@@ -20,6 +21,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     var userDataModel: UserDataModel?
     var chatTableViewIndexPath: Int?
     var chatRoomDocumentId: String?
+    
+    var fpc: FloatingPanelController!
     
 
 //    var userData = [String: Any]()
@@ -55,18 +58,22 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
         // TODO: 一旦強制アンラップ
         // 自分
-        // currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userData["name"] as! String )
         currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userDataModel!.name)
 
         // 他者
-        //TODO: userDataModelが繋がっていない。 ここはFireStoreの一覧リストからとる感じ? 構造がわかっていなかった・・・。
-        // otherUser = Sender(senderId: userDataModel.uid, displayName:userDataModel.name )
         otherUser = Sender(senderId: userDataModel!.uid, displayName: userDataModel!.name)
         
         configureMessageCollectionView()
         configureMessageInputBar()
 //        title = "トーク"
         title = chatRoomNameModel?.roomName
+        
+        configureFloatingPanel()
+        
+        //TODO: 集計結果を出すために12:00を過ぎていたら、FloatingPanelを半分上に出す。
+        //本日の12時に移行を集計させる。
+        
+        
         reloadInputViews()
     }
     
@@ -286,7 +293,6 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         
-        
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: chatRoomDocumentId!,
@@ -294,12 +300,7 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
             displayName: userDataModel!.name,
             messageAppVersion: version
         )
-        //TODO: toIDのuserDataModel、displayNameのuserData["name"]が繋がっていない。
-//        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid, toID: userDataModel.name, text: text, displayName: userData["name"] as! String)
-        
-        
-        
-//        sendDBModel.sendMessage(senderID: Auth.auth().currentUser!.uid, toID: "1234567", text: text, displayName: "宏輝だよ")
+
         inputBar.sendButton.stopAnimating()
         
     }
@@ -323,12 +324,19 @@ extension WakeUpCommunicateChatVC: MessageCellDelegate {
     
 }
 
-//extension WakeUpCommunicateChatVC: SendWakeUpReportToChatDelegate {
-//    func sendWakeUpReport() {
-//        
-//        let sendDBModel = SendDBModel()
-//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: chatRoomDocumentId!, text: "\(userDataModel!.name)。残念ながら起きれませんでした", displayName: userDataModel!.name)
-//        
-//        print("delegate動作確認")
-//    }
-//}
+
+extension WakeUpCommunicateChatVC: FloatingPanelControllerDelegate {
+    
+    func configureFloatingPanel() {
+        fpc = FloatingPanelController()
+        fpc.delegate = self
+        fpc.layout = CustomFloatingPanelLayout()
+        fpc.surfaceView.backgroundColor = .clear
+        fpc.surfaceView.layer.cornerRadius = 16
+        
+        let contentVC = ResultWakeUpVC()
+        fpc.set(contentViewController: contentVC)
+        fpc.addPanel(toParent: self)
+    }
+}
+

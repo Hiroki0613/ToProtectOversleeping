@@ -46,6 +46,12 @@ body:
                    …
 version: 7.7.0
 
+name: FloatingPanel, nameSpecified: 
+body: MIT License
+
+Copyrig…
+version: 2.4.0
+
 name: GoogleAppMeasurement, nameSpecified: 
 body: Copyright 2021 Googl…
 version: 7.7.0
@@ -79,6 +85,12 @@ name: InputBarAccessoryView, nameSpecified:
 body: 
 The MIT License (MI…
 version: 5.2.3
+
+name: KeychainSwift, nameSpecified: 
+body: The MIT License
+
+Cop…
+version: 19.0.0
 
 name: leveldb-library, nameSpecified: 
 body: Copyright (c) 2011 T…
