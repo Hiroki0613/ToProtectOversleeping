@@ -13,5 +13,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Firestore'
 pod 'LicensePlist'
+pod 'KeychainSwift'
+pod 'FloatingPanel'
 
 end

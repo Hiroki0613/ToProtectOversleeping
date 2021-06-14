@@ -74,7 +74,7 @@ class EditWakeUpAlarmTimeView: UIView {
         //ここで、時間を変更するfireStoreのコードを入れる
         let sendDBModel = SendDBModel()
         sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: changeDatePicker.date, wakeUpTimeText: changeWakeUpTimeText)
-        //TODO: ここで時間が変更されたことをチャットで知らせる。
+        //ここで時間が変更されたことをチャットで知らせる。
         let messageModel = MessageModel()
         messageModel.sendMessageToChatEditAlarmTime(documentID: chatRoomDocumentID, displayName: userName, wakeUpTimeText: changeWakeUpTimeText)
     }
