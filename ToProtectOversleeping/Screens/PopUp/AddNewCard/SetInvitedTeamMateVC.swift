@@ -12,6 +12,7 @@ class SetInvitedTeamMateVC: UIViewController {
     
     var wakeUpTimeText = ""
     var wakeUpTimeDate = Date()
+    var userName = ""
     var newInvitedTeamMateId = ""
         
     // チームから招待してもらって新規登録
@@ -42,11 +43,10 @@ class SetInvitedTeamMateVC: UIViewController {
     @objc func registeredByQRCode() {
         print("QR読み取り")
 
-        
         let wakeUpQrCodeReaderVC = WakeUpQrCodeReaderVC()
         wakeUpQrCodeReaderVC.wakeUpTimeText = wakeUpTimeText
         wakeUpQrCodeReaderVC.wakeUpTimeDate = wakeUpTimeDate
-        
+        wakeUpQrCodeReaderVC.userName = userName
         
         present(wakeUpQrCodeReaderVC, animated: true, completion: nil)
 
@@ -83,6 +83,9 @@ class SetInvitedTeamMateVC: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            
+            let messageModel = MessageModel()
+            messageModel.newInvitedToTeam(documentID: self.newInvitedTeamMateId, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
         

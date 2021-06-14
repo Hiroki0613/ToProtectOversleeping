@@ -11,6 +11,9 @@ import Firebase
 
 class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
+    //一時的に格納するString
+    var userName = ""
+    
     let sendDBModel = SendDBModel()
     var wakeUpTimeText = ""
     var wakeUpTimeDate = Date()
@@ -82,6 +85,9 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
                     isWakeUpRoop: false,
                     appVersion: version
                 )
+                
+                let messageModel = MessageModel()
+                messageModel.newInvitedToTeam(documentID: str, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
                 
                 
             }

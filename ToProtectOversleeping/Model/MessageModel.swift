@@ -41,7 +41,7 @@ class MessageModel {
         )
     }
     
-    func sendMessageToChatDeclarationWakeUpEarly(documentID toID: String,displayName: String) {
+    func sendMessageToChatDeclarationWakeUpEarly(documentID toID: String,displayName: String,wakeUpTimeText: String) {
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
@@ -49,7 +49,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)は早起きします！",
+            text: "\(displayName)は\(wakeUpTimeText)に起きます！",
             displayName: displayName,
             messageAppVersion: version
         )
@@ -82,7 +82,7 @@ class MessageModel {
         )
     }
     
-    func sendMessageToChaWakeUpBeforeSettingAlarmTime(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+    func sendMessageToChatWakeUpBeforeSettingAlarmTime(documentID toID: String,displayName: String,wakeUpTimeText: String) {
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
@@ -95,11 +95,24 @@ class MessageModel {
         )
     }
     
-    func newInvitedToTeam(documentID toID: String,displayName: String) {
+    func sendMessageToChatLeaveTheRoom(documentID toID: String,displayName: String) {
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "\(displayName)は退室しました。",
+            displayName: displayName,
+            messageAppVersion: version
+        )
+    }
+    
+    func newInvitedToTeam(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+        let sendDBModel = SendDBModel()
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
@@ -108,12 +121,13 @@ class MessageModel {
             messageAppVersion: version
         )
         
-        sendDBModel.sendMessage(
-            senderId: Auth.auth().currentUser!.uid,
-            toID: toID,
-            text: "さっそく、\(displayName)のアラームがセットされました！",
-            displayName: displayName,
-            messageAppVersion: version
-        )
+        //TODO: 現時点では、エラーが出るので招待時のアラームのデフォルトのセットはやめておく。
+//        sendDBModel.sendMessage(
+//            senderId: Auth.auth().currentUser!.uid,
+//            toID: toID,
+//            text: "さっそく、\(displayName)のアラームが\(wakeUpTimeText)にセットされました！",
+//            displayName: displayName,
+//            messageAppVersion: version
+//        )
     }
 }

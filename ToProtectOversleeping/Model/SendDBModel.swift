@@ -222,10 +222,10 @@ class SendDBModel {
         var dateComponents = DateComponents()
         
         //近藤　カレンダー形式で通知
-        dateComponents.hour = 23
-        dateComponents.minute = 07
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        //TODO: identifierは一位にするため、Auth.auth()+roomIdにする。
+        dateComponents.hour = 12
+        dateComponents.minute = 0
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        //identifierは一意にするため、Auth.auth()+roomIdにする。
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { (error) in

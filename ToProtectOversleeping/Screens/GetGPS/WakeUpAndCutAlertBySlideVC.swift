@@ -62,47 +62,27 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     func checkSettingAlarmWithinTwoHours(settingTime: Date) {
         var differenceFromCurrenTime = 0
         differenceFromCurrenTime = alarm.calculateTimeInterval(userAwakeTime: settingTime)
-        print("設定時刻との差分2:" ,differenceFromCurrenTime)
-        
-        
-        //TODO: 暫定で2時間以上前に設定しています
+
         if differenceFromCurrenTime > 7200 {
             // ２時間以上前の時
-//            swipedActionLabel.text = "２時間以上前です"
             swipedActionLabel.text = "現在はアラームを解除できません。\n\n設定した2時間以内になりましたら、\n解除ボタンが表示されます。"
-//            swipedActionLabel.text = "現在はアラームを解除できません"
             swipeButton.isHidden = true
         } else {
             // ２時間以内の時
-//            swipedActionLabel.text = "2時間以内です"
             swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
             swipeButton.isHidden = false
         }
-        
-//        if differenceFromCurrenTime > 7200 {
-//            // ２時間以上前の時
-//            swipedActionLabel.text = "２時間以上前です"
-//            swipeButton.isHidden = true
-//        } else {
-//            // ２時間以内の時
-//            swipedActionLabel.text = "2時間以内です"
-//            swipeButton.isHidden = false
-//        }
     }
-    
     
     // 地図を任意の場所へ移動させる
     private func moveTo(
         center location: CLLocationCoordinate2D,
         animated: Bool,
         span: CLLocationDegrees = 0.0025) {
-        
         let coordinateSpan = MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span)
         let coordinateRegion = MKCoordinateRegion(center: location, span: coordinateSpan)
-        
         mapView.setRegion(coordinateRegion, animated: animated)
     }
-    
     
     // アノテーションを設定
     private func setAnnotation(location: CLLocationCoordinate2D) {
@@ -119,7 +99,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         center location: CLLocationCoordinate2D,
         meter: CLLocationDistance,
         times: Int) {
-        
         mapView.addOverlays((1...times).map { i -> MKCircle in
             let radius = meter * CLLocationDistance(i)
             return MKCircle(center: location, radius: radius)
@@ -127,7 +106,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     }
     
     // 距離を測定して、コメントを分類
-    
     //TODO: 暫定で距離を100m遠くしている
     private func rank(location: CLLocationCoordinate2D) -> String {
         let rawDistance = location.distanceFromHome(to: myHomeLocation) + 100
@@ -136,7 +114,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         
         switch rawDistance {
         case 0..<(10):
-//            clearAlarm()
             return "あと、90m離れてください"
         case (10)..<(20):
             return "あと、80m離れてください"
@@ -158,7 +135,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             print("離れました離れたぜ")
             clearAlarm()
             let messageModel = MessageModel()
-            messageModel.sendMessageToChaWakeUpBeforeSettingAlarmTime(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
+            messageModel.sendMessageToChatWakeUpBeforeSettingAlarmTime(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
             return "OK!、100m以上離れました！"
         }
     }
@@ -180,8 +157,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         swipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
         swipedActionLabel.numberOfLines = 0
-//        swipedActionLabel.text = "100m離れたところでスワイプ"
-     
         swipedActionLabel.textAlignment = .center
         view.addSubview(swipedActionLabel)
 
@@ -201,7 +176,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             swipedActionLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
-    
     
     // TODO: ここでswipeButtonでの判定が行われる。 100m以上離れた時と、離れていない時で分岐する。
     func setupSwipeButton() {
@@ -227,8 +201,6 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
         } else {
             // アノテーションを画像にする
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//            annotationView.image = UIImage(named: "jinrikisya_man")
-            // figure.waveのサイズを大きくしたい
             annotationView.image = UIImage(systemName: "figure.wave")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 30, weight: .bold))
             annotationView.canShowCallout = true
             return annotationView
@@ -247,7 +219,6 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
         guard let annotation = views.first?.annotation else { return }
         mapView.selectAnnotation(annotation, animated: true)
     }
-    
 }
 
 
@@ -277,7 +248,6 @@ extension CLLocationCoordinate2D {
     }
 }
 
-
 extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
@@ -287,12 +257,5 @@ extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
         moveTo(center: geoCoderLocation, animated: false)
         print("geoCoderLatitude:", geoCoderLatitude)
         print("geoCoderLongitude:", geoCoderLongitude)
-        
-        //近藤： ここだと、スライドしたら100m以内でもアラートが消えてしまう。
-//        clearAlarm()
     }
-    
-    
 }
-
-

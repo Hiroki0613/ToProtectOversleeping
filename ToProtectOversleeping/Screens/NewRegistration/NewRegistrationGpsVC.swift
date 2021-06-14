@@ -93,6 +93,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
         print("GpsButtonが押されました")
         print(address)
         
+        //TODO: keychainに変えること
         UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
         UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
 //        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")

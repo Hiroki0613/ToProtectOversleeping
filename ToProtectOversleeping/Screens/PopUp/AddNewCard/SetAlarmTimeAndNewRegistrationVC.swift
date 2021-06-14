@@ -9,6 +9,8 @@ import UIKit
 
 class SetAlarmTimeAndNewRegistrationVC: UIViewController {
     
+    var userName = ""
+    
     // 起きる時間のカード
     var setAlarmTimeAndNewRegistrationView = SetAlarmTimeAndNewRegistrationView()
     
@@ -64,6 +66,7 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
         // 招待時にアラームも同時タイミングでセットしたいので、値を渡して画面遷移を行う
         setInvitedTeamMateVC.wakeUpTimeText = setAlarmTimeAndNewRegistrationView.wakeUpTimeText
         setInvitedTeamMateVC.wakeUpTimeDate = setAlarmTimeAndNewRegistrationView.wakeUpTimeDate
+        setInvitedTeamMateVC.userName = self.userName
         print("setInvitedTeamMateVC.wakeUpTimeText: ",setInvitedTeamMateVC.wakeUpTimeText)
         print("setInvitedTeamMateVC.wakeUpTimeDate: ", setInvitedTeamMateVC.wakeUpTimeDate)
         if setInvitedTeamMateVC.wakeUpTimeText == "" {
