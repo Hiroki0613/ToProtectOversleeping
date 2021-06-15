@@ -9,7 +9,6 @@ import AVFoundation
 import UIKit
 
 class WakeUpQrCodeReaderFunction {
-    
     let captureSession = AVCaptureSession()
     let videoDevice = AVCaptureDevice.default(for: AVMediaType.video)
     var metadataOutput = AVCaptureMetadataOutput()

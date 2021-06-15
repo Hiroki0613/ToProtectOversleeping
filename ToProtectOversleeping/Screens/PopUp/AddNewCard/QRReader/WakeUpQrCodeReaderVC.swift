@@ -18,6 +18,8 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
     var wakeUpTimeText = ""
     var wakeUpTimeDate = Date()
     
+    var isSendMessageByReadingQRCodeFirstTime = false
+    
     let qrCodeReader = WakeUpQrCodeReaderFunction()
     let qrCodeReadLabel = UILabel()
     var goBuckQRReadCameraModeButton = WUButton(backgroundColor: .systemOrange, title: "閉じる")
@@ -37,8 +39,16 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
+        isSendMessageByReadingQRCodeFirstTime = true
+        print("宏輝QR_viewWillAppear: ", isSendMessageByReadingQRCodeFirstTime)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isSendMessageByReadingQRCodeFirstTime = true
     }
     
     func configureUI() {
@@ -71,14 +81,18 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
             qrCodeReader.qrView.frame = barCode.bounds
             //QRデータを表示
             if let str = metadata.stringValue {
-                print(str)
+                print("宏輝QR: ",str)
+                print("宏輝QRtrue: ", isSendMessageByReadingQRCodeFirstTime)
                 qrCodeReadLabel.text = str
+            }
+            
+            if isSendMessageByReadingQRCodeFirstTime == true {
                 
                 // メッセージがアプリのバージョンアップで変更した時に使用
                 let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
                 
                 sendDBModel.invitedChatRoom(
-                    roomNameId: str,
+                    roomNameId: self.qrCodeReadLabel.text!,
                     wakeUpTimeDate: wakeUpTimeDate,
                     wakeUpTimeText: wakeUpTimeText,
                     isWakeUpBool: false,
@@ -87,12 +101,11 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
                 )
                 
                 let messageModel = MessageModel()
-                messageModel.newInvitedToTeam(documentID: str, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
+                messageModel.newInvitedToTeam(documentID: self.qrCodeReadLabel.text!, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
                 
-                
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                
+                isSendMessageByReadingQRCodeFirstTime = false
             }
         }
     }
