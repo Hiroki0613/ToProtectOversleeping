@@ -87,13 +87,15 @@ class WakeUpSettingView: UIView {
             setUserNameButton.topAnchor.constraint(equalTo: setUserInformationView.topAnchor, constant: padding),
             setUserNameButton.trailingAnchor.constraint(equalTo: setUserInformationView.trailingAnchor, constant: -padding),
             setUserNameButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            setUserNameButton.widthAnchor.constraint(equalToConstant: 80),
             
             getGPSAddressLabel.topAnchor.constraint(equalTo: setUserNameButton.bottomAnchor, constant: spacePadding),
             getGPSAddressLabel.leadingAnchor.constraint(equalTo: setUserInformationView.leadingAnchor, constant: padding),
             getGPSAddressLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             getGPSAddressButton.topAnchor.constraint(equalTo: setUserNameButton.bottomAnchor, constant: spacePadding),
             getGPSAddressButton.trailingAnchor.constraint(equalTo: setUserInformationView.trailingAnchor, constant: -padding),
-            getGPSAddressButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+            getGPSAddressButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            getGPSAddressButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     
@@ -139,7 +141,8 @@ class WakeUpSettingView: UIView {
             
             opinionsAndRequestsButton.topAnchor.constraint(equalTo: licenseButton.bottomAnchor, constant: spacePadding),
             opinionsAndRequestsButton.trailingAnchor.constraint(equalTo: setAppInformationView.trailingAnchor, constant: -padding),
-            opinionsAndRequestsButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+            opinionsAndRequestsButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            opinionsAndRequestsButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     

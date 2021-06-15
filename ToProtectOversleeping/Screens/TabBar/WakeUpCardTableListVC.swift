@@ -96,17 +96,17 @@ class WakeUpCardTableListVC: UIViewController {
     
     func configureAddCardButton() {
         addWakeUpCardButton.translatesAutoresizingMaskIntoConstraints = false
-        addWakeUpCardButton.layer.cornerRadius = 40
+        addWakeUpCardButton.layer.cornerRadius = 32
         addWakeUpCardButton.layer.borderColor = UIColor.systemBackground.cgColor
         addWakeUpCardButton.layer.borderWidth = 3.0
         addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
         view.addSubview(addWakeUpCardButton)
         
         NSLayoutConstraint.activate([
-            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 80),
-            addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 80),
+            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 64),
+            addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 64),
             addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
         ])
         addWakeUpCardButton.tintColor = .systemBackground
     }
@@ -175,6 +175,17 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
         // 定義したアクションをセット
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+//    //フッターの色を透明に
+//     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//         let footerView: UIView = UIView()
+//        footerView.backgroundColor = .systemOrange
+//         return footerView
+//     }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 200
+//    }
 }
 
 

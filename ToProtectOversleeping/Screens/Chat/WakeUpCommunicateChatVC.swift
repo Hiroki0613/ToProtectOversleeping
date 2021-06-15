@@ -12,6 +12,7 @@ import InputBarAccessoryView
 import FloatingPanel
 
 
+
 class WakeUpCommunicateChatVC: MessagesViewController {
     var messages = [Message]()
     
@@ -26,10 +27,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     var fpc: FloatingPanelController!
     
+    var resultWakeUpVC = ResultWakeUpVC()
     
-    
-
-
     // TODO:暫定で強制アンラップ
     var currentUser = Sender(senderId: "", displayName: "")
     var otherUser = Sender(senderId: "", displayName: "")
@@ -59,6 +58,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
         let sendDBModel = SendDBModel()
         
+        resultWakeUpVC.getArrayOFWakeUpSuccessPersonListDelegate = self
         // TODO: 一旦強制アンラップ
         // 自分
         currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userDataModel!.name)
@@ -203,7 +203,10 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                                     print("宏輝_起きた: ",displayName)
                                     self.wakeUpSuccessPersonList.append(displayName)
                                     print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
+                                    let resultWakeUpVC = ResultWakeUpVC()
+                                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
                                     
+
                                 }
                             }
                         }
@@ -361,3 +364,10 @@ extension WakeUpCommunicateChatVC: FloatingPanelControllerDelegate {
     }
 }
 
+extension WakeUpCommunicateChatVC: GetArrayOFWakeUpSuccessPersonListDelegate {
+    func getArrayOfWakeUpSuccessPersonList() -> [String] {
+        let resultWakeUpVC = ResultWakeUpVC()
+        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+        return self.wakeUpSuccessPersonList
+    }
+}

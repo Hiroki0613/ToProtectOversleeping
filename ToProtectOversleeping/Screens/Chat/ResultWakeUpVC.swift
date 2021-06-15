@@ -8,10 +8,22 @@
 import UIKit
 import FloatingPanel
 
+protocol GetArrayOFWakeUpSuccessPersonListDelegate {
+    func getArrayOfWakeUpSuccessPersonList() -> [String]
+}
+
 class ResultWakeUpVC: UIViewController {
+    
+    var wakeUpSuccessPersonList = [String]()
+    var getArrayOFWakeUpSuccessPersonListDelegate: GetArrayOFWakeUpSuccessPersonListDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("宏輝_FloatingPanel: ", wakeUpSuccessPersonList)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         //グラデーションをつける
         let gradientLayer = CAGradientLayer()
@@ -24,8 +36,19 @@ class ResultWakeUpVC: UIViewController {
         gradientLayer.startPoint = CGPoint.init(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint.init(x: 0.0 , y: 0.07)
         self.view.layer.insertSublayer(gradientLayer,at:0)
+        
+
+        print("宏輝_FloatingPanel2: ",wakeUpSuccessPersonList)
+//        print("宏輝_FloatingPanel2: ",         getArrayOFWakeUpSuccessPersonListDelegate?.getArrayOfWakeUpSuccessPersonList())
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("宏輝_FloatingPanel3: ",wakeUpSuccessPersonList)
+//        print("宏輝_FloatingPanel3: ",         getArrayOFWakeUpSuccessPersonListDelegate?.getArrayOfWakeUpSuccessPersonList())
     }
 }
+
 
 
 class CustomFloatingPanelLayout: FloatingPanelLayout {
