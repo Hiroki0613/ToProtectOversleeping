@@ -22,10 +22,13 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     var chatTableViewIndexPath: Int?
     var chatRoomDocumentId: String?
     
+    var wakeUpSuccessPersonList = [String]()
+    
     var fpc: FloatingPanelController!
     
+    
+    
 
-//    var userData = [String: Any]()
 
     // TODO:暫定で強制アンラップ
     var currentUser = Sender(senderId: "", displayName: "")
@@ -161,7 +164,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                            let senderID = data["senderId"] as? String,
                            let displayName = data["displayName"] as? String,
                            let date = data["date"] as? Double,
-                           let messageAppVersion = data["messageAppVersion"] as? String
+                           let sendWUMessageType = data["sendWUMessageType"] as? String
                            {
                             
                                 // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
@@ -186,6 +189,23 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                                         kind: .text(text))
                                     self.messages.append(message)
                                 }
+                            
+                            // まず目が覚めた人をリストに上げる
+                            if sendWUMessageType == SendWUMessageType.wakeUpSuccessMessage {
+                                let calendar = Calendar(identifier: .gregorian)
+                                print("宏輝_起きた時間: ", Date(timeIntervalSince1970: date))
+                                
+                                let date = Date(timeIntervalSince1970: date)
+//                                let yesterday = date.addingTimeInterval(-60 * 60 * 24)
+                                
+                                // 今日の日付ならappend
+                                if calendar.isDateInToday(date) {
+                                    print("宏輝_起きた: ",displayName)
+                                    self.wakeUpSuccessPersonList.append(displayName)
+                                    print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
+                                    
+                                }
+                            }
                         }
                     }
                 }
@@ -298,7 +318,8 @@ extension WakeUpCommunicateChatVC: InputBarAccessoryViewDelegate {
             toID: chatRoomDocumentId!,
             text: text,
             displayName: userDataModel!.name,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.sendChatMessage
         )
 
         inputBar.sendButton.stopAnimating()

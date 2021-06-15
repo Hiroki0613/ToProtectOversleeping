@@ -135,7 +135,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             print("離れました離れたぜ")
             clearAlarm()
             let messageModel = MessageModel()
-            messageModel.sendMessageToChatWakeUpBeforeSettingAlarmTime(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
+            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
             return "OK!、100m以上離れました！"
         }
     }

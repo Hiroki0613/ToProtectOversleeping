@@ -186,7 +186,7 @@ class SendDBModel {
     
     
     
-    func sendMessage(senderId: String, toID: String, text: String, displayName: String, messageAppVersion: String) {
+    func sendMessage(senderId: String, toID: String, text: String, displayName: String, messageAppVersion: String, sendWUMessageType: String) {
         
         self.db.collection("Chats").document(toID).collection("Talk").document().setData(
             [
@@ -194,7 +194,8 @@ class SendDBModel {
                 "senderId": senderId as Any,
                 "displayName": displayName as Any,
                 "date": Date().timeIntervalSince1970,
-                "messageAppVersion": messageAppVersion as Any
+                "messageAppVersion": messageAppVersion as Any,
+                "sendWUMessageType": sendWUMessageType as Any
             ]
         )
         

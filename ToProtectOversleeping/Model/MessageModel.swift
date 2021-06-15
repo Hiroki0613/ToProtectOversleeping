@@ -9,6 +9,17 @@ import Foundation
 import MessageKit
 import Firebase
 
+enum SendWUMessageType {
+    static let sendChatMessage = "sendChatMessage"
+    static let wakeUpSuccessMessage = "wakeUpSuccessMessage"
+    static let wakeUpLate = "wakeUpLate"
+    static let declarationWakeUpEarly = "declarationWakeUpEarly"
+    static let alarmCut = "alarmCut"
+    static let editAlarmTime = "editAlarmTime"
+    static let leaveTheRoom = "leaveTheRoom"
+    static let newInvitedToTeam = "newInvitedToTeam"
+}
+
 
 struct Sender: SenderType {
     var senderId: String
@@ -37,7 +48,8 @@ class MessageModel {
             toID: toID,
             text: "\(displayName)は寝坊しました",
             displayName: displayName,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.wakeUpLate
         )
     }
     
@@ -51,7 +63,8 @@ class MessageModel {
             toID: toID,
             text: "\(displayName)は\(wakeUpTimeText)に起きます！",
             displayName: displayName,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.declarationWakeUpEarly
         )
     }
     
@@ -65,7 +78,8 @@ class MessageModel {
             toID: toID,
             text: "\(displayName)のアラームはカットされました！",
             displayName: displayName,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.alarmCut
         )
     }
     
@@ -78,11 +92,12 @@ class MessageModel {
             toID: toID,
             text: "\(displayName)のアラーム時間が\(wakeUpTimeText)に変更されました",
             displayName: displayName,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.editAlarmTime
         )
     }
     
-    func sendMessageToChatWakeUpBeforeSettingAlarmTime(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+    func sendMessageToChatWakeUpSuccessMessage(documentID toID: String,displayName: String,wakeUpTimeText: String) {
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
@@ -91,7 +106,8 @@ class MessageModel {
             toID: toID,
             text: "\(displayName)は設定した\(wakeUpTimeText)より前におきました",
             displayName: displayName,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.wakeUpSuccessMessage
         )
     }
     
@@ -104,7 +120,8 @@ class MessageModel {
             toID: toID,
             text: "\(displayName)は退室しました。",
             displayName: displayName,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.leaveTheRoom
         )
     }
     
@@ -118,7 +135,8 @@ class MessageModel {
             toID: toID,
             text: "\(displayName)は招待されました！",
             displayName: displayName,
-            messageAppVersion: version
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.newInvitedToTeam
         )
         
         //TODO: 現時点では、エラーが出るので招待時のアラームのデフォルトのセットはやめておく。
