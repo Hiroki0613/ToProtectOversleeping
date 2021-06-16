@@ -50,25 +50,28 @@ class WakeUpCardTableListVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
         
+        configureTableView()
+        configureAddCardButton()
+        
+        let loadDBModel = LoadDBModel()
+        
+        // チャットルームのデータを取得
+        loadDBModel.getChatRoomNameDelegate = self
+        loadDBModel.loadChatRoomNameData()
+        
+        loadDBModel.getUserDataDelegate = self
+        loadDBModel.loadProfileData()
+        
+        getPermissionLocalPushNotification()
+        
         // UserDefaultの値で最初の画面を分岐させる
-        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == false {
-            configureTableView()
-            configureAddCardButton()
-            
-            let loadDBModel = LoadDBModel()
-            
-            // チャットルームのデータを取得
-            loadDBModel.getChatRoomNameDelegate = self
-            loadDBModel.loadChatRoomNameData()
-            
-            loadDBModel.getUserDataDelegate = self
-            loadDBModel.loadProfileData()
-            
-            getPermissionLocalPushNotification()
-            
-        } else {
+        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
-            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
+
+        } else {
+            print("すでに新規登録しています")
         }
     }
     

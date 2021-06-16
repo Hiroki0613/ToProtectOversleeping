@@ -85,6 +85,9 @@ class WakeUpSettingVC: UIViewController {
     
     @objc func tapOpinionsAndRequestsButton() {
         print("opinionsAndRequestsButtonが押されました")
+        
+        guard let url = URL(string: "https://www.google.co.jp") else { return }
+        presentSafariVC(with: url)
     }
     
     @objc func tapEvaluationButton() {

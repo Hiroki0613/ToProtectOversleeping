@@ -40,8 +40,9 @@ class NewRegistrationUserNameVC: UIViewController {
         } else {
             newRegistrationGpsVC.modalPresentationStyle = .overFullScreen
             newRegistrationGpsVC.modalTransitionStyle = .crossDissolve
-            //TODO: 1秒後に画面遷移するようにする
-            navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
+//            //TODO: 1秒後に画面遷移するようにする
+//            navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
+            self.present(newRegistrationGpsVC, animated: true, completion: nil)
         }
     }
     

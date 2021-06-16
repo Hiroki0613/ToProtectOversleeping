@@ -2,65 +2,67 @@
 //  ResultWakeUpVC.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/06/14.
+//  Created by 近藤宏輝 on 2021/06/16.
 //
 
 import UIKit
-import FloatingPanel
-
-protocol GetArrayOFWakeUpSuccessPersonListDelegate {
-    func getArrayOfWakeUpSuccessPersonList() -> [String]
-}
 
 class ResultWakeUpVC: UIViewController {
     
     var wakeUpSuccessPersonList = [String]()
-    var getArrayOFWakeUpSuccessPersonListDelegate: GetArrayOFWakeUpSuccessPersonListDelegate?
+//    var wakeUpSuccessPersonList777 = ["うにうに","うにょうにょ","うろうろ"]
+    
+    var titleLabel = WUBodyLabel(fontSize: 20)
+    var resultLabel = WUBodyLabel(fontSize: 30)
+    var resultStackView = UIStackView(frame: .zero)
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("宏輝_FloatingPanel: ", wakeUpSuccessPersonList)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        //グラデーションをつける
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
-        //グラデーションさせるカラーの設定
-        let color1 = UIColor.systemOrange.withAlphaComponent(0.0).cgColor
-        let color2 = UIColor.systemOrange.cgColor
-
-        gradientLayer.colors = [color1, color2]
-        gradientLayer.startPoint = CGPoint.init(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint.init(x: 0.0 , y: 0.07)
-        self.view.layer.insertSublayer(gradientLayer,at:0)
+        view.backgroundColor = .systemOrange
+        configureUI()
+    }
+    
+    func configureUI() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        resultStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        titleLabel.text = "早起きができた人"
+        
+        resultLabel.text = wakeUpSuccessPersonList.joined(separator: "")
 
-        print("宏輝_FloatingPanel2: ",wakeUpSuccessPersonList)
-//        print("宏輝_FloatingPanel2: ",         getArrayOFWakeUpSuccessPersonListDelegate?.getArrayOfWakeUpSuccessPersonList())
+
+//        for wakeUpSuccessPerson in wakeUpSuccessPersonList777 {
+//            resultLabel.text = wakeUpSuccessPerson + "\n"
+//        }
+        
+        
+        view.addSubview(titleLabel)
+        view.addSubview(resultLabel)
+        
+//        for i in 0...(wakeUpSuccessPersonList.count - 1) {
+//            let resultLabelArray = [WUBodyLabel(fontSize: 16)]
+//            resultLabelArray[i].text = wakeUpSuccessPersonList[i]
+//            resultStackView.addArrangedSubview(resultLabelArray[i])
+//        }
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+  
+            resultLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+            resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resultLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+            
+//            resultStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+//            resultStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            resultStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+            
+        ])
     }
+
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("宏輝_FloatingPanel3: ",wakeUpSuccessPersonList)
-//        print("宏輝_FloatingPanel3: ",         getArrayOFWakeUpSuccessPersonListDelegate?.getArrayOfWakeUpSuccessPersonList())
-    }
+
 }
-
-
-
-class CustomFloatingPanelLayout: FloatingPanelLayout {
-    
-    let position: FloatingPanelPosition = .bottom
-        let initialState: FloatingPanelState = .tip
-        var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
-            return [
-                .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
-                .half: FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea),
-                .tip: FloatingPanelLayoutAnchor(absoluteInset: 90.0, edge: .bottom, referenceGuide: .safeArea),
-            ]
-        }
-}
-

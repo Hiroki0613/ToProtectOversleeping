@@ -9,7 +9,7 @@ import UIKit
 import MessageKit
 import Firebase
 import InputBarAccessoryView
-import FloatingPanel
+//import FloatingPanel
 
 
 
@@ -25,9 +25,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     var wakeUpSuccessPersonList = [String]()
     
-    var fpc: FloatingPanelController!
+//    var fpc: FloatingPanelController!
     
-    var resultWakeUpVC = ResultWakeUpVC()
+//    var resultWakeUpVC = ResultWakeUpVC()
     
     // TODO:暫定で強制アンラップ
     var currentUser = Sender(senderId: "", displayName: "")
@@ -47,6 +47,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "本日の結果", style: .done, target: self, action: #selector(summaryResults))
         // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemGray
         messagesCollectionView.backgroundColor = .systemOrange.withAlphaComponent(0.5)
@@ -58,7 +60,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
         let sendDBModel = SendDBModel()
         
-        resultWakeUpVC.getArrayOFWakeUpSuccessPersonListDelegate = self
+//        resultWakeUpVC.getArrayOFWakeUpSuccessPersonListDelegate = self
         // TODO: 一旦強制アンラップ
         // 自分
         currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userDataModel!.name)
@@ -71,13 +73,21 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //        title = "トーク"
         title = chatRoomNameModel?.roomName
         
-        configureFloatingPanel()
+//        configureFloatingPanel()
         
         //TODO: 集計結果を出すために12:00を過ぎていたら、FloatingPanelを半分上に出す。
         //本日の12時に移行を集計させる。
         
         
         reloadInputViews()
+    }
+    
+    @objc func summaryResults() {
+        print("宏輝_summaryResults")
+        let resultWakeUpVC = ResultWakeUpVC()
+        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+        print("宏輝_summary: ", resultWakeUpVC.wakeUpSuccessPersonList)
+        present(resultWakeUpVC, animated: true, completion: nil)
     }
     
     
@@ -203,8 +213,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                                     print("宏輝_起きた: ",displayName)
                                     self.wakeUpSuccessPersonList.append(displayName)
                                     print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
-                                    let resultWakeUpVC = ResultWakeUpVC()
-                                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+//                                    let resultWakeUpVC = ResultWakeUpVC()
+//                                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
                                     
 
                                 }
@@ -349,25 +359,25 @@ extension WakeUpCommunicateChatVC: MessageCellDelegate {
 }
 
 
-extension WakeUpCommunicateChatVC: FloatingPanelControllerDelegate {
-    
-    func configureFloatingPanel() {
-        fpc = FloatingPanelController()
-        fpc.delegate = self
-        fpc.layout = CustomFloatingPanelLayout()
-        fpc.surfaceView.backgroundColor = .clear
-        fpc.surfaceView.layer.cornerRadius = 16
-        
-        let contentVC = ResultWakeUpVC()
-        fpc.set(contentViewController: contentVC)
-        fpc.addPanel(toParent: self)
-    }
-}
-
-extension WakeUpCommunicateChatVC: GetArrayOFWakeUpSuccessPersonListDelegate {
-    func getArrayOfWakeUpSuccessPersonList() -> [String] {
-        let resultWakeUpVC = ResultWakeUpVC()
-        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-        return self.wakeUpSuccessPersonList
-    }
-}
+//extension WakeUpCommunicateChatVC: FloatingPanelControllerDelegate {
+//
+//    func configureFloatingPanel() {
+//        fpc = FloatingPanelController()
+//        fpc.delegate = self
+//        fpc.layout = CustomFloatingPanelLayout()
+//        fpc.surfaceView.backgroundColor = .clear
+//        fpc.surfaceView.layer.cornerRadius = 16
+//
+//        let contentVC = ResultWakeUpVC()
+//        fpc.set(contentViewController: contentVC)
+//        fpc.addPanel(toParent: self)
+//    }
+//}
+//
+//extension WakeUpCommunicateChatVC: GetArrayOFWakeUpSuccessPersonListDelegate {
+//    func getArrayOfWakeUpSuccessPersonList() -> [String] {
+//        let resultWakeUpVC = ResultWakeUpVC()
+//        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+//        return self.wakeUpSuccessPersonList
+//    }
+//}
