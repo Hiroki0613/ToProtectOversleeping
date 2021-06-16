@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 
+protocol LoadMessageDelegate {
+    func loadMessage(toID: String)
+}
+
 class WakeUpCardTableListVC: UIViewController {
     
     let tableView = UITableView()
@@ -16,6 +20,8 @@ class WakeUpCardTableListVC: UIViewController {
     var chatRoomDocumentIdArray = [String]()
     var chatRoomDocumentIdForSwitch = ""
     var indexNumber = 0
+    
+    var loadMessageDelegate:LoadMessageDelegate?
     
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
@@ -263,7 +269,15 @@ extension WakeUpCardTableListVC {
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
         wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
         wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag
-        navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+        pushNavigationController(sender: sender, withVC: wakeUpCommunicateChatVC) {
+            print("宏輝_画面遷移するはず")
+            navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
+        }
+    }
+    
+    func pushNavigationController(sender: UIButton, withVC: WakeUpCommunicateChatVC,  complietion: () -> Void) {
+        self.loadMessageDelegate = withVC
+        loadMessageDelegate?.loadMessage(toID: self.chatRoomDocumentIdArray[sender.tag])
     }
 }
 

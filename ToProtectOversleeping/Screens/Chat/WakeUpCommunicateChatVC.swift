@@ -47,6 +47,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        wakeUpCardTableListVC.loadMessageDelegate = self
         // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemGray
         messagesCollectionView.backgroundColor = .systemOrange.withAlphaComponent(0.5)
@@ -122,6 +123,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         print("宏輝_通知pending: ", center.getPendingNotificationRequests(completionHandler: { request in
             print("宏輝_通知request: ",request)
         }))
+        
+        let resultWakeUpVC = ResultWakeUpVC()
+        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
     }
     
     
@@ -143,80 +147,80 @@ class WakeUpCommunicateChatVC: MessagesViewController {
 //    }
     
     
-    //どこかのチャットルームで開かれているトークを日付順で並べている。
-    func loadMessage(toID: String) {
-        db.collection("Chats").document(toID).collection("Talk").order(by: "date").addSnapshotListener { snapshot, error in
-            if error != nil {
-                return
-            }
-            
-            // アプリバージョンごとにif letでunlapさせて
-            if let snapShotDoc = snapshot?.documents {
-                self.messages = []
-                for doc in snapShotDoc {
-                    let data = doc.data()
-                    print("data: ",data)
-                    
-                    guard let messageAppVersion = data["messageAppVersion"] as? String else { return }
-                    
-                    if messageAppVersion == "1.0.0" {
-                        if let text = data["text"] as? String,
-                           let senderID = data["senderId"] as? String,
-                           let displayName = data["displayName"] as? String,
-                           let date = data["date"] as? Double,
-                           let sendWUMessageType = data["sendWUMessageType"] as? String
-                           {
-                            
-                                // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
-                                if senderID == Auth.auth().currentUser?.uid {
-                                    
-                                    // 自分
-                                    self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
-                                    let message = Message(
-                                        sender: self.currentUser,
-                                        messageId: senderID,
-                                        sentDate: Date(timeIntervalSince1970: date),
-                                        kind: .text(text))
-                                    self.messages.append(message)
-                                    
-                                } else {
-                                    // 他人
-                                    self.otherUser = Sender(senderId: senderID, displayName: displayName)
-                                    let message = Message(
-                                        sender: self.otherUser,
-                                        messageId: senderID,
-                                        sentDate: Date(timeIntervalSince1970: date),
-                                        kind: .text(text))
-                                    self.messages.append(message)
-                                }
-                            
-                            // まず目が覚めた人をリストに上げる
-                            if sendWUMessageType == SendWUMessageType.wakeUpSuccessMessage {
-                                let calendar = Calendar(identifier: .gregorian)
-                                print("宏輝_起きた時間: ", Date(timeIntervalSince1970: date))
-                                
-                                let date = Date(timeIntervalSince1970: date)
-//                                let yesterday = date.addingTimeInterval(-60 * 60 * 24)
-                                
-                                // 今日の日付ならappend
-                                if calendar.isDateInToday(date) {
-                                    print("宏輝_起きた: ",displayName)
-                                    self.wakeUpSuccessPersonList.append(displayName)
-                                    print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
-                                    let resultWakeUpVC = ResultWakeUpVC()
-                                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-                                    
-
-                                }
-                            }
-                        }
-                    }
-                }
-                self.messagesCollectionView.reloadData()
-                self.messagesCollectionView.scrollToLastItem()
-            }
-        }
-    }
+//    //どこかのチャットルームで開かれているトークを日付順で並べている。
+//    func loadMessage(toID: String) {
+//        db.collection("Chats").document(toID).collection("Talk").order(by: "date").addSnapshotListener { snapshot, error in
+//            if error != nil {
+//                return
+//            }
+//
+//            // アプリバージョンごとにif letでunlapさせて
+//            if let snapShotDoc = snapshot?.documents {
+//                self.messages = []
+//                for doc in snapShotDoc {
+//                    let data = doc.data()
+//                    print("data: ",data)
+//
+//                    guard let messageAppVersion = data["messageAppVersion"] as? String else { return }
+//
+//                    if messageAppVersion == "1.0.0" {
+//                        if let text = data["text"] as? String,
+//                           let senderID = data["senderId"] as? String,
+//                           let displayName = data["displayName"] as? String,
+//                           let date = data["date"] as? Double,
+//                           let sendWUMessageType = data["sendWUMessageType"] as? String
+//                           {
+//
+//                                // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
+//                                if senderID == Auth.auth().currentUser?.uid {
+//
+//                                    // 自分
+//                                    self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
+//                                    let message = Message(
+//                                        sender: self.currentUser,
+//                                        messageId: senderID,
+//                                        sentDate: Date(timeIntervalSince1970: date),
+//                                        kind: .text(text))
+//                                    self.messages.append(message)
+//
+//                                } else {
+//                                    // 他人
+//                                    self.otherUser = Sender(senderId: senderID, displayName: displayName)
+//                                    let message = Message(
+//                                        sender: self.otherUser,
+//                                        messageId: senderID,
+//                                        sentDate: Date(timeIntervalSince1970: date),
+//                                        kind: .text(text))
+//                                    self.messages.append(message)
+//                                }
+//
+//                            // まず目が覚めた人をリストに上げる
+//                            if sendWUMessageType == SendWUMessageType.wakeUpSuccessMessage {
+//                                let calendar = Calendar(identifier: .gregorian)
+//                                print("宏輝_起きた時間: ", Date(timeIntervalSince1970: date))
+//
+//                                let date = Date(timeIntervalSince1970: date)
+////                                let yesterday = date.addingTimeInterval(-60 * 60 * 24)
+//
+//                                // 今日の日付ならappend
+//                                if calendar.isDateInToday(date) {
+//                                    print("宏輝_起きた: ",displayName)
+//                                    self.wakeUpSuccessPersonList.append(displayName)
+//                                    print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
+//                                    let resultWakeUpVC = ResultWakeUpVC()
+//                                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+//
+//
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                self.messagesCollectionView.reloadData()
+//                self.messagesCollectionView.scrollToLastItem()
+//            }
+//        }
+//    }
 }
 
 
@@ -369,5 +373,84 @@ extension WakeUpCommunicateChatVC: GetArrayOFWakeUpSuccessPersonListDelegate {
         let resultWakeUpVC = ResultWakeUpVC()
         resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
         return self.wakeUpSuccessPersonList
+    }
+}
+
+extension WakeUpCommunicateChatVC: LoadMessageDelegate {
+        //どこかのチャットルームで開かれているトークを日付順で並べている。
+        func loadMessage(toID: String) {
+            db.collection("Chats").document(toID).collection("Talk").order(by: "date").addSnapshotListener { snapshot, error in
+                if error != nil {
+                    return
+                }
+    
+                // アプリバージョンごとにif letでunlapさせて
+                if let snapShotDoc = snapshot?.documents {
+                    self.messages = []
+                    for doc in snapShotDoc {
+                        let data = doc.data()
+                        print("data: ",data)
+    
+                        guard let messageAppVersion = data["messageAppVersion"] as? String else { return }
+    
+                        if messageAppVersion == "1.0.0" {
+                            if let text = data["text"] as? String,
+                               let senderID = data["senderId"] as? String,
+                               let displayName = data["displayName"] as? String,
+                               let date = data["date"] as? Double,
+                               let sendWUMessageType = data["sendWUMessageType"] as? String
+                               {
+    
+                                    // senderはどちらが送ったかを検証する場所idでわけて自分と相手のmessageを２つつくる
+                                    if senderID == Auth.auth().currentUser?.uid {
+    
+                                        // 自分
+                                        self.currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: displayName)
+                                        let message = Message(
+                                            sender: self.currentUser,
+                                            messageId: senderID,
+                                            sentDate: Date(timeIntervalSince1970: date),
+                                            kind: .text(text))
+                                        self.messages.append(message)
+    
+                                    } else {
+                                        // 他人
+                                        self.otherUser = Sender(senderId: senderID, displayName: displayName)
+                                        let message = Message(
+                                            sender: self.otherUser,
+                                            messageId: senderID,
+                                            sentDate: Date(timeIntervalSince1970: date),
+                                            kind: .text(text))
+                                        self.messages.append(message)
+                                    }
+    
+                                // まず目が覚めた人をリストに上げる
+                                if sendWUMessageType == SendWUMessageType.wakeUpSuccessMessage {
+                                    let calendar = Calendar(identifier: .gregorian)
+                                    print("宏輝_起きた時間: ", Date(timeIntervalSince1970: date))
+    
+                                    let date = Date(timeIntervalSince1970: date)
+    //                                let yesterday = date.addingTimeInterval(-60 * 60 * 24)
+    
+                                    // 今日の日付ならappend
+                                    if calendar.isDateInToday(date) {
+                                        print("宏輝_起きた: ",displayName)
+                                        self.wakeUpSuccessPersonList.append(displayName)
+                                        print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
+                                        let resultWakeUpVC = ResultWakeUpVC()
+                                        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+    
+    
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    self.messagesCollectionView.reloadData()
+                    self.messagesCollectionView.scrollToLastItem()
+                }
+            }
+        
+
     }
 }
