@@ -28,7 +28,13 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     // 地図
     var mapView = MKMapView()
     // 測定結果を表示するラベル
-    var swipedActionLabel = WUBodyLabel(fontSize: 18)
+    var swipedActionLabel = WUBodyLabel(fontSize: 16)
+    
+    // 雨の日用
+    let rainyDayLabel = WUBodyLabel(fontSize: 20)
+    let rainyDaySwitch = UISwitch()
+    
+    
     //　スワイプボタン
     var swipeButton: SwipeButton!
     
@@ -67,10 +73,14 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             // ２時間以上前の時
             swipedActionLabel.text = "現在はアラームを解除できません。\n\n設定した2時間以内になりましたら、\n解除ボタンが表示されます。"
             swipeButton.isHidden = true
+            rainyDayLabel.isHidden = true
+            rainyDaySwitch.isHidden = true
         } else {
             // ２時間以内の時
             swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
             swipeButton.isHidden = false
+            rainyDayLabel.isHidden = false
+            rainyDaySwitch.isHidden = false
         }
     }
     
@@ -112,6 +122,14 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         
         print("rawDistance: ", rawDistance + 100)
         
+        if rainyDaySwitch.isOn {
+            clearAlarm()
+            let messageModel = MessageModel()
+            messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
+//            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
+            return "雨の日です"
+        }
+        
         switch rawDistance {
         case 0..<(10):
             return "あと、90m離れてください"
@@ -148,6 +166,19 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
     
+    @objc func tapRainyDaySwitch(_ sender: UISwitch) {
+        let onCheck: Bool = sender.isOn
+        
+        if onCheck {
+            print("雨の日です")
+            swipedActionLabel.text = "家から100m離れなくても\n解除可能です\nただし☔️通知がつきます"
+            
+        } else {
+            print("晴れの日です")
+            swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
+        }
+    }
+    
     
     func configureUI() {
         mapView.delegate = self
@@ -159,6 +190,14 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         swipedActionLabel.numberOfLines = 0
         swipedActionLabel.textAlignment = .center
         view.addSubview(swipedActionLabel)
+        
+        rainyDayLabel.text = "☔️の時"
+        rainyDayLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(rainyDayLabel)
+        rainyDaySwitch.isOn = false
+        rainyDaySwitch.addTarget(self, action: #selector(tapRainyDaySwitch), for: .touchUpInside)
+        rainyDaySwitch.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(rainyDaySwitch)
 
         let padding:CGFloat = 20.0;
         setupSwipeButton()
@@ -169,6 +208,14 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
+            
+            rainyDayLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 10),
+            rainyDayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            rainyDayLabel.widthAnchor.constraint(equalToConstant: 60),
+            rainyDayLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            rainyDaySwitch.topAnchor.constraint(equalTo: rainyDayLabel.bottomAnchor, constant: 10),
+            rainyDaySwitch.centerXAnchor.constraint(equalTo: rainyDayLabel.centerXAnchor),
             
             swipedActionLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: padding),
             swipedActionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),

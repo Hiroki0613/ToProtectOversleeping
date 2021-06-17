@@ -18,6 +18,7 @@ enum SendWUMessageType {
     static let editAlarmTime = "editAlarmTime"
     static let leaveTheRoom = "leaveTheRoom"
     static let newInvitedToTeam = "newInvitedToTeam"
+    static let rainyDay = "rainyDay"
 }
 
 
@@ -108,6 +109,20 @@ class MessageModel {
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.wakeUpSuccessMessage
+        )
+    }
+    
+    func sendMessageToChatWakeUpAtRainyDay(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+        let sendDBModel = SendDBModel()
+        // メッセージがアプリのバージョンアップで変更した時に使用
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        sendDBModel.sendMessage(
+            senderId: Auth.auth().currentUser!.uid,
+            toID: toID,
+            text: "☔️\(displayName)は設定した\(wakeUpTimeText)より前におきました☔️",
+            displayName: displayName,
+            messageAppVersion: version,
+            sendWUMessageType: SendWUMessageType.rainyDay
         )
     }
     
