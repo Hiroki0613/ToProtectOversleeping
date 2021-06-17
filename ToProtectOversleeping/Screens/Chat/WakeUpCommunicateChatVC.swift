@@ -27,7 +27,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
 //    var fpc: FloatingPanelController!
     
-//    var resultWakeUpVC = ResultWakeUpVC()
+//    var resultWakeUpFloatingVC = ResultWakeUpFloatingVC()
     
     // TODO:暫定で強制アンラップ
     var currentUser = Sender(senderId: "", displayName: "")
@@ -77,9 +77,11 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
         //TODO: 集計結果を出すために12:00を過ぎていたら、FloatingPanelを半分上に出す。
         //本日の12時に移行を集計させる。
+        //1日に1回とするため、UserDefaultsに結果を表示したのちに、
+        //今日の日付けを入れて、入っていたらスルーすることにする。
         
         
-        reloadInputViews()
+//        reloadInputViews()
     }
     
     @objc func summaryResults() {
@@ -132,6 +134,12 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         print("宏輝_通知pending: ", center.getPendingNotificationRequests(completionHandler: { request in
             print("宏輝_通知request: ",request)
         }))
+        let resultWakeUpVC = ResultWakeUpVC()
+        resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
+        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+        print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
+        
+        present(resultWakeUpVC, animated: true, completion: nil)
     }
     
     
@@ -368,12 +376,12 @@ extension WakeUpCommunicateChatVC: MessageCellDelegate {
 //        fpc.surfaceView.backgroundColor = .clear
 //        fpc.surfaceView.layer.cornerRadius = 16
 //
-//        let contentVC = ResultWakeUpVC()
+//        let contentVC = ResultWakeUpFloatingVC()
 //        fpc.set(contentViewController: contentVC)
 //        fpc.addPanel(toParent: self)
 //    }
 //}
-//
+
 //extension WakeUpCommunicateChatVC: GetArrayOFWakeUpSuccessPersonListDelegate {
 //    func getArrayOfWakeUpSuccessPersonList() -> [String] {
 //        let resultWakeUpVC = ResultWakeUpVC()

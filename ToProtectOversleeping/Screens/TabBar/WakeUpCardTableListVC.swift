@@ -262,9 +262,12 @@ extension WakeUpCardTableListVC {
     
     @objc func tapSetChatButton(_ sender: UIButton) {
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+//        let resultWakeUpFloatingVC = ResultWakeUpFloatingVC()
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
         wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
+//        resultWakeUpFloatingVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
+        
         wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }

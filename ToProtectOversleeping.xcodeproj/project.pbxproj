@@ -102,7 +102,7 @@
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F5A9E4E2677993B00754C93 /* ResultWakeUpFloatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpFloatingVC.swift; sourceTree = "<group>"; };
-		7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpVC.swift; sourceTree = "<group>"; };
+		7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		7F5B6338266225E90057C12B /* SendDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDBModel.swift; sourceTree = "<group>"; };
 		7F5B633D26623C740057C12B /* NewRegistrationUserNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationUserNameVC.swift; sourceTree = "<group>"; };
