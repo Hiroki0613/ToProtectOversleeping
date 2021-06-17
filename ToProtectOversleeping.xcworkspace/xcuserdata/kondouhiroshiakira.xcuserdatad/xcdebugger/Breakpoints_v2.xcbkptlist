@@ -110,8 +110,8 @@
             filePath = "ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -183,32 +183,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "13A41CC9-6ECD-436C-89CB-2E06888B97B5"
+            uuid = "58854697-2617-4202-9AEE-29E05F0F33F4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ToProtectOversleeping/Screens/GetGPS/WakeUpAndCutAlertBySlideVC.swift"
+            filePath = "ToProtectOversleeping/Screens/Chat/ResultWakeUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "checkSettingAlarmWithinTwoHours(settingTime:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6518C535-B550-43A9-8FD5-935E0E601054"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ToProtectOversleeping/Screens/GetGPS/WakeUpAndCutAlertBySlideVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "rank(location:)"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "loadMessage(toID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

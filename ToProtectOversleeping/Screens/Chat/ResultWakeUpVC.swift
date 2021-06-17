@@ -17,11 +17,12 @@ class ResultWakeUpVC: UIViewController {
     
     var chatRoomDocumentId: String?
     
-    var wakeUpSuccessPersonList = [String]()
+    var wakeUpSuccessPersonList: [String] = []
+    var wakeUpRainyDayPersonList: [String] = []
 //    var wakeUpSuccessPersonList777 = ["うにうに","うにょうにょ","うろうろ"]
     
-    var titleLabel = WUBodyLabel(fontSize: 20)
-    var resultLabel = WUBodyLabel(fontSize: 30)
+    var titleLabel = WUBodyLabel(fontSize: 30)
+    var resultLabel = WUBodyLabel(fontSize: 20)
     var resultStackView = UIStackView(frame: .zero)
 
 
@@ -80,22 +81,40 @@ class ResultWakeUpVC: UIViewController {
 //                                    self.labelArray.append(label)
                                     print("宏輝_起きたリストresult: ", self.wakeUpSuccessPersonList)
                                 }
+                                
+                                if calendar.isDateInToday(date) {
+                                    print("宏輝_雨の日リストresult: ", self.wakeUpRainyDayPersonList)
+                                    self.wakeUpRainyDayPersonList.append(displayName)
+                                }
+                            }
+                            
+                            // まず目が覚めた人をリストに上げる
+                            if sendWUMessageType == SendWUMessageType.rainyDay {
+                                let calendar = Calendar(identifier: .gregorian)
+                                print("宏輝_起きた時間: ", Date(timeIntervalSince1970: date))
+                                
+                                let date = Date(timeIntervalSince1970: date)
+                                
+                                // 今日の日付ならappend
+                                if calendar.isDateInToday(date) {
+                                    print("宏輝_雨の日リストresult: ", self.wakeUpRainyDayPersonList)
+                                    self.wakeUpRainyDayPersonList.append(displayName)
+                                }
                             }
                         }
                     }
                 }
-                
-                
-//                for label in self.labelArray {
-//                    self.resultStackView.addArrangedSubview(label)
-//                    self.view.layoutIfNeeded()
-                let orderedSet: NSOrderedSet = NSOrderedSet(array:  self.wakeUpSuccessPersonList)
-                self.wakeUpSuccessPersonList = orderedSet.array as! [String]
-                self.resultLabel.text = self.wakeUpSuccessPersonList.joined(separator: "\n")
-//                }
+                let orderedSetSuccess: NSOrderedSet = NSOrderedSet(array:  self.wakeUpSuccessPersonList)
+                self.wakeUpSuccessPersonList = orderedSetSuccess.array as! [String]
+                    let text1 = self.wakeUpSuccessPersonList.joined(separator: "\n")
+                let orderedSetRainyDay: NSOrderedSet = NSOrderedSet(array: self.wakeUpRainyDayPersonList)
+                self.wakeUpRainyDayPersonList = orderedSetRainyDay.array as! [String]
+                let text2 = self.wakeUpRainyDayPersonList.joined(separator: "\n")
+                    self.resultLabel.text = "\(text1)\n\n☔️雨の日☔️\n\(text2)"
             }
         }
     }
+        
     
     
     
@@ -104,6 +123,7 @@ class ResultWakeUpVC: UIViewController {
 //        resultStackView.translatesAutoresizingMaskIntoConstraints = false
         resultLabel.translatesAutoresizingMaskIntoConstraints = false
         resultLabel.numberOfLines = 0
+        resultLabel.textAlignment = .center
         
         titleLabel.text = "早起きができた人"
         

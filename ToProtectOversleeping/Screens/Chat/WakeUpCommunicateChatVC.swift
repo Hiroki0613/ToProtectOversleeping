@@ -48,7 +48,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "本日の結果", style: .done, target: self, action: #selector(summaryResults))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "本日の結果", style: .done, target: self, action: #selector(tapSummaryResults))
         // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemGray
         messagesCollectionView.backgroundColor = .systemOrange.withAlphaComponent(0.5)
@@ -75,23 +75,74 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
 //        configureFloatingPanel()
         
-        //TODO: 集計結果を出すために12:00を過ぎていたら、FloatingPanelを半分上に出す。
-        //本日の12時に移行を集計させる。
-        //1日に1回とするため、UserDefaultsに結果を表示したのちに、
-        //今日の日付けを入れて、入っていたらスルーすることにする。
+
         
         
 //        reloadInputViews()
     }
     
-    @objc func summaryResults() {
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+        loadMessage(toID: chatRoomDocumentId!)
+        
+        let center = UNUserNotificationCenter.current()
+        print("宏輝_通知pending: ", center.getPendingNotificationRequests(completionHandler: { request in
+            print("宏輝_通知request: ",request)
+        }))
+        
+        //TODO: 集計結果を出すために12:00を過ぎていたら、FloatingPanelを半分上に出す。
+        //本日の12時に移行を集計させる。
+        //1日に1回とするため、UserDefaultsに結果を表示したのちに、
+        //今日の日付けを入れて、入っていたらスルーすることにする。
+        
+//        userDefaults.standard.integer(forKey: "wakeUpResultDate")
+        let calender = Calendar(identifier: .gregorian)
+        
+        let date = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "wakeUpResultDate"))
+        
+        print("宏輝_date: ",date)
+        if calender.isDateInToday(date) {
+            print("宏輝_今日は集計をすでに見ました")
+        } else {
+            if let createTodayNoonTime = createTodayNoonTime() {
+                if createTodayNoonTime < Date() {
+                    let resultWakeUpVC = ResultWakeUpVC()
+                    resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
+                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+                    print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
+                    //今日は集計を見たことをUserDefaultsに記録させておく
+                    UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "wakeUpResultDate")
+                    present(resultWakeUpVC, animated: true, completion: nil)
+                }
+            }
+        }
+        
+    }
+    
+    @objc func tapSummaryResults() {
         print("宏輝_summaryResults")
         let resultWakeUpVC = ResultWakeUpVC()
+        resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
         resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-        print("宏輝_summary: ", resultWakeUpVC.wakeUpSuccessPersonList)
+        print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
         present(resultWakeUpVC, animated: true, completion: nil)
     }
     
+    
+    //TODO: 現在はベタ打ちで対応している。ここを自動的に今日の日付が入るように設定する
+    //結果を表示する時刻のため、今日の正午を生成
+    func createTodayNoonTime() -> Date? {
+        /// カレンダーを生成
+        let calendar = Calendar(identifier: .gregorian)    // 西暦（gregorian）カレンダー
+        // 2020/04/10 21:00:00 の日時を生成
+        let date = calendar.date(from: DateComponents(year: 2021, month: 6, day: 18, hour: 12, minute: 0, second: 0))
+        print(date!)
+        return date
+    }
     
     func configureMessageCollectionView() {
 //        wakeUpCardTableListVC.sendWakeUpReportToChatDelegate = self
@@ -124,23 +175,6 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        self.tabBarController?.tabBar.isHidden = true
-        loadMessage(toID: chatRoomDocumentId!)
-        
-        let center = UNUserNotificationCenter.current()
-        print("宏輝_通知pending: ", center.getPendingNotificationRequests(completionHandler: { request in
-            print("宏輝_通知request: ",request)
-        }))
-        let resultWakeUpVC = ResultWakeUpVC()
-        resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
-        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-        print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
-        
-        present(resultWakeUpVC, animated: true, completion: nil)
-    }
     
     
     
@@ -221,8 +255,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                                     print("宏輝_起きた: ",displayName)
                                     self.wakeUpSuccessPersonList.append(displayName)
                                     print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
-//                                    let resultWakeUpVC = ResultWakeUpVC()
-//                                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+                                    let resultWakeUpVC = ResultWakeUpVC()
+                                    resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
                                     
 
                                 }

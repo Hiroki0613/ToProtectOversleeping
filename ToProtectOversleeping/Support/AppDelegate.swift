@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "myAddressLongitude" : 139.756308,
 //            "myAddressLongLongtitude" : 0.0,
             "myAddress": "未登録",
-            "isFirstOpenApp": true
+            "isFirstOpenApp": true,
+            "wakeUpResultDate": 10.0
         ])
         
         //値を取り出す
