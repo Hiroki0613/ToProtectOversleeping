@@ -98,10 +98,26 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         //本日の12時に移行を集計させる。
         //1日に1回とするため、UserDefaultsに結果を表示したのちに、
         //今日の日付けを入れて、入っていたらスルーすることにする。
+        checkIsFirstTimeInTheDayOpenedThisView()
         
-//        userDefaults.standard.integer(forKey: "wakeUpResultDate")
+        
+    }
+    
+    // 集計画面へ画面遷移
+    @objc func tapSummaryResults() {
+        print("宏輝_summaryResults")
+        let resultWakeUpVC = ResultWakeUpVC()
+        resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
+        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+        print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
+        present(resultWakeUpVC, animated: true, completion: nil)
+    }
+    
+    
+    // 今日初めて、このViewを見ているかを判定
+    func checkIsFirstTimeInTheDayOpenedThisView() {
         let calender = Calendar(identifier: .gregorian)
-        
+
         let date = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "wakeUpResultDate"))
         
         print("宏輝_date: ",date)
@@ -123,25 +139,20 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         
     }
     
-    @objc func tapSummaryResults() {
-        print("宏輝_summaryResults")
-        let resultWakeUpVC = ResultWakeUpVC()
-        resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
-        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-        print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
-        present(resultWakeUpVC, animated: true, completion: nil)
-    }
-    
     
     //TODO: 現在はベタ打ちで対応している。ここを自動的に今日の日付が入るように設定する
     //結果を表示する時刻のため、今日の正午を生成
     func createTodayNoonTime() -> Date? {
         /// カレンダーを生成
         let calendar = Calendar(identifier: .gregorian)    // 西暦（gregorian）カレンダー
-        // 2020/04/10 21:00:00 の日時を生成
-        let date = calendar.date(from: DateComponents(year: 2021, month: 6, day: 18, hour: 12, minute: 0, second: 0))
-        print(date!)
-        return date
+        let date = Date()
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+
+        // 本日の１２時を生成
+        let todayNoonTime = calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12, minute: 0, second: 0))
+        return todayNoonTime
     }
     
     func configureMessageCollectionView() {
