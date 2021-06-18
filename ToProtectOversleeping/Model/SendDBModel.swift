@@ -49,7 +49,9 @@ class SendDBModel {
              "uid": uid as Any,
              "appVersion": appVersion as Any,
              "isWakeUpBool": isWakeUpBool as Any,
-             "date": Date().timeIntervalSince1970 as Any
+             "date": Date().timeIntervalSince1970 as Any,
+             "displayAdvertise": true as Any,
+             "developerMode": false as Any
             ]
         )
         self.doneCreateUser?.doneCreateUser()

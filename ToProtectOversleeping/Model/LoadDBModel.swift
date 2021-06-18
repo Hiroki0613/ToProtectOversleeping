@@ -36,7 +36,10 @@ class LoadDBModel {
                     let uid = data["uid"] as? String,
                     let appVersion = data["appVersion"] as? String,
                     let isWakeUpBool = data["isWakeUpBool"] as? Bool,
-                    let date = data["date"] as? Double {
+                    let date = data["date"] as? Double,
+                    let _ = data["displayAdvertise"] as? Bool,
+                    let _ = data["developerMode"] as? Bool
+                    {
                     
                     let userDataModel = UserDataModel(name: name, uid: uid, appVersion: appVersion, isWakeUpBool: isWakeUpBool, date: date)
                     self.getUserDataDelegate?.getUserData(userDataModel: userDataModel)
