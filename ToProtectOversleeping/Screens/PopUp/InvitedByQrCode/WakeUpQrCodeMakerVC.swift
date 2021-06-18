@@ -52,9 +52,28 @@ class WakeUpQrCodeMakerVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    //ラベルをタップしてコピー
+    @objc func tappedLabel(_ sender:UITapGestureRecognizer) {
+        UIPasteboard.general.string = qrCodeLavel.text
+        print("clip board :\(UIPasteboard.general.string!)")
+        alert(title: "コピーしました", message: "")
+    }
+    
+    //アラート
+    func alert(title: String, message: String)  {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func configureQRCodelabel() {
         qrCodeLavel.text = invitedDocumentId
         qrCodeLavel.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeLavel.isUserInteractionEnabled = true
+        qrCodeLavel.textAlignment = .center
+        
+        let tg = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
+        qrCodeLavel.addGestureRecognizer(tg)
         self.view.addSubview(qrCodeLavel)
         
         NSLayoutConstraint.activate([
