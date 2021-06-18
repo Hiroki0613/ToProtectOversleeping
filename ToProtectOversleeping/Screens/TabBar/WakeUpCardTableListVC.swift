@@ -136,8 +136,8 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             print("Editがタップされた")
             
             let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
-            editWakeUpAlarmTimeVC.editWakeUpAlarmTimeView.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row]
-            editWakeUpAlarmTimeVC.editWakeUpAlarmTimeView.userName = self.userDataModel!.name
+            editWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row]
+            editWakeUpAlarmTimeVC.userName = self.userDataModel!.name
             self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
             
             completionHandler(true)

@@ -49,6 +49,11 @@ class EditWakeUpAlarmTimeView: UIView {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         changeWakeUpTimeTextField.text = "\(formatter.string(from: changeDatePicker.date))"
+        guard let changeWakeUpTimeTextFieldText = changeWakeUpTimeTextField.text else { return }
+        changeWakeUpTimeText = changeWakeUpTimeTextFieldText
+        changeWakeUpTimeDate = changeDatePicker.date
+        print("wakeUpTimeText: ", changeWakeUpTimeText)
+        changeWakeUpTimeLabel.text = "時間が変更されました"
     }
     
     
@@ -71,12 +76,12 @@ class EditWakeUpAlarmTimeView: UIView {
         changeWakeUpTimeDate = changeDatePicker.date
         print("wakeUpTimeText: ", changeWakeUpTimeText)
         changeWakeUpTimeLabel.text = "時間が変更されました"
-        //ここで、時間を変更するfireStoreのコードを入れる
-        let sendDBModel = SendDBModel()
-        sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: changeDatePicker.date, wakeUpTimeText: changeWakeUpTimeText)
-        //ここで時間が変更されたことをチャットで知らせる。
-        let messageModel = MessageModel()
-        messageModel.sendMessageToChatEditAlarmTime(documentID: chatRoomDocumentID, displayName: userName, wakeUpTimeText: changeWakeUpTimeText)
+//        //ここで、時間を変更するfireStoreのコードを入れる
+//        let sendDBModel = SendDBModel()
+//        sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: changeDatePicker.date, wakeUpTimeText: changeWakeUpTimeText)
+//        //ここで時間が変更されたことをチャットで知らせる。
+//        let messageModel = MessageModel()
+//        messageModel.sendMessageToChatEditAlarmTime(documentID: chatRoomDocumentID, displayName: userName, wakeUpTimeText: changeWakeUpTimeText)
     }
     
     

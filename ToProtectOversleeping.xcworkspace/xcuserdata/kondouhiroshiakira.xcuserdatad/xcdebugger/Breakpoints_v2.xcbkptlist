@@ -183,16 +183,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "58854697-2617-4202-9AEE-29E05F0F33F4"
+            uuid = "BCC88746-97C6-45CF-987D-4E0482E2AC37"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ToProtectOversleeping/Screens/Chat/ResultWakeUpVC.swift"
+            filePath = "ToProtectOversleeping/CustomViews/View/SetAlarmTimeAndNewRegistrationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "loadMessage(toID:)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "done()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9016E1F7-EA4B-4C75-8FCF-ED206E5A4B99"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/CustomViews/View/SetAlarmTimeAndNewRegistrationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "dateChange()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

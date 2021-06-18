@@ -9,6 +9,9 @@ import UIKit
 
 class EditWakeUpAlarmTimeVC: UIViewController {
     
+    // チャットのdocumentID
+    var chatRoomDocumentID = ""
+    var userName = ""
 
     var editWakeUpAlarmTimeView = EditWakeUpAlarmTimeView()
     
@@ -31,8 +34,18 @@ class EditWakeUpAlarmTimeVC: UIViewController {
     
     @objc func tapToDismiss() {
         
-//        dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        // 何も入っていなかったら、そのままリターン
+        if editWakeUpAlarmTimeView.changeWakeUpTimeTextField.text == "" {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            //ここで、時間を変更するfireStoreのコードを入れる
+            let sendDBModel = SendDBModel()
+            sendDBModel.changedChatRoomWakeUpAlarmTime(roomNameId: chatRoomDocumentID, wakeUpTimeDate: editWakeUpAlarmTimeView.changeDatePicker.date, wakeUpTimeText: editWakeUpAlarmTimeView.changeWakeUpTimeText)
+            //ここで時間が変更されたことをチャットで知らせる。
+            let messageModel = MessageModel()
+            messageModel.sendMessageToChatEditAlarmTime(documentID: chatRoomDocumentID, displayName: userName, wakeUpTimeText: editWakeUpAlarmTimeView.changeWakeUpTimeText)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     

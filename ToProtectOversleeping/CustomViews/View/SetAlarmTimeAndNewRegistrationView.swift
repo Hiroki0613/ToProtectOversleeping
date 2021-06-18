@@ -53,7 +53,11 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     @objc func dateChange() {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
+        guard let wakeUpTimeTextFieldText = wakeUpTimeTextField.text else { return }
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
+        wakeUpTimeText = wakeUpTimeTextFieldText
+        wakeUpTimeDate = datePicker.date
+        print("wakeUpTimeText: ", wakeUpTimeText)
     }
     
     
