@@ -52,6 +52,20 @@ class WakeUpCardTableListCell: UITableViewCell {
         wakeUpChatTeamLabel.text = "チーム名"
         wakeUpChatTeamNameLabel.text = chatRoomNameModel.roomName
         wakeUpSetAlarmSwitch.isOn = chatRoomNameModel.isWakeUpBool
+        
+        //アラームスイッチがONの時は、
+        if wakeUpSetAlarmSwitch.isOn == true {
+            self.tableCellView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+            self.setAlarmButton.backgroundColor = .systemOrange
+            self.setAlarmButton.isHidden = false
+            self.setAlarmButton.isEnabled = true
+        } else {
+            self.tableCellView.backgroundColor = .systemGray5.withAlphaComponent(0.9)
+            self.setAlarmButton.backgroundColor = .systemOrange.withAlphaComponent(0.3)
+            self.setAlarmButton.isHidden = true
+            self.setAlarmButton.isEnabled = false
+        }
+        
         wakeUpLabel.text = "起きる時間"
         wakeUpTimeLabel.text = chatRoomNameModel.wakeUpTimeText
         
