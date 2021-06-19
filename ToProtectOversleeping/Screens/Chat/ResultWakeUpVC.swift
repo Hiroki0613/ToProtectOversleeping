@@ -104,13 +104,22 @@ class ResultWakeUpVC: UIViewController {
                         }
                     }
                 }
-                let orderedSetSuccess: NSOrderedSet = NSOrderedSet(array:  self.wakeUpSuccessPersonList)
-                self.wakeUpSuccessPersonList = orderedSetSuccess.array as! [String]
-                    let text1 = self.wakeUpSuccessPersonList.joined(separator: "\n")
-                let orderedSetRainyDay: NSOrderedSet = NSOrderedSet(array: self.wakeUpRainyDayPersonList)
-                self.wakeUpRainyDayPersonList = orderedSetRainyDay.array as! [String]
-                let text2 = self.wakeUpRainyDayPersonList.joined(separator: "\n")
-                    self.resultLabel.text = "\(text1)\n\n☔️雨の日☔️\n\(text2)"
+                
+//                // 晴れの日、雨の日を分割して、一覧にしている
+//                let orderedSetSuccess: NSOrderedSet = NSOrderedSet(array:  self.wakeUpSuccessPersonList)
+//                self.wakeUpSuccessPersonList = orderedSetSuccess.array as! [String]
+//                    let text1 = self.wakeUpSuccessPersonList.joined(separator: "\n")
+//                let orderedSetRainyDay: NSOrderedSet = NSOrderedSet(array: self.wakeUpRainyDayPersonList)
+//                self.wakeUpRainyDayPersonList = orderedSetRainyDay.array as! [String]
+//                let text2 = self.wakeUpRainyDayPersonList.joined(separator: "\n")
+//                    self.resultLabel.text = "\(text1)\n\n☔️雨の日☔️\n\(text2)"
+                
+                // 起きた人を一括で管理している
+                var wakeUpPeopleArray = self.wakeUpSuccessPersonList + self.wakeUpRainyDayPersonList
+                let orderedSetWakeUpPeople: NSOrderedSet = NSOrderedSet(array: wakeUpPeopleArray)
+                wakeUpPeopleArray = orderedSetWakeUpPeople.array as! [String]
+                let wakeUpText = wakeUpPeopleArray.joined(separator: "\n")
+                self.resultLabel.text = wakeUpText
             }
         }
     }
