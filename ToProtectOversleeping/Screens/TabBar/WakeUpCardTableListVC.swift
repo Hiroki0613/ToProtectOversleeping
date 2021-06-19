@@ -251,13 +251,33 @@ extension WakeUpCardTableListVC {
     @objc func tapSetAlarmButton(_ sender: UIButton) {
         print("tableviewアラームボタンがタップされました: ",sender.tag)
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
+        
+//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
+        guard let remakeAlarmTime = remakeAlarmTime(wakeUpTime: Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)) else { return }
+        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = remakeAlarmTime
         wakeUpAndCutAlertBySlideVC.authId = Auth.auth().currentUser!.uid
         wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag]
         wakeUpAndCutAlertBySlideVC.userName =  self.userDataModel!.name
         wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag].wakeUpTimeText
-        print(self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+    }
+    
+    
+    //アラーム時間を当時に変更する
+    func remakeAlarmTime(wakeUpTime: Date) -> Date? {
+        // 現在時刻を取得
+        let calendar = Calendar(identifier: .gregorian)
+        let date = Date()
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        
+        let alarmHour = calendar.component(.hour, from: wakeUpTime)
+        let alarmMinute = calendar.component(.minute, from: wakeUpTime)
+        let alarmSecond = calendar.component(.second, from: wakeUpTime)
+        
+        let remake = calendar.date(from: DateComponents(year: year, month: month, day: day, hour: alarmHour, minute: alarmMinute, second: alarmSecond))
+        return remake
     }
     
     @objc func tapSetChatButton(_ sender: UIButton) {

@@ -54,6 +54,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("宏輝_時間調査: ", mySettingAlarmTime)
         checkSettingAlarmWithinTwoHours(settingTime: mySettingAlarmTime)
         self.view.layoutIfNeeded()
         // ここでUserDefaultsで記録した住所を入れる。
@@ -68,6 +69,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     func checkSettingAlarmWithinTwoHours(settingTime: Date) {
         var differenceFromCurrenTime = 0
         differenceFromCurrenTime = alarm.calculateTimeInterval(userAwakeTime: settingTime)
+        
+        print("宏輝_時間調査_差分: ", differenceFromCurrenTime)
 
         if differenceFromCurrenTime > 7200 {
             // ２時間以上前の時
