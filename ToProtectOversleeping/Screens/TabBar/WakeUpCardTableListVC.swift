@@ -24,6 +24,9 @@ class WakeUpCardTableListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // FirebaseCrashlyticsでの意図的なクラッシュ手法
+//        _ = [0, 1][2]
+        
         //        NotificationCenter.default.addObserver(
         //                    self,
         //                    selector: #selector(viewWillEnterForeground(_:)),

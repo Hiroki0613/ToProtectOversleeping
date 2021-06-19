@@ -31,6 +31,11 @@ body:
                    …
 version: 7.7.0
 
+name: FirebaseCrashlytics, nameSpecified: 
+body: 
+                   …
+version: 7.7.0
+
 name: FirebaseFirestore, nameSpecified: 
 body: 
                    …
