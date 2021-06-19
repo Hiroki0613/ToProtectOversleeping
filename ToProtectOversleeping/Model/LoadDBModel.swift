@@ -17,14 +17,19 @@ protocol GetUserDataDelegate {
     func getUserData(userDataModel: UserDataModel)
 }
 
+protocol GetSettingDataDelegate {
+    func getSettingData(settingDataModel: SettingDataModel)
+}
+
 class LoadDBModel {
     var db = Firestore.firestore()
-    var getChatRoomNameDelegate:GetChatRoomNameDelegate?
-    var getUserDataDelegate:GetUserDataDelegate?
+    var getChatRoomNameDelegate: GetChatRoomNameDelegate?
+    var getUserDataDelegate: GetUserDataDelegate?
+    var getSettingDataDelegate: GetSettingDataDelegate?
     var chatRoomNameArray = [ChatRoomNameModel]()
     var chatDocumentIdArray = [""]
     
-    
+    // プロフィールの呼び出し
     func loadProfileData() {
         db.collection("Users").document(Auth.auth().currentUser!.uid).addSnapshotListener { snapShot, error in
             if error != nil {
@@ -39,8 +44,7 @@ class LoadDBModel {
                     let date = data["date"] as? Double,
                     let _ = data["displayAdvertise"] as? Bool,
                     let _ = data["developerMode"] as? Bool
-                    {
-                    
+                {
                     let userDataModel = UserDataModel(name: name, uid: uid, appVersion: appVersion, isWakeUpBool: isWakeUpBool, date: date)
                     self.getUserDataDelegate?.getUserData(userDataModel: userDataModel)
                 }
@@ -48,8 +52,45 @@ class LoadDBModel {
         }
     }
     
+
+    
+    // セッティングの呼び出し
+    func loadSettingMode() {
+        db.collection("Setting").document("setting").addSnapshotListener { snapShot, error in
+            if error != nil {
+                print(error.debugDescription)
+                return
+            }
+            if let data = snapShot?.data() {
+                if let contact = data["contact"] as? String
+                {
+                    let settingDataModel = SettingDataModel(contact: contact)
+                    self.getSettingDataDelegate?.getSettingData(settingDataModel: settingDataModel)
+                }
+            }
+        }
+    }
     
     
+    //    // セッティングの呼び出し
+    //    func loadSettingMode(complition:(@escaping(String) -> Void)) {
+    //        var contactString = "https://www.google.co.jp"
+    //        db.collection("Setting").document("setting").addSnapshotListener { snapShot, error in
+    //            if error != nil {
+    //                print(error.debugDescription)
+    //                return
+    //            }
+    //            if let data = snapShot?.data() {
+    //                if let contact = data["contact"] as? String {
+    //                    contactString = contact
+    //                }
+    //            }
+    //            complition(contactString)
+    //        }
+    //    }
+    
+    
+    // チャットルームの呼び出し
     func loadChatRoomNameData() {
         db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "registerDate",descending: true).addSnapshotListener { snapShot, error in
             if error != nil {

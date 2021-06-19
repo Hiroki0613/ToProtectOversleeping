@@ -26,6 +26,7 @@
 		7F376B1C26401A910063F2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1A26401A910063F2EC /* Main.storyboard */; };
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
+		7F58A350267CF2620038AA3F /* SettingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58A34F267CF2620038AA3F /* SettingDataModel.swift */; };
 		7F5A9E4F2677993B00754C93 /* ResultWakeUpFloatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E4E2677993B00754C93 /* ResultWakeUpFloatingVC.swift */; };
 		7F5A9E51267A47F000754C93 /* ResultWakeUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */; };
 		7F5A9E53267A55AC00754C93 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */; };
@@ -101,6 +102,7 @@
 		7F376B1D26401A920063F2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F58A34F267CF2620038AA3F /* SettingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDataModel.swift; sourceTree = "<group>"; };
 		7F5A9E4E2677993B00754C93 /* ResultWakeUpFloatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpFloatingVC.swift; sourceTree = "<group>"; };
 		7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				7F5B634126638E3B0057C12B /* MessageModel.swift */,
 				7F5B634326638E780057C12B /* UserDataModel.swift */,
 				7F5B63472663ACA10057C12B /* LoadDBModel.swift */,
+				7F58A34F267CF2620038AA3F /* SettingDataModel.swift */,
 				7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */,
 			);
 			path = Model;
@@ -762,6 +765,7 @@
 				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,
 				7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,
+				7F58A350267CF2620038AA3F /* SettingDataModel.swift in Sources */,
 				7F1228B226515E920038EC3D /* AppSettings.swift in Sources */,
 				7F1228C226515F680038EC3D /* Message.swift in Sources */,
 				7F1452E42641A9C600BAB44F /* WUButton.swift in Sources */,

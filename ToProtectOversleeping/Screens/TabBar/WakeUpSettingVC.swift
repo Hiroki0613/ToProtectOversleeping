@@ -9,6 +9,8 @@ import UIKit
 
 class WakeUpSettingVC: UIViewController {
     
+    var settingDataModel: SettingDataModel?
+    
     let scrollView = UIScrollView()
     var wakeUpSettingView = WakeUpSettingView()
     
@@ -25,6 +27,10 @@ class WakeUpSettingVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
         setUserInformation()
+        
+        let loadDBModel = LoadDBModel()
+        loadDBModel.getSettingDataDelegate = self
+        loadDBModel.loadSettingMode()
     }
     
     private func setUserInformation() {
@@ -84,10 +90,16 @@ class WakeUpSettingVC: UIViewController {
     }
     
     @objc func tapOpinionsAndRequestsButton() {
-        print("opinionsAndRequestsButtonが押されました")
         
-        guard let url = URL(string: "https://www.google.co.jp") else { return }
-        presentSafariVC(with: url)
+        guard let urlString = settingDataModel?.contact else { return }
+        guard let url = URL(string: urlString) else { return }
+        self.presentSafariVC(with: url)
+        
+//        let loadDBModel = LoadDBModel()
+//        loadDBModel.loadSettingMode { url in
+//            guard let url = URL(string: url) else { return }
+//            self.presentSafariVC(with: url)
+//        }
     }
     
     @objc func tapEvaluationButton() {
@@ -115,5 +127,11 @@ class WakeUpSettingVC: UIViewController {
             wakeUpSettingView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             wakeUpSettingView.heightAnchor.constraint(equalToConstant: 500)
         ])
+    }
+}
+
+extension WakeUpSettingVC: GetSettingDataDelegate {
+    func getSettingData(settingDataModel: SettingDataModel) {
+        self.settingDataModel = settingDataModel
     }
 }
