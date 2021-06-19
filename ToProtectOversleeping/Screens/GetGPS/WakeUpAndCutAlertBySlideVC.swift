@@ -139,18 +139,17 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     }
     
     // 距離を測定して、コメントを分類
-    //TODO: 暫定で距離を100m遠くしている
     private func rank(location: CLLocationCoordinate2D) -> String {
-        let rawDistance = location.distanceFromHome(to: myHomeLocation) + 100
+        let rawDistance = location.distanceFromHome(to: myHomeLocation)
         
-        print("rawDistance: ", rawDistance + 100)
+        print("rawDistance: ", rawDistance)
         
         if rainyDaySwitch.isOn {
             clearAlarm()
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
 //            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
-            return "雨の日です"
+            return "OK!、雨の日です"
         }
         
         switch rawDistance {
