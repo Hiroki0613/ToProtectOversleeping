@@ -109,6 +109,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         let resultWakeUpVC = ResultWakeUpVC()
         resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
         resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+        resultWakeUpVC.teamName = chatRoomNameModel!.roomName
         print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
         present(resultWakeUpVC, animated: true, completion: nil)
     }
@@ -129,6 +130,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                     let resultWakeUpVC = ResultWakeUpVC()
                     resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
                     resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
+                    resultWakeUpVC.teamName = chatRoomNameModel!.roomName
                     print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
                     //今日は集計を見たことをUserDefaultsに記録させておく
                     UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "wakeUpResultDate")

@@ -48,6 +48,7 @@
 		7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E32659105700AA747E /* RegisterNameVC.swift */; };
 		7F8211EB26591F3000AA747E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F8211EA26591F3000AA747E /* Settings.bundle */; };
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
+		7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */; };
 		7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */; };
 		7FA2E17926555E7C00529B7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */; };
 		7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */; };
@@ -124,6 +125,7 @@
 		7F8211E32659105700AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
 		7F8211EA26591F3000AA747E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ToProtectOversleeping/Settings.bundle; sourceTree = "<group>"; };
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
+		7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOutlineShapeView.swift; sourceTree = "<group>"; };
 		7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUBodyLabel.swift; sourceTree = "<group>"; };
 		7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmTimeAndNewRegistrationView.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
 				7F8211E126590FF600AA747E /* ChangeNameView.swift */,
 				7FDC68A72674F3E700C3267B /* RegisterNameView.swift */,
+				7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				7FE523DF2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift in Sources */,
 				7FE523D92647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift in Sources */,
 				7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */,
+				7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */,
 				7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */,
 				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,
 				7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */,
