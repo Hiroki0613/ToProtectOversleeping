@@ -29,7 +29,7 @@ class WakeUpQrCodeMakerVC: UIViewController {
         view.backgroundColor = .systemOrange
         
         let qrColor:UIColor = .darkText
-        let wakeUpLogo = UIImage(named: "jinrikisya_man")!
+        let wakeUpLogo = UIImage(named: "wakeup")!
         
         let qrURLImage = URL(string: invitedDocumentId)?.qrImage(using: qrColor, logo: wakeUpLogo)
         
