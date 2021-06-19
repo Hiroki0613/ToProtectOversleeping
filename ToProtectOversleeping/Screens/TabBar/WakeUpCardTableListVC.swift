@@ -24,6 +24,24 @@ class WakeUpCardTableListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 無理矢理ログインしています
+        Auth.auth().signInAnonymously { result, error in
+            guard let _ = error else { return }
+        }
+        
+        // UserDefaultの値で最初の画面を分岐させる
+        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
+            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
+            newRegistrationUserNameVC.modalPresentationStyle = .overFullScreen
+            newRegistrationUserNameVC.modalTransitionStyle = .crossDissolve
+//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
+
+        } else {
+            print("すでに新規登録しています")
+        }
+ 
+        
         // FirebaseCrashlyticsでの意図的なクラッシュ手法
 //        _ = [0, 1][2]
         
@@ -45,22 +63,6 @@ class WakeUpCardTableListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // 無理矢理ログインしています
-        Auth.auth().signInAnonymously { result, error in
-            guard let _ = error else { return }
-        }
-        
-        // UserDefaultの値で最初の画面を分岐させる
-        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
-            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
-            newRegistrationUserNameVC.modalPresentationStyle = .overFullScreen
-            newRegistrationUserNameVC.modalTransitionStyle = .crossDissolve
-//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
-            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
-
-        } else {
-            print("すでに新規登録しています")
-        }
         
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
