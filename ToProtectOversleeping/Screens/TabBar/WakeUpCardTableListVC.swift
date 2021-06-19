@@ -50,6 +50,18 @@ class WakeUpCardTableListVC: UIViewController {
             guard let _ = error else { return }
         }
         
+        // UserDefaultの値で最初の画面を分岐させる
+        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
+            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
+            newRegistrationUserNameVC.modalPresentationStyle = .overFullScreen
+            newRegistrationUserNameVC.modalTransitionStyle = .crossDissolve
+//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
+
+        } else {
+            print("すでに新規登録しています")
+        }
+        
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
         
@@ -67,15 +79,7 @@ class WakeUpCardTableListVC: UIViewController {
         
         getPermissionLocalPushNotification()
         
-        // UserDefaultの値で最初の画面を分岐させる
-        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
-            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
-//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
-            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
-
-        } else {
-            print("すでに新規登録しています")
-        }
+        
     }
     
     func getPermissionLocalPushNotification() {

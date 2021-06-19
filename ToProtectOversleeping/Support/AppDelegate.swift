@@ -7,46 +7,62 @@
 
 import UIKit
 import Firebase
+import KeychainSwift
+
+struct Keys {
+    static let prefixKeychain = "WUKeychain_"
+    static let myAddress = "myAddress"
+    static let myAddressLatitude = "myAddressLatitude"
+    static let myAddressLongitude = "myAddressLongitude"
+}
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
+    let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        setUserDefaults()
+        setUserDefaultsAndKeyChain()
         return true
     }
     
     
-    func setUserDefaults() {
+    func setUserDefaultsAndKeyChain() {
+        
+        keychain.set("35.637375", forKey: Keys.myAddressLatitude)
+        keychain.set("139.756308", forKey: Keys.myAddressLongitude)
+
+        
         let userDefaults = UserDefaults.standard
-        //ディクショナリ形式で初期値を指定できる。
         //ユーザネーム
-        //お住まいのGPS
         //新規登録時かどうかのBool
+        //chat画面を開いた日付けをチェック
         userDefaults.register(defaults: [
+            //ユーザー名
             "userName" : "NoName777",
-            "myAddressLatitude" : 35.637375,
-            "myAddressLongitude" : 139.756308,
-//            "myAddressLongLongtitude" : 0.0,
-            "myAddress": "未登録",
             "isFirstOpenApp": true,
             "wakeUpResultDate": 10.0
+//            "myAddressLatitude" : 35.637375,
+//            "myAddressLongitude" : 139.756308,
+//            "myAddress": "未登録",
         ])
         
         //値を取り出す
         let userName = userDefaults.object(forKey: "userName") as! String
-        let myAddressLatitude = userDefaults.double(forKey: "myAddressLatitude")
-        let myAddressLongitude = userDefaults.double(forKey: "myAddressLongitude")
+//        let myAddressLatitude = userDefaults.double(forKey: "myAddressLatitude")
+//        let myAddressLongitude = userDefaults.double(forKey: "myAddressLongitude")
 //        let myAddressLongLongtiude = userDefaults.double(forKey: "myAddressLongLongtitude")
-        let myAddress = userDefaults.object(forKey: "myAddress") as! String
+//        let myAddress = userDefaults.object(forKey: "myAddress") as! String
         
         print("UserDefaluts_name:",userName)
-        print("UserDefaluts_myAddressLatitude:",myAddressLatitude)
-        print("UserDefaluts_myAddressLongitude:",myAddressLongitude)
-//        print("UserDefaults_myAddressLongLongTitude: ",  myAddressLongLongtiude)
-        print("UserDefaluts_myAddress", myAddress)
+//        print("UserDefaluts_myAddressLatitude:",myAddressLatitude)
+//        print("UserDefaluts_myAddressLongitude:",myAddressLongitude)
+////        print("UserDefaults_myAddressLongLongTitude: ",  myAddressLongLongtiude)
+//        print("UserDefaluts_myAddress", myAddress)
     }
 
     // MARK: UISceneSession Lifecycle

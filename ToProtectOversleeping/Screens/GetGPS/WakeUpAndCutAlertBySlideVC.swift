@@ -7,10 +7,15 @@
 
 import UIKit
 import MapKit
+import KeychainSwift
 
 class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
 //    var myAddressLongitude = 139.65363018
+    
+    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
+    let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
+
     
     // roomID
     var chatRoomDocumentId = ""
@@ -19,8 +24,12 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     var authId = ""
     
     // 暫定でUserDefaultsで設定
-    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
-    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
+//    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
+//    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
+    
+    // Keychainでの設定値に問題があったらデフォルト値を採用
+    var myAddressLatitude: Double = 35.637375
+    var myAddressLongitude: Double = 139.756308
     var mySettingAlarmTime = Date()
     
     var alarm = Alarm()
@@ -46,6 +55,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         view.backgroundColor = .systemOrange
         configureUI()
         swipeButton.getGeocoderDelegate = self
+        getMyAddressFromKeyChain()
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
         print("ゲット",myAddressLongitude)
         print(myAddressLatitude)
@@ -62,6 +72,16 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         drawCircle(center: myHomeLocation, meter: 10, times: 10)
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func getMyAddressFromKeyChain() {
+        let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "35.637375"
+        let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "139.756308"
+        if let myAddressLatitude = Double(myAddressLatitudeFromKeychainString),
+           let myAddressLongitude = Double(myAddressLongitudeFromKeychainString) {
+            self.myAddressLatitude = myAddressLatitude
+            self.myAddressLongitude = myAddressLongitude
+        }
     }
     
     

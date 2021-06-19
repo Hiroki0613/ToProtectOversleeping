@@ -17,6 +17,7 @@ class WakeUpQrCodeMakerVC: UIViewController {
     var qrCodeImageView = UIImageView()
     
     var qrCodeExplainLabel = WUBodyLabel(fontSize: 20)
+    var qrCodeTeamNameView = UIView()
     var qrCodeLavel = WUBodyLabel(fontSize: 20)
     
     // カード式から招待documentIDを持ってくる。

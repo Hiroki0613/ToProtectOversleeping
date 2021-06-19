@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class WakeUpSettingVC: UIViewController {
+    
+    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
+    let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
     
     var settingDataModel: SettingDataModel?
     
@@ -43,7 +47,9 @@ class WakeUpSettingVC: UIViewController {
             wakeUpSettingView.setUserNameLabel.text = "ユーザネーム\n\(checkUserNameLabel)"
         }
         
-        let checkAddress = UserDefaults.standard.object(forKey: "myAddress") as! String
+//        let checkAddress = UserDefaults.standard.object(forKey: "myAddress") as! String
+        
+        let checkAddress = keychain.get(Keys.myAddress) ?? "未登録"
         
         if checkAddress == "未登録" {
             wakeUpSettingView.getGPSAddressLabel.text = "自宅の住所が未登録です"

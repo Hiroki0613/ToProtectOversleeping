@@ -8,9 +8,13 @@
 import UIKit
 import MapKit
 import Firebase
+import KeychainSwift
 
 // 新規登録時のユーザーネームを登録
 class NewRegistrationGpsVC: BaseGpsVC {
+    
+    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
+    let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
     
     let db = Firestore.firestore()
     
@@ -18,9 +22,16 @@ class NewRegistrationGpsVC: BaseGpsVC {
     var newUserName = ""
     
     // GPSの初期設定値が入っている。
-    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
-    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
-//    var myAddressLongLongtitude = UserDefaults.standard.double(forKey: "myAddressLongLongtitude")
+//    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
+//    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
+    
+    
+    // GPSの初期設定値が入っている。
+    // Keychainでの設定値に問題があったらデフォルト値を採用
+    var myAddressLatitude: Double = 35.637375
+    var myAddressLongitude: Double = 139.756308
+    
+    
 
     // 地図
     var mapView = MKMapView()
@@ -35,6 +46,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
         super.viewDidLoad()
         view.backgroundColor = .systemOrange
         configureView()
+        getMyAddressFromKeyChain()
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
     }
     
@@ -46,6 +58,17 @@ class NewRegistrationGpsVC: BaseGpsVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
         configureAddTarget()
     }
+    
+    func getMyAddressFromKeyChain() {
+        let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "35.637375"
+        let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "139.756308"
+        if let myAddressLatitude = Double(myAddressLatitudeFromKeychainString),
+           let myAddressLongitude = Double(myAddressLongitudeFromKeychainString) {
+            self.myAddressLatitude = myAddressLatitude
+            self.myAddressLongitude = myAddressLongitude
+        }
+    }
+    
     
     private func configureAddTarget() {
         homeLocationFetchButton.addTarget(self, action: #selector(tapSetGpsButton), for: .touchUpInside)
@@ -89,20 +112,32 @@ class NewRegistrationGpsVC: BaseGpsVC {
         print("gps取得: ", geoCoderLongitude)
         print(geoCoderLongitude)
         
-        homeLocationLabel.text = "登録されました。 \n\n\(address)"
+
         print("GpsButtonが押されました")
         print(address)
         
-        //TODO: keychainに変えること
-        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
-        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
+//        //TODO: keychainに変えること
+//        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
+//        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
+        
+        //Keychain
+        let geoCoderLatitudeString: String = String(geoCoderLatitude)
+        let geoCoderLongitudeString: String = String(geoCoderLongitude)
+        
+        keychain.set(geoCoderLatitudeString, forKey: Keys.myAddressLatitude)
+        keychain.set(geoCoderLongitudeString, forKey: Keys.myAddressLongitude)
+        keychain.set(address, forKey: Keys.myAddress)
+        
+        
 //        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")
-        UserDefaults.standard.set(address, forKey: "myAddress")
+//        UserDefaults.standard.set(address, forKey: "myAddress")
         
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         moveTo(center: geoCoderLocation, animated: true)
         drawCircle(center: geoCoderLocation, meter: 10, times: 10)
         setAnnotation(location: geoCoderLocation)
+        
+        homeLocationLabel.text = "登録されました。 \n\n\(address)"
         
         // GPS情報、住所が取得出来なかった場合は反応なし
         if geoCoderLatitude == 35.637375,
@@ -112,9 +147,12 @@ class NewRegistrationGpsVC: BaseGpsVC {
         } else {
             //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
             //ここでFirebaseFireStoreにUserModelとして登録する。
-            UserDefaults.standard.set(newUserName,forKey: "userName")
-            sendDBModel.createUser(name: newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
-            UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+
+                UserDefaults.standard.set(self.newUserName,forKey: "userName")
+                sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
+                UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
+            }
         }
     }
     

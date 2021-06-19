@@ -7,10 +7,14 @@
 
 import UIKit
 import MapKit
+import KeychainSwift
 
 
 // 暫定で住所を取得させる場所を用意しておく。
 class GetGpsAddressVC: BaseGpsVC {
+    
+    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
+    let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
     
     // 起きる時間のカード
     //    var getGpsAddressView = GetGpsAddressView()
@@ -18,9 +22,12 @@ class GetGpsAddressVC: BaseGpsVC {
     // 暫定で家の近くに設定している
 //    var myAddressLatitude = 35.7140224101
 //    var myAddressLongitude = 139.65363018
-    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
-    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
+//    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
+//    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
     
+    // Keychainでの設定値に問題があったらデフォルト値を採用
+    var myAddressLatitude: Double = 35.637375
+    var myAddressLongitude: Double = 139.756308
     var mySettingAlarmTime = Date()
     
     var alarm = Alarm()
@@ -44,6 +51,7 @@ class GetGpsAddressVC: BaseGpsVC {
         //        configureDecoration()
         //        configureAddTarget()
         // ここにdefaultで設定した住まいを入れる渡す。
+        getMyAddressFromKeyChain()
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
 //        moveTo(center: myHomeLocation, animated: false)
 //        drawCircle(center: myHomeLocation, meter: 10, times: 10)
@@ -58,6 +66,18 @@ class GetGpsAddressVC: BaseGpsVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
         configureAddTarget()
     }
+    
+    func getMyAddressFromKeyChain() {
+        let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "35.637375"
+        let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "139.756308"
+        if let myAddressLatitude = Double(myAddressLatitudeFromKeychainString),
+           let myAddressLongitude = Double(myAddressLongitudeFromKeychainString) {
+            self.myAddressLatitude = myAddressLatitude
+            self.myAddressLongitude = myAddressLongitude
+        }
+    }
+    
+    
     
     func configureAddTarget() {
         homeLocationFetchButton.addTarget(self, action: #selector(tapSetGPSButton), for: .touchUpInside)
@@ -113,29 +133,48 @@ class GetGpsAddressVC: BaseGpsVC {
         print(geoCoderLatitude)
         
         
-        homeLocationLabel.text = "登録されました。\n\n\(address)"
-        print("GpsButtonが押されました")
-        print(address)
+        //        homeLocationLabel.text = "登録されました。\n\n\(address)"
+        //        print("GpsButtonが押されました")
+        //        print(address)
         
-        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
-        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
-//        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")
-        UserDefaults.standard.set(address, forKey: "myAddress")
+        //        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
+        //        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
+        ////        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")
+        //        UserDefaults.standard.set(address, forKey: "myAddress")
         
-        let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
-        moveTo(center: geoCoderLocation, animated: true)
-        drawCircle(center: geoCoderLocation, meter: 10, times: 10)
-        setAnnotation(location: geoCoderLocation)
-        //        getGpsAddressView.prefectureAndCityNameLabel.text = address
-        
-        // 情報は一時的にUserDefaultに保管する。
-        
-        
-        //        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-        //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-        //        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-        ////        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = getGpsAddressView.datePicker.date
-        //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+        //        if keychain.clear() {
+        //Keychain
+        if keychain.delete(Keys.myAddress),
+           keychain.delete(Keys.myAddressLatitude),
+           keychain.delete(Keys.myAddressLongitude) {
+            
+            let geoCoderLatitudeString: String = String(geoCoderLatitude)
+            let geoCoderLongitudeString: String = String(geoCoderLongitude)
+            
+            keychain.set(geoCoderLatitudeString, forKey: Keys.myAddressLatitude)
+            keychain.set(geoCoderLongitudeString, forKey: Keys.myAddressLongitude)
+            keychain.set(address, forKey: Keys.myAddress)
+            
+            homeLocationLabel.text = "登録されました。\n\n\(address)"
+            print("GpsButtonが押されました")
+            print(address)
+            
+            let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
+            moveTo(center: geoCoderLocation, animated: true)
+            drawCircle(center: geoCoderLocation, meter: 10, times: 10)
+            setAnnotation(location: geoCoderLocation)
+            
+        }
+            //        getGpsAddressView.prefectureAndCityNameLabel.text = address
+            
+            // 情報は一時的にUserDefaultに保管する。
+            
+            
+            //        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
+            //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
+            //        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
+            ////        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = getGpsAddressView.datePicker.date
+            //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     // 位置から住所を取得
