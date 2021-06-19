@@ -16,6 +16,7 @@ class WakeUpQrCodeMakerVC: UIViewController {
     
     var qrCodeImageView = UIImageView()
     
+    var qrCodeExplainLabel = WUBodyLabel(fontSize: 20)
     var qrCodeLavel = WUBodyLabel(fontSize: 20)
     
     // カード式から招待documentIDを持ってくる。
@@ -67,6 +68,10 @@ class WakeUpQrCodeMakerVC: UIViewController {
     }
     
     func configureQRCodelabel() {
+        qrCodeExplainLabel.text = "IDをタッチするとコピーができます"
+        qrCodeExplainLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(qrCodeExplainLabel)
+        
         qrCodeLavel.text = invitedDocumentId
         qrCodeLavel.translatesAutoresizingMaskIntoConstraints = false
         qrCodeLavel.isUserInteractionEnabled = true
@@ -77,7 +82,12 @@ class WakeUpQrCodeMakerVC: UIViewController {
         self.view.addSubview(qrCodeLavel)
         
         NSLayoutConstraint.activate([
-            qrCodeLavel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            qrCodeExplainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            qrCodeExplainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            qrCodeExplainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            qrCodeExplainLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            qrCodeLavel.topAnchor.constraint(equalTo: qrCodeExplainLabel.bottomAnchor, constant: 20),
             qrCodeLavel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             qrCodeLavel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             qrCodeLavel.heightAnchor.constraint(equalToConstant: 40)
