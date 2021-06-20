@@ -10,11 +10,12 @@ import UIKit
 class NewRegistrationUserNameVC: UIViewController {
     
     var registerNewNameView = RegisterNameView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureAddTarget()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,11 +39,11 @@ class NewRegistrationUserNameVC: UIViewController {
         if newRegistrationGpsVC.newUserName == "" {
             return
         } else {
-            newRegistrationGpsVC.modalPresentationStyle = .overFullScreen
-            newRegistrationGpsVC.modalTransitionStyle = .crossDissolve
+//            newRegistrationGpsVC.modalPresentationStyle = .overFullScreen
+//            newRegistrationGpsVC.modalTransitionStyle = .crossDissolve
 //            //TODO: 1秒後に画面遷移するようにする
-//            navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
-            self.present(newRegistrationGpsVC, animated: true, completion: nil)
+            navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
+//            self.present(newRegistrationGpsVC, animated: true, completion: nil)
         }
     }
     

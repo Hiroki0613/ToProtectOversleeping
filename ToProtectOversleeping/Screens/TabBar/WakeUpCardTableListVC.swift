@@ -8,7 +8,12 @@
 import UIKit
 import Firebase
 
-class WakeUpCardTableListVC: UIViewController {
+class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
+   
+    
+    
+    var newRegistrationGpsVC = NewRegistrationGpsVC()
+    var isLoggedInAtFirebase:Bool = false
     
     let tableView = UITableView()
     var userDataModel: UserDataModel?
@@ -21,21 +26,40 @@ class WakeUpCardTableListVC: UIViewController {
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
     
     
+    func authLogin(isLoggedIn: Bool) {
+        print("呼ばれた")
+    }
+//    func authLogin(isLoggedIn: Bool) {
+//        isLoggedInAtFirebase = isLoggedIn
+//
+//        if isLoggedInAtFirebase == true {
+//            let loadDBModel = LoadDBModel()
+//
+//            // チャットルームのデータを取得
+//            loadDBModel.getChatRoomNameDelegate = self
+//            loadDBModel.loadChatRoomNameData()
+//
+//            loadDBModel.getUserDataDelegate = self
+//            loadDBModel.loadProfileData()
+//
+//            getPermissionLocalPushNotification()
+//
+//        }
+//
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 無理矢理ログインしています
-        Auth.auth().signInAnonymously { result, error in
-            guard let _ = error else { return }
-        }
+
         
         // UserDefaultの値で最初の画面を分岐させる
         if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
-            newRegistrationUserNameVC.modalPresentationStyle = .overFullScreen
-            newRegistrationUserNameVC.modalTransitionStyle = .crossDissolve
-//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
-            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
+//            newRegistrationUserNameVC.modalPresentationStyle = .overFullScreen
+//            newRegistrationUserNameVC.modalTransitionStyle = .crossDissolve
+            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+//            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
 
         } else {
             print("すでに新規登録しています")
@@ -63,25 +87,28 @@ class WakeUpCardTableListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        let newRegistrationGpsVC = NewRegistrationGpsVC()
+        newRegistrationGpsVC.authLoginDelegate = self
+
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
         
         configureTableView()
         configureAddCardButton()
         
-        let loadDBModel = LoadDBModel()
-        
-        // チャットルームのデータを取得
-        loadDBModel.getChatRoomNameDelegate = self
-        loadDBModel.loadChatRoomNameData()
-        
-        loadDBModel.getUserDataDelegate = self
-        loadDBModel.loadProfileData()
-        
-        getPermissionLocalPushNotification()
-        
-        
+        if isLoggedInAtFirebase == UserDefaults.standard.bool(forKey: "isFirstOpenApp") {
+            let loadDBModel = LoadDBModel()
+
+            // チャットルームのデータを取得
+            loadDBModel.getChatRoomNameDelegate = self
+            loadDBModel.loadChatRoomNameData()
+
+            loadDBModel.getUserDataDelegate = self
+            loadDBModel.loadProfileData()
+
+            getPermissionLocalPushNotification()
+
+        }
     }
     
     func getPermissionLocalPushNotification() {
@@ -318,7 +345,8 @@ extension WakeUpCardTableListVC {
         //カレンダー形式で通知
         dateComponents.hour = 12
         dateComponents.minute = 0
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        //TODO: 現在はアラームをつけると、繰り返し表示されるように設定した
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //identifierは一意にするため、Auth.auth()+roomIdにする。
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error) in
@@ -340,6 +368,8 @@ extension WakeUpCardTableListVC {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
+    
+    
 }
 
 
@@ -397,3 +427,24 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
+
+//extension WakeUpCardTableListVC: AuthLoginDelegate {
+//    func authLogin(isLoggedIn: Bool) {
+//        isLoggedInAtFirebase = isLoggedIn
+//
+//        if isLoggedInAtFirebase == true {
+//            let loadDBModel = LoadDBModel()
+//
+//            // チャットルームのデータを取得
+//            loadDBModel.getChatRoomNameDelegate = self
+//            loadDBModel.loadChatRoomNameData()
+//
+//            loadDBModel.getUserDataDelegate = self
+//            loadDBModel.loadProfileData()
+//
+//            getPermissionLocalPushNotification()
+//
+//        }
+//
+//    }
+//}

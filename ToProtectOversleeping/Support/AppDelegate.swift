@@ -21,20 +21,26 @@ struct Keys {
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
 //    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
-//    let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
+    let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let signOutError as NSError {
+//            print("SignOutError: %@", signOutError)
+//        }
         setUserDefaults()
         return true
     }
     
     
     func setUserDefaults() {
-        
 //        keychain.set("35.637375", forKey: Keys.myAddressLatitude)
 //        keychain.set("139.756308", forKey: Keys.myAddressLongitude)
+        
+//        keychain.clear()
 
         
         let userDefaults = UserDefaults.standard

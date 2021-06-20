@@ -10,8 +10,15 @@ import MapKit
 import Firebase
 import KeychainSwift
 
+protocol AuthLoginDelegate {
+    func authLogin(isLoggedIn: Bool)
+}
+
 // 新規登録時のユーザーネームを登録
 class NewRegistrationGpsVC: BaseGpsVC {
+    
+    let loadDBModel = LoadDBModel()
+    
     
     //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
     let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
@@ -20,6 +27,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
     
     // 画面遷移時にユーザ名がここに渡っている。
     var newUserName = ""
+    
+    var authLoginDelegate: AuthLoginDelegate?
     
     // GPSの初期設定値が入っている。
 //    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
@@ -145,13 +154,22 @@ class NewRegistrationGpsVC: BaseGpsVC {
            address == "" {
             return
         } else {
-            //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
-            //ここでFirebaseFireStoreにUserModelとして登録する。
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            
+            // 無理矢理ログインしています
+            Auth.auth().signInAnonymously { result, error in
+//                guard let _ = error else { return }
+                
+                
+                //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
+                //ここでFirebaseFireStoreにUserModelとして登録する。
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
 
-                UserDefaults.standard.set(self.newUserName,forKey: "userName")
-                sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
-                UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
+                    UserDefaults.standard.set(self.newUserName,forKey: "userName")
+                    sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
+                    UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
+                    
+                    self.authLoginDelegate?.authLogin(isLoggedIn: true)
+                }
             }
         }
     }
@@ -242,6 +260,7 @@ extension NewRegistrationGpsVC: MKMapViewDelegate {
         guard let annotation = views.first?.annotation else { return }
         mapView.selectAnnotation(annotation, animated: true)
     }
+    
 }
 
 extension NewRegistrationGpsVC: GetGeocoderDelegate {
@@ -258,6 +277,19 @@ extension NewRegistrationGpsVC: DoneCreateUser {
         // 新規登録が終わった後に行う処理
 //        navigationController?.popViewController(animated: true)
 //        navigationController?.popViewController(animated: true)
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
+
+        // チャットルームのデータを取得
+
+//        loadDBModel.getChatRoomNameDelegate = self
+//        loadDBModel.getUserDataDelegate = self
+//        loadDBModel.loadChatRoomNameData()
+//
+//
+//        loadDBModel.loadProfileData()
+
+        
+        
+//        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
