@@ -586,8 +586,8 @@
 				7F376B0E26401A910063F2EC /* Frameworks */,
 				7F376B0F26401A910063F2EC /* Resources */,
 				D1D1D53A703E4AC5FD850693 /* [CP] Embed Pods Frameworks */,
-				7F8211E526591C0E00AA747E /* Run Script */,
-				7F9A8B5F267DB7310025F690 /* ShellScript */,
+				7F8211E526591C0E00AA747E /* LicensePlist */,
+				7F9A8B5F267DB7310025F690 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -668,7 +668,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7F8211E526591C0E00AA747E /* Run Script */ = {
+		7F8211E526591C0E00AA747E /* LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -677,7 +677,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = LicensePlist;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -686,7 +686,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n${PODS_ROOT}/LicensePlist/license-plist --output-path $PRODUCT_NAME/Settings.bundle --github-token YOUR_GITHUB_TOKEN\nfi\n";
 		};
-		7F9A8B5F267DB7310025F690 /* ShellScript */ = {
+		7F9A8B5F267DB7310025F690 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -697,6 +697,7 @@
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = Crashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
