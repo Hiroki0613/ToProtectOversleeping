@@ -99,7 +99,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         //1日に1回とするため、UserDefaultsに結果を表示したのちに、
         //今日の日付けを入れて、入っていたらスルーすることにする。
         checkIsFirstTimeInTheDayOpenedThisView()
-        
+        showResultPage()
         
     }
     
@@ -138,7 +138,19 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                 }
             }
         }
-        
+    }
+    
+    //正午移行に、集計結果を見せるように設計
+    func showResultPage() {
+        if let createTodayNoonTime = createTodayNoonTime() {
+            if createTodayNoonTime > Date() {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                self.navigationItem.rightBarButtonItem?.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+            } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+                self.navigationItem.rightBarButtonItem?.tintColor = .clear
+            }
+        }
     }
     
     
