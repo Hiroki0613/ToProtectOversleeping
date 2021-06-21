@@ -219,7 +219,7 @@ class SendDBModel {
 
         //通知設定
         let content = UNMutableNotificationContent()
-        content.title = "通知です"
+        content.title = "みんなの結果を見てみよう♪"
         
         content.categoryIdentifier = identifier
         var dateComponents = DateComponents()
@@ -227,7 +227,7 @@ class SendDBModel {
         //近藤　カレンダー形式で通知
         dateComponents.hour = 12
         dateComponents.minute = 0
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //identifierは一意にするため、Auth.auth()+roomIdにする。
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         

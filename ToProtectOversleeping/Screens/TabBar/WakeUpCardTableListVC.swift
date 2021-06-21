@@ -339,7 +339,7 @@ extension WakeUpCardTableListVC {
         removeAlarm(identifiers: identifier)
         //通知設定
         let content = UNMutableNotificationContent()
-        content.title = "通知です"
+        content.title = "みんなの結果を見てみよう♪"
         content.categoryIdentifier = identifier
         var dateComponents = DateComponents()
         //カレンダー形式で通知
