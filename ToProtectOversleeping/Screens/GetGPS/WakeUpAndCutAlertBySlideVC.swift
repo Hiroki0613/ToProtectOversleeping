@@ -145,7 +145,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         print("rawDistance: ", rawDistance)
         
         if rainyDaySwitch.isOn {
-            clearAlarm()
+//            clearAlarm()
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
 //            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
@@ -173,7 +173,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             return "惜しい！、10m離れてください"
         default:
             print("離れました離れたぜ")
-            clearAlarm()
+//            clearAlarm()
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
             return "OK!、100m以上離れました！"
