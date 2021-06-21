@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = WUTabBarController()
         window?.makeKeyAndVisible()
+        
+        configureNavigationBar()
     }
     
     // ナビゲーションコントローラーを実装
@@ -28,6 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let wakeUpDetailCardVC = SetAlarmTimeAndNewRegistrationVC()
         wakeUpDetailCardVC.title = "目覚ましセット"
         return UINavigationController(rootViewController: wakeUpDetailCardVC)
+    }
+    
+    func configureNavigationBar() {
+        UINavigationBar.appearance().tintColor = .systemOrange
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
