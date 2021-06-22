@@ -344,7 +344,7 @@ extension WakeUpCardTableListVC {
         var dateComponents = DateComponents()
         //カレンダー形式で通知
         dateComponents.hour = 12
-        dateComponents.minute = 0
+        dateComponents.minute = 00
         //TODO: 現在はアラームをつけると、繰り返し表示されるように設定した
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //identifierは一意にするため、Auth.auth()+roomIdにする。
@@ -399,30 +399,30 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         //TODO: ここにチャットの投稿文を書く
-        let messageModel = MessageModel()
-        let sendDBModel = SendDBModel()
-        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+//        let messageModel = MessageModel()
+//        let sendDBModel = SendDBModel()
+//        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
         
         // アラームの削除
-        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
+//        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
         // ここでswitchをoffに変更する。
-        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
-        tableView.reloadData()
+//        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
+//        tableView.reloadData()
         completionHandler([.banner, .list])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         //TODO: ここにチャットの投稿文を書く
-        let messageModel = MessageModel()
-        let sendDBModel = SendDBModel()
-        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+//        let messageModel = MessageModel()
+//        let sendDBModel = SendDBModel()
+//        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
         
         // アラームの削除
-        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
+//        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
         // ここでswitchをoffに変更する。
-        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
-        tableView.reloadData()
+//        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
+//        tableView.reloadData()
         print("バックグラウンド処理")
         completionHandler()
     }

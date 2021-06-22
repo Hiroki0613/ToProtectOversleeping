@@ -39,26 +39,25 @@ struct Message: MessageType {
 
 class MessageModel {
     
-    func sendMessageToChatWakeUpLate(documentID toID: String,displayName: String) {
-        let sendDBModel = SendDBModel()
-        // メッセージがアプリのバージョンアップで変更した時に使用
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
-        sendDBModel.sendMessage(
-            senderId: Auth.auth().currentUser!.uid,
-            toID: toID,
-            text: "\(displayName)は寝坊しました",
-            displayName: displayName,
-            messageAppVersion: version,
-            sendWUMessageType: SendWUMessageType.wakeUpLate
-        )
-    }
+//    func sendMessageToChatWakeUpLate(documentID toID: String,displayName: String) {
+//        let sendDBModel = SendDBModel()
+//        // メッセージがアプリのバージョンアップで変更した時に使用
+//        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+////        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
+//        sendDBModel.sendMessage(
+//            senderId: Auth.auth().currentUser!.uid,
+//            toID: toID,
+//            text: "\(displayName)は寝坊しました",
+//            displayName: displayName,
+//            messageAppVersion: version,
+//            sendWUMessageType: SendWUMessageType.wakeUpLate
+//        )
+//    }
     
     func sendMessageToChatDeclarationWakeUpEarly(documentID toID: String,displayName: String,wakeUpTimeText: String) {
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
@@ -73,7 +72,6 @@ class MessageModel {
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-//        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
