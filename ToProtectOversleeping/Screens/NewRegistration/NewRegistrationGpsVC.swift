@@ -163,6 +163,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
                 //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
                 //ここでFirebaseFireStoreにUserModelとして登録する。
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    
+                    //TODO: ここは1.5秒待たせる必要はないけど、あえて住所が登録されているのを見せてローディング画面を見せるのはありかも。
 
                     UserDefaults.standard.set(self.newUserName,forKey: "userName")
                     sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
