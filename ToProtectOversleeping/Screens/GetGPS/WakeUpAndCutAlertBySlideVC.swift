@@ -152,6 +152,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             return "OK!、雨の日です"
         }
         
+        //TODO: ここを任意で距離を決められても面白いかもしれない。
+        
         switch rawDistance {
         case 0..<(10):
             return "あと、90m離れてください"
