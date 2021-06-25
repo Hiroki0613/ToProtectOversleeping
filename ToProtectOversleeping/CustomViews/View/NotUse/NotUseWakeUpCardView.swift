@@ -5,6 +5,8 @@
 //  Created by 近藤宏輝 on 2021/05/08.
 //
 
+///TODO: NotUseなのに、コードが使われていることが発覚。Fixすること。
+
 import UIKit
 import MapKit
 

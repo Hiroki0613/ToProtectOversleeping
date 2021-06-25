@@ -47,8 +47,6 @@ class WakeUpSettingVC: UIViewController {
             wakeUpSettingView.setUserNameLabel.text = "ユーザネーム\n\(checkUserNameLabel)"
         }
         
-//        let checkAddress = UserDefaults.standard.object(forKey: "myAddress") as! String
-        
         let checkAddress = keychain.get(Keys.myAddress) ?? "未登録"
         
         if checkAddress == "未登録" {
@@ -100,12 +98,6 @@ class WakeUpSettingVC: UIViewController {
         guard let urlString = settingDataModel?.contact else { return }
         guard let url = URL(string: urlString) else { return }
         self.presentSafariVC(with: url)
-        
-//        let loadDBModel = LoadDBModel()
-//        loadDBModel.loadSettingMode { url in
-//            guard let url = URL(string: url) else { return }
-//            self.presentSafariVC(with: url)
-//        }
     }
     
     @objc func tapEvaluationButton() {

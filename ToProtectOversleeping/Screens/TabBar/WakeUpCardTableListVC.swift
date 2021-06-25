@@ -10,8 +10,6 @@ import Firebase
 
 class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
    
-    
-    
     var newRegistrationGpsVC = NewRegistrationGpsVC()
     var isLoggedInAtFirebase:Bool = false
     
@@ -25,42 +23,19 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
     
-    
+    //TODO: デッドコードなので削除
     func authLogin(isLoggedIn: Bool) {
         print("呼ばれた")
     }
-//    func authLogin(isLoggedIn: Bool) {
-//        isLoggedInAtFirebase = isLoggedIn
-//
-//        if isLoggedInAtFirebase == true {
-//            let loadDBModel = LoadDBModel()
-//
-//            // チャットルームのデータを取得
-//            loadDBModel.getChatRoomNameDelegate = self
-//            loadDBModel.loadChatRoomNameData()
-//
-//            loadDBModel.getUserDataDelegate = self
-//            loadDBModel.loadProfileData()
-//
-//            getPermissionLocalPushNotification()
-//
-//        }
-//
-//    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
         // UserDefaultの値で最初の画面を分岐させる
         if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
-//            newRegistrationUserNameVC.modalPresentationStyle = .overFullScreen
-//            newRegistrationUserNameVC.modalTransitionStyle = .crossDissolve
             navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
-//            self.present(newRegistrationUserNameVC, animated: true, completion: nil)
-
         } else {
             print("すでに新規登録しています")
         }
@@ -108,7 +83,8 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
 
             getPermissionLocalPushNotification()
             
-
+            
+            //Todo: FirestoreのTimeStamp型を入れること
 //            let dateTime = Date()
 //            print("宏輝_firedenanai_Date: ",dateTime)
 //
@@ -129,6 +105,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
 //               print("宏輝_fire_date: \(date)")
         }
     }
+    
     
     func getPermissionLocalPushNotification() {
         // アプリの通知を許可
@@ -293,7 +270,6 @@ extension WakeUpCardTableListVC {
             // ここでonにすると、目覚ましセット
             alarmSet(identifierString: chatRoomDocumentIdForSwitch)
             // アラームをセットしたことを投稿
-            //            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
             messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name, wakeUpTimeText: self.chatRoomNameModelArray[sender.tag].wakeUpTimeText)
         } else {
             print("スイッチの状態はオフです。値: \(onCheck),sender\(sender.tag)")
@@ -307,7 +283,6 @@ extension WakeUpCardTableListVC {
         print("tableviewアラームボタンがタップされました: ",sender.tag)
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         
-//        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)
         guard let remakeAlarmTime = remakeAlarmTime(wakeUpTime: Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)) else { return }
         wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = remakeAlarmTime
         wakeUpAndCutAlertBySlideVC.authId = Auth.auth().currentUser!.uid
@@ -337,12 +312,9 @@ extension WakeUpCardTableListVC {
     
     @objc func tapSetChatButton(_ sender: UIButton) {
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-//        let resultWakeUpFloatingVC = ResultWakeUpFloatingVC()
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
         wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
-//        resultWakeUpFloatingVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
-        
         wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
@@ -387,7 +359,6 @@ extension WakeUpCardTableListVC {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
-    
     
 }
 
@@ -446,24 +417,3 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-
-//extension WakeUpCardTableListVC: AuthLoginDelegate {
-//    func authLogin(isLoggedIn: Bool) {
-//        isLoggedInAtFirebase = isLoggedIn
-//
-//        if isLoggedInAtFirebase == true {
-//            let loadDBModel = LoadDBModel()
-//
-//            // チャットルームのデータを取得
-//            loadDBModel.getChatRoomNameDelegate = self
-//            loadDBModel.loadChatRoomNameData()
-//
-//            loadDBModel.getUserDataDelegate = self
-//            loadDBModel.loadProfileData()
-//
-//            getPermissionLocalPushNotification()
-//
-//        }
-//
-//    }
-//}

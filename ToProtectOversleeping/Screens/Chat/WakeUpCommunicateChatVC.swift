@@ -9,8 +9,6 @@ import UIKit
 import MessageKit
 import Firebase
 import InputBarAccessoryView
-//import FloatingPanel
-
 
 
 class WakeUpCommunicateChatVC: MessagesViewController {
@@ -22,12 +20,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     var userDataModel: UserDataModel?
     var chatTableViewIndexPath: Int?
     var chatRoomDocumentId: String?
-    
     var wakeUpSuccessPersonList = [String]()
-    
-//    var fpc: FloatingPanelController!
-    
-//    var resultWakeUpFloatingVC = ResultWakeUpFloatingVC()
     
     // TODO:暫定で強制アンラップ
     var currentUser = Sender(senderId: "", displayName: "")
@@ -53,32 +46,19 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         view.backgroundColor = .systemGray
         messagesCollectionView.backgroundColor = .systemOrange.withAlphaComponent(0.5)
 
-        print("chatRoomNameModel: ",chatRoomNameModel)
-        print("userDataModel: ",userDataModel)
-        print("chatTableViewIndexPath: ", chatTableViewIndexPath)
-        print("chatRoomDocumentId: ", chatRoomDocumentId)
         
-        let sendDBModel = SendDBModel()
+//        let sendDBModel = SendDBModel()
         
-//        resultWakeUpVC.getArrayOFWakeUpSuccessPersonListDelegate = self
         // TODO: 一旦強制アンラップ
         // 自分
         currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: userDataModel!.name)
-
         // 他者
         otherUser = Sender(senderId: userDataModel!.uid, displayName: userDataModel!.name)
         
         configureMessageCollectionView()
         configureMessageInputBar()
-//        title = "トーク"
-        title = chatRoomNameModel?.roomName
-        
-//        configureFloatingPanel()
-        
 
-        
-        
-//        reloadInputViews()
+        title = chatRoomNameModel?.roomName
     }
     
     
@@ -170,7 +150,6 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     }
     
     func configureMessageCollectionView() {
-//        wakeUpCardTableListVC.sendWakeUpReportToChatDelegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -198,26 +177,6 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         )
         reloadInputViews()
     }
-    
-    
-    
-    
-    
-    
-    
-    // 部屋の名前を習得
-//    func loadRoomName(indexPath: Int) {
-//        var roomNameModelArray = [ChatRoomNameModel]()
-//        db.collection("Chats").addSnapshotListener { snapshot, error in
-//            if let snapShotDoc = snapshot?.documents {
-//                for doc in snapShotDoc {
-//                    let data = doc.data()
-//                    let roomNameModel = ChatRoomNameModel(roomName: data["roomName"] as! String)
-//                    roomNameModelArray.append(roomNameModel)
-//                }
-//            }
-//        }
-//    }
     
     
     //どこかのチャットルームで開かれているトークを日付順で並べている。
@@ -273,7 +232,6 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                                 print("宏輝_起きた時間: ", Date(timeIntervalSince1970: date))
                                 
                                 let date = Date(timeIntervalSince1970: date)
-//                                let yesterday = date.addingTimeInterval(-60 * 60 * 24)
                                 
                                 // 今日の日付ならappend
                                 if calendar.isDateInToday(date) {
@@ -282,8 +240,6 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                                     print("宏輝_起きたリスト: ", self.wakeUpSuccessPersonList)
                                     let resultWakeUpVC = ResultWakeUpVC()
                                     resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-                                    
-
                                 }
                             }
                         }
@@ -424,27 +380,3 @@ extension WakeUpCommunicateChatVC: MessageCellDelegate {
     }
     
 }
-
-
-//extension WakeUpCommunicateChatVC: FloatingPanelControllerDelegate {
-//
-//    func configureFloatingPanel() {
-//        fpc = FloatingPanelController()
-//        fpc.delegate = self
-//        fpc.layout = CustomFloatingPanelLayout()
-//        fpc.surfaceView.backgroundColor = .clear
-//        fpc.surfaceView.layer.cornerRadius = 16
-//
-//        let contentVC = ResultWakeUpFloatingVC()
-//        fpc.set(contentViewController: contentVC)
-//        fpc.addPanel(toParent: self)
-//    }
-//}
-
-//extension WakeUpCommunicateChatVC: GetArrayOFWakeUpSuccessPersonListDelegate {
-//    func getArrayOfWakeUpSuccessPersonList() -> [String] {
-//        let resultWakeUpVC = ResultWakeUpVC()
-//        resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-//        return self.wakeUpSuccessPersonList
-//    }
-//}

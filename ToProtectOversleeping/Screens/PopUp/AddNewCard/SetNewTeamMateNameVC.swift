@@ -23,7 +23,6 @@ class SetNewTeamMateNameVC: UIViewController {
         super.viewDidLoad()
         configureView()
         configureAddTarget()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

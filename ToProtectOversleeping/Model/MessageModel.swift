@@ -39,11 +39,12 @@ struct Message: MessageType {
 
 class MessageModel {
     
+    
+    //TODO: 寝坊したときの通知は保留
 //    func sendMessageToChatWakeUpLate(documentID toID: String,displayName: String) {
 //        let sendDBModel = SendDBModel()
 //        // メッセージがアプリのバージョンアップで変更した時に使用
 //        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-////        sendDBModel.sendMessage(senderId: Auth.auth().currentUser!.uid, toID: toID, text: "\(displayName)は寝坊しました", displayName: displayName)
 //        sendDBModel.sendMessage(
 //            senderId: Auth.auth().currentUser!.uid,
 //            toID: toID,
@@ -53,6 +54,7 @@ class MessageModel {
 //            sendWUMessageType: SendWUMessageType.wakeUpLate
 //        )
 //    }
+    
     
     func sendMessageToChatDeclarationWakeUpEarly(documentID toID: String,displayName: String,wakeUpTimeText: String) {
         let sendDBModel = SendDBModel()

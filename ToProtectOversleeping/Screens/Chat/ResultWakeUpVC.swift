@@ -14,13 +14,10 @@ class ResultWakeUpVC: UIViewController {
     let db = Firestore.firestore()
     var teamName = ""
     
-    //    var labelArray: [UILabel] = []
-    
     var chatRoomDocumentId: String?
     
     var wakeUpSuccessPersonList: [String] = []
     var wakeUpRainyDayPersonList: [String] = []
-    //    var wakeUpSuccessPersonList777 = ["うにうに","うにょうにょ","うろうろ"]
     
     var titleLabel = WUBodyLabel(fontSize: 35)
     var resultLabel = WUBodyLabel(fontSize: 30)
@@ -42,8 +39,6 @@ class ResultWakeUpVC: UIViewController {
     }
     
     func configureTextOutlineShapeView() {
-        // For example
-//        let str = "我が家の猫は7.4kg\nゆえに重い"
         let str = teamName
         guard let font = UIFont(name: "HiraKakuProN-W6", size: 30) else { return }
         
@@ -66,7 +61,6 @@ class ResultWakeUpVC: UIViewController {
         
         NSLayoutConstraint.activate([
             shapeView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40),
-//            shapeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             shapeView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             shapeView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             shapeView.heightAnchor.constraint(equalToConstant: 60)
@@ -83,8 +77,6 @@ class ResultWakeUpVC: UIViewController {
             
             // アプリバージョンごとにif letでunlapさせて
             if let snapShotDoc = snapshot?.documents {
-                
-                
                 
                 for doc in snapShotDoc {
                     let data = doc.data()

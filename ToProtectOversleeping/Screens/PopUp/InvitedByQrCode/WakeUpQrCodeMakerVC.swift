@@ -97,8 +97,6 @@ class WakeUpQrCodeMakerVC: UIViewController {
 }
 
 
-
-
 extension CIImage {
     /// Inverts the colors and creates a transparent image by converting the mask to alpha.
     /// Input image should be black and white.
@@ -149,6 +147,7 @@ extension CIImage {
     }
 }
 
+
 extension URL {
     
     /// Creates a QR code for the current URL in the given color.
@@ -172,7 +171,6 @@ extension URL {
         guard let logo = logo?.cgImage else {
             return tintedQRImage
         }
-        
         return tintedQRImage?.combined(with: CIImage(cgImage: logo))
     }
 }

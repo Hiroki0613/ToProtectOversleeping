@@ -49,7 +49,6 @@ class SetInvitedTeamMateVC: UIViewController {
         wakeUpQrCodeReaderVC.userName = userName
         
         present(wakeUpQrCodeReaderVC, animated: true, completion: nil)
-
     }
     
     // IDを打ち込んで招待
@@ -88,7 +87,6 @@ class SetInvitedTeamMateVC: UIViewController {
             messageModel.newInvitedToTeam(documentID: self.newInvitedTeamMateId, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
-        
     }
     
     @objc func goBack() {

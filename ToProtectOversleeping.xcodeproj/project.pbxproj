@@ -8,17 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3E85E8BCC96DBE9942569E56 /* Pods_ToProtectOversleeping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8109D1B9057D670B011A662 /* Pods_ToProtectOversleeping.framework */; };
-		7F1228B226515E920038EC3D /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228B126515E920038EC3D /* AppSettings.swift */; };
-		7F1228B526515EB80038EC3D /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228B426515EB80038EC3D /* UICollectionView+Additions.swift */; };
-		7F1228B726515ECF0038EC3D /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228B626515ECF0038EC3D /* UIColor+Additions.swift */; };
-		7F1228B926515EE60038EC3D /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228B826515EE60038EC3D /* UIImage+Additions.swift */; };
-		7F1228BB26515F0B0038EC3D /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228BA26515F0B0038EC3D /* UIView+Additions.swift */; };
-		7F1228BE26515F320038EC3D /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228BD26515F320038EC3D /* Channel.swift */; };
-		7F1228C026515F530038EC3D /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228BF26515F530038EC3D /* DatabaseRepresentation.swift */; };
-		7F1228C226515F680038EC3D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228C126515F680038EC3D /* Message.swift */; };
-		7F1228C526515F920038EC3D /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228C426515F920038EC3D /* ChannelsViewController.swift */; };
-		7F1228C726515FB10038EC3D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228C626515FB10038EC3D /* ChatViewController.swift */; };
-		7F1228CB265160080038EC3D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1228CA265160080038EC3D /* NavigationController.swift */; };
 		7F1452E42641A9C600BAB44F /* WUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1452E32641A9C600BAB44F /* WUButton.swift */; };
 		7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F376B1426401A910063F2EC /* AppDelegate.swift */; };
 		7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F376B1626401A910063F2EC /* SceneDelegate.swift */; };
@@ -27,7 +16,6 @@
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
 		7F58A350267CF2620038AA3F /* SettingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58A34F267CF2620038AA3F /* SettingDataModel.swift */; };
-		7F5A9E4F2677993B00754C93 /* ResultWakeUpFloatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E4E2677993B00754C93 /* ResultWakeUpFloatingVC.swift */; };
 		7F5A9E51267A47F000754C93 /* ResultWakeUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */; };
 		7F5A9E53267A55AC00754C93 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */; };
 		7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B6338266225E90057C12B /* SendDBModel.swift */; };
@@ -38,7 +26,6 @@
 		7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B634526638EA70057C12B /* ChatRoomNameModel.swift */; };
 		7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B63472663ACA10057C12B /* LoadDBModel.swift */; };
 		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
-		7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E4AC526498F9500A10929 /* SettingList.swift */; };
 		7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */; };
 		7F7E9B182673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */; };
 		7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */; };
@@ -54,8 +41,6 @@
 		7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */; };
 		7FA9B65126411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */; };
 		7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */; };
-		7FA9B65F264142100017985B /* JinrikishaGPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B65E264142100017985B /* JinrikishaGPS.swift */; };
-		7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */; };
 		7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */; };
 		7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B32641069A001182DF /* SwipeButton.swift */; };
 		7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B6264106A2001182DF /* SwipeViewController.swift */; };
@@ -67,8 +52,6 @@
 		7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */; };
 		7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */; };
 		7FDC68A82674F3E700C3267B /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC68A72674F3E700C3267B /* RegisterNameView.swift */; };
-		7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */; };
-		7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
 		7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */; };
 		7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */; };
@@ -83,17 +66,6 @@
 
 /* Begin PBXFileReference section */
 		08D971B04E682A5F70345371 /* Pods-ToProtectOversleeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToProtectOversleeping.debug.xcconfig"; path = "Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping.debug.xcconfig"; sourceTree = "<group>"; };
-		7F1228B126515E920038EC3D /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		7F1228B426515EB80038EC3D /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
-		7F1228B626515ECF0038EC3D /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
-		7F1228B826515EE60038EC3D /* UIImage+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
-		7F1228BA26515F0B0038EC3D /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
-		7F1228BD26515F320038EC3D /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		7F1228BF26515F530038EC3D /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
-		7F1228C126515F680038EC3D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		7F1228C426515F920038EC3D /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
-		7F1228C626515FB10038EC3D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		7F1228CA265160080038EC3D /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		7F1452E32641A9C600BAB44F /* WUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUButton.swift; sourceTree = "<group>"; };
 		7F376B1126401A910063F2EC /* ToProtectOversleeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToProtectOversleeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F376B1426401A910063F2EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +76,6 @@
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F58A34F267CF2620038AA3F /* SettingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDataModel.swift; sourceTree = "<group>"; };
-		7F5A9E4E2677993B00754C93 /* ResultWakeUpFloatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpFloatingVC.swift; sourceTree = "<group>"; };
 		7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		7F5B6338266225E90057C12B /* SendDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDBModel.swift; sourceTree = "<group>"; };
@@ -115,7 +86,6 @@
 		7F5B634526638EA70057C12B /* ChatRoomNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomNameModel.swift; sourceTree = "<group>"; };
 		7F5B63472663ACA10057C12B /* LoadDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDBModel.swift; sourceTree = "<group>"; };
 		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
-		7F7E4AC526498F9500A10929 /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeView.swift; sourceTree = "<group>"; };
 		7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeVC.swift; sourceTree = "<group>"; };
 		7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDBModel.swift; sourceTree = "<group>"; };
@@ -131,8 +101,6 @@
 		7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmTimeAndNewRegistrationView.swift; sourceTree = "<group>"; };
 		7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmTimeAndNewRegistrationVC.swift; sourceTree = "<group>"; };
 		7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpAndCutAlertBySlideVC.swift; sourceTree = "<group>"; };
-		7FA9B65E264142100017985B /* JinrikishaGPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JinrikishaGPS.swift; sourceTree = "<group>"; };
-		7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardCollectionListVC.swift; sourceTree = "<group>"; };
 		7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardCollectionListCell.swift; sourceTree = "<group>"; };
 		7FABB9B32641069A001182DF /* SwipeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
 		7FABB9B6264106A2001182DF /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
@@ -144,8 +112,6 @@
 		7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderFunction.swift; sourceTree = "<group>"; };
 		7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderVC.swift; sourceTree = "<group>"; };
 		7FDC68A72674F3E700C3267B /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
-		7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
-		7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
 		7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatVC.swift; sourceTree = "<group>"; };
 		7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressVC.swift; sourceTree = "<group>"; };
@@ -181,56 +147,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		7F1228AB26515E000038EC3D /* ChatSample */ = {
-			isa = PBXGroup;
-			children = (
-				7F1228C326515F860038EC3D /* VC */,
-				7F1228BC26515F220038EC3D /* Models */,
-				7F1228B326515EA80038EC3D /* Extensions */,
-				7F1228AC26515E1D0038EC3D /* Controllers */,
-			);
-			path = ChatSample;
-			sourceTree = "<group>";
-		};
-		7F1228AC26515E1D0038EC3D /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				7F1228B126515E920038EC3D /* AppSettings.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		7F1228B326515EA80038EC3D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				7F1228B426515EB80038EC3D /* UICollectionView+Additions.swift */,
-				7F1228B626515ECF0038EC3D /* UIColor+Additions.swift */,
-				7F1228B826515EE60038EC3D /* UIImage+Additions.swift */,
-				7F1228BA26515F0B0038EC3D /* UIView+Additions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		7F1228BC26515F220038EC3D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				7F1228BD26515F320038EC3D /* Channel.swift */,
-				7F1228BF26515F530038EC3D /* DatabaseRepresentation.swift */,
-				7F1228C126515F680038EC3D /* Message.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		7F1228C326515F860038EC3D /* VC */ = {
-			isa = PBXGroup;
-			children = (
-				7F1228C426515F920038EC3D /* ChannelsViewController.swift */,
-				7F1228C626515FB10038EC3D /* ChatViewController.swift */,
-				7F1228CA265160080038EC3D /* NavigationController.swift */,
-			);
-			path = VC;
-			sourceTree = "<group>";
-		};
 		7F376B0826401A910063F2EC = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +169,6 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
-				7FD2F4A9265038BD006C684E /* NotUseSample */,
 				7F7E4AC426498F7C00A10929 /* Model */,
 				7FE523BB26464C7300B7D1B0 /* Extention */,
 				7FABB9B026403E79001182DF /* Screens */,
@@ -293,7 +208,6 @@
 		7F7E4AC426498F7C00A10929 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7F7E4AC526498F9500A10929 /* SettingList.swift */,
 				7F5B634526638EA70057C12B /* ChatRoomNameModel.swift */,
 				7F5B6338266225E90057C12B /* SendDBModel.swift */,
 				7F5B634126638E3B0057C12B /* MessageModel.swift */,
@@ -354,20 +268,11 @@
 				7FE523DA2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift */,
 				7FE523DE2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift */,
 				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
-				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
 				7F8211E126590FF600AA747E /* ChangeNameView.swift */,
 				7FDC68A72674F3E700C3267B /* RegisterNameView.swift */,
 				7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7FA9B65D264141F40017985B /* JinrikishaGPS */ = {
-			isa = PBXGroup;
-			children = (
-				7FA9B65E264142100017985B /* JinrikishaGPS.swift */,
-			);
-			path = JinrikishaGPS;
 			sourceTree = "<group>";
 		};
 		7FABB9AD26403E36001182DF /* Support */ = {
@@ -414,7 +319,6 @@
 			isa = PBXGroup;
 			children = (
 				7F7E9B192673AB8C0081C7F8 /* EditAlarm */,
-				7FD2F4AA26503957006C684E /* NotUse */,
 				7F5B633C26623BA50057C12B /* NewRegistration */,
 				7FD2F4A026502C66006C684E /* Setting */,
 				7FE523D72646CD6F00B7D1B0 /* PopUp */,
@@ -458,39 +362,12 @@
 			path = QRReader;
 			sourceTree = "<group>";
 		};
-		7FD2F4A9265038BD006C684E /* NotUseSample */ = {
-			isa = PBXGroup;
-			children = (
-				7F1228AB26515E000038EC3D /* ChatSample */,
-				7FE523BC26464C9300B7D1B0 /* UIImage+Ext.swift */,
-				7FE523BE26464ED600B7D1B0 /* QRMaker */,
-				7FA9B65D264141F40017985B /* JinrikishaGPS */,
-			);
-			path = NotUseSample;
-			sourceTree = "<group>";
-		};
-		7FD2F4AA26503957006C684E /* NotUse */ = {
-			isa = PBXGroup;
-			children = (
-				7FABB9A6264023F8001182DF /* WakeUpCardCollectionListVC.swift */,
-			);
-			path = NotUse;
-			sourceTree = "<group>";
-		};
 		7FE523BB26464C7300B7D1B0 /* Extention */ = {
 			isa = PBXGroup;
 			children = (
 				7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */,
 			);
 			path = Extention;
-			sourceTree = "<group>";
-		};
-		7FE523BE26464ED600B7D1B0 /* QRMaker */ = {
-			isa = PBXGroup;
-			children = (
-				7FE523BF26464EF200B7D1B0 /* QRCodeVC.swift */,
-			);
-			path = QRMaker;
 			sourceTree = "<group>";
 		};
 		7FE523C12646836400B7D1B0 /* TabBarController */ = {
@@ -522,6 +399,7 @@
 		7FE523D12646C33600B7D1B0 /* NotUse */ = {
 			isa = PBXGroup;
 			children = (
+				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
 				7FE523D22646C34B00B7D1B0 /* NotUseWakeUpCardView.swift */,
 			);
 			path = NotUse;
@@ -544,7 +422,6 @@
 			children = (
 				7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */,
 				7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */,
-				7F5A9E4E2677993B00754C93 /* ResultWakeUpFloatingVC.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -731,32 +608,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
-				7FA9B65F264142100017985B /* JinrikishaGPS.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */,
-				7F1228C726515FB10038EC3D /* ChatViewController.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
-				7F1228BB26515F0B0038EC3D /* UIView+Additions.swift in Sources */,
-				7F7E4AC626498F9500A10929 /* SettingList.swift in Sources */,
-				7F1228CB265160080038EC3D /* NavigationController.swift in Sources */,
 				7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */,
-				7FABB9A7264023F8001182DF /* WakeUpCardCollectionListVC.swift in Sources */,
 				7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */,
 				7FA9B65126411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift in Sources */,
-				7F1228C026515F530038EC3D /* DatabaseRepresentation.swift in Sources */,
 				7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */,
 				7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */,
 				7FDC68A82674F3E700C3267B /* RegisterNameView.swift in Sources */,
 				7F5B634426638E780057C12B /* UserDataModel.swift in Sources */,
-				7F1228B926515EE60038EC3D /* UIImage+Additions.swift in Sources */,
 				7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */,
-				7FE523C026464EF200B7D1B0 /* QRCodeVC.swift in Sources */,
 				7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */,
-				7F1228BE26515F320038EC3D /* Channel.swift in Sources */,
 				7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */,
 				7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */,
 				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
-				7F1228C526515F920038EC3D /* ChannelsViewController.swift in Sources */,
 				7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */,
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
@@ -779,23 +645,17 @@
 				7F5A9E53267A55AC00754C93 /* UIViewController+Ext.swift in Sources */,
 				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,
 				7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */,
-				7F1228B526515EB80038EC3D /* UICollectionView+Additions.swift in Sources */,
 				7F5A9E51267A47F000754C93 /* ResultWakeUpVC.swift in Sources */,
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
-				7F5A9E4F2677993B00754C93 /* ResultWakeUpFloatingVC.swift in Sources */,
 				7FE523DF2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift in Sources */,
 				7FE523D92647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift in Sources */,
 				7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */,
 				7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */,
 				7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */,
 				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,
-				7FE523BD26464C9300B7D1B0 /* UIImage+Ext.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,
 				7F58A350267CF2620038AA3F /* SettingDataModel.swift in Sources */,
-				7F1228B226515E920038EC3D /* AppSettings.swift in Sources */,
-				7F1228C226515F680038EC3D /* Message.swift in Sources */,
 				7F1452E42641A9C600BAB44F /* WUButton.swift in Sources */,
-				7F1228B726515ECF0038EC3D /* UIColor+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

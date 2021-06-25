@@ -11,21 +11,14 @@ import KeychainSwift
 
 class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
-//    var myAddressLongitude = 139.65363018
-    
     //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
     let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
 
-    
     // roomID
     var chatRoomDocumentId = ""
     var userName = ""
     var wakeUpTimeText = ""
     var authId = ""
-    
-    // 暫定でUserDefaultsで設定
-//    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
-//    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
     
     // Keychainでの設定値に問題があったらデフォルト値を採用
     var myAddressLatitude: Double = 35.637375
@@ -148,8 +141,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
 //            clearAlarm()
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
-//            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
-            return "OK!、雨の日です"
+            return "OK!、雨の日モードで解除！"
         }
         
         //TODO: ここを任意で距離を決められても面白いかもしれない。

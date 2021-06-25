@@ -31,17 +31,10 @@ class NewRegistrationGpsVC: BaseGpsVC {
     var authLoginDelegate: AuthLoginDelegate?
     
     // GPSの初期設定値が入っている。
-//    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
-//    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
-    
-    
-    // GPSの初期設定値が入っている。
     // Keychainでの設定値に問題があったらデフォルト値を採用
     var myAddressLatitude: Double = 35.637375
     var myAddressLongitude: Double = 139.756308
     
-    
-
     // 地図
     var mapView = MKMapView()
     var homeLocationLabel = WUBodyLabel(fontSize: 20)
@@ -121,13 +114,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
         print("gps取得: ", geoCoderLongitude)
         print(geoCoderLongitude)
         
-
         print("GpsButtonが押されました")
         print(address)
-        
-//        //TODO: keychainに変えること
-//        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
-//        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
         
         //Keychain
         let geoCoderLatitudeString: String = String(geoCoderLatitude)
@@ -136,10 +124,6 @@ class NewRegistrationGpsVC: BaseGpsVC {
         keychain.set(geoCoderLatitudeString, forKey: Keys.myAddressLatitude)
         keychain.set(geoCoderLongitudeString, forKey: Keys.myAddressLongitude)
         keychain.set(address, forKey: Keys.myAddress)
-        
-        
-//        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")
-//        UserDefaults.standard.set(address, forKey: "myAddress")
         
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         moveTo(center: geoCoderLocation, animated: true)
@@ -157,19 +141,14 @@ class NewRegistrationGpsVC: BaseGpsVC {
             
             // 無理矢理ログインしています
             Auth.auth().signInAnonymously { result, error in
-//                guard let _ = error else { return }
-                
                 
                 //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
                 //ここでFirebaseFireStoreにUserModelとして登録する。
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    
-                    //TODO: ここは1.5秒待たせる必要はないけど、あえて住所が登録されているのを見せてローディング画面を見せるのはありかも。
-
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    //TODO: ここは1.0秒待たせる必要はないけど、あえて住所が登録されているのを見せてローディング画面を見せるのはありかも。
                     UserDefaults.standard.set(self.newUserName,forKey: "userName")
                     sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
                     UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
-                    
                     self.authLoginDelegate?.authLogin(isLoggedIn: true)
                 }
             }
@@ -229,7 +208,6 @@ class NewRegistrationGpsVC: BaseGpsVC {
             homeLocationFetchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             homeLocationFetchButton.heightAnchor.constraint(equalToConstant: 40)
         ])
-        
     }
 }
 
@@ -277,21 +255,6 @@ extension NewRegistrationGpsVC: GetGeocoderDelegate {
 extension NewRegistrationGpsVC: DoneCreateUser {
     func doneCreateUser() {
         // 新規登録が終わった後に行う処理
-//        navigationController?.popViewController(animated: true)
-//        navigationController?.popViewController(animated: true)
         navigationController?.popToRootViewController(animated: true)
-
-        // チャットルームのデータを取得
-
-//        loadDBModel.getChatRoomNameDelegate = self
-//        loadDBModel.getUserDataDelegate = self
-//        loadDBModel.loadChatRoomNameData()
-//
-//
-//        loadDBModel.loadProfileData()
-
-        
-        
-//        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

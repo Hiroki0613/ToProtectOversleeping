@@ -49,11 +49,9 @@ class EditWakeUpAlarmTimeVC: UIViewController {
     }
     
     
-    
     func configureView() {
         configureBlurView()
         configureCardView()
-
     }
     
     func configureCardView() {

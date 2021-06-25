@@ -29,13 +29,7 @@ class SendDBModel {
     var doneCreateChatRoom: DoneCreateChatRoom?
     var doneInvitedChatRoom: DoneInvitedChatRoom?
     
-//    var senderID: String = ""
-//    var toID: String = ""
-//    var text: String = ""
-//    var displayName: String = ""
-    
-    
-    // 新規作成の時は、ユーザー登録画面に画面遷移させる。
+    /// 新規作成の時は、ユーザー登録画面に画面遷移させる。
     /// ユーザー作成
     /// - Parameters:
     ///   - name: ユーザー名
@@ -111,42 +105,12 @@ class SendDBModel {
         alarmSet(identifierString: generatedRandomString)
         self.doneCreateChatRoom?.doneCreateChatRoom()
     }
-    
-    
-//    func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String) {
-//        self.db.collection("Chats").document().setData(
-//            ["roomName": roomName as Any,
-////             "wakeUpTimeDate": wakeUpTimeDate as Any,
-//             "wakeUpTimeText": wakeUpTimeText as Any,
-//             "uid": Auth.auth().currentUser!.uid as Any,
-//             "registerDate": Date().timeIntervalSince1970]
-//        )
-//        self.doneCreateChatRoom?.doneCreateChatRoom()
-//    }
-    
-    
-    
+
     
     /// チャットルーム招待
     /// - Parameters:
     ///   - roomNameID: チャットルームのID
     ///   - wakeUpTime: 起きる時間
-//    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date,
-//                         wakeUpTimeText: String) {
-//        let loadDBModel = LoadDBModel()
-//        let roomName = loadDBModel.loadChatRoomDocumentID(roomNameId: roomNameId)
-//
-//        print("SendDBModel_roomName: ", roomName)
-//
-//        self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(roomNameId).setData(
-//            ["roomName": roomName as Any,
-//             "uid": Auth.auth().currentUser!.uid as Any,
-//             "wakeUpTimeText": wakeUpTimeText as Any,
-//             "registerDate": Date().timeIntervalSince1970]
-//        )
-//        self.doneInvitedChatRoom?.doneInvitedChatRoom()
-//    }
-    
     func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, isWakeUpRoop: Bool, appVersion: String) {
         
         let loadDBModel = LoadDBModel()
@@ -188,7 +152,6 @@ class SendDBModel {
     }
     
     
-    
     func sendMessage(senderId: String, toID: String, text: String, displayName: String, messageAppVersion: String, sendWUMessageType: String) {
         
         self.db.collection("Chats").document(toID).collection("Talk").document().setData(
@@ -201,14 +164,6 @@ class SendDBModel {
                 "sendWUMessageType": sendWUMessageType as Any
             ]
         )
-        
-        
-//        self.db.collection("Chats").document(senderId).collection("Talk").document(toID).setData(
-//            ["text": text as Any, "senderId": senderId as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
-//        )
-//        self.db.collection("Chats").document(toID).collection("Talk").document(senderId).setData(
-//            ["text": text as Any, "senderId": Auth.auth().currentUser!.uid as Any, "displayName": displayName as Any, "date": Date().timeIntervalSince1970]
-//        )
     }
     
     
@@ -240,13 +195,8 @@ class SendDBModel {
     }
     
     
-    
     //アラート設定削除
     func removeAlarm(identifiers:String){
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifiers])
     }
-   
-    
-    
-    
 }

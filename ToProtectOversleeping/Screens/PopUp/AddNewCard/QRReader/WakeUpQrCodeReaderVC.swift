@@ -35,7 +35,6 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
         qrCodeReadLabel.frame = CGRect(x: 70, y: 130, width: view.frame.size.width, height: 100)
         view.addSubview(qrCodeReadLabel)
         configureUI()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +62,6 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
             goBuckQRReadCameraModeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: padding),
             goBuckQRReadCameraModeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -padding),
             goBuckQRReadCameraModeButton.heightAnchor.constraint(equalToConstant: 40)
-            
         ])
     }
     
@@ -73,7 +71,6 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     //対象を認識、読み込んだ時に呼ばれる
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        
         // 一画面上に複数のQRがある場合、複数読み込むが今回は便宜的に先頭のオブジェクトを処理
         if let metadata = metadataObjects.first as? AVMetadataMachineReadableCodeObject{
             let barCode = qrCodeReader.previewLayer.transformedMetadataObject(for: metadata) as! AVMetadataMachineReadableCodeObject
@@ -87,7 +84,6 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
             
             if isSendMessageByReadingQRCodeFirstTime == true {
-                
                 // メッセージがアプリのバージョンアップで変更した時に使用
                 let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
                 

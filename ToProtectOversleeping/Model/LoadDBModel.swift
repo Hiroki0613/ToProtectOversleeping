@@ -72,24 +72,6 @@ class LoadDBModel {
     }
     
     
-    //    // セッティングの呼び出し
-    //    func loadSettingMode(complition:(@escaping(String) -> Void)) {
-    //        var contactString = "https://www.google.co.jp"
-    //        db.collection("Setting").document("setting").addSnapshotListener { snapShot, error in
-    //            if error != nil {
-    //                print(error.debugDescription)
-    //                return
-    //            }
-    //            if let data = snapShot?.data() {
-    //                if let contact = data["contact"] as? String {
-    //                    contactString = contact
-    //                }
-    //            }
-    //            complition(contactString)
-    //        }
-    //    }
-    
-    
     // チャットルームの呼び出し
     func loadChatRoomNameData() {
         db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "registerDate",descending: true).addSnapshotListener { snapShot, error in
@@ -106,7 +88,6 @@ class LoadDBModel {
                     let data = doc.data()
                     print("dataだぜ: ",data)
                     if let roomName = data["roomName"] as? String,
-                       //                       let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double,
                        let wakeUpTimeText = data["wakeUpTimeText"] as? String,
                        let uid = data["uid"] as? String,
                        let registerDate = data["registerDate"] as? Double,
@@ -130,8 +111,6 @@ class LoadDBModel {
                     
                     // chatDocumentIDArray
                     self.chatDocumentIdArray.append(doc.documentID)
-                    
-                    
                 }
                 print(self.chatRoomNameArray)
                 self.getChatRoomNameDelegate?.getChatRoomName(chatRoomNameModel: self.chatRoomNameArray)
@@ -140,22 +119,6 @@ class LoadDBModel {
         }
     }
     
-    
-    // ChatRoomのdocumentIDが揃う
-//    func loadChatRoomDocumentID(roomNameId: String) -> String {
-//        var roomName = ""
-//        db.collection("Chats").document(roomNameId).addSnapshotListener { snapShot, error in
-//            if error != nil {
-//                print(error.debugDescription)
-//                return
-//            }
-//            if let data = snapShot?.data() {
-//                roomName = data["roomName"] as! String
-//                print("data.roomName: ", roomName)
-//            }
-//        }
-//        return roomName
-//    }
     
     func loadChatRoomDocumentId(roomNameId: String, complition:(@escaping(String) -> Void)) {
         var roomNameString = "空白"
@@ -170,7 +133,6 @@ class LoadDBModel {
             }
             complition(roomNameString)
         }
-
     }
 }
 

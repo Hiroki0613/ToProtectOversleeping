@@ -1,14 +1,14 @@
+////
+////  MapViewAtHome.swift
+////  ToProtectOversleeping
+////
+////  Created by 近藤宏輝 on 2021/05/04.
+////
 //
-//  MapViewAtHome.swift
-//  ToProtectOversleeping
+//import UIKit
+//import MapKit
 //
-//  Created by 近藤宏輝 on 2021/05/04.
+//class MapViewAtHome: UIViewController {
 //
-
-import UIKit
-import MapKit
-
-class MapViewAtHome: UIViewController {
-
-    
-}
+//
+//}

@@ -16,15 +16,6 @@ class GetGpsAddressVC: BaseGpsVC {
     //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
     let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
     
-    // 起きる時間のカード
-    //    var getGpsAddressView = GetGpsAddressView()
-    
-    // 暫定で家の近くに設定している
-//    var myAddressLatitude = 35.7140224101
-//    var myAddressLongitude = 139.65363018
-//    var myAddressLatitude = UserDefaults.standard.double(forKey: "myAddressLatitude")
-//    var myAddressLongitude = UserDefaults.standard.double(forKey: "myAddressLongitude")
-    
     // Keychainでの設定値に問題があったらデフォルト値を採用
     var myAddressLatitude: Double = 35.637375
     var myAddressLongitude: Double = 139.756308
@@ -48,8 +39,6 @@ class GetGpsAddressVC: BaseGpsVC {
         super.viewDidLoad()
         view.backgroundColor = .systemOrange
         configureView()
-        //        configureDecoration()
-        //        configureAddTarget()
         // ここにdefaultで設定した住まいを入れる渡す。
         getMyAddressFromKeyChain()
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
@@ -60,7 +49,7 @@ class GetGpsAddressVC: BaseGpsVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
-        // ここにUserDefaultsで設定した住まいを入れる。nilの場合(住所未設定の場合は、defaultsの場所にしておく)
+        // ここにKeychainで設定した住まいを入れる。nilの場合(住所未設定の場合は、defaultsの場所にしておく)
         moveTo(center: myHomeLocation, animated: false)
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -76,7 +65,6 @@ class GetGpsAddressVC: BaseGpsVC {
             self.myAddressLongitude = myAddressLongitude
         }
     }
-    
     
     
     func configureAddTarget() {
@@ -108,15 +96,6 @@ class GetGpsAddressVC: BaseGpsVC {
     }
     
     
-//    // ここで登録を確認
-//    @objc func registerTeamMate() {
-//        print("登録されました")
-//        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-//        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-//        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
-//    }
-    
     private func setAnnotation(location: CLLocationCoordinate2D) {
         mapView.removeAnnotations(mapView.annotations)
         
@@ -132,17 +111,6 @@ class GetGpsAddressVC: BaseGpsVC {
         print("gps取得:", geoCoderLongitude)
         print(geoCoderLatitude)
         
-        
-        //        homeLocationLabel.text = "登録されました。\n\n\(address)"
-        //        print("GpsButtonが押されました")
-        //        print(address)
-        
-        //        UserDefaults.standard.set(geoCoderLongitude, forKey: "myAddressLongitude")
-        //        UserDefaults.standard.set(geoCoderLatitude, forKey: "myAddressLatitude")
-        ////        UserDefaults.standard.set(geoCoderLongitude,forKey: "myAddressLongLongtitude")
-        //        UserDefaults.standard.set(address, forKey: "myAddress")
-        
-        //        if keychain.clear() {
         //Keychain
         if keychain.delete(Keys.myAddress),
            keychain.delete(Keys.myAddressLatitude),
@@ -163,18 +131,7 @@ class GetGpsAddressVC: BaseGpsVC {
             moveTo(center: geoCoderLocation, animated: true)
             drawCircle(center: geoCoderLocation, meter: 10, times: 10)
             setAnnotation(location: geoCoderLocation)
-            
         }
-            //        getGpsAddressView.prefectureAndCityNameLabel.text = address
-            
-            // 情報は一時的にUserDefaultに保管する。
-            
-            
-            //        let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
-            //        wakeUpAndCutAlertBySlideVC.myAddressLatitude = geoCoderLatitude
-            //        wakeUpAndCutAlertBySlideVC.myAddressLongitude = geoCoderLongitude
-            ////        wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = getGpsAddressView.datePicker.date
-            //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
     // 位置から住所を取得
@@ -249,7 +206,6 @@ extension GetGpsAddressVC: MKMapViewDelegate {
         } else {
             // アノテーションを画像にする
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            //            annotationView.image = UIImage(named: "jinrikisya_man")
             // figure.waveのサイズを大きくしたい
             annotationView.image = UIImage(systemName: "house")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 30, weight: .bold))
             annotationView.canShowCallout = true
@@ -276,9 +232,6 @@ extension GetGpsAddressVC: MKMapViewDelegate {
 extension GetGpsAddressVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
-        //        swipedActionLabel.text = "取得完了しました"
-        //        setAnnotation(location: myHomeLocation)
-        //        setAnnotation(location: CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude))
         print("geoCoderLatitude:", geoCoderLatitude)
         print("geoCoderLongitude:", geoCoderLongitude)
     }
