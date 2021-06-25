@@ -142,6 +142,7 @@ class ResultWakeUpVC: UIViewController {
                 
                 // 起きた人を一括で管理している
                 var wakeUpPeopleArray = self.wakeUpSuccessPersonList + self.wakeUpRainyDayPersonList
+//                var wakeUpPeopleArray = ["レッド","ブルー","ピンク","グリーン","イエロー"]
                 let orderedSetWakeUpPeople: NSOrderedSet = NSOrderedSet(array: wakeUpPeopleArray)
                 wakeUpPeopleArray = orderedSetWakeUpPeople.array as! [String]
                 let wakeUpText = wakeUpPeopleArray.joined(separator: "\n")

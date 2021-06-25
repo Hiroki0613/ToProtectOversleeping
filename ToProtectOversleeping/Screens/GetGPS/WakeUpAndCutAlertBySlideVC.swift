@@ -227,8 +227,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             
             rainyDayLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 10),
             rainyDayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            rainyDayLabel.widthAnchor.constraint(equalToConstant: 60),
-            rainyDayLabel.heightAnchor.constraint(equalToConstant: 20),
+            rainyDayLabel.widthAnchor.constraint(equalToConstant: 70),
+            rainyDayLabel.heightAnchor.constraint(equalToConstant: 30),
             
             rainyDaySwitch.topAnchor.constraint(equalTo: rainyDayLabel.bottomAnchor, constant: 10),
             rainyDaySwitch.centerXAnchor.constraint(equalTo: rainyDayLabel.centerXAnchor),
