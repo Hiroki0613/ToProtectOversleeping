@@ -107,7 +107,26 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
             loadDBModel.loadProfileData()
 
             getPermissionLocalPushNotification()
+            
 
+//            let dateTime = Date()
+//            print("宏輝_firedenanai_Date: ",dateTime)
+//
+//            let nowFireStoreTimeStamp = Timestamp()
+//            print("宏輝_fireStoreTimeStamp: ",nowFireStoreTimeStamp)
+//               // 2. 日付を取得
+//               let dateValue = nowFireStoreTimeStamp.dateValue()
+//               print("宏輝_fire_dateValue: \(dateValue)")
+//
+//               // > dateValue: 2019-06-06 05:17:11 +0000
+//
+//               // 3. 日付フォーマットも変更
+//               let f = DateFormatter()
+//               f.locale = Locale(identifier: "ja_JP")
+//               f.dateStyle = .long
+//               f.timeStyle = .none
+//               let date = f.string(from: dateValue)
+//               print("宏輝_fire_date: \(date)")
         }
     }
     
