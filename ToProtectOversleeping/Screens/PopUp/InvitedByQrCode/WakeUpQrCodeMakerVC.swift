@@ -18,7 +18,8 @@ class WakeUpQrCodeMakerVC: UIViewController {
     
     var qrCodeExplainLabel = WUBodyLabel(fontSize: 20)
     var qrCodeTeamNameView = UIView()
-    var qrCodeLavel = WUBodyLabel(fontSize: 20)
+    var qrCodeLabel = WUBodyLabel(fontSize: 20)
+    var descriptionTheWayHowToInviteIntoTeamLabel = WUBodyLabel(fontSize: 20)
     
     // カード式から招待documentIDを持ってくる。
     var invitedDocumentId = ""
@@ -33,6 +34,8 @@ class WakeUpQrCodeMakerVC: UIViewController {
         
         let qrURLImage = URL(string: invitedDocumentId)?.qrImage(using: qrColor, logo: wakeUpLogo)
         
+        
+        
         guard let qr = qrURLImage else{
             return
         }
@@ -43,7 +46,8 @@ class WakeUpQrCodeMakerVC: UIViewController {
         imageView.center.x = self.view.frame.width / 2
         imageView.center.y = self.view.frame.height / 2
         
-        self.view.addSubview(imageView)
+        qrCodeImageView = imageView
+//        self.view.addSubview(imageView)
         
         configureQRCodelabel()
     }
@@ -56,7 +60,7 @@ class WakeUpQrCodeMakerVC: UIViewController {
     
     //ラベルをタップしてコピー
     @objc func tappedLabel(_ sender:UITapGestureRecognizer) {
-        UIPasteboard.general.string = qrCodeLavel.text
+        UIPasteboard.general.string = qrCodeLabel.text
         print("clip board :\(UIPasteboard.general.string!)")
         alert(title: "コピーしました", message: "")
     }
@@ -73,25 +77,41 @@ class WakeUpQrCodeMakerVC: UIViewController {
         qrCodeExplainLabel.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(qrCodeExplainLabel)
         
-        qrCodeLavel.text = invitedDocumentId
-        qrCodeLavel.translatesAutoresizingMaskIntoConstraints = false
-        qrCodeLavel.isUserInteractionEnabled = true
-        qrCodeLavel.textAlignment = .center
+        qrCodeLabel.text = invitedDocumentId
+        qrCodeLabel.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeLabel.isUserInteractionEnabled = true
+        qrCodeLabel.textAlignment = .center
         
         let tg = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
-        qrCodeLavel.addGestureRecognizer(tg)
-        self.view.addSubview(qrCodeLavel)
+        qrCodeLabel.addGestureRecognizer(tg)
+        self.view.addSubview(qrCodeLabel)
+        
+        qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(qrCodeImageView)
+        
+        descriptionTheWayHowToInviteIntoTeamLabel.text = "チームへの招待の方法\n\nID招待の場合\n①招待される側でHome画面で右下のプラスボタンをタップ\n②任意の時間を設定し、招待されるボタンをタップ\n③招待IDを入力し、選択ボタンをタップ\n\nQR読み取りの場合\n①招待される側でHome画面で右下のプラスボタンをタップ\n②任意の時間を設定し、招待されるボタンをタップ\n③QR読み取りボタンをタップするとカメラが起動するのでQRコードを読み込むとチームへ招待されます"
+        descriptionTheWayHowToInviteIntoTeamLabel.numberOfLines = 0
+        descriptionTheWayHowToInviteIntoTeamLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(descriptionTheWayHowToInviteIntoTeamLabel)
         
         NSLayoutConstraint.activate([
-            qrCodeExplainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            qrCodeExplainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             qrCodeExplainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             qrCodeExplainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             qrCodeExplainLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            qrCodeLavel.topAnchor.constraint(equalTo: qrCodeExplainLabel.bottomAnchor, constant: 20),
-            qrCodeLavel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            qrCodeLavel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            qrCodeLavel.heightAnchor.constraint(equalToConstant: 40)
+            qrCodeLabel.topAnchor.constraint(equalTo: qrCodeExplainLabel.bottomAnchor, constant: 10),
+            qrCodeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            qrCodeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            qrCodeLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            qrCodeImageView.topAnchor.constraint(equalTo: qrCodeLabel.bottomAnchor, constant: 10),
+            qrCodeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            descriptionTheWayHowToInviteIntoTeamLabel.topAnchor.constraint(equalTo: qrCodeImageView.bottomAnchor, constant: 20),
+            descriptionTheWayHowToInviteIntoTeamLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            descriptionTheWayHowToInviteIntoTeamLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            descriptionTheWayHowToInviteIntoTeamLabel.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
 }
