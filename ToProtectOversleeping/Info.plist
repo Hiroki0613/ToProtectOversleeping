@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Use camera to read QR code</string>
+	<string>チームに招待していただくために、QRを読み取る必要があります。そのためにカメラを使用します。</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>居住地の位置情報を取得します。目的は、アラームカットの条件である「居住地から100m離れているかを測定するため」です。なお、居住地の情報は本体端末に保存され外部へ情報を送信されることはございません。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
