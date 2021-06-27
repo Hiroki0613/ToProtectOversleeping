@@ -32,6 +32,11 @@ class WakeUpCardTableListCell: UITableViewCell {
     var setAlarmButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "alarm")
     var setChatAndAlarmButtonStackView = UIStackView(frame: .zero)
     
+    // 左へスワイプ可能を表示するLabel
+    var swipeOkLeftLabel = UILabel()
+    // 右へスワイプ可能を表示するLabel
+    var swipeOkRightLabel = UILabel()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         settingInformation()
@@ -87,6 +92,9 @@ class WakeUpCardTableListCell: UITableViewCell {
         setAlarmButton.translatesAutoresizingMaskIntoConstraints = false
         setChatAndAlarmButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        swipeOkLeftLabel.translatesAutoresizingMaskIntoConstraints = false
+        swipeOkRightLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 10.0
         let labelButtonHightPadding: CGFloat = 30
@@ -117,6 +125,23 @@ class WakeUpCardTableListCell: UITableViewCell {
         setChatAndAlarmButtonStackView.spacing = 30
         tableCellView.addSubview(setChatAndAlarmButtonStackView)
         
+        let leftSwipeText = NSMutableAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.left")!))
+        leftSwipeText.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "pencil")!)))
+        leftSwipeText.append(NSAttributedString(string: "\n"))
+        leftSwipeText.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.left")!)))
+        leftSwipeText.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "person.badge.plus")!)))
+        swipeOkLeftLabel.attributedText = leftSwipeText
+        swipeOkLeftLabel.numberOfLines = 2
+        swipeOkLeftLabel.sizeToFit()
+        tableCellView.addSubview(swipeOkLeftLabel)
+        
+        let rightSwipeText = NSMutableAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.right")!))
+        rightSwipeText.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "trash")!)))
+        swipeOkRightLabel.attributedText = rightSwipeText
+        swipeOkRightLabel.numberOfLines = 1
+        swipeOkRightLabel.sizeToFit()
+        tableCellView.addSubview(swipeOkRightLabel)
+        
         NSLayoutConstraint.activate([
             // 透明セル
             transparentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
@@ -130,7 +155,15 @@ class WakeUpCardTableListCell: UITableViewCell {
             tableCellView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor, constant: -padding),
             tableCellView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor, constant: -padding),
             
-            // 起きる時間
+            // 左スワイプ
+            swipeOkLeftLabel.topAnchor.constraint(equalTo: tableCellView.centerYAnchor),
+            swipeOkLeftLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor),
+            
+            // 右スワイプ
+            swipeOkRightLabel.topAnchor.constraint(equalTo: tableCellView.centerYAnchor),
+            swipeOkRightLabel.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor),
+            
+            // チャットチーム
             wakeUpChatTeamLabel.topAnchor.constraint(equalTo: tableCellView.topAnchor, constant: padding),
             wakeUpChatTeamLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
             wakeUpChatTeamLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
@@ -140,15 +173,15 @@ class WakeUpCardTableListCell: UITableViewCell {
             wakeUpSetAlarmSwitch.topAnchor.constraint(equalTo: tableCellView.topAnchor, constant: padding),
             wakeUpSetAlarmSwitch.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding),
             
-            // チャットチーム
+            // 起きる時間
             wakeUpLabel.topAnchor.constraint(equalTo: wakeUpChatTeamNameLabel.bottomAnchor, constant: padding),
-            wakeUpLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
+            wakeUpLabel.leadingAnchor.constraint(equalTo: swipeOkLeftLabel.trailingAnchor, constant: padding),
             wakeUpLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
             wakeUpTimeLabel.topAnchor.constraint(equalTo: wakeUpChatTeamNameLabel.bottomAnchor, constant: padding),
             wakeUpTimeLabel.leadingAnchor.constraint(equalTo: wakeUpLabel.trailingAnchor, constant: spacePadding),
             wakeUpTimeLabel.heightAnchor.constraint(equalToConstant: 50),
-//            // アラームとチャットへ遷移するボタン
-            setChatAndAlarmButtonStackView.topAnchor.constraint(equalTo: wakeUpTimeLabel.bottomAnchor, constant: spacePadding),
+            // アラームとチャットへ遷移するボタン
+            setChatAndAlarmButtonStackView.topAnchor.constraint(equalTo: wakeUpTimeLabel.bottomAnchor, constant: 20),
             setChatAndAlarmButtonStackView.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
             setChatAndAlarmButtonStackView.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding),
             setChatAndAlarmButtonStackView.bottomAnchor.constraint(equalTo: tableCellView.bottomAnchor, constant: -padding)
