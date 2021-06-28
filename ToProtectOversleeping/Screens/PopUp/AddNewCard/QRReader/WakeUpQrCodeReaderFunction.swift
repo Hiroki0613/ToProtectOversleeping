@@ -27,6 +27,7 @@ class WakeUpQrCodeReaderFunction {
     let qrView = UIView()
 
     //info.plist Privacy - Camera Usage Description:String
+    // カメラの使用を拒否された場合は、設定画面に飛ぶように設定
     func setupCamera( view:UIView, borderWidth:Int = 1, borderColor:CGColor =  UIColor.red.cgColor ){
         
         self.preview = view
