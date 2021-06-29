@@ -53,11 +53,14 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     @objc func dateChange() {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        guard let wakeUpTimeTextFieldText = wakeUpTimeTextField.text else { return }
+//        guard let wakeUpTimeTextFieldText = wakeUpTimeTextField.text else { return }
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
-        wakeUpTimeText = wakeUpTimeTextFieldText
+        print("宏輝_アラーム formatter: \(formatter.string(from: datePicker.date))")
+//        wakeUpTimeText = wakeUpTimeTextFieldText
+        wakeUpTimeText = "\(formatter.string(from: datePicker.date))"
         wakeUpTimeDate = datePicker.date
-        print("wakeUpTimeText: ", wakeUpTimeText)
+        print("宏輝_アラーム: wakeUpTimeText: ", wakeUpTimeText)
+        print("宏輝_アラーム: wakeUpTimeDate: ", wakeUpTimeDate)
     }
     
     
@@ -75,11 +78,14 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         wakeUpTimeTextField.endEditing(true)
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        guard let wakeUpTimeTextFieldText = wakeUpTimeTextField.text else { return }
+//        guard let wakeUpTimeTextFieldText = wakeUpTimeTextField.text else { return }
         wakeUpTimeTextField.text = "\(formatter.string(from: datePicker.date))"
-        wakeUpTimeText = wakeUpTimeTextFieldText
+        wakeUpTimeText = "\(formatter.string(from: datePicker.date))"
+        print("宏輝_アラームdone formatter: \(formatter.string(from: datePicker.date))")
+//        wakeUpTimeText = wakeUpTimeTextFieldText
         wakeUpTimeDate = datePicker.date
-        print("wakeUpTimeText: ", wakeUpTimeText)
+        print("宏輝_アラームdone wakeUpTimeText: ", wakeUpTimeText)
+        print("宏輝_アラームdone wakeUpTimeDate: ", wakeUpTimeDate)
     }
     
     

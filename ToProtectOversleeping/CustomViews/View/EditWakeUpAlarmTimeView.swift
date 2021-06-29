@@ -49,11 +49,14 @@ class EditWakeUpAlarmTimeView: UIView {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         changeWakeUpTimeTextField.text = "\(formatter.string(from: changeDatePicker.date))"
-        guard let changeWakeUpTimeTextFieldText = changeWakeUpTimeTextField.text else { return }
-        changeWakeUpTimeText = changeWakeUpTimeTextFieldText
+//        guard let changeWakeUpTimeTextFieldText = changeWakeUpTimeTextField.text else { return }
+//        changeWakeUpTimeText = changeWakeUpTimeTextFieldText
+        changeWakeUpTimeText = "\(formatter.string(from: changeDatePicker.date))"
         changeWakeUpTimeDate = changeDatePicker.date
         print("wakeUpTimeText: ", changeWakeUpTimeText)
         changeWakeUpTimeLabel.text = "時間が変更されました"
+        print("宏輝_アラーム: edit change changeWakeUpTimeText:  ", changeWakeUpTimeText)
+        print("宏輝_アラーム: edit change changeWakeUpTimeDate:  ", changeWakeUpTimeDate)
     }
     
     
@@ -70,11 +73,12 @@ class EditWakeUpAlarmTimeView: UIView {
         changeWakeUpTimeTextField.endEditing(true)
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        guard let changeWakeUpTimeTextFieldText = changeWakeUpTimeTextField.text else { return }
+//        guard let changeWakeUpTimeTextFieldText = changeWakeUpTimeTextField.text else { return }
         changeWakeUpTimeTextField.text = "\(formatter.string(from: changeDatePicker.date))"
-        changeWakeUpTimeText = changeWakeUpTimeTextFieldText
+        changeWakeUpTimeText = "\(formatter.string(from: changeDatePicker.date))"
         changeWakeUpTimeDate = changeDatePicker.date
-        print("wakeUpTimeText: ", changeWakeUpTimeText)
+        print("宏輝_アラーム: edit done wakeUpTimeText: ", changeWakeUpTimeText)
+        print("宏輝_アラーム: edit done wakeUpTimeDate: ", changeWakeUpTimeDate)
         changeWakeUpTimeLabel.text = "時間が変更されました"
 //        //ここで、時間を変更するfireStoreのコードを入れる
 //        let sendDBModel = SendDBModel()
