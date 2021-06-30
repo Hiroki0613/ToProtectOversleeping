@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        keychain.set("139.756308", forKey: Keys.myAddressLongitude)
         
 //        keychain.clear()
-
+//コメント
         
         let userDefaults = UserDefaults.standard
         //ユーザネーム
