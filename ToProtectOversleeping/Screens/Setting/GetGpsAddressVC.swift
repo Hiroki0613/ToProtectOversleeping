@@ -105,6 +105,8 @@ class GetGpsAddressVC: BaseGpsVC {
     }
     
     
+    
+    //TODO: ここのGPS取得のコードを何回か利用してお散歩アプリとしても良いかも。
     // ここでGPSを取得
     @objc func tapSetGPSButton() {
         getCurrentLocation()
