@@ -107,6 +107,7 @@ class GetGpsAddressVC: BaseGpsVC {
     
     
     //TODO: ここのGPS取得のコードを何回か利用してお散歩アプリとしても良いかも。
+    //TODO: 画像認識で、ペットボトル、缶のを認識させて止めるというのもありかも。
     // ここでGPSを取得
     @objc func tapSetGPSButton() {
         getCurrentLocation()
