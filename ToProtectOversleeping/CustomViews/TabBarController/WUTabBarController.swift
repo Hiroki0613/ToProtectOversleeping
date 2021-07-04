@@ -12,7 +12,7 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemOrange
-        viewControllers = [createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+        viewControllers = [createWakeUpCardTableListVC(),createCheckVendingMachineVC(),createWakeUpSettingVC()]
     }
     
     
@@ -55,6 +55,13 @@ class WUTabBarController: UITabBarController {
     }
     //    QRCodeReaderVC
     
+    func createCheckVendingMachineVC() -> UINavigationController {
+        let checkVendingMachineVC = CheckVendingMachineVC()
+        checkVendingMachineVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "cloud", title: "Machine", tag: 2)
+        return UINavigationController(rootViewController: checkVendingMachineVC)
+    }
+    
+//    CheckVendingMachineVC
     
     /// SFSymbolsをTabBarにいれる
     /// - Parameters:
