@@ -37,6 +37,7 @@
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
 		7F96B4E32691F818007B97D7 /* CheckVendingMachineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */; };
 		7F96B4E52691FC3D007B97D7 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E42691FC3D007B97D7 /* MobileNetV2.mlmodel */; };
+		7F96B4E72693596D007B97D7 /* BlankWakeUpCardTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E62693596D007B97D7 /* BlankWakeUpCardTableListCell.swift */; };
 		7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */; };
 		7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */; };
 		7FA2E17926555E7C00529B7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */; };
@@ -100,6 +101,7 @@
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
 		7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVendingMachineVC.swift; sourceTree = "<group>"; };
 		7F96B4E42691FC3D007B97D7 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		7F96B4E62693596D007B97D7 /* BlankWakeUpCardTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankWakeUpCardTableListCell.swift; sourceTree = "<group>"; };
 		7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOutlineShapeView.swift; sourceTree = "<group>"; };
 		7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUBodyLabel.swift; sourceTree = "<group>"; };
 		7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			children = (
 				7FE523CE2646C29000B7D1B0 /* NotUse */,
 				7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */,
+				7F96B4E62693596D007B97D7 /* BlankWakeUpCardTableListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				7F96B4E52691FC3D007B97D7 /* MobileNetV2.mlmodel in Sources */,
 				7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */,
 				7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */,
+				7F96B4E72693596D007B97D7 /* BlankWakeUpCardTableListCell.swift in Sources */,
 				7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */,
 				7F5B634226638E3B0057C12B /* MessageModel.swift in Sources */,
 				7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */,
