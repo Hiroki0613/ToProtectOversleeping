@@ -164,6 +164,8 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        //TODO: editは、indexPathの0,1,2で使う。
+        
         let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
             print("Editがタップされた")
             
@@ -174,6 +176,8 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             completionHandler(true)
         }
+
+        //TODO: qrは、indexPathの0,1で使う。
         
         let qrAction = UIContextualAction(style: .normal, title: "QR") { (action, view, completionHandler) in
             // 編集処理を記述
@@ -196,6 +200,10 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // 削除処理
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            
+            
+            //TODO: indexPathが1,2の時のみ、deleteをする。
+            
             //削除処理を記述
             print("Deleteがタップされた")
             let messageModel = MessageModel()
@@ -230,10 +238,15 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // セルの数を3つにする。１つ目を平日、２つ目を休日、３つ目を目標メモに変更する。
         return self.chatRoomNameModelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // セルの数を3つにする。１つ目を平日、２つ目を休日、３つ目を目標メモに変更する。
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
         cell.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(tapWakeUpSetAlarmSwitch), for: .touchUpInside)
         cell.wakeUpSetAlarmSwitch.tag = indexPath.row
