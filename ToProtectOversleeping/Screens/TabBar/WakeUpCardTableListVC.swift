@@ -66,8 +66,13 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         newRegistrationGpsVC.authLoginDelegate = self
 
         self.tabBarController?.tabBar.isHidden = false
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+//        title = ""
+        navigationController?.navigationBar.barTintColor = .systemOrange
+//        navigationController?.navigationBar.titleTextAttributes = [
+//            // 文字の色
+//                .foregroundColor: UIColor.systemBackground
+//            ]
         configureTableView()
         configureAddCardButton()
         
