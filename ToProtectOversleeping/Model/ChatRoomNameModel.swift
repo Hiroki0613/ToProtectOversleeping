@@ -14,6 +14,6 @@ struct ChatRoomNameModel {
     var uid: String
     var registerDate:Double
     var isWakeUpBool: Bool
-    var isWakeUpRoop: Bool
+    var isWeekDay: Bool
     var appVersion: String
 }

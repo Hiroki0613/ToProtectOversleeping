@@ -73,7 +73,7 @@ class SetInvitedTeamMateVC: UIViewController {
                 wakeUpTimeDate: wakeUpTimeDate,
                 wakeUpTimeText: wakeUpTimeText,
                 isWakeUpBool: true,
-                isWakeUpRoop: false,
+                isWeekDay: false,
                 appVersion: version
             )
         } else {

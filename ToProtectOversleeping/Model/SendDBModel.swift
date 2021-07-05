@@ -65,8 +65,8 @@ class SendDBModel {
     ///   - roomName: チャットルームの名前
     ///   - wakeUpTime: 起きる時間
     ///   - isWakeUpBool: 起きた時に使われるBool
-    ///   - isWakeUpRoop: 繰り返しループの設定(暫定的に用意)
-    func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, isWakeUpRoop: Bool, appVersion: String) {
+    ///   - isWeekDay: 繰り返しループの設定(暫定的に用意)
+    func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, isWeekDay: Bool, appVersion: String) {
         //"Chats"のdocumentIDのために、ランダムStringを作成
         let generatedRandomString = "WU\(randomString(length: 18))"
         print("SendDB_generatedRandomString: ", generatedRandomString)
@@ -81,7 +81,7 @@ class SendDBModel {
                 "registerDate": Date().timeIntervalSince1970 as
                 Any,
                 "isWakeUpBool": isWakeUpBool as Any,
-                "isWakeUpRoop": isWakeUpRoop as Any,
+                "isWeekDay": isWeekDay as Any,
                 "appVersion": appVersion as Any
             ]
         )
@@ -111,7 +111,7 @@ class SendDBModel {
     /// - Parameters:
     ///   - roomNameID: チャットルームのID
     ///   - wakeUpTime: 起きる時間
-    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, isWakeUpRoop: Bool, appVersion: String) {
+    func invitedChatRoom(roomNameId: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, isWeekDay: Bool, appVersion: String) {
         
         let loadDBModel = LoadDBModel()
         loadDBModel.loadChatRoomDocumentId(roomNameId: roomNameId) { roomNameString in
@@ -122,7 +122,7 @@ class SendDBModel {
                  "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
                  "registerDate": Date().timeIntervalSince1970 as Any,
                 "isWakeUpBool": isWakeUpBool as Any,
-                "isWakeUpRoop": isWakeUpRoop as Any,
+                "isWeekDay": isWeekDay as Any,
                 "appVersion": appVersion as Any
                 ]
             )
