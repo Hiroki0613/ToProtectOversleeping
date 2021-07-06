@@ -17,11 +17,11 @@ class BlankWakeUpCardTableListCell: UITableViewCell {
     var tableCellView = UIView()
     
     // 空白の中心に置かれるLabel
-    var blankCellLabel = WUBodyLabel(fontSize: 40)
+    var blankCellLabel = WUBodyLabel(fontSize: 20)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        configureUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,10 +31,10 @@ class BlankWakeUpCardTableListCell: UITableViewCell {
     private func configureUI() {
         transparentView.translatesAutoresizingMaskIntoConstraints = false
         tableCellView.translatesAutoresizingMaskIntoConstraints = false
+        tableCellView.layer.cornerRadius = 16
         blankCellLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let padding: CGFloat = 20.0
-        let spacePadding: CGFloat = 10.0
         
         // セルの空白を開ける透明ビューを用意
         contentView.addSubview(transparentView)
@@ -46,6 +46,8 @@ class BlankWakeUpCardTableListCell: UITableViewCell {
         
         tableCellView.addSubview(blankCellLabel)
         blankCellLabel.text = "プレースホルダー"
+        blankCellLabel.textAlignment = .center
+        blankCellLabel.numberOfLines = 2
         
         NSLayoutConstraint.activate([
             // 透明セル
@@ -61,8 +63,9 @@ class BlankWakeUpCardTableListCell: UITableViewCell {
             tableCellView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor, constant: -padding),
             
             // 空白時のcellに表示させるLabel
-            blankCellLabel.topAnchor.constraint(equalTo: tableCellView.centerYAnchor),
-            blankCellLabel.leadingAnchor.constraint(equalTo: tableCellView.centerXAnchor)
+            blankCellLabel.topAnchor.constraint(equalTo: tableCellView.centerYAnchor, constant: -padding),
+            blankCellLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
+            blankCellLabel.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding)
         ])
     }
     
