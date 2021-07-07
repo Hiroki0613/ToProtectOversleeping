@@ -153,11 +153,19 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     }
     
     @objc func goToWakeUpDetailCardVC() {
-        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
-        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
-        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
-        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
-        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
+        
+        let checkVendingMachineVC = CheckVendingMachineVC()
+        checkVendingMachineVC.modalPresentationStyle = .overFullScreen
+        checkVendingMachineVC.modalTransitionStyle = .crossDissolve
+        self.present(checkVendingMachineVC, animated: true, completion: nil)
+        
+        
+//        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
+//        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
+//        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
+//        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
+//        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
+        
     }
 }
 
@@ -247,7 +255,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         
         // セルの数を3つにする。１つ目を平日、２つ目を休日、３つ目を目標メモに変更する。
 //        return self.chatRoomNameModelArray.count
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -255,20 +263,34 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         // 最初にプレースホルダーを用意する
         // 平日のアラーム
         if  indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
-            cell.blankCellLabel.text = "平日のアラームをセットしてください\nタップして記入"
-            return cell
+            
+            if chatRoomNameModelArray.isEmpty {
+                let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
+                cell.blankCellLabel.text = "平日のアラームをセットしてください\nタップして記入"
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
+                cell.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(tapWakeUpSetAlarmSwitch), for: .touchUpInside)
+                cell.wakeUpSetAlarmSwitch.tag = indexPath.row
+                cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
+                cell.setAlarmButton.tag = indexPath.row
+                cell.setChatButton.addTarget(self, action: #selector(tapSetChatButton(_:)), for: .touchUpInside)
+                cell.setChatButton.tag = indexPath.row
+                cell.set(chatRoomNameModel: self.chatRoomNameModelArray[indexPath.row])
+                return cell
+            }
+            
         }
 
         // 休日
-        if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
-            cell.blankCellLabel.text = "休日のアラームをセットしてください\nタップして記入"
-            return cell
-        }
+//        if indexPath.row == 1 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
+//            cell.blankCellLabel.text = "休日のアラーム\nverUp時に対応します"
+//            return cell
+//        }
 
         // 目標
-        if indexPath.row == 2 {
+        if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
             cell.blankCellLabel.text = " 達成したい目標を書いてください\nタップして記入"
             return cell

@@ -335,7 +335,6 @@
 				7FE523C82646841700B7D1B0 /* TabBar */,
 				7FE523D62646C96600B7D1B0 /* GetGPS */,
 				7FE523D52646C94A00B7D1B0 /* Chat */,
-				7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -441,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */,
+				7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */,
 			);
 			path = GetGPS;
 			sourceTree = "<group>";
