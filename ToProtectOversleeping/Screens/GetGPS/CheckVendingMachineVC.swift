@@ -13,24 +13,33 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
 
     var goBuckMachineLeaningCameraModeButton = WUButton(backgroundColor:.systemOrange, title:"閉じる")
     
-    let identifierLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemOrange
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    // 測定結果を表示するラベル
+    var swipedActionLabel = WUBodyLabel(fontSize: 16)
+    
+    // 雨の日用
+    let rainyDayLabel = WUBodyLabel(fontSize: 20)
+    let rainyDaySwitch = UISwitch()
+    
+    
+    //　スワイプボタン
+    var swipeButton: SwipeButton!
+
+    
+//    let identifierLabel: UILabel = {
+//        let label = UILabel()
+//        label.backgroundColor = .systemOrange
+//        label.textAlignment = .center
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
     
     let captureSession = AVCaptureSession()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
-        
-
+            
         configureMachineLearningCamera()
-//        configureIdentifierConfidenceLabel()
-//        configureDismissButton()
+        configureUI()
 
     }
     
@@ -53,31 +62,108 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
         captureSession.addOutput(dataOutput)
     }
     
-    private func configureDismissButton() {
+    @objc func tapRainyDaySwitch(_ sender: UISwitch) {
+        let onCheck: Bool = sender.isOn
+        
+        if onCheck {
+            print("雨の日です")
+            swipeButton.isHidden = false
+            swipeButton.isEnabled = true
+            swipedActionLabel.text = "家から20m離れなくても\n解除可能です\nただし☔️通知がつきます"
+            captureSession.stopRunning()
+            
+        } else {
+            print("晴れの日です")
+            swipeButton.isHidden = true
+            swipeButton.isEnabled = false
+            swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
+            captureSession.startRunning()
+        }
+    }
+    
+    
+    private func configureUI() {
+        
+        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(blurView)
+        NSLayoutConstraint.activate([
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            blurView.heightAnchor.constraint(equalToConstant: view.frame.size.width - 100)
+        ])
+        
+        swipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
+        swipedActionLabel.numberOfLines = 0
+        swipedActionLabel.textAlignment = .center
+        swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
+        view.addSubview(swipedActionLabel)
+        
+        rainyDayLabel.text = "☔️の時"
+        rainyDayLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(rainyDayLabel)
+        
+        rainyDaySwitch.isOn = false
+        rainyDaySwitch.addTarget(self, action: #selector(tapRainyDaySwitch), for: .touchUpInside)
+        rainyDaySwitch.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(rainyDaySwitch)
+        
         goBuckMachineLeaningCameraModeButton.translatesAutoresizingMaskIntoConstraints = false
         goBuckMachineLeaningCameraModeButton.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)
         view.addSubview(goBuckMachineLeaningCameraModeButton)
         
-        let padding: CGFloat = 70.0
+        let padding: CGFloat = 20.0
+        setupSwipeButton()
+        
+        // 初期設定
+        swipeButton.isHidden = true
+        swipeButton.isEnabled = false
+
         
         NSLayoutConstraint.activate([
-            goBuckMachineLeaningCameraModeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
-            goBuckMachineLeaningCameraModeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            goBuckMachineLeaningCameraModeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            
+            rainyDayLabel.topAnchor.constraint(equalTo: blurView.topAnchor, constant: 10),
+            rainyDayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            rainyDayLabel.widthAnchor.constraint(equalToConstant: 70),
+            rainyDayLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            rainyDaySwitch.topAnchor.constraint(equalTo: rainyDayLabel.bottomAnchor, constant: 5),
+            rainyDaySwitch.centerXAnchor.constraint(equalTo: rainyDayLabel.centerXAnchor),
+            
+            swipedActionLabel.topAnchor.constraint(equalTo: blurView.topAnchor, constant: padding),
+            swipedActionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            swipedActionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            swipedActionLabel.heightAnchor.constraint(equalToConstant: 100),
+            
+            goBuckMachineLeaningCameraModeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            goBuckMachineLeaningCameraModeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            goBuckMachineLeaningCameraModeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             goBuckMachineLeaningCameraModeButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
-    fileprivate func configureIdentifierConfidenceLabel() {
-        view.addSubview(identifierLabel)
-        
-        NSLayoutConstraint.activate([
-            identifierLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
-            identifierLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            identifierLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            identifierLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
+    private func setupSwipeButton() {
+        if swipeButton == nil {
+            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 150, width: view.frame.size.width - 80, height: 50))
+            swipeButton.isRightToLeft = false
+            swipeButton.text = "→右へスワイプ→"
+            view.addSubview(swipeButton)
+        }
     }
+    
+    
+//    fileprivate func configureIdentifierConfidenceLabel() {
+//        view.addSubview(identifierLabel)
+//
+//        NSLayoutConstraint.activate([
+//            identifierLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+//            identifierLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            identifierLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            identifierLabel.heightAnchor.constraint(equalToConstant: 50)
+//        ])
+//    }
     
     @objc func tapBackButton() {
         captureSession.stopRunning()

@@ -215,7 +215,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         rainyDaySwitch.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(rainyDaySwitch)
 
-        let padding:CGFloat = 20.0;
+        let padding:CGFloat = 20.0
         setupSwipeButton()
         swipeButton.isHidden = true
         
