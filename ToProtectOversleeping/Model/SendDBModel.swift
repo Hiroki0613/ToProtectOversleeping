@@ -68,7 +68,8 @@ class SendDBModel {
     ///   - dayOfTheWeek: 曜日を規定
     func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, dayOfTheWeek: String, appVersion: String) {
         //"Chats"のdocumentIDのために、ランダムStringを作成
-        let generatedRandomString = "WU\(randomString(length: 18))"
+//        let generatedRandomString = "WU\(randomString(length: 18))"
+        let generatedRandomString = "WU123456789123456789"
         print("SendDB_generatedRandomString: ", generatedRandomString)
         
         // Userでチャットルームを作成。こちらでカード一覧を表示

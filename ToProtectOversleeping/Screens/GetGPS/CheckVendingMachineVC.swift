@@ -84,7 +84,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     private func configureUI() {
         
-        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(blurView)
@@ -92,7 +92,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
             blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            blurView.heightAnchor.constraint(equalToConstant: view.frame.size.width - 100)
+            blurView.heightAnchor.constraint(equalToConstant: view.frame.size.width - 50)
         ])
         
         swipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -137,7 +137,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
             swipedActionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             swipedActionLabel.heightAnchor.constraint(equalToConstant: 100),
             
-            goBuckMachineLeaningCameraModeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            goBuckMachineLeaningCameraModeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             goBuckMachineLeaningCameraModeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
             goBuckMachineLeaningCameraModeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             goBuckMachineLeaningCameraModeButton.heightAnchor.constraint(equalToConstant: 40)
@@ -146,7 +146,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     private func setupSwipeButton() {
         if swipeButton == nil {
-            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 150, width: view.frame.size.width - 80, height: 50))
+            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 180, width: view.frame.size.width - 80, height: 50))
             swipeButton.isRightToLeft = false
             swipeButton.text = "→右へスワイプ→"
             view.addSubview(swipeButton)

@@ -40,7 +40,6 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // UserDefaultの値で最初の画面を分岐させる
         if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
@@ -137,6 +136,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
+        tableView.backgroundColor = .systemOrange
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
