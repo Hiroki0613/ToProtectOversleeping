@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
-   
+    
     var newRegistrationGpsVC = NewRegistrationGpsVC()
     var isLoggedInAtFirebase:Bool = false
     
@@ -39,10 +39,10 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         } else {
             print("すでに新規登録しています")
         }
- 
+        
         
         // FirebaseCrashlyticsでの意図的なクラッシュ手法
-//        _ = [0, 1][2]
+        //        _ = [0, 1][2]
         
         //        NotificationCenter.default.addObserver(
         //                    self,
@@ -64,50 +64,50 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         
         let newRegistrationGpsVC = NewRegistrationGpsVC()
         newRegistrationGpsVC.authLoginDelegate = self
-
+        
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(false, animated: true)
-//        title = ""
+        //        title = ""
         navigationController?.navigationBar.barTintColor = .systemOrange
-//        navigationController?.navigationBar.titleTextAttributes = [
-//            // 文字の色
-//                .foregroundColor: UIColor.systemBackground
-//            ]
+        //        navigationController?.navigationBar.titleTextAttributes = [
+        //            // 文字の色
+        //                .foregroundColor: UIColor.systemBackground
+        //            ]
         configureTableView()
         configureAddCardButton()
         
         if isLoggedInAtFirebase == UserDefaults.standard.bool(forKey: "isFirstOpenApp") {
             let loadDBModel = LoadDBModel()
-
+            
             // チャットルームのデータを取得
             loadDBModel.getChatRoomNameDelegate = self
             loadDBModel.loadChatRoomNameData()
-
+            
             loadDBModel.getUserDataDelegate = self
             loadDBModel.loadProfileData()
-
+            
             getPermissionLocalPushNotification()
             
             
             //Todo: FirestoreのTimeStamp型を入れること
-//            let dateTime = Date()
-//            print("宏輝_firedenanai_Date: ",dateTime)
-//
-//            let nowFireStoreTimeStamp = Timestamp()
-//            print("宏輝_fireStoreTimeStamp: ",nowFireStoreTimeStamp)
-//               // 2. 日付を取得
-//               let dateValue = nowFireStoreTimeStamp.dateValue()
-//               print("宏輝_fire_dateValue: \(dateValue)")
-//
-//               // > dateValue: 2019-06-06 05:17:11 +0000
-//
-//               // 3. 日付フォーマットも変更
-//               let f = DateFormatter()
-//               f.locale = Locale(identifier: "ja_JP")
-//               f.dateStyle = .long
-//               f.timeStyle = .none
-//               let date = f.string(from: dateValue)
-//               print("宏輝_fire_date: \(date)")
+            //            let dateTime = Date()
+            //            print("宏輝_firedenanai_Date: ",dateTime)
+            //
+            //            let nowFireStoreTimeStamp = Timestamp()
+            //            print("宏輝_fireStoreTimeStamp: ",nowFireStoreTimeStamp)
+            //               // 2. 日付を取得
+            //               let dateValue = nowFireStoreTimeStamp.dateValue()
+            //               print("宏輝_fire_dateValue: \(dateValue)")
+            //
+            //               // > dateValue: 2019-06-06 05:17:11 +0000
+            //
+            //               // 3. 日付フォーマットも変更
+            //               let f = DateFormatter()
+            //               f.locale = Locale(identifier: "ja_JP")
+            //               f.dateStyle = .long
+            //               f.timeStyle = .none
+            //               let date = f.string(from: dateValue)
+            //               print("宏輝_fire_date: \(date)")
         }
     }
     
@@ -154,10 +154,10 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
     @objc func goToWakeUpDetailCardVC() {
         
-//        let checkVendingMachineVC = CheckVendingMachineVC()
-//        checkVendingMachineVC.modalPresentationStyle = .overFullScreen
-//        checkVendingMachineVC.modalTransitionStyle = .crossDissolve
-//        self.present(checkVendingMachineVC, animated: true, completion: nil)
+        //        let checkVendingMachineVC = CheckVendingMachineVC()
+        //        checkVendingMachineVC.modalPresentationStyle = .overFullScreen
+        //        checkVendingMachineVC.modalTransitionStyle = .crossDissolve
+        //        self.present(checkVendingMachineVC, animated: true, completion: nil)
         
         
         let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
@@ -178,71 +178,83 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        //TODO: editは、indexPathの0,1,2で使う。
         
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
-            print("Editがタップされた")
+        // 目標はeditのみ
+        if indexPath.row == 0 {
             
-            let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
-            editWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row]
-            editWakeUpAlarmTimeVC.userName = self.userDataModel!.name
-            self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
+            let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
+                print("Editがタップされた")
+                print("宏輝__edit")
+                
+//                let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
+//                editWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row - 1]
+//                editWakeUpAlarmTimeVC.userName = self.userDataModel!.name
+//                self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
+//                completionHandler(true)
+            }
+            editAction.backgroundColor = .systemBlue
+            // 定義したアクションをセット
+            return UISwipeActionsConfiguration(actions: [ editAction])
             
-            completionHandler(true)
+            
+            
+            // アラームの編集を定義
+        } else {
+            let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
+                print("Editがタップされた")
+                print("宏輝__edit")
+                
+                let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
+                editWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row - 1]
+                editWakeUpAlarmTimeVC.userName = self.userDataModel!.name
+                self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
+                
+                completionHandler(true)
+            }
+            
+            let qrAction = UIContextualAction(style: .normal, title: "QR") { (action, view, completionHandler) in
+                print("QRがタップされた")
+                
+                let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
+                wakeUpQrCodeVC.invitedDocumentId = self.chatRoomDocumentIdArray[indexPath.row - 1]
+                self.navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
+                // 実行結果に関わらず記述
+                completionHandler(true)
+            }
+            
+            
+            editAction.backgroundColor = .systemBlue
+            qrAction.backgroundColor = .systemGreen
+            
+            // 定義したアクションをセット
+            return UISwipeActionsConfiguration(actions: [ editAction,qrAction])
         }
-
-        //TODO: qrは、indexPathの0,1で使う。
-        
-        let qrAction = UIContextualAction(style: .normal, title: "QR") { (action, view, completionHandler) in
-            // 編集処理を記述
-            print("QRがタップされた")
-            let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
-            wakeUpQrCodeVC.invitedDocumentId = self.chatRoomDocumentIdArray[indexPath.row]
-            
-            self.navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
-            
-            // 実行結果に関わらず記述
-            completionHandler(true)
-        }
-        editAction.backgroundColor = .systemBlue
-        qrAction.backgroundColor = .systemGreen
-        
-        // 定義したアクションをセット
-        return UISwipeActionsConfiguration(actions: [ editAction,qrAction])
     }
+    
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        // 削除処理
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            
-            
-            //TODO: indexPathが1,2の時のみ、deleteをする。
-            
-            //削除処理を記述
-            print("Deleteがタップされた")
-            let messageModel = MessageModel()
-            messageModel.sendMessageToChatLeaveTheRoom(documentID: self.chatRoomDocumentIdArray[indexPath.row], displayName: self.userDataModel!.name)
-            let deleteDBModel = DeleteDBModel()
-            self.clearAlarm(identifiers: self.chatRoomDocumentIdArray[indexPath.row])
-            deleteDBModel.deleteChatRoomDocumentId(roomNameId: self.chatRoomDocumentIdArray[indexPath.row])
-            tableView.reloadData()
-            // 実行結果に関わらず記述
-            completionHandler(true)
+        
+        if indexPath.row == 0 {
+            return nil
+        } else {
+            // 削除処理
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+                
+                //削除処理を記述
+                print("Deleteがタップされた")
+                let messageModel = MessageModel()
+                messageModel.sendMessageToChatLeaveTheRoom(documentID: self.chatRoomDocumentIdArray[indexPath.row - 1], displayName: self.userDataModel!.name)
+                let deleteDBModel = DeleteDBModel()
+                self.clearAlarm(identifiers: self.chatRoomDocumentIdArray[indexPath.row - 1])
+                deleteDBModel.deleteChatRoomDocumentId(roomNameId: self.chatRoomDocumentIdArray[indexPath.row - 1])
+                tableView.reloadData()
+                // 実行結果に関わらず記述
+                completionHandler(true)
+            }
+            // 定義したアクションをセット
+            return UISwipeActionsConfiguration(actions: [deleteAction])
         }
-        // 定義したアクションをセット
-        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
-//    //フッターの色を透明に
-//     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//         let footerView: UIView = UIView()
-//        footerView.backgroundColor = .systemOrange
-//         return footerView
-//     }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 200
-//    }
 }
 
 
@@ -254,8 +266,9 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // セルの数を3つにする。１つ目を平日、２つ目を休日、３つ目を目標メモに変更する。
-//        return self.chatRoomNameModelArray.count
-        return 2
+        //        return self.chatRoomNameModelArray.count
+        //        return 2
+        return self.chatRoomNameModelArray.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -263,10 +276,16 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         // 最初にプレースホルダーを用意する
         // 平日のアラーム
         if  indexPath.row == 0 {
+            // 目標
+            let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
+            cell.blankCellLabel.text = " 達成したい目標を書いてください\nタップして記入"
+            return cell
             
+        } else {
+            // 平日、休日、曜日
             if chatRoomNameModelArray.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
-                cell.blankCellLabel.text = "平日のアラームをセットしてください\nタップして記入"
+                cell.blankCellLabel.text = "平日のアラームをセットしてください\n左スワイプして記入"
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
@@ -276,56 +295,12 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
                 cell.setAlarmButton.tag = indexPath.row
                 cell.setChatButton.addTarget(self, action: #selector(tapSetChatButton(_:)), for: .touchUpInside)
                 cell.setChatButton.tag = indexPath.row
-                cell.set(chatRoomNameModel: self.chatRoomNameModelArray[indexPath.row])
+                cell.set(chatRoomNameModel: self.chatRoomNameModelArray[indexPath.row - 1])
                 return cell
             }
-            
         }
-
-        // 休日
-//        if indexPath.row == 1 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
-//            cell.blankCellLabel.text = "休日のアラーム\nverUp時に対応します"
-//            return cell
-//        }
-
-        // 目標
-        if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
-            cell.blankCellLabel.text = " 達成したい目標を書いてください\nタップして記入"
-            return cell
-        }
-        
-        
-        
-//        if indexPath.row == 1 {
-//
-//            if chatRoomNameModelArray[indexPath.row] == nil {
-//
-//            } else {
-//
-//            }
-//
-//        }
-        
-        
-        
-        
-        
-        // セルの数を3つにする。１つ目を平日、２つ目を休日、３つ目を目標メモに変更する。
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
-//        cell.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(tapWakeUpSetAlarmSwitch), for: .touchUpInside)
-//        cell.wakeUpSetAlarmSwitch.tag = indexPath.row
-//        cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
-//        cell.setAlarmButton.tag = indexPath.row
-//        cell.setChatButton.addTarget(self, action: #selector(tapSetChatButton(_:)), for: .touchUpInside)
-//        cell.setChatButton.tag = indexPath.row
-//        cell.set(chatRoomNameModel: self.chatRoomNameModelArray[indexPath.row])
-//        return cell
-        
-        return UITableViewCell()
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
@@ -341,20 +316,20 @@ extension WakeUpCardTableListVC {
         let messageModel = MessageModel()
         
         //chatRoomIDが必要
-        chatRoomDocumentIdForSwitch = chatRoomDocumentIdArray[sender.tag]
+        chatRoomDocumentIdForSwitch = chatRoomDocumentIdArray[sender.tag - 1]
         print("chatRoomDocumentIdForSwitch: ", chatRoomDocumentIdForSwitch)
         
         let sendDBModel = SendDBModel()
         sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: onCheck)
         
         if onCheck {
-            print("スイッチの状態はオンです。値: \(onCheck),sender\(sender.tag)")
+            print("スイッチの状態はオンです。値: \(onCheck),sender\(sender.tag - 1)")
             // ここでonにすると、目覚ましセット
             alarmSet(identifierString: chatRoomDocumentIdForSwitch)
             // アラームをセットしたことを投稿
-            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name, wakeUpTimeText: self.chatRoomNameModelArray[sender.tag].wakeUpTimeText)
+            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name, wakeUpTimeText: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText)
         } else {
-            print("スイッチの状態はオフです。値: \(onCheck),sender\(sender.tag)")
+            print("スイッチの状態はオフです。値: \(onCheck),sender\(sender.tag - 1)")
             // ここでoffにすると、目覚まし解除
             clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
             messageModel.sendMessageToChatAlarmCut(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
@@ -365,12 +340,12 @@ extension WakeUpCardTableListVC {
         print("tableviewアラームボタンがタップされました: ",sender.tag)
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         
-        guard let remakeAlarmTime = remakeAlarmTime(wakeUpTime: Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag].wakeUpTimeDate)) else { return }
+        guard let remakeAlarmTime = remakeAlarmTime(wakeUpTime: Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeDate)) else { return }
         wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = remakeAlarmTime
         wakeUpAndCutAlertBySlideVC.authId = Auth.auth().currentUser!.uid
-        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag]
+        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag - 1]
         wakeUpAndCutAlertBySlideVC.userName =  self.userDataModel!.name
-        wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag].wakeUpTimeText
+        wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
     }
     
@@ -394,10 +369,10 @@ extension WakeUpCardTableListVC {
     
     @objc func tapSetChatButton(_ sender: UIButton) {
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
-        wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag]
+        wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag - 1]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
-        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag]
-        wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag
+        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag - 1]
+        wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag - 1
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
 }
@@ -471,30 +446,30 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         //TODO: ここにチャットの投稿文を書く
-//        let messageModel = MessageModel()
-//        let sendDBModel = SendDBModel()
-//        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+        //        let messageModel = MessageModel()
+        //        let sendDBModel = SendDBModel()
+        //        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
         
         // アラームの削除
-//        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
+        //        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
         // ここでswitchをoffに変更する。
-//        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
-//        tableView.reloadData()
+        //        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
+        //        tableView.reloadData()
         completionHandler([.banner, .list])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         //TODO: ここにチャットの投稿文を書く
-//        let messageModel = MessageModel()
-//        let sendDBModel = SendDBModel()
-//        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+        //        let messageModel = MessageModel()
+        //        let sendDBModel = SendDBModel()
+        //        messageModel.sendMessageToChatWakeUpLate(documentID: self.chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
         
         // アラームの削除
-//        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
+        //        clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
         // ここでswitchをoffに変更する。
-//        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
-//        tableView.reloadData()
+        //        sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: false)
+        //        tableView.reloadData()
         print("バックグラウンド処理")
         completionHandler()
     }

@@ -74,7 +74,7 @@ class LoadDBModel {
     
     // チャットルームの呼び出し
     func loadChatRoomNameData() {
-        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "dayOfTheWeek",descending: true).addSnapshotListener { snapShot, error in
+        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "wakeUpTimeDate",descending: true).addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)
                 return
