@@ -154,17 +154,17 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
     @objc func goToWakeUpDetailCardVC() {
         
-        let checkVendingMachineVC = CheckVendingMachineVC()
-        checkVendingMachineVC.modalPresentationStyle = .overFullScreen
-        checkVendingMachineVC.modalTransitionStyle = .crossDissolve
-        self.present(checkVendingMachineVC, animated: true, completion: nil)
+//        let checkVendingMachineVC = CheckVendingMachineVC()
+//        checkVendingMachineVC.modalPresentationStyle = .overFullScreen
+//        checkVendingMachineVC.modalTransitionStyle = .crossDissolve
+//        self.present(checkVendingMachineVC, animated: true, completion: nil)
         
         
-//        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
-//        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
-//        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
-//        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
-//        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
+        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
+        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
+        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
+        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
+        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
         
     }
 }

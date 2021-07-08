@@ -63,7 +63,7 @@ class SetNewTeamMateNameVC: UIViewController {
                 wakeUpTimeDate: wakeUpTimeDate,
                 wakeUpTimeText: wakeUpTimeText,
                 isWakeUpBool: true,
-                isWeekDay: false,
+                dayOfTheWeek: "falseだぜ",
                 appVersion: version)
         }
     }

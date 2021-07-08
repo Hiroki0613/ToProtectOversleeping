@@ -92,7 +92,7 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
                     wakeUpTimeDate: wakeUpTimeDate,
                     wakeUpTimeText: wakeUpTimeText,
                     isWakeUpBool: false,
-                    isWeekDay: false,
+                    dayOfTheWeek: "falseだぜ",
                     appVersion: version
                 )
                 

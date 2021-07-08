@@ -74,7 +74,7 @@ class LoadDBModel {
     
     // チャットルームの呼び出し
     func loadChatRoomNameData() {
-        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "registerDate",descending: true).addSnapshotListener { snapShot, error in
+        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "dayOfTheWeek",descending: true).addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)
                 return
@@ -93,7 +93,7 @@ class LoadDBModel {
                        let registerDate = data["registerDate"] as? Double,
                        let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double,
                        let isWakeUpBool = data["isWakeUpBool"] as? Bool,
-                       let isWeekDay = data["isWeekDay"] as? Bool,
+                       let dayOfTheWeek = data["dayOfTheWeek"] as? String,
                        let appVersion = data["appVersion"] as? String
                        {
                         let chatRoomNameModel = ChatRoomNameModel(
@@ -103,7 +103,7 @@ class LoadDBModel {
                             uid: uid,
                             registerDate: registerDate,
                             isWakeUpBool: isWakeUpBool,
-                            isWeekDay: isWeekDay,
+                            dayOfTheWeek: dayOfTheWeek,
                             appVersion: appVersion)
                         
                         self.chatRoomNameArray.append(chatRoomNameModel)
