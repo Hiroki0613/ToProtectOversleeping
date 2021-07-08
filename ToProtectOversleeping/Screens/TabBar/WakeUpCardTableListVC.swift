@@ -23,6 +23,15 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     // 新しいカードを追加
     var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
     
+    
+    
+    // 暫定で機械学習
+    var addWakeMachineLearningButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "gear")
+    
+    
+    
+    
+    
     //TODO: デッドコードなので削除
     func authLogin(isLoggedIn: Bool) {
         print("呼ばれた")
@@ -143,29 +152,46 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
         view.addSubview(addWakeUpCardButton)
         
+        addWakeMachineLearningButton.translatesAutoresizingMaskIntoConstraints = false
+        addWakeMachineLearningButton.layer.cornerRadius = 32
+        addWakeMachineLearningButton.layer.borderColor = UIColor.systemBackground.cgColor
+        addWakeMachineLearningButton.layer.borderWidth = 3.0
+        addWakeMachineLearningButton.addTarget(self, action: #selector(goToMachineLearning), for: .touchUpInside)
+        view.addSubview(addWakeMachineLearningButton)
+        
         NSLayoutConstraint.activate([
             addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 64),
             addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 64),
             addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+            
+            addWakeMachineLearningButton.widthAnchor.constraint(equalToConstant: 64),
+            addWakeMachineLearningButton.heightAnchor.constraint(equalToConstant: 64),
+            addWakeMachineLearningButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            addWakeMachineLearningButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            
+            
+            
         ])
         addWakeUpCardButton.tintColor = .systemBackground
+        
+        
+        addWakeMachineLearningButton.tintColor = .systemBackground
     }
     
     @objc func goToWakeUpDetailCardVC() {
-        
-        //        let checkVendingMachineVC = CheckVendingMachineVC()
-        //        checkVendingMachineVC.modalPresentationStyle = .overFullScreen
-        //        checkVendingMachineVC.modalTransitionStyle = .crossDissolve
-        //        self.present(checkVendingMachineVC, animated: true, completion: nil)
-        
-        
         let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
         setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
         setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
         setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
         self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
-        
+    }
+    
+    @objc func goToMachineLearning() {
+                let checkVendingMachineVC = CheckVendingMachineVC()
+                checkVendingMachineVC.modalPresentationStyle = .overFullScreen
+                checkVendingMachineVC.modalTransitionStyle = .crossDissolve
+                self.present(checkVendingMachineVC, animated: true, completion: nil)
     }
 }
 
