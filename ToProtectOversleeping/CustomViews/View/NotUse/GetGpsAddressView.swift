@@ -12,7 +12,7 @@
 //    
 //    // GPSを設定するボタン
 //    var setGPSLabel = WUBodyLabel(fontSize: 20)
-//    var setGPSButton = WUButton(backgroundColor: .systemOrange, title: "タップして取得")
+//    var setGPSButton = WUButton(backgroundColor: PrimaryColor.primary, title: "タップして取得")
 //    var setGPSStackView = UIStackView(frame: .zero)
 //    // 地図の表示は要望があったら
 //    

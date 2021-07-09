@@ -27,7 +27,7 @@ class ResultWakeUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = PrimaryColor.primary
         
         guard let chatRoomDocumentId = chatRoomDocumentId else { return }
         loadMessage(toID: chatRoomDocumentId)

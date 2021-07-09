@@ -44,7 +44,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "本日の結果", style: .done, target: self, action: #selector(tapSummaryResults))
         // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemGray
-        messagesCollectionView.backgroundColor = .systemOrange.withAlphaComponent(0.5)
+        messagesCollectionView.backgroundColor = PrimaryColor.primary.withAlphaComponent(0.5)
 
         
 //        let sendDBModel = SendDBModel()
@@ -125,7 +125,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         if let createTodayNoonTime = createTodayNoonTime() {
             if createTodayNoonTime < Date() {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
-                self.navigationItem.rightBarButtonItem?.tintColor = .systemOrange
+                self.navigationItem.rightBarButtonItem?.tintColor = PrimaryColor.primary
             } else {
                 self.navigationItem.rightBarButtonItem?.isEnabled = false
                 self.navigationItem.rightBarButtonItem?.tintColor = .clear
@@ -172,7 +172,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         messageInputBar.inputTextView.tintColor = .systemGray
         messageInputBar.sendButton.setTitleColor(.systemGray, for: .normal)
         messageInputBar.sendButton.setTitleColor(
-            UIColor.systemOrange.withAlphaComponent(0.3),
+            PrimaryColor.primary.withAlphaComponent(0.3),
             for: .highlighted
         )
         reloadInputViews()
@@ -318,7 +318,7 @@ extension WakeUpCommunicateChatVC: MessagesDisplayDelegate {
     
     // 本人、他人で色を変えている
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? .systemOrange : .systemGray
+        return isFromCurrentSender(message: message) ? PrimaryColor.primary : .systemGray
     }
     
     

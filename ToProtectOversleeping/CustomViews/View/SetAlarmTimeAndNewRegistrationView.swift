@@ -31,12 +31,12 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
     var chatTeamLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameTextField = WUTextFields()
-    var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "新規登録")
-    var chatTeamNewInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待される")
+    var chatTeamNewRegisterButton = WUButton(backgroundColor: PrimaryColor.primary, title: "新規登録")
+    var chatTeamNewInvitedButton = WUButton(backgroundColor: PrimaryColor.primary, title: "招待される")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     
     // 戻るボタン
-    let wakeUpGoBuckButton = WUButton(backgroundColor: .systemOrange, title: "戻る")
+    let wakeUpGoBuckButton = WUButton(backgroundColor: PrimaryColor.primary, title: "戻る")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -32,16 +32,16 @@ class NotUseWakeUpCardView: UIView {
     var chatTeamLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameTextField = WUTextFields()
-    var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "新規登録")
-    var chatTeamNewInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待される")
-    var chatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
+    var chatTeamNewRegisterButton = WUButton(backgroundColor: PrimaryColor.primary, title: "新規登録")
+    var chatTeamNewInvitedButton = WUButton(backgroundColor: PrimaryColor.primary, title: "招待される")
+    var chatTeamInvitationButton = WUButton(backgroundColor: PrimaryColor.primary, title: "招待する")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
     var isChatTeamRegistered = false
     
     // GPSを設定するボタン
 //    var setChatLabel = WUBodyLabel(fontSize: 20)
-    var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
+    var setChatButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チャットへ移動")
 //    var setGPSStackView = UIStackView(frame: .zero)
     // 地図の表示は要望があったら
     

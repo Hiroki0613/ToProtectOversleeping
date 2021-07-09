@@ -11,7 +11,7 @@ import Vision
 
 class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    var goBuckMachineLeaningCameraModeButton = WUButton(backgroundColor:.systemOrange, title:"閉じる")
+    var goBuckMachineLeaningCameraModeButton = WUButton(backgroundColor:PrimaryColor.primary, title:"閉じる")
     
     // 測定結果を表示するラベル
     var swipedActionLabel = WUBodyLabel(fontSize: 16)
@@ -27,7 +27,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
     
 //    let identifierLabel: UILabel = {
 //        let label = UILabel()
-//        label.backgroundColor = .systemOrange
+//        label.backgroundColor = PrimaryColor.primary
 //        label.textAlignment = .center
 //        label.translatesAutoresizingMaskIntoConstraints = false
 //        return label

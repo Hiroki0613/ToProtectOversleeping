@@ -22,7 +22,7 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     let qrCodeReader = WakeUpQrCodeReaderFunction()
     let qrCodeReadLabel = UILabel()
-    var goBuckQRReadCameraModeButton = WUButton(backgroundColor: .systemOrange, title: "閉じる")
+    var goBuckQRReadCameraModeButton = WUButton(backgroundColor: PrimaryColor.primary, title: "閉じる")
     
     override func viewDidLoad() {
         super.viewDidLoad()

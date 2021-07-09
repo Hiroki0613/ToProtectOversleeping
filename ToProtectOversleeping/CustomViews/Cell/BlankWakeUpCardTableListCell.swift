@@ -38,7 +38,7 @@ class BlankWakeUpCardTableListCell: UITableViewCell {
         
         // セルの空白を開ける透明ビューを用意
         contentView.addSubview(transparentView)
-        transparentView.backgroundColor = .systemOrange
+        transparentView.backgroundColor = PrimaryColor.primary
         
         // 透明セルの上にtableViewのcellを追加
         transparentView.addSubview(tableCellView)

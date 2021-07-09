@@ -15,10 +15,10 @@ class WakeUpSettingView: UIView {
     
     // ユーザー名の設定
     var setUserNameLabel = WUBodyLabel(fontSize: 18)
-    var setUserNameButton = WUButton(backgroundColor: .systemOrange, title: "設定")
+    var setUserNameButton = WUButton(backgroundColor: PrimaryColor.primary, title: "設定")
     // 自宅のGPS情報取得
     var getGPSAddressLabel = WUBodyLabel(fontSize: 18)
-    var getGPSAddressButton = WUButton(backgroundColor: .systemOrange, title: "取得")
+    var getGPSAddressButton = WUButton(backgroundColor: PrimaryColor.primary, title: "取得")
     
     // アプリ情報
     var setAppInformationView = UIView(frame: .zero)
@@ -26,13 +26,13 @@ class WakeUpSettingView: UIView {
     // バージョン
     var appVersionLabel = WUBodyLabel(fontSize: 18)
     // ライセンス
-    var licenseButton = WUButton(backgroundColor: .systemOrange, title: "ライセンス")
+    var licenseButton = WUButton(backgroundColor: PrimaryColor.primary, title: "ライセンス")
     // ご意見・ご要望
     var opinionsAndRequestsLabel = WUBodyLabel(fontSize: 18)
-    var opinionsAndRequestsButton = WUButton(backgroundColor: .systemOrange, title: "送る")
+    var opinionsAndRequestsButton = WUButton(backgroundColor: PrimaryColor.primary, title: "送る")
     // アプリの評価
     var evaluationLabel = WUBodyLabel(fontSize: 18)
-    var evaluationButton = WUButton(backgroundColor: .systemOrange, title: "送る")
+    var evaluationButton = WUButton(backgroundColor: PrimaryColor.primary, title: "送る")
     
     
     override init(frame: CGRect) {

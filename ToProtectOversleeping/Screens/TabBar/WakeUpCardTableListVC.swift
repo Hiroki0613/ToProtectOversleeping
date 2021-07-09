@@ -21,12 +21,12 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     var indexNumber = 0
     
     // 新しいカードを追加
-    var addWakeUpCardButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "macwindow.badge.plus")
+    var addWakeUpCardButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "macwindow.badge.plus")
     
     
     
     // 暫定で機械学習
-    var addWakeMachineLearningButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "gear")
+    var addWakeMachineLearningButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "gear")
     
     
     
@@ -76,7 +76,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(false, animated: true)
         //        title = ""
-        navigationController?.navigationBar.barTintColor = .systemOrange
+        navigationController?.navigationBar.barTintColor = PrimaryColor.primary
         //        navigationController?.navigationBar.titleTextAttributes = [
         //            // 文字の色
         //                .foregroundColor: UIColor.systemBackground
@@ -136,7 +136,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.backgroundColor = .systemOrange
+        tableView.backgroundColor = PrimaryColor.primary
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none

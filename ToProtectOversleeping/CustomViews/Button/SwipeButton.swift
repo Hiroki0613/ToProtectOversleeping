@@ -21,7 +21,7 @@ class SwipeButton: UIView {
     var cornerRadius: CGFloat = 10.0
     var duration:     Double  = 0.8
     
-    var frontColor : UIColor = .systemOrange {
+    var frontColor : UIColor = PrimaryColor.primary {
         didSet {
             self.button.backgroundColor = frontColor
         }
@@ -42,9 +42,9 @@ class SwipeButton: UIView {
         }
     }
         
-    var swipedFrontColor : UIColor = .systemOrange
+    var swipedFrontColor : UIColor = PrimaryColor.primary
     var swipedGroundColor : UIColor = .darkGray
-    var swipedTextColor : UIColor = .systemOrange
+    var swipedTextColor : UIColor = PrimaryColor.primary
     
     var textFont : UIFont = UIFont.systemFont(ofSize: 20) {
         didSet {

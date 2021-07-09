@@ -14,7 +14,7 @@ class RegisterNameView: UIView {
     
     var newNameLabel = WUBodyLabel(fontSize: 20)
     var newNameTextField = WUTextFields()
-    var registerNameButton = WUButton(backgroundColor: .systemOrange, title: "登録")
+    var registerNameButton = WUButton(backgroundColor: PrimaryColor.primary, title: "登録")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

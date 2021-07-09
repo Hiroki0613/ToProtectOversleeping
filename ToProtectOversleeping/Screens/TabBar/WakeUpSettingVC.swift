@@ -21,7 +21,7 @@ class WakeUpSettingVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = PrimaryColor.primary
         configureView()
         configureAddTarget()
     }

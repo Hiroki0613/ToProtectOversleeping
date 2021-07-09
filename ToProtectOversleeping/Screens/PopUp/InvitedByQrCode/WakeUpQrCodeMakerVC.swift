@@ -30,7 +30,7 @@ class WakeUpQrCodeMakerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = PrimaryColor.primary
         
         let qrColor:UIColor = .darkText
         let wakeUpLogo = UIImage(named: "wakeup")!

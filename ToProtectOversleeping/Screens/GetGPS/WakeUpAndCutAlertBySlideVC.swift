@@ -45,7 +45,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = PrimaryColor.primary
         configureUI()
         swipeButton.getGeocoderDelegate = self
         getMyAddressFromKeyChain()

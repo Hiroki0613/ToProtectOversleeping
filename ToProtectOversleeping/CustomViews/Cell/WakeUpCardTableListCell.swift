@@ -27,9 +27,9 @@ class WakeUpCardTableListCell: UITableViewCell {
     var wakeUpTimeLabel = WUBodyLabel(fontSize: 40)
 
     // チャットへ移動するボタン
-    var setChatButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "message")
+    var setChatButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "message")
     // アラームへ移動するボタン
-    var setAlarmButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "alarm")
+    var setAlarmButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "alarm")
     var setChatAndAlarmButtonStackView = UIStackView(frame: .zero)
     
     // 左へスワイプ可能を表示するLabel
@@ -61,12 +61,12 @@ class WakeUpCardTableListCell: UITableViewCell {
         //アラームスイッチがONの時は、
         if wakeUpSetAlarmSwitch.isOn == true {
             self.tableCellView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
-            self.setAlarmButton.backgroundColor = .systemOrange
+            self.setAlarmButton.backgroundColor = PrimaryColor.primary
             self.setAlarmButton.isHidden = false
             self.setAlarmButton.isEnabled = true
         } else {
             self.tableCellView.backgroundColor = .systemGray5.withAlphaComponent(0.9)
-            self.setAlarmButton.backgroundColor = .systemOrange.withAlphaComponent(0.3)
+            self.setAlarmButton.backgroundColor = PrimaryColor.primary.withAlphaComponent(0.3)
             self.setAlarmButton.isHidden = true
             self.setAlarmButton.isEnabled = false
         }
@@ -101,7 +101,7 @@ class WakeUpCardTableListCell: UITableViewCell {
         
         // セルの空白を開ける透明ビューを追加
         contentView.addSubview(transparentView)
-        transparentView.backgroundColor = .systemOrange
+        transparentView.backgroundColor = PrimaryColor.primary
         
         // 透明セルの上にtableViewのcellを追加
         transparentView.addSubview(tableCellView)

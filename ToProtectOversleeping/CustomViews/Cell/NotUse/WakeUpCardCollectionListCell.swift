@@ -36,14 +36,14 @@ class WakeUpCardCollectionListCell: UICollectionViewCell {
         return dp
     }()
     var wakeUpTimeTextField = WUTextFields()
-    var wakeUpChatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
+    var wakeUpChatTeamInvitationButton = WUButton(backgroundColor: PrimaryColor.primary, title: "招待する")
     var wakeUpTimeTextFieldAndSwitchStackView = UIStackView(frame: .zero)
     var wakeUpTimeStackView = UIStackView(frame: .zero)
     
     // チャットへ移動するボタン
-    var setChatButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "message")
+    var setChatButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "message")
     // アラームへ移動するボタン
-    var setAlarmButton = WUButton(backgroundColor: .systemOrange, sfSymbolString: "alarm")
+    var setAlarmButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "alarm")
     var setChatAndAlarmButtonStackView = UIStackView(frame: .zero)
     
     

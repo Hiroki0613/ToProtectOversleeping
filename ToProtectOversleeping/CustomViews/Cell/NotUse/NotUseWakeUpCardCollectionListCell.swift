@@ -31,15 +31,15 @@ class NotUseWakeUpCardCollectionListCell: UICollectionViewCell {
     var chatTeamLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameLabel = WUBodyLabel(fontSize: 20)
     var chatTeamNameTextField = WUTextFields()
-    var chatTeamNewRegisterButton = WUButton(backgroundColor: .systemOrange, title: "新規登録")
-    var chatTeamNewInvitedButton = WUButton(backgroundColor: .systemOrange, title: "招待される")
-    var chatTeamInvitationButton = WUButton(backgroundColor: .systemOrange, title: "招待する")
+    var chatTeamNewRegisterButton = WUButton(backgroundColor: PrimaryColor.primary, title: "新規登録")
+    var chatTeamNewInvitedButton = WUButton(backgroundColor: PrimaryColor.primary, title: "招待される")
+    var chatTeamInvitationButton = WUButton(backgroundColor: PrimaryColor.primary, title: "招待する")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     var chatTeamNameStackView = UIStackView(frame: .zero)
     var isChatTeamRegistered = false
     
     // チャットへ移動するボタン
-    var setChatButton = WUButton(backgroundColor: .systemOrange, title: "チャットへ移動")
+    var setChatButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チャットへ移動")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -37,7 +37,7 @@ class GetGpsAddressVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = PrimaryColor.primary
         configureView()
         // ここにdefaultで設定した住まいを入れる渡す。
         getMyAddressFromKeyChain()

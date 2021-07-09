@@ -46,7 +46,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = PrimaryColor.primary
         configureView()
         getMyAddressFromKeyChain()
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
