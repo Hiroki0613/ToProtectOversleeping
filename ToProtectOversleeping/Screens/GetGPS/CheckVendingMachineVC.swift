@@ -37,10 +37,8 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
         configureMachineLearningCamera()
         configureUI()
-
     }
     
     private func configureMachineLearningCamera() {
@@ -49,7 +47,6 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
         captureSession.addInput(input)
-        
         captureSession.startRunning()
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -76,14 +73,13 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
             print("晴れの日です")
             swipeButton.isHidden = true
             swipeButton.isEnabled = false
-            swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
+            swipedActionLabel.text = "家から20m離れて\n自販機を写してください\n解除するとチームへ\n起床したことが通知されます"
             captureSession.startRunning()
         }
     }
     
     
     private func configureUI() {
-        
         let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.layer.cornerRadius = 40
@@ -103,7 +99,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
         swipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
         swipedActionLabel.numberOfLines = 0
         swipedActionLabel.textAlignment = .center
-        swipedActionLabel.text = "解除するとチームへ\n起床したことが通知されます"
+        swipedActionLabel.text = "家から20m離れて\n自販機を写してください\n解除するとチームへ\n起床したことが通知されます"
         view.addSubview(swipedActionLabel)
         
         rainyDayLabel.text = "☔️の時"
@@ -128,7 +124,6 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
 
         
         NSLayoutConstraint.activate([
-            
             rainyDayLabel.topAnchor.constraint(equalTo: blurView.topAnchor, constant: padding),
             rainyDayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             rainyDayLabel.widthAnchor.constraint(equalToConstant: 70),
@@ -201,6 +196,5 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
         }
         
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
-        
     }
 }
