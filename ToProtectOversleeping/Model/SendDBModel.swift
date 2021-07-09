@@ -108,6 +108,8 @@ class SendDBModel {
     }
 
     
+    //TODO: チャットルーム招待時に、チーム名を新規で決めて、そこに招待することにする。
+    
     /// チャットルーム招待
     /// - Parameters:
     ///   - roomNameID: チャットルームのID
