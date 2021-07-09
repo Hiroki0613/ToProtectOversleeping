@@ -84,14 +84,19 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     private func configureUI() {
         
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
         let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.layer.cornerRadius = 40
+        blurView.clipsToBounds = true
         blurView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(blurView)
+        
+        let blurViewPadding: CGFloat = 10
+        
         NSLayoutConstraint.activate([
-            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: blurViewPadding),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -blurViewPadding),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
             blurView.heightAnchor.constraint(equalToConstant: view.frame.size.width - 50)
         ])
         
@@ -124,8 +129,8 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
         
         NSLayoutConstraint.activate([
             
-            rainyDayLabel.topAnchor.constraint(equalTo: blurView.topAnchor, constant: 10),
-            rainyDayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            rainyDayLabel.topAnchor.constraint(equalTo: blurView.topAnchor, constant: padding),
+            rainyDayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             rainyDayLabel.widthAnchor.constraint(equalToConstant: 70),
             rainyDayLabel.heightAnchor.constraint(equalToConstant: 30),
             
@@ -137,7 +142,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
             swipedActionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             swipedActionLabel.heightAnchor.constraint(equalToConstant: 100),
             
-            goBuckMachineLeaningCameraModeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            goBuckMachineLeaningCameraModeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
             goBuckMachineLeaningCameraModeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
             goBuckMachineLeaningCameraModeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             goBuckMachineLeaningCameraModeButton.heightAnchor.constraint(equalToConstant: 40)
@@ -146,7 +151,7 @@ class CheckVendingMachineVC: UIViewController, AVCaptureVideoDataOutputSampleBuf
     
     private func setupSwipeButton() {
         if swipeButton == nil {
-            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 180, width: view.frame.size.width - 80, height: 50))
+            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 210, width: view.frame.size.width - 80, height: 50))
             swipeButton.isRightToLeft = false
             swipeButton.text = "→右へスワイプ→"
             view.addSubview(swipeButton)
