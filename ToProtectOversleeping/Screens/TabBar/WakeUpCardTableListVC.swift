@@ -227,7 +227,7 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             // アラームの編集を定義
         } else {
             
-            var isJoinedTeam: Bool = userDataModel?.homeRoomId == userDataModel?.teamChatRoomId
+            let isJoinedTeam: Bool = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
             
             let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
                 print("Editがタップされた")
@@ -266,15 +266,16 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             
             editAction.backgroundColor = .systemBlue
+            makeNewTeamAction.backgroundColor = .systemGreen
             qrAction.backgroundColor = .systemGreen
             
             
             if isJoinedTeam == true {
                 // 定義したアクションをセット
-                return UISwipeActionsConfiguration(actions: [ editAction,makeNewTeamAction])
+                return UISwipeActionsConfiguration(actions: [ editAction,qrAction])
             } else {
                 // 定義したアクションをセット
-                return UISwipeActionsConfiguration(actions: [ editAction,qrAction])
+                return UISwipeActionsConfiguration(actions: [ editAction,makeNewTeamAction])
             }
         }
     }
@@ -286,6 +287,8 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             return nil
         } else {
             
+            let isJoinedTeam: Bool = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
+            
             // 招待されるコードを書く
             
             let makeNewTeamAction = UIContextualAction(style: .normal, title: "招待される") { action, view, completionHandler in
@@ -295,10 +298,30 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
                 // 実行結果に関わらず記述
                 completionHandler(true)
             }
+            
+            
+            let leaveTeamAction = UIContextualAction(style: .destructive, title: "退室") { action, view, completionHandler in
+                
+                let db = Firestore.firestore()
+                db.collection("Users").document(Auth.auth().currentUser!.uid).updateData([
+                    "teamChatRoomId": self.userDataModel!.homeRoomId,
+                    "teamChatName": self.userDataModel!.name
+                ])
+                UserDefaults.standard.set(self.userDataModel!.name,forKey: "teamChatName")
+                completionHandler(true)
+            }
+            
+            
             makeNewTeamAction.backgroundColor = .systemGreen
 
             
-            return UISwipeActionsConfiguration(actions: [makeNewTeamAction])
+            if isJoinedTeam == true {
+                // 定義したアクションをセット
+                return UISwipeActionsConfiguration(actions: [leaveTeamAction])
+            } else {
+                // 定義したアクションをセット
+                return UISwipeActionsConfiguration(actions: [makeNewTeamAction])
+            }
         }
     }
 }
