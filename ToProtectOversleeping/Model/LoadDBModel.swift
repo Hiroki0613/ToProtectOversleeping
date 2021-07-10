@@ -40,12 +40,15 @@ class LoadDBModel {
                 if let name = data["name"] as? String,
                     let uid = data["uid"] as? String,
                     let appVersion = data["appVersion"] as? String,
-                    let isWakeUpBool = data["isWakeUpBool"] as? Bool,
+                    let isBilling = data["isBilling"] as? Bool,
                     let date = data["date"] as? Double,
                     let _ = data["displayAdvertise"] as? Bool,
-                    let _ = data["developerMode"] as? Bool
+                    let _ = data["developerMode"] as? Bool,
+                    let homeRoomId = data["homeRoomId"] as? String,
+                    let teamChatRoomId = data["teamChatRoomId"] as? String,
+                    let theGoalSetting = data["theGoalSetting"] as? String
                 {
-                    let userDataModel = UserDataModel(name: name, uid: uid, appVersion: appVersion, isWakeUpBool: isWakeUpBool, date: date)
+                    let userDataModel = UserDataModel(name: name, uid: uid, appVersion: appVersion, isBilling: isBilling, date: date, homeRoomId: homeRoomId, teamChatRoomId: teamChatRoomId, theGoalSetting: theGoalSetting)
                     self.getUserDataDelegate?.getUserData(userDataModel: userDataModel)
                 }
             }
@@ -74,7 +77,7 @@ class LoadDBModel {
     
     // チャットルームの呼び出し
     func loadChatRoomNameData() {
-        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "wakeUpTimeDate",descending: true).addSnapshotListener { snapShot, error in
+        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").order(by: "dayOfTheWeek",descending: false).addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)
                 return
@@ -88,29 +91,32 @@ class LoadDBModel {
                     let data = doc.data()
                     print("dataだぜ: ",data)
                     if let roomName = data["roomName"] as? String,
-                       let wakeUpTimeText = data["wakeUpTimeText"] as? String,
                        let uid = data["uid"] as? String,
-                       let registerDate = data["registerDate"] as? Double,
+                       let wakeUpTimeText = data["wakeUpTimeText"] as? String,
                        let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double,
+                       let registerDate = data["registerDate"] as? Double,
                        let isWakeUpBool = data["isWakeUpBool"] as? Bool,
+                       let homeChatRoomId = data["homeChatRoomId"] as? String,
                        let dayOfTheWeek = data["dayOfTheWeek"] as? String,
                        let appVersion = data["appVersion"] as? String
                        {
                         let chatRoomNameModel = ChatRoomNameModel(
                             roomName: roomName,
-                            wakeUpTimeDate:wakeUpTimeDate,
-                            wakeUpTimeText: wakeUpTimeText,
                             uid: uid,
+                            wakeUpTimeText: wakeUpTimeText,
+                            wakeUpTimeDate:wakeUpTimeDate,
                             registerDate: registerDate,
                             isWakeUpBool: isWakeUpBool,
+                            homeChatRoomId: homeChatRoomId,
                             dayOfTheWeek: dayOfTheWeek,
                             appVersion: appVersion)
                         
                         self.chatRoomNameArray.append(chatRoomNameModel)
+                        self.chatDocumentIdArray.append(homeChatRoomId)
                     }
                     
                     // chatDocumentIDArray
-                    self.chatDocumentIdArray.append(doc.documentID)
+//                    self.chatDocumentIdArray.append(doc.documentID)
                 }
                 print(self.chatRoomNameArray)
                 self.getChatRoomNameDelegate?.getChatRoomName(chatRoomNameModel: self.chatRoomNameArray)

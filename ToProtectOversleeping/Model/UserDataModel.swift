@@ -11,6 +11,9 @@ struct UserDataModel {
     var name: String
     var uid: String
     var appVersion: String
-    var isWakeUpBool: Bool
+    var isBilling: Bool
     var date: Double
+    var homeRoomId: String
+    var teamChatRoomId: String
+    var theGoalSetting: String
 }

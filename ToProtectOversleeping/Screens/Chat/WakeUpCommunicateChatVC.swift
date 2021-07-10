@@ -18,7 +18,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     var chatRoomNameModel: ChatRoomNameModel?
     var userDataModel: UserDataModel?
-    var chatTableViewIndexPath: Int?
+//    var chatTableViewIndexPath: Int?
     var chatRoomDocumentId: String?
     var wakeUpSuccessPersonList = [String]()
     

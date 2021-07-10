@@ -21,7 +21,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     var indexNumber = 0
     
     // 新しいカードを追加
-    var addWakeUpCardButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "macwindow.badge.plus")
+//    var addWakeUpCardButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "macwindow.badge.plus")
     
     
     
@@ -145,12 +145,12 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     }
     
     func configureAddCardButton() {
-        addWakeUpCardButton.translatesAutoresizingMaskIntoConstraints = false
-        addWakeUpCardButton.layer.cornerRadius = 32
-        addWakeUpCardButton.layer.borderColor = UIColor.systemBackground.cgColor
-        addWakeUpCardButton.layer.borderWidth = 3.0
-        addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
-        view.addSubview(addWakeUpCardButton)
+//        addWakeUpCardButton.translatesAutoresizingMaskIntoConstraints = false
+//        addWakeUpCardButton.layer.cornerRadius = 32
+//        addWakeUpCardButton.layer.borderColor = UIColor.systemBackground.cgColor
+//        addWakeUpCardButton.layer.borderWidth = 3.0
+//        addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
+//        view.addSubview(addWakeUpCardButton)
         
         addWakeMachineLearningButton.translatesAutoresizingMaskIntoConstraints = false
         addWakeMachineLearningButton.layer.cornerRadius = 32
@@ -160,10 +160,10 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         view.addSubview(addWakeMachineLearningButton)
         
         NSLayoutConstraint.activate([
-            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 64),
-            addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 64),
-            addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+//            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 64),
+//            addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 64),
+//            addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+//            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             
             addWakeMachineLearningButton.widthAnchor.constraint(equalToConstant: 64),
             addWakeMachineLearningButton.heightAnchor.constraint(equalToConstant: 64),
@@ -173,20 +173,20 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
             
             
         ])
-        addWakeUpCardButton.tintColor = .systemBackground
+//        addWakeUpCardButton.tintColor = .systemBackground
         
         
         addWakeMachineLearningButton.tintColor = .systemBackground
     }
     
-    @objc func goToWakeUpDetailCardVC() {
-        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
-        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
-        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
-        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
-        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
-    }
-    
+//    @objc func goToWakeUpDetailCardVC() {
+//        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
+//        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
+//        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
+//        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
+//        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
+//    }
+//
     @objc func goToMachineLearning() {
                 let checkVendingMachineVC = CheckVendingMachineVC()
                 checkVendingMachineVC.modalPresentationStyle = .overFullScreen
@@ -233,6 +233,8 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
                 let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
                 editWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row - 1]
                 editWakeUpAlarmTimeVC.userName = self.userDataModel!.name
+                editWakeUpAlarmTimeVC.teamChatRoomId = self.userDataModel!.teamChatRoomId
+                editWakeUpAlarmTimeVC.dayOfTheWeek = self.chatRoomNameModelArray[indexPath.row - 1].dayOfTheWeek
                 self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
                 
                 completionHandler(true)
@@ -263,23 +265,34 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
         if indexPath.row == 0 {
             return nil
         } else {
-            // 削除処理
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-                
-                //削除処理を記述
-                print("Deleteがタップされた")
-                let messageModel = MessageModel()
-                messageModel.sendMessageToChatLeaveTheRoom(documentID: self.chatRoomDocumentIdArray[indexPath.row - 1], displayName: self.userDataModel!.name)
-                let deleteDBModel = DeleteDBModel()
-                self.clearAlarm(identifiers: self.chatRoomDocumentIdArray[indexPath.row - 1])
-                deleteDBModel.deleteChatRoomDocumentId(roomNameId: self.chatRoomDocumentIdArray[indexPath.row - 1])
-                tableView.reloadData()
-                // 実行結果に関わらず記述
-                completionHandler(true)
-            }
-            // 定義したアクションをセット
-            return UISwipeActionsConfiguration(actions: [deleteAction])
+            
+            // 招待されるコードを書く
+            
+            
+            
+            
+            
+            
+//            // 削除処理
+//            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+//
+//                //削除処理を記述
+//                print("Deleteがタップされた")
+//                let messageModel = MessageModel()
+////                messageModel.sendMessageToChatLeaveTheRoom(documentID: self.chatRoomDocumentIdArray[indexPath.row - 1], displayName: self.userDataModel!.name)
+//
+//                messageModel.sendMessageToChatLeaveTheRoom(documentID: self.userDataModel!.teamChatRoomId, displayName: self.userDataModel!.name)
+//                let deleteDBModel = DeleteDBModel()
+//                self.clearAlarm(identifiers: self.chatRoomDocumentIdArray[indexPath.row - 1])
+//                deleteDBModel.deleteChatRoomDocumentId(roomNameId: self.chatRoomDocumentIdArray[indexPath.row - 1])
+//                tableView.reloadData()
+//                // 実行結果に関わらず記述
+//                completionHandler(true)
+//            }
+//            // 定義したアクションをセット
+//            return UISwipeActionsConfiguration(actions: [deleteAction])
         }
+        return nil
     }
 }
 
@@ -353,12 +366,20 @@ extension WakeUpCardTableListVC {
             // ここでonにすると、目覚ましセット
             alarmSet(identifierString: chatRoomDocumentIdForSwitch)
             // アラームをセットしたことを投稿
-            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name, wakeUpTimeText: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText)
+//            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name, wakeUpTimeText: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText)
+            messageModel.sendMessageToChatDeclarationWakeUpEarly(
+                documentID: userDataModel!.teamChatRoomId,
+                displayName: self.userDataModel!.name,
+                dayOfTheWeek: self.chatRoomNameModelArray[sender.tag - 1].dayOfTheWeek,
+                wakeUpTimeText: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText)
         } else {
             print("スイッチの状態はオフです。値: \(onCheck),sender\(sender.tag - 1)")
             // ここでoffにすると、目覚まし解除
             clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
-            messageModel.sendMessageToChatAlarmCut(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+//            messageModel.sendMessageToChatAlarmCut(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+            
+            messageModel.sendMessageToChatAlarmCut(documentID: userDataModel!.teamChatRoomId, displayName: self.userDataModel!.name, dayOfTheWeek: chatRoomNameModelArray[sender.tag - 1].dayOfTheWeek)
+
         }
     }
     
@@ -397,8 +418,9 @@ extension WakeUpCardTableListVC {
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag - 1]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
-        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag - 1]
-        wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag - 1
+//        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag - 1]
+        wakeUpCommunicateChatVC.chatRoomDocumentId = self.userDataModel!.teamChatRoomId
+//        wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag - 1
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
 }

@@ -43,6 +43,9 @@ class NewRegistrationGpsVC: BaseGpsVC {
     // アドレスを格納
     var addressString = ""
     
+    //平日、休日を定義
+    var dayOfTheWeekArray = ["a_weekDay", "b_weekEnd"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,8 +106,19 @@ class NewRegistrationGpsVC: BaseGpsVC {
         mapView.addAnnotation(annotaiton)
     }
     
+    
+    // ランダムStringを作成
+    func randomString(length: Int) -> String {
+      let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      return String((0..<length).map{ _ in characters.randomElement()! })
+    }
+    
+    
     @objc func tapSetGpsButton() {
         let sendDBModel = SendDBModel()
+        
+        let generatedChatRoomRandomString = "WU\(self.randomString(length: 18))"
+        
         sendDBModel.doneCreateUser = self
         
         // アプリのバージョン
@@ -141,14 +155,46 @@ class NewRegistrationGpsVC: BaseGpsVC {
             
             // 無理矢理ログインしています
             Auth.auth().signInAnonymously { result, error in
+                self.homeLocationFetchButton.isEnabled = false
                 
-                //TODO: １秒後に画面をpopUpして、カード画面に遷移させる
-                //ここでFirebaseFireStoreにUserModelとして登録する。
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     //TODO: ここは1.0秒待たせる必要はないけど、あえて住所が登録されているのを見せてローディング画面を見せるのはありかも。
                     UserDefaults.standard.set(self.newUserName,forKey: "userName")
-                    sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
+                
+                    //ここでFirebaseFireStoreにUserModelとして登録する。
+                    //create時点では、homeRoomIdとteamChatRoomIdは同じにしておく。
+                    sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isBilling: false, homeRoomId: generatedChatRoomRandomString, teamChatRoomId: generatedChatRoomRandomString, theGoalSetting: "")
                     UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
+                    
+                    //ここでデフォルトの部屋IDを用意する。
+                    //"Home"のdocumentIDのために、ランダムStringを作成
+                    
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "HH:mm"
+                    
+                    // 平日、休日分の２つを生成する。
+                    // 平日
+                    sendDBModel.createHomeRoom(
+                        roomName: self.newUserName,
+                        wakeUpTimeDate: Date(),
+                        wakeUpTimeText: "\(formatter.string(from: Date()))",
+                        isWakeUpBool: false,
+                        dayOfTheWeek: self.dayOfTheWeekArray[0],
+                        appVersion: version)
+                    // 休日
+                    sendDBModel.createHomeRoom(
+                        roomName: self.newUserName,
+                        wakeUpTimeDate: Date(),
+                        wakeUpTimeText: "\(formatter.string(from: Date()))",
+                        isWakeUpBool: false, dayOfTheWeek: self.dayOfTheWeekArray[1],
+                        appVersion: version)
+                    
+                    // 自分のチャットルームを用意
+                    sendDBModel.createChatRoom(roomName: self.newUserName, defaultWakeUpTimeDate: Date(), defaultWakeUpTimeText: "\(formatter.string(from: Date()))", chatRoomId: generatedChatRoomRandomString, appVersion: version)
+                    
+                    self.homeLocationFetchButton.isEnabled = true
+                    
                     self.authLoginDelegate?.authLogin(isLoggedIn: true)
                 }
             }

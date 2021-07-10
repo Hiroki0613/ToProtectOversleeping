@@ -39,6 +39,8 @@ struct Message: MessageType {
 
 class MessageModel {
     
+    var userDataModel: UserDataModel?
+    
     
     //TODO: 寝坊したときの通知は保留
 //    func sendMessageToChatWakeUpLate(documentID toID: String,displayName: String) {
@@ -56,42 +58,73 @@ class MessageModel {
 //    }
     
     
-    func sendMessageToChatDeclarationWakeUpEarly(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+    func sendMessageToChatDeclarationWakeUpEarly(documentID toID: String,displayName: String, dayOfTheWeek: String, wakeUpTimeText: String) {
+        
+        //平日、休日を定義
+        var dayOfTheWeekString = ""
+        
+        if dayOfTheWeek == "a_weekDay" {
+            dayOfTheWeekString = "平日"
+        } else {
+            dayOfTheWeekString = "休日"
+        }
+        
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)は\(wakeUpTimeText)に起きます！",
+            text: "\(displayName)は\(dayOfTheWeekString)の\(wakeUpTimeText)に起きます！",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.declarationWakeUpEarly
         )
     }
     
-    func sendMessageToChatAlarmCut(documentID toID: String,displayName: String) {
+    func sendMessageToChatAlarmCut(documentID toID: String,displayName: String, dayOfTheWeek: String) {
+        
+        //平日、休日を定義
+        var dayOfTheWeekString = ""
+        
+        if dayOfTheWeek == "a_weekDay" {
+            dayOfTheWeekString = "平日"
+        } else {
+            dayOfTheWeekString = "休日"
+        }
+        
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)のアラームはカットされました！",
+            text: "\(displayName)の\(dayOfTheWeekString)のアラームはカットされました！",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.alarmCut
         )
     }
     
-    func sendMessageToChatEditAlarmTime(documentID toID: String,displayName: String,wakeUpTimeText: String) {
+    func sendMessageToChatEditAlarmTime(documentID toID: String,displayName: String, dayOfTheWeek: String,wakeUpTimeText: String) {
+        
+        //平日、休日を定義
+        var dayOfTheWeekString = ""
+        
+        if dayOfTheWeek == "a_weekDay" {
+            dayOfTheWeekString = "平日"
+        } else {
+            dayOfTheWeekString = "休日"
+        }
+        
+        
         let sendDBModel = SendDBModel()
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)のアラーム時間が\(wakeUpTimeText)に変更されました",
+            text: "\(displayName)の\(dayOfTheWeekString)のアラーム時間が\(wakeUpTimeText)に変更されました",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.editAlarmTime

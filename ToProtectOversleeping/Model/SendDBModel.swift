@@ -12,9 +12,9 @@ protocol DoneCreateUser {
     func doneCreateUser()
 }
 
-protocol DoneCreateChatRoom {
-    func doneCreateChatRoom()
-}
+//protocol DoneCreateChatRoom {
+//    func doneCreateChatRoom()
+//}
 
 protocol DoneInvitedChatRoom {
     func doneInvitedChatRoom()
@@ -26,7 +26,7 @@ class SendDBModel {
     var loadDBModel = LoadDBModel()
     
     var doneCreateUser: DoneCreateUser?
-    var doneCreateChatRoom: DoneCreateChatRoom?
+//    var doneCreateChatRoom: DoneCreateChatRoom?
     var doneInvitedChatRoom: DoneInvitedChatRoom?
     
     /// 新規作成の時は、ユーザー登録画面に画面遷移させる。
@@ -36,17 +36,20 @@ class SendDBModel {
     ///   - uid: FirebaseのAuth.auth()
     ///   - appVersion: アプリのバージョン
     ///   - isWakeUpBool: 起きた時に使われるBool
-    func createUser(name: String,uid: String,appVersion: String, isWakeUpBool: Bool) {
+    func createUser(name: String,uid: String,appVersion: String, isBilling: Bool, homeRoomId: String, teamChatRoomId: String, theGoalSetting: String) {
         // ここでUserModelを作成。
         //TODO: 不正防止にFirebaseが用意している、時刻を使うこと。
         self.db.collection("Users").document(Auth.auth().currentUser!.uid).setData(
             ["name": name as Any,
              "uid": uid as Any,
              "appVersion": appVersion as Any,
-             "isWakeUpBool": isWakeUpBool as Any,
+             "isBilling": isBilling as Any,
              "date": Date().timeIntervalSince1970 as Any,
              "displayAdvertise": true as Any,
-             "developerMode": false as Any
+             "developerMode": false as Any,
+             "homeRoomId": homeRoomId as Any,
+             "teamChatRoomId": teamChatRoomId as Any,
+             "theGoalSetting": theGoalSetting as Any
             ]
         )
         self.doneCreateUser?.doneCreateUser()
@@ -66,14 +69,15 @@ class SendDBModel {
     ///   - wakeUpTime: 起きる時間
     ///   - isWakeUpBool: 起きた時に使われるBool
     ///   - dayOfTheWeek: 曜日を規定
-    func createChatRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, dayOfTheWeek: String, appVersion: String) {
-        //"Chats"のdocumentIDのために、ランダムStringを作成
-//        let generatedRandomString = "WU\(randomString(length: 18))"
-        let generatedRandomString = "WU123456789123456789"
-        print("SendDB_generatedRandomString: ", generatedRandomString)
+    func createHomeRoom(roomName: String, wakeUpTimeDate: Date, wakeUpTimeText: String, isWakeUpBool: Bool, dayOfTheWeek: String, appVersion: String) {
+        //"Home"のdocumentIDのために、ランダムStringを作成
+        let generatedHomeRoomRandomString = "WU\(randomString(length: 18))"
+//        let generatedRandomString = "WU123456789123456789"
+        print("SendDB_generatedRandomString: ", generatedHomeRoomRandomString)
         
-        // Userでチャットルームを作成。こちらでカード一覧を表示
-        self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(generatedRandomString).setData(
+        // Userでチャットルームを作成。こちらでカード一覧を表示。chatRoomIdで部屋を分別。
+        // 招待されたら、chatRoomIdを変更する。
+        self.db.collection("Users").document(Auth.auth().currentUser!.uid).collection("Chats").document(generatedHomeRoomRandomString).setData(
             [
                 "roomName": roomName as Any,
                 "uid": Auth.auth().currentUser!.uid as Any,
@@ -82,29 +86,33 @@ class SendDBModel {
                 "registerDate": Date().timeIntervalSince1970 as
                 Any,
                 "isWakeUpBool": isWakeUpBool as Any,
+                "homeChatRoomId": generatedHomeRoomRandomString as Any,
+//                "chatRoomId": chatRoomId as Any,
                 "dayOfTheWeek": dayOfTheWeek as Any,
                 "appVersion": appVersion as Any
             ]
         )
-        
+    }
+    
+    func createChatRoom(roomName: String, defaultWakeUpTimeDate: Date, defaultWakeUpTimeText: String, chatRoomId: String, appVersion: String) {
         // Chatルームは別に作成
-        self.db.collection("Chats").document(generatedRandomString).setData(
+        self.db.collection("Chats").document(chatRoomId).setData(
             [
                 "roomName": roomName as Any,
 //                "chatRoomId": generatedRandomString,
                 "uid": Auth.auth().currentUser!.uid as Any,
-                "wakeUpTimeText": wakeUpTimeText as Any,
-                "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any,
+                "defaultWakeUpTimeDate": Double( defaultWakeUpTimeDate.timeIntervalSince1970) as Any,
+                "defaultWakeUpTimeText": defaultWakeUpTimeText as Any,
                 "registerDate": Date().timeIntervalSince1970 as
                 Any,
-                "chatRoomId": generatedRandomString as Any,
+                "chatRoomId": chatRoomId as Any,
                 "appVersion": appVersion as
                 Any
             ]
         )
 //         同時にUNNotificationCenterにも通知登録identifier付きで行う。
-        alarmSet(identifierString: generatedRandomString)
-        self.doneCreateChatRoom?.doneCreateChatRoom()
+//        alarmSet(identifierString: generatedRandomString)
+//        self.doneCreateChatRoom?.doneCreateChatRoom()
     }
 
     
@@ -151,7 +159,6 @@ class SendDBModel {
                 "wakeUpTimeDate": Double( wakeUpTimeDate.timeIntervalSince1970) as Any
             ]
         )
-        
     }
     
     
@@ -171,35 +178,35 @@ class SendDBModel {
     
     
     //アラート設定
-    func alarmSet(identifierString: String){
-        // identifierは一位にするため、Auth.auth()+roomIdにする
-        let identifier = Auth.auth().currentUser!.uid + identifierString
-        removeAlarm(identifiers: identifier)
-
-        //通知設定
-        let content = UNMutableNotificationContent()
-        content.title = "みんなの結果を見てみよう♪"
-        
-        content.categoryIdentifier = identifier
-        var dateComponents = DateComponents()
-        
-        //近藤　カレンダー形式で通知
-        dateComponents.hour = 12
-        dateComponents.minute = 00
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        //identifierは一意にするため、Auth.auth()+roomIdにする。
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
+//    func alarmSet(identifierString: String){
+//        // identifierは一位にするため、Auth.auth()+roomIdにする
+//        let identifier = Auth.auth().currentUser!.uid + identifierString
+//        removeAlarm(identifiers: identifier)
+//
+//        //通知設定
+//        let content = UNMutableNotificationContent()
+//        content.title = "みんなの結果を見てみよう♪"
+//
+//        content.categoryIdentifier = identifier
+//        var dateComponents = DateComponents()
+//
+//        //近藤　カレンダー形式で通知
+//        dateComponents.hour = 12
+//        dateComponents.minute = 00
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//        //identifierは一意にするため、Auth.auth()+roomIdにする。
+//        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+//
+//        UNUserNotificationCenter.current().add(request) { (error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
     
     
     //アラート設定削除
-    func removeAlarm(identifiers:String){
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifiers])
-    }
+//    func removeAlarm(identifiers:String){
+//        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifiers])
+//    }
 }

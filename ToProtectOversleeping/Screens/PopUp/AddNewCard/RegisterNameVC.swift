@@ -46,7 +46,7 @@ class RegisterNameVC: UIViewController {
             registerNameView.newNameLabel.text = "ユーザー登録しました"
             UserDefaults.standard.set(userName, forKey: "userName")
             
-            sendDBModel.createUser(name: userName, uid: Auth.auth().currentUser!.uid, appVersion: version, isWakeUpBool: false)
+//            sendDBModel.createUser(name: userName, uid: Auth.auth().currentUser!.uid, appVersion: version, isBilling: false)
 
             print("UserDefaults_ユーザネーム",UserDefaults.standard.object(forKey: "userName") as! String )
             registerNameView.newNameTextField.resignFirstResponder()
