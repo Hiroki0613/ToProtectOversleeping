@@ -46,9 +46,10 @@ class LoadDBModel {
                     let _ = data["developerMode"] as? Bool,
                     let homeRoomId = data["homeRoomId"] as? String,
                     let teamChatRoomId = data["teamChatRoomId"] as? String,
+                    let teamChatName = data["teamChatName"] as? String,
                     let theGoalSetting = data["theGoalSetting"] as? String
                 {
-                    let userDataModel = UserDataModel(name: name, uid: uid, appVersion: appVersion, isBilling: isBilling, date: date, homeRoomId: homeRoomId, teamChatRoomId: teamChatRoomId, theGoalSetting: theGoalSetting)
+                    let userDataModel = UserDataModel(name: name, uid: uid, appVersion: appVersion, isBilling: isBilling, date: date, homeRoomId: homeRoomId, teamChatRoomId: teamChatRoomId, teamChatName: teamChatName, theGoalSetting: theGoalSetting)
                     self.getUserDataDelegate?.getUserData(userDataModel: userDataModel)
                 }
             }
@@ -90,7 +91,8 @@ class LoadDBModel {
                     // chatRoomNameArray
                     let data = doc.data()
                     print("dataだぜ: ",data)
-                    if let roomName = data["roomName"] as? String,
+                    if
+                    let roomName = data["roomName"] as? String,
                        let uid = data["uid"] as? String,
                        let wakeUpTimeText = data["wakeUpTimeText"] as? String,
                        let wakeUpTimeDate = data["wakeUpTimeDate"] as? Double,
@@ -116,7 +118,7 @@ class LoadDBModel {
                     }
                     
                     // chatDocumentIDArray
-//                    self.chatDocumentIdArray.append(doc.documentID)
+                    self.chatDocumentIdArray.append(doc.documentID)
                 }
                 print(self.chatRoomNameArray)
                 self.getChatRoomNameDelegate?.getChatRoomName(chatRoomNameModel: self.chatRoomNameArray)

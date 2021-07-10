@@ -15,10 +15,13 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
     var userName = ""
     
     let sendDBModel = SendDBModel()
+    let loadDBModel = LoadDBModel()
     var wakeUpTimeText = ""
     var wakeUpTimeDate = Date()
     
     var isSendMessageByReadingQRCodeFirstTime = false
+    
+    let db = Firestore.firestore()
     
     let qrCodeReader = WakeUpQrCodeReaderFunction()
     let qrCodeReadLabel = UILabel()
@@ -87,19 +90,31 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
                 // メッセージがアプリのバージョンアップで変更した時に使用
                 let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
                 
-                sendDBModel.invitedChatRoom(
-                    roomNameId: self.qrCodeReadLabel.text!,
-                    wakeUpTimeDate: wakeUpTimeDate,
-                    wakeUpTimeText: wakeUpTimeText,
-                    isWakeUpBool: false,
-                    dayOfTheWeek: "falseだぜ",
-                    appVersion: version
-                )
+                loadDBModel.loadChatRoomDocumentId(roomNameId: self.qrCodeReadLabel.text!) { roomName in
+                    UserDefaults.standard.set(roomName,forKey: "teamChatName")
+                }
                 
-                let messageModel = MessageModel()
-                messageModel.newInvitedToTeam(documentID: self.qrCodeReadLabel.text!, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
+                self.db.collection("Users").document(Auth.auth().currentUser!.uid).updateData([
+                    "teamChatRoomId": self.qrCodeReadLabel.text!,
+                    "teamChatName": self.qrCodeReadLabel.text!
+                ])
                 
-                self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                
+//                sendDBModel.invitedChatRoom(
+//                    roomNameId: self.qrCodeReadLabel.text!,
+//                    wakeUpTimeDate: wakeUpTimeDate,
+//                    wakeUpTimeText: wakeUpTimeText,
+//                    isWakeUpBool: false,
+//                    dayOfTheWeek: "falseだぜ",
+//                    appVersion: version
+//                )
+                
+                
+                //招待されましたの挨拶はカット
+//                let messageModel = MessageModel()
+//                messageModel.newInvitedToTeam(documentID: self.qrCodeReadLabel.text!, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
+                
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
                 
                 isSendMessageByReadingQRCodeFirstTime = false
             }

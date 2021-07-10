@@ -36,7 +36,7 @@ class SendDBModel {
     ///   - uid: FirebaseのAuth.auth()
     ///   - appVersion: アプリのバージョン
     ///   - isWakeUpBool: 起きた時に使われるBool
-    func createUser(name: String,uid: String,appVersion: String, isBilling: Bool, homeRoomId: String, teamChatRoomId: String, theGoalSetting: String) {
+    func createUser(name: String,uid: String,appVersion: String, isBilling: Bool, homeRoomId: String, teamChatRoomId: String, teamChatName: String, theGoalSetting: String) {
         // ここでUserModelを作成。
         //TODO: 不正防止にFirebaseが用意している、時刻を使うこと。
         self.db.collection("Users").document(Auth.auth().currentUser!.uid).setData(
@@ -49,6 +49,7 @@ class SendDBModel {
              "developerMode": false as Any,
              "homeRoomId": homeRoomId as Any,
              "teamChatRoomId": teamChatRoomId as Any,
+             "teamChatName": teamChatName as Any,
              "theGoalSetting": theGoalSetting as Any
             ]
         )

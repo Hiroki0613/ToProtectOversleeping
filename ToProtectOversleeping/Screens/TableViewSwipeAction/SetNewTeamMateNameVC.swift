@@ -10,8 +10,8 @@ import Firebase
 
 class SetNewTeamMateNameVC: UIViewController {
 
-    var wakeUpTimeText = ""
-    var wakeUpTimeDate = Date()
+//    var wakeUpTimeText = ""
+//    var wakeUpTimeDate = Date()
     var newTeamMateString = ""
 
     // チームを新規登録
@@ -36,6 +36,12 @@ class SetNewTeamMateNameVC: UIViewController {
             setNewTeamMateNameView.chatTeamNewRegisterButton.addTarget(self, action: #selector(registerNewTeam), for: .touchUpInside)
             setNewTeamMateNameView.chatTeamGoBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
     }
+    
+    // ランダムStringを作成
+    func randomString(length: Int) -> String {
+      let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      return String((0..<length).map{ _ in characters.randomElement()! })
+    }
 
     // 新規登録
     @objc func registerNewTeam() {
@@ -57,14 +63,21 @@ class SetNewTeamMateNameVC: UIViewController {
         if newTeamMateString == "" {
             return
         } else {
-            // FireStoreにデータを送る
-//            sendDBModel.createChatRoom(
-//                roomName: newTeamMateString,
-//                wakeUpTimeDate: wakeUpTimeDate,
-//                wakeUpTimeText: wakeUpTimeText,
-//                isWakeUpBool: true,
-//                dayOfTheWeek: "falseだぜ",
-//                appVersion: version)
+            UserDefaults.standard.set(self.newTeamMateString,forKey: "teamChatName")
+            let generatedHomeRoomRandomString = "WU\(randomString(length: 18))"
+            
+            // userDataModeltのteamChatRoomIdを変える。
+            self.db.collection("Users").document(Auth.auth().currentUser!.uid).updateData([
+                "teamChatRoomId": generatedHomeRoomRandomString,
+                "teamChatName": newTeamMateString
+            ])
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            print("宏輝_randomString: ", generatedHomeRoomRandomString)
+            
+            // 新しいチャットルームを開く
+            sendDBModel.createChatRoom(roomName: self.newTeamMateString, defaultWakeUpTimeDate: Date(), defaultWakeUpTimeText: "\(formatter.string(from: Date()))", chatRoomId: generatedHomeRoomRandomString, appVersion: version)
         }
     }
 
@@ -72,7 +85,8 @@ class SetNewTeamMateNameVC: UIViewController {
     // 戻る
     @objc func goBack() {
         print("戻るボタン")
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

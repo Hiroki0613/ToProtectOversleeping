@@ -14,11 +14,13 @@ class SetInvitedTeamMateVC: UIViewController {
     var wakeUpTimeDate = Date()
     var userName = ""
     var newInvitedTeamMateId = ""
+    var newInvitedTeamName = ""
         
     // チームから招待してもらって新規登録
     var setInvitedTeamMateNameView = SetInvitedTeamMateView()
     
     let db = Firestore.firestore()
+    let loadDBModel = LoadDBModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +57,7 @@ class SetInvitedTeamMateVC: UIViewController {
     @objc func setInvitedCode() {
         print("招待して新規登録しました")
         let sendDBModel = SendDBModel()
-        sendDBModel.doneInvitedChatRoom = self
+//        sendDBModel.doneInvitedChatRoom = self
         
         Auth.auth().signInAnonymously { result, error in
             guard let _ = error else { return }
@@ -66,16 +68,28 @@ class SetInvitedTeamMateVC: UIViewController {
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         
+        loadDBModel.loadChatRoomDocumentId(roomNameId: newInvitedTeamMateId) { roomName in
+//            self.newInvitedTeamName = roomName
+            UserDefaults.standard.set(roomName,forKey: "teamChatName")
+        }
+        
         if (newInvitedTeamMateId.hasPrefix("WU")) {
+            self.db.collection("Users").document(Auth.auth().currentUser!.uid).updateData([
+                "teamChatRoomId": newInvitedTeamMateId,
+                "teamChatName": newInvitedTeamMateId
+            ])
+            
+            
+            
             print("WUから始まる文字")
-            sendDBModel.invitedChatRoom(
-                roomNameId: newInvitedTeamMateId,
-                wakeUpTimeDate: wakeUpTimeDate,
-                wakeUpTimeText: wakeUpTimeText,
-                isWakeUpBool: true,
-                dayOfTheWeek: "falseだぜ",
-                appVersion: version
-            )
+//            sendDBModel.invitedChatRoom(
+//                roomNameId: newInvitedTeamMateId,
+//                wakeUpTimeDate: wakeUpTimeDate,
+//                wakeUpTimeText: wakeUpTimeText,
+//                isWakeUpBool: true,
+//                dayOfTheWeek: "",
+//                appVersion: version
+//            )
         } else {
             setInvitedTeamMateNameView.invitedIDLabel.text = "招待IDが違います"
             return
@@ -83,9 +97,10 @@ class SetInvitedTeamMateVC: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             
-            let messageModel = MessageModel()
-            messageModel.newInvitedToTeam(documentID: self.newInvitedTeamMateId, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
-            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            //招待されましたの挨拶はカット
+//            let messageModel = MessageModel()
+//            messageModel.newInvitedToTeam(documentID: self.newInvitedTeamMateId, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

@@ -15,7 +15,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     var messages = [Message]()
     
     var wakeUpCardTableListVC = WakeUpCardTableListVC()
-    
+    var teamRoomName = ""
     var chatRoomNameModel: ChatRoomNameModel?
     var userDataModel: UserDataModel?
 //    var chatTableViewIndexPath: Int?
@@ -58,7 +58,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         configureMessageCollectionView()
         configureMessageInputBar()
 
-        title = chatRoomNameModel?.roomName
+//        title = chatRoomNameModel?.roomName
+        title = teamRoomName
     }
     
     

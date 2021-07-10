@@ -226,6 +226,9 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             // アラームの編集を定義
         } else {
+            
+            var isJoinedTeam: Bool = userDataModel?.homeRoomId == userDataModel?.teamChatRoomId
+            
             let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
                 print("Editがタップされた")
                 print("宏輝__edit")
@@ -240,12 +243,23 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
                 completionHandler(true)
             }
             
+            
+            // QRコード作成
             let qrAction = UIContextualAction(style: .normal, title: "QR") { (action, view, completionHandler) in
                 print("QRがタップされた")
                 
                 let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
-                wakeUpQrCodeVC.invitedDocumentId = self.chatRoomDocumentIdArray[indexPath.row - 1]
+//                wakeUpQrCodeVC.invitedDocumentId = self.chatRoomDocumentIdArray[indexPath.row - 1]
+                wakeUpQrCodeVC.invitedDocumentId = self.userDataModel!.teamChatRoomId
                 self.navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
+                // 実行結果に関わらず記述
+                completionHandler(true)
+            }
+            
+            let makeNewTeamAction = UIContextualAction(style: .normal, title: "チーム\n作成") { action, view, completionHandler in
+                
+                let setNewTeamMateNameVC = SetNewTeamMateNameVC()
+                self.navigationController?.pushViewController(setNewTeamMateNameVC, animated: true)
                 // 実行結果に関わらず記述
                 completionHandler(true)
             }
@@ -254,8 +268,14 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             editAction.backgroundColor = .systemBlue
             qrAction.backgroundColor = .systemGreen
             
-            // 定義したアクションをセット
-            return UISwipeActionsConfiguration(actions: [ editAction,qrAction])
+            
+            if isJoinedTeam == true {
+                // 定義したアクションをセット
+                return UISwipeActionsConfiguration(actions: [ editAction,makeNewTeamAction])
+            } else {
+                // 定義したアクションをセット
+                return UISwipeActionsConfiguration(actions: [ editAction,qrAction])
+            }
         }
     }
     
@@ -268,31 +288,18 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             // 招待されるコードを書く
             
+            let makeNewTeamAction = UIContextualAction(style: .normal, title: "招待される") { action, view, completionHandler in
+                let setInvitedTeamMateVC = SetInvitedTeamMateVC()
+                setInvitedTeamMateVC.userName = self.userDataModel!.name
+                self.present(setInvitedTeamMateVC, animated: true, completion: nil)
+                // 実行結果に関わらず記述
+                completionHandler(true)
+            }
+            makeNewTeamAction.backgroundColor = .systemGreen
+
             
-            
-            
-            
-            
-//            // 削除処理
-//            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-//
-//                //削除処理を記述
-//                print("Deleteがタップされた")
-//                let messageModel = MessageModel()
-////                messageModel.sendMessageToChatLeaveTheRoom(documentID: self.chatRoomDocumentIdArray[indexPath.row - 1], displayName: self.userDataModel!.name)
-//
-//                messageModel.sendMessageToChatLeaveTheRoom(documentID: self.userDataModel!.teamChatRoomId, displayName: self.userDataModel!.name)
-//                let deleteDBModel = DeleteDBModel()
-//                self.clearAlarm(identifiers: self.chatRoomDocumentIdArray[indexPath.row - 1])
-//                deleteDBModel.deleteChatRoomDocumentId(roomNameId: self.chatRoomDocumentIdArray[indexPath.row - 1])
-//                tableView.reloadData()
-//                // 実行結果に関わらず記述
-//                completionHandler(true)
-//            }
-//            // 定義したアクションをセット
-//            return UISwipeActionsConfiguration(actions: [deleteAction])
+            return UISwipeActionsConfiguration(actions: [makeNewTeamAction])
         }
-        return nil
     }
 }
 
@@ -416,6 +423,7 @@ extension WakeUpCardTableListVC {
     
     @objc func tapSetChatButton(_ sender: UIButton) {
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
+        wakeUpCommunicateChatVC.teamRoomName = UserDefaults.standard.object(forKey: "teamChatName") as! String
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag - 1]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
 //        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag - 1]

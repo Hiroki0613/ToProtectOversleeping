@@ -54,8 +54,18 @@ class WakeUpCardTableListCell: UITableViewCell {
     }
     
     func set(chatRoomNameModel: ChatRoomNameModel) {
+        
         wakeUpChatTeamLabel.text = "チーム名"
-        wakeUpChatTeamNameLabel.text = chatRoomNameModel.roomName
+
+//        wakeUpChatTeamNameLabel.text = chatRoomNameModel.roomName
+        let checkChatTeamNameLabel = UserDefaults.standard.object(forKey: "teamChatName") as! String
+        if checkChatTeamNameLabel == "NoName777" {
+            wakeUpChatTeamNameLabel.text = "未登録"
+        } else {
+            wakeUpChatTeamNameLabel.text = checkChatTeamNameLabel
+        }
+        
+
         wakeUpSetAlarmSwitch.isOn = chatRoomNameModel.isWakeUpBool
         
         //アラームスイッチがONの時は、

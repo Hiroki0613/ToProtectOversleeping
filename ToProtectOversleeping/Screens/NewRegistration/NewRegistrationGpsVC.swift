@@ -161,10 +161,19 @@ class NewRegistrationGpsVC: BaseGpsVC {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     //TODO: ここは1.0秒待たせる必要はないけど、あえて住所が登録されているのを見せてローディング画面を見せるのはありかも。
                     UserDefaults.standard.set(self.newUserName,forKey: "userName")
+                    UserDefaults.standard.set(self.newUserName,forKey: "teamChatName")
                 
                     //ここでFirebaseFireStoreにUserModelとして登録する。
                     //create時点では、homeRoomIdとteamChatRoomIdは同じにしておく。
-                    sendDBModel.createUser(name: self.newUserName, uid: Auth.auth().currentUser!.uid, appVersion: version, isBilling: false, homeRoomId: generatedChatRoomRandomString, teamChatRoomId: generatedChatRoomRandomString, theGoalSetting: "")
+                    sendDBModel.createUser(
+                        name: self.newUserName,
+                        uid: Auth.auth().currentUser!.uid,
+                        appVersion: version,
+                        isBilling: false,
+                        homeRoomId: generatedChatRoomRandomString,
+                        teamChatRoomId: generatedChatRoomRandomString,
+                        teamChatName: self.newUserName,
+                        theGoalSetting: "")
                     UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
                     
                     //ここでデフォルトの部屋IDを用意する。

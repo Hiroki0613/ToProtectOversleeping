@@ -331,6 +331,7 @@
 		7FABB9B026403E79001182DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				7FE160852699DAF600B8EF26 /* TableViewSwipeAction */,
 				7F7E9B192673AB8C0081C7F8 /* EditAlarm */,
 				7F5B633C26623BA50057C12B /* NewRegistration */,
 				7FD2F4A026502C66006C684E /* Setting */,
@@ -383,6 +384,16 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		7FE160852699DAF600B8EF26 /* TableViewSwipeAction */ = {
+			isa = PBXGroup;
+			children = (
+				7FD2F4A426502E18006C684E /* QRReader */,
+				7FE523DC2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift */,
+				7FE523D82647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift */,
+			);
+			path = TableViewSwipeAction;
+			sourceTree = "<group>";
+		};
 		7FE523BB26464C7300B7D1B0 /* Extention */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,10 +440,7 @@
 		7FE523D42646C8BC00B7D1B0 /* AddNewCard */ = {
 			isa = PBXGroup;
 			children = (
-				7FD2F4A426502E18006C684E /* QRReader */,
 				7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */,
-				7FE523D82647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift */,
-				7FE523DC2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift */,
 				7F8211E32659105700AA747E /* RegisterNameVC.swift */,
 			);
 			path = AddNewCard;

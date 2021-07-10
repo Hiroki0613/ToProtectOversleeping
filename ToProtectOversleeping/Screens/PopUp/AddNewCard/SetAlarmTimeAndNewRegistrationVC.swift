@@ -45,18 +45,18 @@ class SetAlarmTimeAndNewRegistrationVC: UIViewController {
         let setNewTeamMateNameVC = SetNewTeamMateNameVC()
         
         // 新規登録時にアラームも同時タイミングでセットしたいので、値を渡して画面遷移を行う
-        setNewTeamMateNameVC.wakeUpTimeText = setAlarmTimeAndNewRegistrationView.wakeUpTimeText
-        setNewTeamMateNameVC.wakeUpTimeDate = setAlarmTimeAndNewRegistrationView.wakeUpTimeDate
-        print("setNewTeamMateNameVC.wakeUpTimeText: ",setNewTeamMateNameVC.wakeUpTimeText)
-        print("setNewTeamMateNameVC.wakeUpTimeDate: ",setNewTeamMateNameVC.wakeUpTimeDate)
+//        setNewTeamMateNameVC.wakeUpTimeText = setAlarmTimeAndNewRegistrationView.wakeUpTimeText
+//        setNewTeamMateNameVC.wakeUpTimeDate = setAlarmTimeAndNewRegistrationView.wakeUpTimeDate
+//        print("setNewTeamMateNameVC.wakeUpTimeText: ",setNewTeamMateNameVC.wakeUpTimeText)
+//        print("setNewTeamMateNameVC.wakeUpTimeDate: ",setNewTeamMateNameVC.wakeUpTimeDate)
         
-        if setNewTeamMateNameVC.wakeUpTimeText == "" {
-            return
-        } else {
-            setNewTeamMateNameVC.modalPresentationStyle = .overFullScreen
-            setNewTeamMateNameVC.modalTransitionStyle = .crossDissolve
-            self.present(setNewTeamMateNameVC, animated: true, completion: nil)
-        }
+//        if setNewTeamMateNameVC.wakeUpTimeText == "" {
+//            return
+//        } else {
+//            setNewTeamMateNameVC.modalPresentationStyle = .overFullScreen
+//            setNewTeamMateNameVC.modalTransitionStyle = .crossDissolve
+//            self.present(setNewTeamMateNameVC, animated: true, completion: nil)
+//        }
     }
     
     // 招待してもらう

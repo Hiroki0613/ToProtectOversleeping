@@ -26,8 +26,8 @@
             filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "alarmSet(identifierString:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,8 +74,8 @@
             filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
             landmarkName = "alarmSet(identifierString:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,8 +90,8 @@
             filePath = "ToProtectOversleeping/Screens/Chat/WakeUpCommunicateChatVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "showResultPage()"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,8 +122,8 @@
             filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "tapWakeUpSetAlarmSwitch(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,22 +132,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2A3E38C7-3012-49E1-A347-DB9DBD6135E0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
-            landmarkName = "tapWakeUpSetAlarmSwitch(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7840450B-4F63-4948-9A13-1A84737BFFDA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -163,6 +147,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "7840450B-4F63-4948-9A13-1A84737BFFDA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "tapWakeUpSetAlarmSwitch(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "B57DBE47-50E8-4805-90C0-8BCAFAFA74A9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -170,9 +170,25 @@
             filePath = "ToProtectOversleeping/Screens/TabBar/WakeUpCardTableListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "tapWakeUpSetAlarmSwitch(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46C6EDF5-7984-4A92-B288-0560D7161F35"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToProtectOversleeping/Screens/SetNewTeam/SetNewTeamMateNameVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "registerNewTeam()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

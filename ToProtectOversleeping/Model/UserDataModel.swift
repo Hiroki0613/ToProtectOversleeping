@@ -15,5 +15,6 @@ struct UserDataModel {
     var date: Double
     var homeRoomId: String
     var teamChatRoomId: String
+    var teamChatName: String
     var theGoalSetting: String
 }
