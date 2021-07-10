@@ -26,22 +26,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        
+        // 開発時のログアウト(最初から)は、アプリを消して。ここのコメントを使ってkeychainを切る。
+        // アプリを閉じて、２回目を開く時にはここを再びコメントアウトしておくこと
 //        do {
 //            try Auth.auth().signOut()
 //        } catch let signOutError as NSError {
 //            print("SignOutError: %@", signOutError)
 //        }
-        setUserDefaults()
+        
+        
+        
+        setUserPlaceholderData()
         return true
     }
     
     
-    func setUserDefaults() {
-//        keychain.set("35.637375", forKey: Keys.myAddressLatitude)
-//        keychain.set("139.756308", forKey: Keys.myAddressLongitude)
+    func setUserPlaceholderData() {
+        keychain.set("\(PrimaryPlace.primaryAddressLatitude)", forKey: Keys.myAddressLatitude)
+        keychain.set("\(PrimaryPlace.primaryAddressLongitude)", forKey: Keys.myAddressLongitude)
         
+        
+        // 開発時のログアウト(最初から)は、アプリを消して。ここのコメントを使ってkeychainを切る。
+        // アプリを閉じて、２回目を開く時にはここを再びコメントアウトしておくこと
 //        keychain.clear()
-//コメント
+        
+        
         
         let userDefaults = UserDefaults.standard
         //ユーザネーム
@@ -51,7 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //ユーザー名
             "userName" : "NoName777",
             "isFirstOpenApp": true,
-            "wakeUpResultDate": 10.0
+            "wakeUpResultDate": 10.0,
+            "myRoomNameID" : "WU"
 //            "myAddressLatitude" : 35.637375,
 //            "myAddressLongitude" : 139.756308,
 //            "myAddress": "未登録",

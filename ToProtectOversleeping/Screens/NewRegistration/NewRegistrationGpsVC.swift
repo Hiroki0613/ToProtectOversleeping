@@ -32,8 +32,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
     
     // GPSの初期設定値が入っている。
     // Keychainでの設定値に問題があったらデフォルト値を採用
-    var myAddressLatitude: Double = 35.637375
-    var myAddressLongitude: Double = 139.756308
+    var myAddressLatitude: Double = PrimaryPlace.primaryAddressLatitude
+    var myAddressLongitude: Double = PrimaryPlace.primaryAddressLongitude
     
     // 地図
     var mapView = MKMapView()
@@ -62,8 +62,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
     }
     
     func getMyAddressFromKeyChain() {
-        let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "35.637375"
-        let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "139.756308"
+        let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "\(PrimaryPlace.primaryAddressLatitude)"
+        let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "\(PrimaryPlace.primaryAddressLongitude)"
         if let myAddressLatitude = Double(myAddressLatitudeFromKeychainString),
            let myAddressLongitude = Double(myAddressLongitudeFromKeychainString) {
             self.myAddressLatitude = myAddressLatitude
@@ -133,8 +133,8 @@ class NewRegistrationGpsVC: BaseGpsVC {
         homeLocationLabel.text = "登録されました。 \n\n\(address)"
         
         // GPS情報、住所が取得出来なかった場合は反応なし
-        if geoCoderLatitude == 35.637375,
-           geoCoderLongitude == 139.756308,
+        if geoCoderLatitude == PrimaryPlace.primaryAddressLatitude,
+           geoCoderLongitude == PrimaryPlace.primaryAddressLongitude,
            address == "" {
             return
         } else {

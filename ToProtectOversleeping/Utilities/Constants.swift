@@ -10,3 +10,8 @@ import UIKit
 enum PrimaryColor {
     static let primary = UIColor.systemOrange
 }
+
+enum PrimaryPlace {
+    static let primaryAddressLatitude = 35.637375
+    static let primaryAddressLongitude = 139.756308
+}

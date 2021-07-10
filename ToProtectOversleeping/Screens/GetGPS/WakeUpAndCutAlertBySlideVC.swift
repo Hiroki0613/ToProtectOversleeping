@@ -21,8 +21,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     var authId = ""
     
     // Keychainでの設定値に問題があったらデフォルト値を採用
-    var myAddressLatitude: Double = 35.637375
-    var myAddressLongitude: Double = 139.756308
+    var myAddressLatitude: Double = PrimaryPlace.primaryAddressLatitude
+    var myAddressLongitude: Double = PrimaryPlace.primaryAddressLongitude
     var mySettingAlarmTime = Date()
     
     var alarm = Alarm()
@@ -68,8 +68,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     }
     
     func getMyAddressFromKeyChain() {
-        let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "35.637375"
-        let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "139.756308"
+        let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "\(PrimaryPlace.primaryAddressLatitude)"
+        let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "\(PrimaryPlace.primaryAddressLongitude)"
         if let myAddressLatitude = Double(myAddressLatitudeFromKeychainString),
            let myAddressLongitude = Double(myAddressLongitudeFromKeychainString) {
             self.myAddressLatitude = myAddressLatitude
