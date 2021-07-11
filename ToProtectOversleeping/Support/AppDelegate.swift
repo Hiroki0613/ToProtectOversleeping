@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func setUserPlaceholderData() {
-        keychain.set("\(PrimaryPlace.primaryAddressLatitude)", forKey: Keys.myAddressLatitude)
-        keychain.set("\(PrimaryPlace.primaryAddressLongitude)", forKey: Keys.myAddressLongitude)
+//        keychain.set("\(PrimaryPlace.primaryAddressLatitude)", forKey: Keys.myAddressLatitude)
+//        keychain.set("\(PrimaryPlace.primaryAddressLongitude)", forKey: Keys.myAddressLongitude)
         
         
         // 開発時のログアウト(最初から)は、アプリを消して。ここのコメントを使ってkeychainを切る。

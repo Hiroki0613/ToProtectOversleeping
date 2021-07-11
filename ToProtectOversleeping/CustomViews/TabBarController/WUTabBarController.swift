@@ -55,11 +55,11 @@ class WUTabBarController: UITabBarController {
     }
     //    QRCodeReaderVC
     
-    func createCheckVendingMachineVC() -> UINavigationController {
-        let checkVendingMachineVC = CheckVendingMachineVC()
-        checkVendingMachineVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "cloud", title: "Machine", tag: 2)
-        return UINavigationController(rootViewController: checkVendingMachineVC)
-    }
+//    func createCheckVendingMachineVC() -> UINavigationController {
+//        let checkVendingMachineVC = CheckVendingMachineVC()
+//        checkVendingMachineVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "cloud", title: "Machine", tag: 2)
+//        return UINavigationController(rootViewController: checkVendingMachineVC)
+//    }
     
 //    CheckVendingMachineVC
     

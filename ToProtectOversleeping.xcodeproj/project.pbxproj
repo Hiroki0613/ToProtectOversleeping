@@ -56,6 +56,7 @@
 		7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */; };
 		7FDC68A82674F3E700C3267B /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC68A72674F3E700C3267B /* RegisterNameView.swift */; };
 		7FE160842698C18C00B8EF26 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE160832698C18C00B8EF26 /* Constants.swift */; };
+		7FE16087269B1B3B00B8EF26 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE16086269B1B3B00B8EF26 /* UIView+Ext.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
 		7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */; };
 		7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */; };
@@ -121,6 +122,7 @@
 		7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderVC.swift; sourceTree = "<group>"; };
 		7FDC68A72674F3E700C3267B /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
 		7FE160832698C18C00B8EF26 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7FE16086269B1B3B00B8EF26 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
 		7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatVC.swift; sourceTree = "<group>"; };
 		7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressVC.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */,
+				7FE16086269B1B3B00B8EF26 /* UIView+Ext.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */,
 				7F376B1926401A910063F2EC /* ViewController.swift in Sources */,
 				7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */,
+				7FE16087269B1B3B00B8EF26 /* UIView+Ext.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,
 				7F7E9B182673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift in Sources */,
 				7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */,

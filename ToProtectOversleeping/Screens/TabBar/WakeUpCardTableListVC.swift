@@ -26,7 +26,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
     
     // 暫定で機械学習
-    var addWakeMachineLearningButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "gear")
+//    var addWakeMachineLearningButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "gear")
     
     
     
@@ -152,12 +152,12 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
 //        addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
 //        view.addSubview(addWakeUpCardButton)
         
-        addWakeMachineLearningButton.translatesAutoresizingMaskIntoConstraints = false
-        addWakeMachineLearningButton.layer.cornerRadius = 32
-        addWakeMachineLearningButton.layer.borderColor = UIColor.systemBackground.cgColor
-        addWakeMachineLearningButton.layer.borderWidth = 3.0
-        addWakeMachineLearningButton.addTarget(self, action: #selector(goToMachineLearning), for: .touchUpInside)
-        view.addSubview(addWakeMachineLearningButton)
+//        addWakeMachineLearningButton.translatesAutoresizingMaskIntoConstraints = false
+//        addWakeMachineLearningButton.layer.cornerRadius = 32
+//        addWakeMachineLearningButton.layer.borderColor = UIColor.systemBackground.cgColor
+//        addWakeMachineLearningButton.layer.borderWidth = 3.0
+//        addWakeMachineLearningButton.addTarget(self, action: #selector(goToMachineLearning), for: .touchUpInside)
+//        view.addSubview(addWakeMachineLearningButton)
         
         NSLayoutConstraint.activate([
 //            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 64),
@@ -165,10 +165,10 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
 //            addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 //            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             
-            addWakeMachineLearningButton.widthAnchor.constraint(equalToConstant: 64),
-            addWakeMachineLearningButton.heightAnchor.constraint(equalToConstant: 64),
-            addWakeMachineLearningButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            addWakeMachineLearningButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+//            addWakeMachineLearningButton.widthAnchor.constraint(equalToConstant: 64),
+//            addWakeMachineLearningButton.heightAnchor.constraint(equalToConstant: 64),
+//            addWakeMachineLearningButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+//            addWakeMachineLearningButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
             
             
             
@@ -176,7 +176,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
 //        addWakeUpCardButton.tintColor = .systemBackground
         
         
-        addWakeMachineLearningButton.tintColor = .systemBackground
+//        addWakeMachineLearningButton.tintColor = .systemBackground
     }
     
 //    @objc func goToWakeUpDetailCardVC() {
@@ -187,12 +187,12 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
 //        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
 //    }
 //
-    @objc func goToMachineLearning() {
-                let checkVendingMachineVC = CheckVendingMachineVC()
-                checkVendingMachineVC.modalPresentationStyle = .overFullScreen
-                checkVendingMachineVC.modalTransitionStyle = .crossDissolve
-                self.present(checkVendingMachineVC, animated: true, completion: nil)
-    }
+//    @objc func goToMachineLearning() {
+//                let checkVendingMachineVC = CheckVendingMachineVC()
+//                checkVendingMachineVC.modalPresentationStyle = .overFullScreen
+//                checkVendingMachineVC.modalTransitionStyle = .crossDissolve
+//                self.present(checkVendingMachineVC, animated: true, completion: nil)
+//    }
 }
 
 
@@ -426,7 +426,9 @@ extension WakeUpCardTableListVC {
         wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = self.userDataModel!.teamChatRoomId
         wakeUpAndCutAlertBySlideVC.userName =  self.userDataModel!.name
         wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText
-        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+        wakeUpAndCutAlertBySlideVC.modalPresentationStyle = .fullScreen
+//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+        present(wakeUpAndCutAlertBySlideVC, animated: true, completion: nil)
     }
     
     
