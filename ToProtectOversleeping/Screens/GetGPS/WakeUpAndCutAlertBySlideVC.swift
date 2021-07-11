@@ -138,6 +138,8 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         print("rawDistance: ", rawDistance)
         
         if rainyDaySwitch.isOn {
+            
+            print("宏輝_起きた_chatRoomDocumentID: ",chatRoomDocumentId)
 //            clearAlarm()
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)

@@ -117,8 +117,6 @@ class LoadDBModel {
                         self.chatDocumentIdArray.append(homeChatRoomId)
                     }
                     
-                    // chatDocumentIDArray
-                    self.chatDocumentIdArray.append(doc.documentID)
                 }
                 print(self.chatRoomNameArray)
                 self.getChatRoomNameDelegate?.getChatRoomName(chatRoomNameModel: self.chatRoomNameArray)

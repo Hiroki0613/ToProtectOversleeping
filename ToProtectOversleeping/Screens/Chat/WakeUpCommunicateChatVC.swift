@@ -126,7 +126,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         if let createTodayNoonTime = createTodayNoonTime() {
             if createTodayNoonTime < Date() {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
-                self.navigationItem.rightBarButtonItem?.tintColor = PrimaryColor.primary
+//                self.navigationItem.rightBarButtonItem?.tintColor = PrimaryColor.primary
             } else {
                 self.navigationItem.rightBarButtonItem?.isEnabled = false
                 self.navigationItem.rightBarButtonItem?.tintColor = .clear
@@ -224,10 +224,13 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                                         messageId: senderID,
                                         sentDate: Date(timeIntervalSince1970: date),
                                         kind: .text(text))
+                                    print("宏輝_起きたmessage: ",message)
                                     self.messages.append(message)
                                 }
                             
                             // まず目が覚めた人をリストに上げる
+                            print("宏輝_起きた_sendWUMessageType:", sendWUMessageType)
+                            
                             if sendWUMessageType == SendWUMessageType.wakeUpSuccessMessage {
                                 let calendar = Calendar(identifier: .gregorian)
                                 print("宏輝_起きた時間: ", Date(timeIntervalSince1970: date))

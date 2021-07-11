@@ -337,6 +337,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         // セルの数を3つにする。１つ目を平日、２つ目を休日、３つ目を目標メモに変更する。
         //        return self.chatRoomNameModelArray.count
         //        return 2
+        print("スイッチの: ", chatRoomNameModelArray.count)
         return self.chatRoomNameModelArray.count + 1
     }
     
@@ -387,6 +388,7 @@ extension WakeUpCardTableListVC {
         //chatRoomIDが必要
         chatRoomDocumentIdForSwitch = chatRoomDocumentIdArray[sender.tag - 1]
         print("chatRoomDocumentIdForSwitch: ", chatRoomDocumentIdForSwitch)
+        print("chatRoomDocumentIdForSwitchArray: ", chatRoomDocumentIdArray)
         
         let sendDBModel = SendDBModel()
         sendDBModel.switchedChatRoomWakeUpAlarm(roomNameId: chatRoomDocumentIdForSwitch, isWakeUpBool: onCheck)
@@ -414,13 +416,14 @@ extension WakeUpCardTableListVC {
     }
     
     @objc func tapSetAlarmButton(_ sender: UIButton) {
-        print("tableviewアラームボタンがタップされました: ",sender.tag)
+        print("tableviewアラームボタンがタップされました: ",sender.tag - 1)
         let wakeUpAndCutAlertBySlideVC = WakeUpAndCutAlertBySlideVC()
         
         guard let remakeAlarmTime = remakeAlarmTime(wakeUpTime: Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeDate)) else { return }
         wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = remakeAlarmTime
         wakeUpAndCutAlertBySlideVC.authId = Auth.auth().currentUser!.uid
-        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag - 1]
+//        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag - 1]
+        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = self.userDataModel!.teamChatRoomId
         wakeUpAndCutAlertBySlideVC.userName =  self.userDataModel!.name
         wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText
         navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
