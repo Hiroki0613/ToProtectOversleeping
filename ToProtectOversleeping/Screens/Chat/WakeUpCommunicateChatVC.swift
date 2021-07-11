@@ -90,7 +90,8 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         let resultWakeUpVC = ResultWakeUpVC()
         resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
         resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-        resultWakeUpVC.teamName = chatRoomNameModel!.roomName
+//        resultWakeUpVC.teamName = chatRoomNameModel!.roomName
+        resultWakeUpVC.teamName = self.teamRoomName
         print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
         present(resultWakeUpVC, animated: true, completion: nil)
     }

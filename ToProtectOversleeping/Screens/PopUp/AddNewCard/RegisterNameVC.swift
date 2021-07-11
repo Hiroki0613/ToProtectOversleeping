@@ -11,7 +11,7 @@ import Firebase
 class RegisterNameVC: UIViewController {
     
     var registerNameView = ChangeNameView()
-    
+    let db = Firestore.firestore()
     // ユーザ名を一時的に保管
     var userName = ""
     
@@ -46,6 +46,9 @@ class RegisterNameVC: UIViewController {
             registerNameView.newNameLabel.text = "ユーザー登録しました"
             UserDefaults.standard.set(userName, forKey: "userName")
             
+            self.db.collection("Users").document(Auth.auth().currentUser!.uid).updateData([
+                "name": self.userName
+            ])
 //            sendDBModel.createUser(name: userName, uid: Auth.auth().currentUser!.uid, appVersion: version, isBilling: false)
 
             print("UserDefaults_ユーザネーム",UserDefaults.standard.object(forKey: "userName") as! String )
