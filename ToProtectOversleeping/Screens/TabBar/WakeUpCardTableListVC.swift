@@ -356,7 +356,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: GoalSettingWakeUpCardTableListCell.reuseID) as! GoalSettingWakeUpCardTableListCell
-//                cell.goalSettingCellLabel.text = theGoalSettingText
+                cell.goalSettingMainLabel.text = theGoalSettingText
                 return cell
             }
         } else {

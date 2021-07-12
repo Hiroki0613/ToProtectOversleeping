@@ -16,8 +16,11 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
     // tableViewのcell
     var tableCellView = UIView()
     
+    // 達成したい目標
+    var goalSettingSubLabel = WUBodyLabel(fontSize: 20)
+    
     // 空白の中心に置かれるLabel
-    var goalSettingCellLabel = WUBodyLabel(fontSize: 20)
+    var goalSettingMainLabel = WUBodyLabel(fontSize: 24)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,8 +35,9 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
         transParentView.translatesAutoresizingMaskIntoConstraints = false
         tableCellView.translatesAutoresizingMaskIntoConstraints = false
         tableCellView.layer.cornerRadius = 16
-        tableCellView.addBlurToView(alpha: 0.9)
-        goalSettingCellLabel.translatesAutoresizingMaskIntoConstraints = false
+//        tableCellView.addBlurToView(alpha: 0.9)
+        goalSettingSubLabel.translatesAutoresizingMaskIntoConstraints = false
+        goalSettingMainLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let padding: CGFloat = 20.0
         
@@ -43,11 +47,16 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
         
         // 透明セルの上にtableViewのCellを追加
         transParentView.addSubview(tableCellView)
-        tableCellView.addSubview(goalSettingCellLabel)
-        goalSettingCellLabel.text = ""
-        goalSettingCellLabel.textAlignment = .center
-        goalSettingCellLabel.numberOfLines = 0
-        goalSettingCellLabel.lineBreakMode = .byCharWrapping
+        tableCellView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        tableCellView.addSubview(goalSettingSubLabel)
+        goalSettingSubLabel.text = "達成したい目標！"
+        goalSettingSubLabel.textAlignment = .center
+        tableCellView.addSubview(goalSettingMainLabel)
+        goalSettingMainLabel.text = ""
+        goalSettingMainLabel.textAlignment = .center
+        goalSettingMainLabel.numberOfLines = 0
+        goalSettingMainLabel.lineBreakMode = .byCharWrapping
+        goalSettingSubLabel.sizeToFit()
         
         NSLayoutConstraint.activate([
             // 透明セル
@@ -62,10 +71,17 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
             tableCellView.trailingAnchor.constraint(equalTo: transParentView.trailingAnchor, constant: -padding),
             tableCellView.bottomAnchor.constraint(equalTo: transParentView.bottomAnchor, constant: -padding),
             
-            // 空白時のcellに表示させるLabel
-            goalSettingCellLabel.topAnchor.constraint(equalTo: tableCellView.centerYAnchor, constant: -padding),
-            goalSettingCellLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
-            goalSettingCellLabel.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding)
+            // 達成したい目標！を表示するLabel
+            goalSettingSubLabel.topAnchor.constraint(equalTo: tableCellView.topAnchor, constant: 10),
+            goalSettingSubLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
+            goalSettingSubLabel.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding),
+            goalSettingSubLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            // 個人で書いた目標を表示するLabel
+            goalSettingMainLabel.topAnchor.constraint(equalTo: tableCellView.centerYAnchor, constant: -80),
+            goalSettingMainLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor, constant: padding),
+            goalSettingMainLabel.trailingAnchor.constraint(equalTo: tableCellView.trailingAnchor, constant: -padding),
+            goalSettingMainLabel.bottomAnchor.constraint(equalTo: tableCellView.bottomAnchor, constant: -padding)
         ])
     }
 }
