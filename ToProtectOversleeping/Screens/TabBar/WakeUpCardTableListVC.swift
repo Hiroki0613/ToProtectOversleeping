@@ -74,9 +74,9 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         newRegistrationGpsVC.authLoginDelegate = self
         
         self.tabBarController?.tabBar.isHidden = false
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
         //        title = ""
-        navigationController?.navigationBar.barTintColor = PrimaryColor.primary
+//        navigationController?.navigationBar.barTintColor = PrimaryColor.primary
         //        navigationController?.navigationBar.titleTextAttributes = [
         //            // 文字の色
         //                .foregroundColor: UIColor.systemBackground
@@ -90,7 +90,6 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
             // チャットルームのデータを取得
             loadDBModel.getChatRoomNameDelegate = self
             loadDBModel.loadChatRoomNameData()
-            
             loadDBModel.getUserDataDelegate = self
             loadDBModel.loadProfileData()
             
@@ -142,6 +141,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         tableView.separatorStyle = .none
         tableView.register(WakeUpCardTableListCell.self, forCellReuseIdentifier: WakeUpCardTableListCell.reuseID)
         tableView.register(BlankWakeUpCardTableListCell.self, forCellReuseIdentifier: BlankWakeUpCardTableListCell.reuseID)
+        tableView.register(GoalSettingWakeUpCardTableListCell.self, forCellReuseIdentifier: GoalSettingWakeUpCardTableListCell.reuseID)
     }
     
     func configureAddCardButton() {
@@ -229,7 +229,7 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             let isJoinedTeam: Bool = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
             
-            let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
+            let editAction = UIContextualAction(style: .normal, title: "アラーム\n修正") { action, view, completionHandler in
                 print("Editがタップされた")
                 print("宏輝__edit")
                 
@@ -245,7 +245,7 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             
             // QRコード作成
-            let qrAction = UIContextualAction(style: .normal, title: "QR") { (action, view, completionHandler) in
+            let qrAction = UIContextualAction(style: .normal, title: "招待\nする") { (action, view, completionHandler) in
                 print("QRがタップされた")
                 
                 let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
@@ -346,11 +346,19 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         // 最初にプレースホルダーを用意する
         // 平日のアラーム
         if  indexPath.row == 0 {
-            // 目標
-            let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
-            cell.blankCellLabel.text = " 達成したい目標を書いてください\nタップして記入"
-            return cell
             
+            let theGoalSettingText = userDataModel?.theGoalSetting
+            
+            if theGoalSettingText == "" {
+                // 目標
+                let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
+                cell.blankCellLabel.text = " 達成したい目標を書いてください\n左スワイプして記入"
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: GoalSettingWakeUpCardTableListCell.reuseID) as! GoalSettingWakeUpCardTableListCell
+//                cell.goalSettingCellLabel.text = theGoalSettingText
+                return cell
+            }
         } else {
             // 平日、休日、曜日
             if chatRoomNameModelArray.isEmpty {
@@ -513,6 +521,7 @@ extension WakeUpCardTableListVC: GetChatRoomNameDelegate {
     
     func getChatDocumentId(chatRoomDocumentId: [String]) {
         self.chatRoomDocumentIdArray = chatRoomDocumentId
+        tableView.reloadData()
     }
 }
 
@@ -521,6 +530,7 @@ extension WakeUpCardTableListVC: GetChatRoomNameDelegate {
 extension WakeUpCardTableListVC: GetUserDataDelegate {
     func getUserData(userDataModel: UserDataModel) {
         self.userDataModel = userDataModel
+        tableView.reloadData()
     }
 }
 
