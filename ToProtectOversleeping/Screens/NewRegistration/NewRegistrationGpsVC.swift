@@ -27,6 +27,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
     
     // 画面遷移時にユーザ名がここに渡っている。
     var newUserName = ""
+    var theGoalSetting = ""
     
     var authLoginDelegate: AuthLoginDelegate?
     
@@ -49,6 +50,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("宏輝_theGoal_setting: ", theGoalSetting)
         view.backgroundColor = PrimaryColor.primary
         configureView()
         getMyAddressFromKeyChain()
@@ -173,7 +175,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
                         homeRoomId: generatedChatRoomRandomString,
                         teamChatRoomId: generatedChatRoomRandomString,
                         teamChatName: self.newUserName,
-                        theGoalSetting: "")
+                        theGoalSetting: self.theGoalSetting)
                     UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
                     
                     //ここでデフォルトの部屋IDを用意する。

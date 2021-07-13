@@ -32,15 +32,14 @@ class NewRegistrationUserNameVC: UIViewController {
     @objc func registerName() {
         print("新規ユーザー登録開始")
         
-        // ここでGPS画面に画面遷移する。
-        let newRegistrationGpsVC = NewRegistrationGpsVC()
-        newRegistrationGpsVC.newUserName = registerNewNameView.newNameTextField.text ?? ""
-        
-        if newRegistrationGpsVC.newUserName == "" {
+        // ここでゴールセッティング画面に画面遷移する。
+        let newRegistrationUserGoalSettingVC = NewRegistrationUserGoalSettingVC()
+        newRegistrationUserGoalSettingVC.newUserName = registerNewNameView.newNameTextField.text ?? ""
+        if newRegistrationUserGoalSettingVC.newUserName == "" {
             return
         } else {
             //TODO: 1秒後に画面遷移するようにする
-            navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
+            navigationController?.pushViewController(newRegistrationUserGoalSettingVC, animated: true)
         }
     }
     

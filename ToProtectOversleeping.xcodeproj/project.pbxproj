@@ -60,6 +60,9 @@
 		7FE16089269C853F00B8EF26 /* GoalSettingWakeUpCardTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE16088269C853F00B8EF26 /* GoalSettingWakeUpCardTableListCell.swift */; };
 		7FE1608B269C9B9700B8EF26 /* NewRegistrationUserGoalSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1608A269C9B9700B8EF26 /* NewRegistrationUserGoalSettingVC.swift */; };
 		7FE1608D269C9BD700B8EF26 /* RegistrationGoalSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1608C269C9BD700B8EF26 /* RegistrationGoalSettingView.swift */; };
+		7FE16090269DD21900B8EF26 /* EditTheGoalSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1608F269DD21900B8EF26 /* EditTheGoalSettingVC.swift */; };
+		7FE16092269DDDBF00B8EF26 /* EditTheGoalSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE16091269DDDBF00B8EF26 /* EditTheGoalSettingView.swift */; };
+		7FE16094269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE16093269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift */; };
 		7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C22646838900B7D1B0 /* WUTabBarController.swift */; };
 		7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */; };
 		7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */; };
@@ -129,6 +132,9 @@
 		7FE16088269C853F00B8EF26 /* GoalSettingWakeUpCardTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingWakeUpCardTableListCell.swift; sourceTree = "<group>"; };
 		7FE1608A269C9B9700B8EF26 /* NewRegistrationUserGoalSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationUserGoalSettingVC.swift; sourceTree = "<group>"; };
 		7FE1608C269C9BD700B8EF26 /* RegistrationGoalSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationGoalSettingView.swift; sourceTree = "<group>"; };
+		7FE1608F269DD21900B8EF26 /* EditTheGoalSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTheGoalSettingVC.swift; sourceTree = "<group>"; };
+		7FE16091269DDDBF00B8EF26 /* EditTheGoalSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTheGoalSettingView.swift; sourceTree = "<group>"; };
+		7FE16093269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListHeaderView.swift; sourceTree = "<group>"; };
 		7FE523C22646838900B7D1B0 /* WUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTabBarController.swift; sourceTree = "<group>"; };
 		7FE523C4264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCommunicateChatVC.swift; sourceTree = "<group>"; };
 		7FE523C62646840000B7D1B0 /* GetGpsAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressVC.swift; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 				7FDC68A72674F3E700C3267B /* RegisterNameView.swift */,
 				7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */,
 				7FE1608C269C9BD700B8EF26 /* RegistrationGoalSettingView.swift */,
+				7FE16091269DDDBF00B8EF26 /* EditTheGoalSettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 				7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */,
 				7FE16088269C853F00B8EF26 /* GoalSettingWakeUpCardTableListCell.swift */,
 				7F96B4E62693596D007B97D7 /* BlankWakeUpCardTableListCell.swift */,
+				7FE16093269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -398,11 +406,20 @@
 		7FE160852699DAF600B8EF26 /* TableViewSwipeAction */ = {
 			isa = PBXGroup;
 			children = (
+				7FE1608E269DD1BA00B8EF26 /* EditTheGoalSetting */,
 				7FD2F4A426502E18006C684E /* QRReader */,
 				7FE523DC2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift */,
 				7FE523D82647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift */,
 			);
 			path = TableViewSwipeAction;
+			sourceTree = "<group>";
+		};
+		7FE1608E269DD1BA00B8EF26 /* EditTheGoalSetting */ = {
+			isa = PBXGroup;
+			children = (
+				7FE1608F269DD21900B8EF26 /* EditTheGoalSettingVC.swift */,
+			);
+			path = EditTheGoalSetting;
 			sourceTree = "<group>";
 		};
 		7FE523BB26464C7300B7D1B0 /* Extention */ = {
@@ -650,7 +667,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
+				7FE16094269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
+				7FE16092269DDDBF00B8EF26 /* EditTheGoalSettingView.swift in Sources */,
 				7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
 				7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */,
@@ -695,6 +714,7 @@
 				7F5A9E51267A47F000754C93 /* ResultWakeUpVC.swift in Sources */,
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
 				7FE523DF2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift in Sources */,
+				7FE16090269DD21900B8EF26 /* EditTheGoalSettingVC.swift in Sources */,
 				7FE16089269C853F00B8EF26 /* GoalSettingWakeUpCardTableListCell.swift in Sources */,
 				7FE523D92647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift in Sources */,
 				7FE1608B269C9B9700B8EF26 /* NewRegistrationUserGoalSettingVC.swift in Sources */,

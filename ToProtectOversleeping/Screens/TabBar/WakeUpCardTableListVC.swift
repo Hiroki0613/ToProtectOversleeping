@@ -14,11 +14,15 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     var isLoggedInAtFirebase:Bool = false
     
     let tableView = UITableView()
+    var wakeUpCardTableListHeaderView = WakeUpCardTableListHeaderView()
+    
     var userDataModel: UserDataModel?
     var chatRoomNameModelArray = [ChatRoomNameModel]()
     var chatRoomDocumentIdArray = [String]()
     var chatRoomDocumentIdForSwitch = ""
     var indexNumber = 0
+    
+    var isJoinedTeam: Bool = false
     
     // 新しいカードを追加
 //    var addWakeUpCardButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "macwindow.badge.plus")
@@ -72,6 +76,8 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         
         let newRegistrationGpsVC = NewRegistrationGpsVC()
         newRegistrationGpsVC.authLoginDelegate = self
+        
+        isJoinedTeam = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
         
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -208,26 +214,24 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
         // 目標はeditのみ
         if indexPath.row == 0 {
             
-            let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
+            let editGoalSetting = UIContextualAction(style: .normal, title: "目標\nの編集") { action, view, completionHandler in
                 print("Editがタップされた")
                 print("宏輝__edit")
                 
-//                let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
-//                editWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row - 1]
-//                editWakeUpAlarmTimeVC.userName = self.userDataModel!.name
-//                self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
-//                completionHandler(true)
+                let editTheGoalSettingVC = EditTheGoalSettingVC()
+                self.navigationController?.pushViewController(editTheGoalSettingVC, animated: true)
+                completionHandler(true)
             }
-            editAction.backgroundColor = .systemBlue
+            editGoalSetting.backgroundColor = .systemBlue
             // 定義したアクションをセット
-            return UISwipeActionsConfiguration(actions: [ editAction])
+            return UISwipeActionsConfiguration(actions: [ editGoalSetting])
             
             
             
             // アラームの編集を定義
         } else {
             
-            let isJoinedTeam: Bool = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
+            isJoinedTeam = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
             
             let editAction = UIContextualAction(style: .normal, title: "アラーム\n修正") { action, view, completionHandler in
                 print("Editがタップされた")
@@ -287,7 +291,7 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             return nil
         } else {
             
-            let isJoinedTeam: Bool = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
+            
             
             // 招待されるコードを書く
             
@@ -328,6 +332,38 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
 
 
 extension WakeUpCardTableListVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = WakeUpCardTableListHeaderView()
+        
+        if isJoinedTeam {
+            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの招待」"
+            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チーム退会」"
+        } else {
+            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの作成」"
+            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チームへの参加」"
+        }
+        
+        return headerView
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
+    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//        if isJoinedTeam {
+//            return "左スワイプで\nアラームの編集、チームの招待\n右スワイプでチーム退会\nが出来ます"
+//        } else {
+//            return
+//                "左スワイプで\nアラームの編集、チームの作成\n右スワイプでチームへの参加\nが出来ます"
+//        }
+//
+//    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

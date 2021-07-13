@@ -53,6 +53,13 @@ class WUTabBarController: UITabBarController {
         qRCodeReaderVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "Setting", tag: 2)
         return UINavigationController(rootViewController: qRCodeReaderVC)
     }
+    
+    func createNewRegistrationUserGoalSettingVC() -> UINavigationController {
+        let setNewRegistrationUserGoalSettingVC = NewRegistrationUserGoalSettingVC()
+        setNewRegistrationUserGoalSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "cloud", title: "Goal", tag: 0)
+        return UINavigationController(rootViewController: setNewRegistrationUserGoalSettingVC)
+    }
+    
     //    QRCodeReaderVC
     
 //    func createCheckVendingMachineVC() -> UINavigationController {

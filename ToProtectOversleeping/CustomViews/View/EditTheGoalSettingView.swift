@@ -1,5 +1,5 @@
 //
-//  RegistrationGoalSettingView.swift
+//  EditTheGoalSettingView.swift
 //  ToProtectOversleeping
 //
 //  Created by 近藤宏輝 on 2021/07/13.
@@ -7,18 +7,7 @@
 
 import UIKit
 
-/*
- 参考URL
- 【Swift】UITextViewに文字数制限と行数制限を加える方法
- https://orangelog.site/swift/uitextview-limits/
- UITextViewをコードで作成し、編集終了ボタンの追加とキーボード被り対策
- https://qiita.com/Secret-Base36/items/3cd00dbb28439cb949e0
- swift textViewの文字を入力するごとに保存,セーブなど(予測変換にも対応)
- https://rils-k.hatenablog.com/entry/2020/09/08/230540
- */
-
-class RegistrationGoalSettingView: UIView {
-    
+class EditTheGoalSettingView: UIView {
     // キーボード出現によるスクロール量
     var scrollByKeyboard: CGFloat = 0
     // 早起きして達成したい目標を記入
@@ -39,7 +28,7 @@ class RegistrationGoalSettingView: UIView {
     // 目標を記入してOKを出すボタン
     var registerGoalSettingButton = WUButton(backgroundColor: PrimaryColor.primary, title: "登録")
     // 目標を書かずにスキップするボタン
-    var skipButton = WUButton(backgroundColor: PrimaryColor.primary, title: "スキップ")
+    var goBackButton = WUButton(backgroundColor: PrimaryColor.primary, title: "戻る")
     var buttonStackView = UIStackView(frame: .zero)
     
     
@@ -148,9 +137,9 @@ class RegistrationGoalSettingView: UIView {
         goalSettingTextView.returnKeyType = .done
         addSubview(goalSettingTextView)
         registerGoalSettingButton.translatesAutoresizingMaskIntoConstraints = false
-        skipButton.translatesAutoresizingMaskIntoConstraints = false
+        goBackButton.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
-        buttonStackView.addArrangedSubview(skipButton)
+        buttonStackView.addArrangedSubview(goBackButton)
         buttonStackView.addArrangedSubview(registerGoalSettingButton)
         buttonStackView.axis = .horizontal
         buttonStackView.alignment = .fill
@@ -188,8 +177,7 @@ class RegistrationGoalSettingView: UIView {
     }
 }
 
-extension RegistrationGoalSettingView: UITextViewDelegate {
-    
+extension EditTheGoalSettingView: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         // 改行禁止を実装
