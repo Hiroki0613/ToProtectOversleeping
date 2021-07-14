@@ -80,6 +80,7 @@ class WakeUpCardTableListCell: UITableViewCell {
             self.setAlarmButton.isEnabled = true
         } else {
             self.tableCellView.backgroundColor = .systemGray5.withAlphaComponent(0.9)
+            self.weekDayOrWeekEndLabel.textColor = .systemBackground.withAlphaComponent(0.7)
             self.setAlarmButton.backgroundColor = PrimaryColor.primary.withAlphaComponent(0.3)
             self.setAlarmButton.isHidden = true
             self.setAlarmButton.isEnabled = false
