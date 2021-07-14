@@ -29,6 +29,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     // 一旦ここでaddSnapをさせる
     let db = Firestore.firestore()
     
+    // チームに参加しているかを確認するbool
+    var isJoinedTeam: Bool = false
+    
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
@@ -58,8 +61,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         configureMessageCollectionView()
         configureMessageInputBar()
 
+        configureChatTitleAndCheckedByTheJoinedTeam()
 //        title = chatRoomNameModel?.roomName
-        title = teamRoomName
+//        title = teamRoomName
     }
     
     
@@ -91,7 +95,13 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
         resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
 //        resultWakeUpVC.teamName = chatRoomNameModel!.roomName
-        resultWakeUpVC.teamName = self.teamRoomName
+        if configureChatTitleAndCheckedByTheJoinedTeam() == true {
+
+            resultWakeUpVC.teamName = teamRoomName
+        } else {
+            resultWakeUpVC.teamName = userDataModel!.name
+        }
+//        resultWakeUpVC.teamName = self.teamRoomName
         print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
         present(resultWakeUpVC, animated: true, completion: nil)
     }
@@ -112,7 +122,13 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                     let resultWakeUpVC = ResultWakeUpVC()
                     resultWakeUpVC.chatRoomDocumentId = self.chatRoomDocumentId
                     resultWakeUpVC.wakeUpSuccessPersonList = self.wakeUpSuccessPersonList
-                    resultWakeUpVC.teamName = chatRoomNameModel!.roomName
+                    if configureChatTitleAndCheckedByTheJoinedTeam() == true {
+//                        resultWakeUpVC.teamName = chatRoomNameModel!.roomName
+                        resultWakeUpVC.teamName = teamRoomName
+                    } else {
+                        resultWakeUpVC.teamName = userDataModel!.name
+                    }
+
                     print("宏輝_resultWakeUpVC.wakeUpSuccessPersonListAtChat: ",resultWakeUpVC.wakeUpSuccessPersonList)
                     //今日は集計を見たことをUserDefaultsに記録させておく
                     UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "wakeUpResultDate")
@@ -149,6 +165,18 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         // 本日の１２時を生成
         let todayNoonTime = calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12, minute: 0, second: 0))
         return todayNoonTime
+    }
+    
+    func configureChatTitleAndCheckedByTheJoinedTeam() -> Bool {
+        isJoinedTeam = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
+        
+        if isJoinedTeam == true {
+            title = teamRoomName
+            return true
+        } else {
+            title = userDataModel!.name
+            return false
+        }
     }
     
     func configureMessageCollectionView() {
