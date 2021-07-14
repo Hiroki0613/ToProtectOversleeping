@@ -396,6 +396,9 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
                 return cell
             }
         } else {
+            
+            let weekDayOrWeekEndArray = ["平日","休日"]
+            
             // 平日、休日、曜日
             if chatRoomNameModelArray.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: BlankWakeUpCardTableListCell.reuseID) as! BlankWakeUpCardTableListCell
@@ -403,6 +406,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: WakeUpCardTableListCell.reuseID) as! WakeUpCardTableListCell
+                cell.weekDayOrWeekEndLabel.text = weekDayOrWeekEndArray[indexPath.row - 1]
                 cell.wakeUpSetAlarmSwitch.addTarget(self, action: #selector(tapWakeUpSetAlarmSwitch), for: .touchUpInside)
                 cell.wakeUpSetAlarmSwitch.tag = indexPath.row
                 cell.setAlarmButton.addTarget(self, action: #selector(tapSetAlarmButton(_:)), for: .touchUpInside)
@@ -417,7 +421,12 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        
+        if indexPath.row == 0 {
+            return 300
+        } else {
+            return 210
+        }
     }
 }
 

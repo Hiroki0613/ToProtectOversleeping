@@ -342,7 +342,6 @@
 				7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */,
 				7FE16088269C853F00B8EF26 /* GoalSettingWakeUpCardTableListCell.swift */,
 				7F96B4E62693596D007B97D7 /* BlankWakeUpCardTableListCell.swift */,
-				7FE16093269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -453,6 +452,7 @@
 			children = (
 				7FABB9A926402515001182DF /* WakeUpCardCollectionListCell.swift */,
 				7FE523CF2646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift */,
+				7FE16093269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift */,
 			);
 			path = NotUse;
 			sourceTree = "<group>";
