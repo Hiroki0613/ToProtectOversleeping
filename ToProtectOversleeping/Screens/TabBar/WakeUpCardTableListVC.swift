@@ -14,7 +14,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     var isLoggedInAtFirebase:Bool = false
     
     let tableView = UITableView()
-    var wakeUpCardTableListHeaderView = WakeUpCardTableListHeaderView()
+//    var wakeUpCardTableListHeaderView = WakeUpCardTableListHeaderView()
     
     var userDataModel: UserDataModel?
     var chatRoomNameModelArray = [ChatRoomNameModel]()
@@ -333,25 +333,25 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
 
 extension WakeUpCardTableListVC: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = WakeUpCardTableListHeaderView()
-        
-        if isJoinedTeam {
-            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの招待」"
-            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チーム退会」"
-        } else {
-            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの作成」"
-            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チームへの参加」"
-        }
-        
-        return headerView
-        
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let headerView = WakeUpCardTableListHeaderView()
+//
+//        if isJoinedTeam {
+//            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの招待」"
+//            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チーム退会」"
+//        } else {
+//            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの作成」"
+//            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チームへの参加」"
+//        }
+//
+//        return headerView
+//
+//    }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 200
+//    }
     
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //
