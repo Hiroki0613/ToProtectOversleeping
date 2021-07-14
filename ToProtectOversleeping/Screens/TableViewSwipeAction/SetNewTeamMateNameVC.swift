@@ -29,7 +29,7 @@ class SetNewTeamMateNameVC: UIViewController {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     func configureAddTarget() {
@@ -79,6 +79,7 @@ class SetNewTeamMateNameVC: UIViewController {
             // 新しいチャットルームを開く
             sendDBModel.createChatRoom(roomName: self.newTeamMateString, defaultWakeUpTimeDate: Date(), defaultWakeUpTimeText: "\(formatter.string(from: Date()))", chatRoomId: generatedHomeRoomRandomString, appVersion: version)
         }
+        navigationController?.popViewController(animated: true)
     }
 
 

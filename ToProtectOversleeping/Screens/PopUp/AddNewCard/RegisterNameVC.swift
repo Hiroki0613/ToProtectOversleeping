@@ -81,6 +81,7 @@ class RegisterNameVC: UIViewController {
 
             print("UserDefaults_ユーザネーム",UserDefaults.standard.object(forKey: "userName") as! String )
             registerNameView.newNameTextField.resignFirstResponder()
+            navigationController?.popViewController(animated: true)
         }
     }
     

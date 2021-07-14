@@ -195,6 +195,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     func configureMessageInputBar() {
         let newMessageInputBar = InputBarAccessoryView()
         newMessageInputBar.delegate = self
+        newMessageInputBar.isHidden = true
         messageInputBar = newMessageInputBar
         messageInputBar.separatorLine.isHidden = true
         messageInputBar.inputTextView.layer.borderWidth = 0.0

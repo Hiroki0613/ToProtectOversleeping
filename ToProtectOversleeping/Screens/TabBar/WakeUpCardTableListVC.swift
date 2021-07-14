@@ -349,8 +349,60 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
 //
 //    }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        // チームに参加している時のみ、チーム名を表示
+        isJoinedTeam = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
+        
+        if isJoinedTeam == true {
+            //ヘッダーにするビューを生成
+            let headerView = UIView()
+            //                headerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100)
+            headerView.backgroundColor = .clear
+            //ヘッダーに追加するラベルを生成
+            let headerLabel = WUBodyLabel(fontSize: 25)
+            headerLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            
+            headerLabel.numberOfLines = 0
+            headerLabel.text = "チーム\n\(UserDefaults.standard.object(forKey: "teamChatName") as! String)"
+            headerLabel.textColor = .systemBackground
+            headerLabel.textAlignment = .center
+            headerView.addSubview(headerLabel)
+            
+            NSLayoutConstraint.activate([
+                headerLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+                headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+            ])
+            
+            return headerView
+        } else {
+            return UIView()
+        }
+    }
+    
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 200
+//    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        // チームに参加している時のみ、チーム名を表示
+        isJoinedTeam = userDataModel?.homeRoomId != userDataModel?.teamChatRoomId
+        
+        if isJoinedTeam == true {
+            return 60
+        } else {
+            return 0
+        }
+    }
+    
+    
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//
+//
 //    }
     
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

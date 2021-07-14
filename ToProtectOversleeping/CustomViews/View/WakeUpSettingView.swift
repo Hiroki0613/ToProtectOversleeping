@@ -17,7 +17,7 @@ class WakeUpSettingView: UIView {
     var setUserNameLabel = WUBodyLabel(fontSize: 18)
     var setUserNameButton = WUButton(backgroundColor: PrimaryColor.primary, title: "設定")
     // 自宅のGPS情報取得
-    var getGPSAddressLabel = WUBodyLabel(fontSize: 18)
+    var getGPSAddressLabel = WUBodyLabel(fontSize: 14)
     var getGPSAddressButton = WUButton(backgroundColor: PrimaryColor.primary, title: "取得")
     
     // アプリ情報
