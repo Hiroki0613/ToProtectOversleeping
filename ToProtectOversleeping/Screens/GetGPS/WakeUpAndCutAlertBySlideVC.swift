@@ -15,12 +15,15 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
     let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
-
+    
     // roomID
     var chatRoomDocumentId = ""
     var userName = ""
     var wakeUpTimeText = ""
     var authId = ""
+    var tapWeekDayOrWeekEndCell = ""
+    
+    var twoHoursInSecond: Int = 7200
     
     // Keychainでの設定値に問題があったらデフォルト値を採用
     var myAddressLatitude: Double = PrimaryPlace.primaryAddressLatitude
@@ -39,14 +42,14 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     let rainyDaySwitch = UISwitch()
     
     //　スワイプボタン
-//    var swipeButton: SwipeButton!
+    //    var swipeButton: SwipeButton!
     var myHomeLocation = CLLocationCoordinate2D()
     var goBuckCheckTimeButton = WUButton(backgroundColor:PrimaryColor.primary, title:"閉じる")
     
     
     
     // CoreMl
-//    let machineBlurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+    //    let machineBlurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
     var machineBlurView = UIView()
     var goBuckMachineLeaningCameraModeButton = WUButton(backgroundColor:PrimaryColor.primary, title:"閉じる")
     // 測定結果を表示するラベル
@@ -65,7 +68,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         configureMachineLearningCamera()
         configureUI()
         configureMachineUI()
-//        swipeButton.getGeocoderDelegate = self
+        //        swipeButton.getGeocoderDelegate = self
         machineSwipeButton.getGeocoderDelegate = self
         getMyAddressFromKeyChain()
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
@@ -77,7 +80,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("宏輝_時間調査: ", mySettingAlarmTime)
-        checkSettingAlarmWithinTwoHours(settingTime: mySettingAlarmTime)
+        checkSettingAlarmWithinTwoHoursAndWeekDAy(settingTime: mySettingAlarmTime)
         self.view.layoutIfNeeded()
         // ここでUserDefaultsで記録した住所を入れる。
         moveTo(center: myHomeLocation, animated: false)
@@ -98,69 +101,129 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     
     // ここで2時間以内だった時の設定を入れる
-    func checkSettingAlarmWithinTwoHours(settingTime: Date) {
+    func checkSettingAlarmWithinTwoHoursAndWeekDAy(settingTime: Date) {
         var differenceFromCurrenTime = 0
         differenceFromCurrenTime = alarm.calculateTimeInterval(userAwakeTime: settingTime)
+        print("宏輝_weekDayOrWeekEndTapCell: ", tapWeekDayOrWeekEndCell)
+        print("宏輝_weekDayOrWeekEnd: ", isTodayIsWeekDay())
         
         print("宏輝_時間調査_差分: ", differenceFromCurrenTime)
-
-        if differenceFromCurrenTime > 7200 {
-            captureSession.stopRunning()
-            // ２時間以上前の時
-            swipedActionLabel.text = "現在はアラームを解除できません。\n\n設定した2時間以内になりましたら、\n解除ボタンが表示されます。"
-//            swipeButton.isHidden = true
-            rainyDayLabel.isHidden = true
-            rainyDaySwitch.isHidden = true
-            goBuckCheckTimeButton.isHidden = false
-            goBuckCheckTimeButton.isEnabled = true
-            
-            // coreMLは閉じる
-            machineBlurView.removeBlurFromView()
-            machineBlurView.isHidden = true
-            goBuckMachineLeaningCameraModeButton.isHidden = true
-            goBuckMachineLeaningCameraModeButton.isEnabled = false
-            machineSwipedActionLabel.isHidden = true
-            machineRainyDayLabel.isHidden = true
-            machineRainyDaySwitch.isHidden = true
-            machineRainyDaySwitch.isEnabled = false
+        
+        // 2時間以内
+        if differenceFromCurrenTime < twoHoursInSecond {
+            // 現在が平日か、休日か
+            let isTodayIsWeekDayString = isTodayIsWeekDay()
+            // 現在が平日かつ"平日ボタン"タップ or 現在が休日かつ"休日ボタン"タップ
+            // の場合は、アラームを解除
+            if isTodayIsWeekDayString == tapWeekDayOrWeekEndCell {
+                setAlaramWithin2Hours()
+                // 平日、休日が逆の場合は、アラームは解除出来ない
+            } else {
+                setAlarmWithOut2Hours()
+            }
+        } else {
+            // 2時間よりも前だと、そもそもアラームを解除できない
+            setAlarmWithOut2Hours()
+        }
+    }
+    
+    
+    // 2時間以上前
+    private func setAlarmWithOut2Hours() {
+        captureSession.stopRunning()
+        // ２時間以上前の時
+        swipedActionLabel.text = "現在はアラームを解除できません。\n\n設定した2時間以内になりましたら、\n解除ボタンが表示されます。"
+        //            swipeButton.isHidden = true
+        rainyDayLabel.isHidden = true
+        rainyDaySwitch.isHidden = true
+        goBuckCheckTimeButton.isHidden = false
+        goBuckCheckTimeButton.isEnabled = true
+        
+        // coreMLは閉じる
+        machineBlurView.removeBlurFromView()
+        machineBlurView.isHidden = true
+        goBuckMachineLeaningCameraModeButton.isHidden = true
+        goBuckMachineLeaningCameraModeButton.isEnabled = false
+        machineSwipedActionLabel.isHidden = true
+        machineRainyDayLabel.isHidden = true
+        machineRainyDaySwitch.isHidden = true
+        machineRainyDaySwitch.isEnabled = false
+        machineSwipeButton.isHidden = true
+        machineSwipeButton.isEnabled = false
+    }
+    
+    private func setAlaramWithin2Hours() {
+        // Map画面はhidden
+        mapView.isHidden = true
+        swipedActionLabel.isHidden = true
+        swipedActionLabel.text = "2時間以内です\nカメラを起動します"
+        rainyDayLabel.isHidden = true
+        rainyDaySwitch.isHidden = true
+        rainyDaySwitch.isEnabled = false
+        //            swipeButton.isHidden = true
+        //            swipeButton.isEnabled = false
+        goBuckCheckTimeButton.isHidden = true
+        goBuckCheckTimeButton.isEnabled = false
+        
+        // CoreMl画面を出す
+        captureSession.startRunning()
+        machineBlurView.addBlurToView(alpha: 0.9)
+        machineBlurView.isHidden = false
+        goBuckMachineLeaningCameraModeButton.isHidden = false
+        goBuckMachineLeaningCameraModeButton.isEnabled = true
+        machineSwipedActionLabel.isHidden = false
+        machineRainyDayLabel.isHidden = false
+        machineRainyDaySwitch.isHidden = false
+        machineRainyDaySwitch.isEnabled = true
+        
+        if machineRainyDaySwitch.isOn {
+            machineSwipeButton.isHidden = false
+            machineSwipeButton.isEnabled = true
+        } else {
             machineSwipeButton.isHidden = true
             machineSwipeButton.isEnabled = false
-            
-            
-        } else {
-            // ２時間以内の時
-//            configureMachineLearningCamera()
-            
-            // Map画面はhidden
-            mapView.isHidden = true
-            swipedActionLabel.isHidden = true
-            swipedActionLabel.text = "2時間以内です\nカメラを起動します"
-            rainyDayLabel.isHidden = true
-            rainyDaySwitch.isHidden = true
-            rainyDaySwitch.isEnabled = false
-//            swipeButton.isHidden = true
-//            swipeButton.isEnabled = false
-            goBuckCheckTimeButton.isHidden = true
-            goBuckCheckTimeButton.isEnabled = false
-
-            // CoreMl画面を出す
-            captureSession.startRunning()
-            machineBlurView.addBlurToView(alpha: 0.9)
-            machineBlurView.isHidden = false
-            goBuckMachineLeaningCameraModeButton.isHidden = false
-            goBuckMachineLeaningCameraModeButton.isEnabled = true
-            machineSwipedActionLabel.isHidden = false
-            machineRainyDayLabel.isHidden = false
-            machineRainyDaySwitch.isHidden = false
-            machineRainyDaySwitch.isEnabled = true
-            
-            if machineRainyDaySwitch.isOn {
-                machineSwipeButton.isHidden = false
-                machineSwipeButton.isEnabled = true
-            } else {
-                machineSwipeButton.isHidden = true
-                machineSwipeButton.isEnabled = false
-            }
+        }
+    }
+    
+    // 現時刻が平日か、休日かを判定するString
+    func isTodayIsWeekDay() -> String {
+        
+        enum WeekDay: Int {
+            case sunday = 1
+            case monday = 2
+            case tuesday = 3
+            case wednesday = 4
+            case thursday = 5
+            case friday = 6
+            case saturday = 7
+        }
+        
+        let comp = Calendar.Component.weekday
+        //1が日曜日7が土曜日で帰ってくる
+        let weekday = WeekDay(rawValue: NSCalendar.current.component(comp, from: NSDate() as Date))!
+        
+        switch weekday {
+        case .sunday:
+            print("日曜日")
+            return "休日"
+        case .monday:
+            print("月曜日")
+            return "平日"
+        case .tuesday:
+            print("火曜日")
+            return "平日"
+        case .wednesday:
+            print("水曜日")
+            return "平日"
+        case .thursday:
+            print("木曜日")
+            return "平日"
+        case .friday:
+            print("金曜日")
+            return "平日"
+        case .saturday:
+            print("土曜日")
+            return "休日"
         }
     }
     
@@ -204,39 +267,39 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         if machineRainyDaySwitch.isOn {
             
             print("宏輝_起きた_chatRoomDocumentID: ",chatRoomDocumentId)
-//            clearAlarm()
+            //            clearAlarm()
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
             return "OK!、雨の日モードで解除！"
         }
         
         //TODO: ここを任意で距離を決められても面白いかもしれない。
-//        switch rawDistance {
-//        case 0..<(10):
-//            return "あと、90m離れてください"
-//        case (10)..<(20):
-//            return "あと、80m離れてください"
-//        case (20)..<(30):
-//            return "あと、70m離れてください"
-//        case (30)..<(40):
-//            return "あと、60m離れてください"
-//        case (40)..<(50):
-//            return "あと、50m離れてください"
-//        case (50)..<(60):
-//            return "あと、40m離れてください"
-//        case (60)..<(70):
-//            return "あと、30m離れてください"
-//        case (80)..<(90):
-//            return "惜しい！、20m離れてください"
-//        case (90)..<(100):
-//            return "惜しい！、10m離れてください"
-//        default:
-//            print("離れました離れたぜ")
-////            clearAlarm()
-//            let messageModel = MessageModel()
-//            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
-//            return "OK!、100m以上離れました！"
-//        }
+        //        switch rawDistance {
+        //        case 0..<(10):
+        //            return "あと、90m離れてください"
+        //        case (10)..<(20):
+        //            return "あと、80m離れてください"
+        //        case (20)..<(30):
+        //            return "あと、70m離れてください"
+        //        case (30)..<(40):
+        //            return "あと、60m離れてください"
+        //        case (40)..<(50):
+        //            return "あと、50m離れてください"
+        //        case (50)..<(60):
+        //            return "あと、40m離れてください"
+        //        case (60)..<(70):
+        //            return "あと、30m離れてください"
+        //        case (80)..<(90):
+        //            return "惜しい！、20m離れてください"
+        //        case (90)..<(100):
+        //            return "惜しい！、10m離れてください"
+        //        default:
+        //            print("離れました離れたぜ")
+        ////            clearAlarm()
+        //            let messageModel = MessageModel()
+        //            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
+        //            return "OK!、100m以上離れました！"
+        //        }
         
         
         // 家から20m離れたらアラームカット出来るようにする。
@@ -251,7 +314,9 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             return "OK!\n20m以上離れました！\nアラームカットの通知を\n送信しました"
         }
     }
-
+    
+    
+    
     // アラームを消す(予約している投稿を削除する)
     // ここでAuth、roomIDを入れる。
     func clearAlarm(){
@@ -295,13 +360,13 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         rainyDayLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(rainyDayLabel)
         rainyDaySwitch.isOn = false
-//        rainyDaySwitch.addTarget(self, action: #selector(tapRainyDaySwitch), for: .touchUpInside)
+        //        rainyDaySwitch.addTarget(self, action: #selector(tapRainyDaySwitch), for: .touchUpInside)
         rainyDaySwitch.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(rainyDaySwitch)
-
+        
         let padding:CGFloat = 20.0
-//        setupSwipeButton()
-//        swipeButton.isHidden = true
+        //        setupSwipeButton()
+        //        swipeButton.isHidden = true
         
         goBuckCheckTimeButton.translatesAutoresizingMaskIntoConstraints = false
         goBuckCheckTimeButton.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)
@@ -334,15 +399,15 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     }
     
     // TODO: ここでswipeButtonでの判定が行われる。 100m以上離れた時と、離れていない時で分岐する。
-//    func setupSwipeButton() {
-//        if swipeButton == nil {
-//            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 100, width: view.frame.size.width - 80, height: 50))
-//            swipeButton.isRightToLeft = false
-//            swipeButton.text = "→右へスワイプ→"
-//            swipeButton.swipedText = "GPS取得中"
-//            view.addSubview(swipeButton)
-//        }
-//    }
+    //    func setupSwipeButton() {
+    //        if swipeButton == nil {
+    //            self.swipeButton = SwipeButton(frame: CGRect(x: 40, y: view.frame.height - 100, width: view.frame.size.width - 80, height: 50))
+    //            swipeButton.isRightToLeft = false
+    //            swipeButton.text = "→右へスワイプ→"
+    //            swipeButton.swipedText = "GPS取得中"
+    //            view.addSubview(swipeButton)
+    //        }
+    //    }
     
     @objc func tapBackButton() {
         dismiss(animated: true, completion: nil)
@@ -432,7 +497,7 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
         captureSession.addInput(input)
-//        captureSession.startRunning()
+        //        captureSession.startRunning()
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         view.layer.addSublayer(previewLayer)
@@ -485,9 +550,9 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
         
         
         // 初期設定
-//        machineSwipeButton.isHidden = true
-//        machineSwipeButton.isEnabled = false
-
+        //        machineSwipeButton.isHidden = true
+        //        machineSwipeButton.isEnabled = false
+        
         
         NSLayoutConstraint.activate([
             machineRainyDayLabel.topAnchor.constraint(equalTo: machineBlurView.topAnchor, constant: padding),
@@ -538,9 +603,9 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
             
             print("宏輝_coreML: 種類： , 精度： ", firstObservation.identifier, firstObservation.confidence)
             
-//            DispatchQueue.main.async {
-//                self.identifierLabel.text = "\(firstObservation.identifier) \(firstObservation.confidence * 100)"
-//            }
+            //            DispatchQueue.main.async {
+            //                self.identifierLabel.text = "\(firstObservation.identifier) \(firstObservation.confidence * 100)"
+            //            }
             if firstObservation.identifier == "vending machine" {
                 if firstObservation.confidence > 0.8 {
                     self.captureSession.stopRunning()
@@ -549,7 +614,7 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
                     
                     DispatchQueue.main.async {
                         self.machineSwipedActionLabel.text = self.rank(location: geoCoderLocation)
-//                        self.dismiss(animated: true, completion: nil)
+                        //                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }

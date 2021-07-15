@@ -24,6 +24,8 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
     var isJoinedTeam: Bool = false
     
+    let weekDayOrWeekEndArray = ["平日","休日"]
+    
     // 新しいカードを追加
 //    var addWakeUpCardButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "macwindow.badge.plus")
     
@@ -449,7 +451,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
             }
         } else {
             
-            let weekDayOrWeekEndArray = ["平日","休日"]
+           
             
             // 平日、休日、曜日
             if chatRoomNameModelArray.isEmpty {
@@ -531,6 +533,7 @@ extension WakeUpCardTableListVC {
         wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = self.userDataModel!.teamChatRoomId
         wakeUpAndCutAlertBySlideVC.userName =  self.userDataModel!.name
         wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText
+        wakeUpAndCutAlertBySlideVC.tapWeekDayOrWeekEndCell = self.weekDayOrWeekEndArray[sender.tag - 1]
         wakeUpAndCutAlertBySlideVC.modalPresentationStyle = .fullScreen
 //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
         present(wakeUpAndCutAlertBySlideVC, animated: true, completion: nil)
@@ -663,5 +666,15 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
         //        tableView.reloadData()
         print("バックグラウンド処理")
         completionHandler()
+    }
+}
+
+extension WakeUpCardTableListVC {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= tableView.sectionHeaderHeight && scrollView.contentOffset.y >= 0 {
+            scrollView.contentInset = UIEdgeInsets(top: -scrollView.contentOffset.y, left: 0, bottom: 0, right: 0)
+        } else if scrollView.contentOffset.y >= tableView.sectionHeaderHeight {
+            scrollView.contentInset = UIEdgeInsets(top: -tableView.sectionHeaderHeight, left: 0, bottom: 0, right: 0)
+        }
     }
 }
