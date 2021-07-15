@@ -668,13 +668,3 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-
-extension WakeUpCardTableListVC {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y <= tableView.sectionHeaderHeight && scrollView.contentOffset.y >= 0 {
-            scrollView.contentInset = UIEdgeInsets(top: -scrollView.contentOffset.y, left: 0, bottom: 0, right: 0)
-        } else if scrollView.contentOffset.y >= tableView.sectionHeaderHeight {
-            scrollView.contentInset = UIEdgeInsets(top: -tableView.sectionHeaderHeight, left: 0, bottom: 0, right: 0)
-        }
-    }
-}
