@@ -22,6 +22,9 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
     // 空白の中心に置かれるLabel
     var goalSettingMainLabel = WUBodyLabel(fontSize: 24)
     
+    // 左へスワイプ可能を表示するLabel
+    var swipeOkLeftLabel = UILabel()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
@@ -38,6 +41,8 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
 //        tableCellView.addBlurToView(alpha: 0.9)
         goalSettingSubLabel.translatesAutoresizingMaskIntoConstraints = false
         goalSettingMainLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        swipeOkLeftLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let padding: CGFloat = 20.0
         
@@ -58,6 +63,13 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
         goalSettingMainLabel.lineBreakMode = .byCharWrapping
         goalSettingSubLabel.sizeToFit()
         
+        let leftSwipeText = NSMutableAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.left")!))
+        swipeOkLeftLabel.attributedText = leftSwipeText
+//        swipeOkLeftLabel.numberOfLines = 2
+        swipeOkLeftLabel.numberOfLines = 1
+        swipeOkLeftLabel.sizeToFit()
+        tableCellView.addSubview(swipeOkLeftLabel)
+        
         NSLayoutConstraint.activate([
             // 透明セル
             transParentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
@@ -70,6 +82,10 @@ class GoalSettingWakeUpCardTableListCell: UITableViewCell {
             tableCellView.leadingAnchor.constraint(equalTo: transParentView.leadingAnchor, constant: padding),
             tableCellView.trailingAnchor.constraint(equalTo: transParentView.trailingAnchor, constant: -padding),
             tableCellView.bottomAnchor.constraint(equalTo: transParentView.bottomAnchor, constant: -padding),
+            
+            // 左スワイプ
+            swipeOkLeftLabel.topAnchor.constraint(equalTo: tableCellView.centerYAnchor),
+            swipeOkLeftLabel.leadingAnchor.constraint(equalTo: tableCellView.leadingAnchor),
             
             // 達成したい目標！を表示するLabel
             goalSettingSubLabel.topAnchor.constraint(equalTo: tableCellView.topAnchor, constant: 10),

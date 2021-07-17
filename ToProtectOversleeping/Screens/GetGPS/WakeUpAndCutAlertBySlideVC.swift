@@ -167,7 +167,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         
         // CoreMl画面を出す
         captureSession.startRunning()
-        machineBlurView.addBlurToView(alpha: 0.9)
+        machineBlurView.addBlurToView(alpha: 0.4)
         machineBlurView.isHidden = false
         goBuckMachineLeaningCameraModeButton.isHidden = false
         goBuckMachineLeaningCameraModeButton.isEnabled = true
@@ -514,7 +514,7 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
         machineBlurView.layer.cornerRadius = 40
         machineBlurView.clipsToBounds = true
         machineBlurView.translatesAutoresizingMaskIntoConstraints = false
-        machineBlurView.addBlurToView(alpha: 0.9)
+        machineBlurView.addBlurToView(alpha: 0.4)
         view.addSubview(machineBlurView)
         
         let blurViewPadding: CGFloat = 10

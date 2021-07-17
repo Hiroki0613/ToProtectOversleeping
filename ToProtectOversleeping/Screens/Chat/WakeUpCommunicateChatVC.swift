@@ -226,7 +226,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
                     
                     guard let messageAppVersion = data["messageAppVersion"] as? String else { return }
                     
-                    if messageAppVersion == "1.0.0" {
+                    if messageAppVersion == "1.0.1" {
                         if let text = data["text"] as? String,
                            let senderID = data["senderId"] as? String,
                            let displayName = data["displayName"] as? String,
