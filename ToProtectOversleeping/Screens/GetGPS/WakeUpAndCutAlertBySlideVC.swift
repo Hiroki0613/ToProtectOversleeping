@@ -270,6 +270,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             //            clearAlarm()
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
+            // ここでLottieで、OK!を通知したい。
             return "OK!、雨の日モードで解除！"
         }
         
@@ -311,6 +312,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         default:
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
+            // ここでLottieで、OK!を通知したい。
             return "OK!\n20m以上離れました！\nアラームカットの通知を\n送信しました"
         }
     }
