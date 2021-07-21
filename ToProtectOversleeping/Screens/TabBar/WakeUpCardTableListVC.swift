@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import KeychainSwift
 
 class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
@@ -48,6 +49,17 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         super.viewDidLoad()
         // UserDefaultの値で最初の画面を分岐させる
         if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
+            //    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
+                let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
+            // 開発時のログアウト(最初から)は、アプリを消して。ここのコメントを使ってkeychainを切る。
+                    do {
+                        try Auth.auth().signOut()
+                    } catch let signOutError as NSError {
+                        print("SignOutError: %@", signOutError)
+                    }
+            
+                    keychain.clear()
+            
             let newRegistrationUserNameVC = NewRegistrationUserNameVC()
             navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
         } else {
