@@ -35,7 +35,7 @@ class WalkThroughByPageByScrollViewVC: UIViewController {
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
         //アニメーション
@@ -43,7 +43,7 @@ class WalkThroughByPageByScrollViewVC: UIViewController {
         for i in 0...4 {
             let animationView = AnimationView()
             let animation = Animation.named(animationArray[i])
-            animationView.frame = CGRect(x: CGFloat(i) * view.frame.size.width, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+            animationView.frame = CGRect(x: CGFloat(i) * view.frame.size.width, y: 0, width: view.frame.size.width, height: view.frame.size.height - 80)
             
             animationView.animation = animation
             animationView.contentMode = .scaleAspectFit
@@ -58,7 +58,7 @@ class WalkThroughByPageByScrollViewVC: UIViewController {
         
         //スクロールビューを貼り付ける
         
-        scrollView.contentSize = CGSize(width: view.frame.size.width * 5, height: view.frame.size.height - 80)
+        scrollView.contentSize = CGSize(width: view.frame.size.width * 5, height: view.frame.size.height)
         
         
         for i in 0...4 {

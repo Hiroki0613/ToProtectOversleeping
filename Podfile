@@ -18,5 +18,6 @@ pod 'LicensePlist'
 pod 'KeychainSwift'
 pod 'FloatingPanel'
 pod 'lottie-ios'
+pod 'EAIntroView'
 
 end
