@@ -345,6 +345,7 @@ PODS:
   - KeychainSwift (19.0.0)
   - leveldb-library (1.22)
   - LicensePlist (3.11.0)
+  - lottie-ios (3.2.3)
   - MessageKit (3.5.0):
     - InputBarAccessoryView (~> 5.2.1)
   - nanopb (2.30907.0):
@@ -364,6 +365,7 @@ DEPENDENCIES:
   - FloatingPanel
   - KeychainSwift
   - LicensePlist
+  - lottie-ios
   - MessageKit
 
 SPEC REPOS:
@@ -390,6 +392,7 @@ SPEC REPOS:
     - KeychainSwift
     - leveldb-library
     - LicensePlist
+    - lottie-ios
     - MessageKit
     - nanopb
     - PromisesObjC
@@ -417,10 +420,11 @@ SPEC CHECKSUMS:
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   LicensePlist: 16b82fb3425b255749127ca42c1a941c9fed4241
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   MessageKit: fb539583599cd914e8e2d41fe7bdceb4bf686565
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: a4d518c2cbca84095d303420bba421bc5a05024f
+PODFILE CHECKSUM: 7ad06f59db13ed4e0ed4476a0479f1177b1dc97f
 
 COCOAPODS: 1.10.1

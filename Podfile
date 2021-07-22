@@ -17,5 +17,6 @@ pod 'Firebase/Crashlytics'
 pod 'LicensePlist'
 pod 'KeychainSwift'
 pod 'FloatingPanel'
+pod 'lottie-ios'
 
 end

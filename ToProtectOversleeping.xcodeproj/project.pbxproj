@@ -31,6 +31,9 @@
 		7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
+		7F81B8DE26A9456300E00686 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81B8DD26A9456300E00686 /* LottieView.swift */; };
+		7F81B8E126A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81B8E026A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift */; };
+		7F81B92526A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81B92426A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift */; };
 		7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* ChangeNameView.swift */; };
 		7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E32659105700AA747E /* RegisterNameVC.swift */; };
 		7F8211EB26591F3000AA747E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F8211EA26591F3000AA747E /* Settings.bundle */; };
@@ -54,6 +57,11 @@
 		7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */; };
 		7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */; };
 		7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */; };
+		7FD5F13026A93EDF00E841B9 /* 43027-vaporwave-vending-machine.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FD5F12F26A93EDF00E841B9 /* 43027-vaporwave-vending-machine.json */; };
+		7FD5F13226A93F2F00E841B9 /* 32490-alarm-clock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FD5F13126A93F2F00E841B9 /* 32490-alarm-clock.json */; };
+		7FD5F13426A93F6800E841B9 /* 23414-chat-bubbles-inside-phone.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FD5F13326A93F6800E841B9 /* 23414-chat-bubbles-inside-phone.json */; };
+		7FD5F13626A93FEF00E841B9 /* 16401-forest-morning.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FD5F13526A93FEF00E841B9 /* 16401-forest-morning.json */; };
+		7FD5F13826A9402E00E841B9 /* 17554-winners-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FD5F13726A9402E00E841B9 /* 17554-winners-animation.json */; };
 		7FDC68A82674F3E700C3267B /* RegisterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC68A72674F3E700C3267B /* RegisterNameView.swift */; };
 		7FE160842698C18C00B8EF26 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE160832698C18C00B8EF26 /* Constants.swift */; };
 		7FE16087269B1B3B00B8EF26 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE16086269B1B3B00B8EF26 /* UIView+Ext.swift */; };
@@ -103,6 +111,9 @@
 		7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDBModel.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		7F81B8DD26A9456300E00686 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		7F81B8E026A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughByPageViewControllerVC.swift; sourceTree = "<group>"; };
+		7F81B92426A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughByPageByScrollViewVC.swift; sourceTree = "<group>"; };
 		7F8211E126590FF600AA747E /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		7F8211E32659105700AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
 		7F8211EA26591F3000AA747E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ToProtectOversleeping/Settings.bundle; sourceTree = "<group>"; };
@@ -126,6 +137,11 @@
 		7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeMakerVC.swift; sourceTree = "<group>"; };
 		7FD2F4A526502F4D006C684E /* WakeUpQrCodeReaderFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderFunction.swift; sourceTree = "<group>"; };
 		7FD2F4A726502FF2006C684E /* WakeUpQrCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeReaderVC.swift; sourceTree = "<group>"; };
+		7FD5F12F26A93EDF00E841B9 /* 43027-vaporwave-vending-machine.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "43027-vaporwave-vending-machine.json"; sourceTree = "<group>"; };
+		7FD5F13126A93F2F00E841B9 /* 32490-alarm-clock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "32490-alarm-clock.json"; sourceTree = "<group>"; };
+		7FD5F13326A93F6800E841B9 /* 23414-chat-bubbles-inside-phone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23414-chat-bubbles-inside-phone.json"; sourceTree = "<group>"; };
+		7FD5F13526A93FEF00E841B9 /* 16401-forest-morning.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "16401-forest-morning.json"; sourceTree = "<group>"; };
+		7FD5F13726A9402E00E841B9 /* 17554-winners-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "17554-winners-animation.json"; sourceTree = "<group>"; };
 		7FDC68A72674F3E700C3267B /* RegisterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameView.swift; sourceTree = "<group>"; };
 		7FE160832698C18C00B8EF26 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7FE16086269B1B3B00B8EF26 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -192,6 +208,11 @@
 		7F376B1326401A910063F2EC /* ToProtectOversleeping */ = {
 			isa = PBXGroup;
 			children = (
+				7FD5F13726A9402E00E841B9 /* 17554-winners-animation.json */,
+				7FD5F13526A93FEF00E841B9 /* 16401-forest-morning.json */,
+				7FD5F13326A93F6800E841B9 /* 23414-chat-bubbles-inside-phone.json */,
+				7FD5F13126A93F2F00E841B9 /* 32490-alarm-clock.json */,
+				7FD5F12F26A93EDF00E841B9 /* 43027-vaporwave-vending-machine.json */,
 				7F344149268654C900BC4B36 /* ToProtectOversleeping.entitlements */,
 				7FE160822698C14C00B8EF26 /* Utilities */,
 				7F7E4AC426498F7C00A10929 /* Model */,
@@ -267,6 +288,15 @@
 				7F81A5CB2642DF95009C839B /* Alarm.swift */,
 			);
 			path = Alarm;
+			sourceTree = "<group>";
+		};
+		7F81B8DF26A9466B00E00686 /* WalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+				7F81B8E026A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift */,
+				7F81B92426A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift */,
+			);
+			path = WalkThrough;
 			sourceTree = "<group>";
 		};
 		7F872DBB2641A4CA0055FEAC /* TextFields */ = {
@@ -349,6 +379,7 @@
 		7FABB9B026403E79001182DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				7F81B8DF26A9466B00E00686 /* WalkThrough */,
 				7FE160852699DAF600B8EF26 /* TableViewSwipeAction */,
 				7F7E9B192673AB8C0081C7F8 /* EditAlarm */,
 				7F5B633C26623BA50057C12B /* NewRegistration */,
@@ -460,6 +491,7 @@
 		7FE523D12646C33600B7D1B0 /* NotUse */ = {
 			isa = PBXGroup;
 			children = (
+				7F81B8DD26A9456300E00686 /* LottieView.swift */,
 				7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */,
 				7FE523D22646C34B00B7D1B0 /* NotUseWakeUpCardView.swift */,
 			);
@@ -571,10 +603,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FD5F13226A93F2F00E841B9 /* 32490-alarm-clock.json in Resources */,
 				7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */,
+				7FD5F13826A9402E00E841B9 /* 17554-winners-animation.json in Resources */,
 				7FA2E17926555E7C00529B7F /* GoogleService-Info.plist in Resources */,
+				7FD5F13426A93F6800E841B9 /* 23414-chat-bubbles-inside-phone.json in Resources */,
 				7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */,
+				7FD5F13626A93FEF00E841B9 /* 16401-forest-morning.json in Resources */,
 				7F376B1C26401A910063F2EC /* Main.storyboard in Resources */,
+				7FD5F13026A93EDF00E841B9 /* 43027-vaporwave-vending-machine.json in Resources */,
 				7F8211EB26591F3000AA747E /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,6 +706,7 @@
 				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
 				7FE16094269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
+				7F81B8E126A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift in Sources */,
 				7FE16092269DDDBF00B8EF26 /* EditTheGoalSettingView.swift in Sources */,
 				7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
@@ -685,11 +723,13 @@
 				7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */,
 				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
 				7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */,
+				7F81B92526A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift in Sources */,
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
 				7FE523DB2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift in Sources */,
 				7FE1608D269C9BD700B8EF26 /* RegistrationGoalSettingView.swift in Sources */,
 				7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */,
+				7F81B8DE26A9456300E00686 /* LottieView.swift in Sources */,
 				7F96B4E52691FC3D007B97D7 /* MobileNetV2.mlmodel in Sources */,
 				7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */,
 				7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */,

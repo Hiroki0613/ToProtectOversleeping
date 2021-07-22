@@ -12,7 +12,7 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = PrimaryColor.primary
-        viewControllers = [createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+        viewControllers = [createWalkThroughByPageByScrollViewVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
     
     
@@ -58,6 +58,12 @@ class WUTabBarController: UITabBarController {
         let setNewRegistrationUserGoalSettingVC = NewRegistrationUserGoalSettingVC()
         setNewRegistrationUserGoalSettingVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "cloud", title: "Goal", tag: 0)
         return UINavigationController(rootViewController: setNewRegistrationUserGoalSettingVC)
+    }
+    
+    func createWalkThroughByPageByScrollViewVC() -> UINavigationController {
+        let setWalkThroughByPageByScrollViewVC = WalkThroughByPageByScrollViewVC()
+        setWalkThroughByPageByScrollViewVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "sun", title: "歩く", tag: 0)
+        return UINavigationController(rootViewController: setWalkThroughByPageByScrollViewVC)
     }
     
     //    QRCodeReaderVC
