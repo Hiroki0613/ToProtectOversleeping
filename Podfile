@@ -19,5 +19,6 @@ pod 'KeychainSwift'
 pod 'FloatingPanel'
 pod 'lottie-ios'
 pod 'EAIntroView'
+pod 'Instructions'
 
 end
