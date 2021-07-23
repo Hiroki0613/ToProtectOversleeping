@@ -9,6 +9,7 @@ import UIKit
 import MessageKit
 import Firebase
 import InputBarAccessoryView
+import Instructions
 
 
 class WakeUpCommunicateChatVC: MessagesViewController {
@@ -40,6 +41,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         return formatter
     }()
     
+    //コーチビューコントローラー(イントロダクション)を作成
+    let coachMarksController = CoachMarksController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +74,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+//        UserDefaults.standard.set(true, forKey: UserDefaultsString.isFirstAccessToChat)
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
         loadMessage(toID: chatRoomDocumentId!)
@@ -86,6 +93,31 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         checkIsFirstTimeInTheDayOpenedThisView()
         showResultPage()
         
+        //イントロダクションのdataSourceを実装
+        self.coachMarksController.dataSource = self
+        self.coachMarksController.delegate = self
+        self.coachMarksController.overlay.blurEffectStyle = .regular
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkTheInstructionModeIsNeed()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UserDefaults.standard.set(false, forKey: UserDefaultsString.isFirstAccessToChat)
+        self.coachMarksController.stop(immediately: true)
+    }
+    
+    // instruction
+    func checkTheInstructionModeIsNeed() {
+        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToChat) == true {
+            // 最初にアプリをダウンロードした時に出てくるインストラクション
+            self.coachMarksController.start(in: .currentWindow(of: self))
+        } else {
+            print("宏輝_instructionが全て終了しました")
+        }
     }
     
     // 集計画面へ画面遷移
@@ -414,3 +446,46 @@ extension WakeUpCommunicateChatVC: MessageCellDelegate {
     }
     
 }
+
+extension WakeUpCommunicateChatVC: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 1
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        switch index {
+        case 0:
+            var coachMark = coachMarksController.helper.makeCoachMark(for: messagesCollectionView)
+            coachMark.isDisplayedOverCutoutPath = true
+            return coachMark
+        default:
+            return coachMarksController.helper.makeCoachMark()
+        }
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
+        //吹き出しのビューを作成します
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(
+            withArrow: true,    //三角の矢印をつけるか
+            arrowOrientation: coachMark.arrowOrientation    //矢印の向き(吹き出しの位置)
+        )
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToChat) == true {
+            switch index {
+            case 0:
+                coachViews.bodyView.hintLabel.text = "チャット画面です。\nトーク機能はありません。\n\n起床宣言\n起床したことの通知\nアラーム時間の変更\n\nが表示されます。"
+                coachViews.bodyView.nextLabel.text = "OK!"
+            default:
+                break
+            }
+        } else {
+            switch index {
+            default:
+                break
+            }
+        }
+        //その他の設定が終わったら吹き出しを返します
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+    }
+}
+
