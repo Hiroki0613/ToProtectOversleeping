@@ -12,7 +12,7 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = PrimaryColor.primary
-        viewControllers = [createWalkThroughByPageByScrollViewVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+        viewControllers = [createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
     
     

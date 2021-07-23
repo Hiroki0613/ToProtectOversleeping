@@ -101,6 +101,10 @@ body:
 The MIT License (MI…
 version: 5.2.3
 
+name: Instructions, nameSpecified: 
+body: The MIT License (MIT…
+version: 2.1.0
+
 name: KeychainSwift, nameSpecified: 
 body: The MIT License
 

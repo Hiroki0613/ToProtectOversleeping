@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import KeychainSwift
+import Instructions
 
 class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
@@ -15,7 +16,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     var isLoggedInAtFirebase:Bool = false
     
     let tableView = UITableView()
-//    var wakeUpCardTableListHeaderView = WakeUpCardTableListHeaderView()
+    //    var wakeUpCardTableListHeaderView = WakeUpCardTableListHeaderView()
     
     var userDataModel: UserDataModel?
     var chatRoomNameModelArray = [ChatRoomNameModel]()
@@ -27,13 +28,18 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
     let weekDayOrWeekEndArray = ["平日","休日"]
     
+    //コーチビューコントローラー(イントロダクション)を作成
+    let coachMarksController = CoachMarksController()
+    var leftHalfInvisibleOverlay = UIView()
+    var rightHalfInvisibleOverlay = UIView()
+    
     // 新しいカードを追加
-//    var addWakeUpCardButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "macwindow.badge.plus")
+    //    var addWakeUpCardButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "macwindow.badge.plus")
     
     
     
     // 暫定で機械学習
-//    var addWakeMachineLearningButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "gear")
+    //    var addWakeMachineLearningButton = WUButton(backgroundColor: PrimaryColor.primary, sfSymbolString: "gear")
     
     
     
@@ -50,20 +56,20 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         // UserDefaultの値で最初の画面を分岐させる
         if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
             //    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
-                let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
+            let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
             // 開発時のログアウト(最初から)は、アプリを消して。ここのコメントを使ってkeychainを切る。
-                    do {
-                        try Auth.auth().signOut()
-                    } catch let signOutError as NSError {
-                        print("SignOutError: %@", signOutError)
-                    }
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+                print("SignOutError: %@", signOutError)
+            }
             
-                    keychain.clear()
+            keychain.clear()
             
             let walkThroughByEAIntroViewVC = WalkThroughByEAIntroViewVC()
             navigationController?.pushViewController(walkThroughByEAIntroViewVC, animated: true)
-//            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
-//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+            //            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
+            //            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
         } else {
             print("すでに新規登録しています")
         }
@@ -90,6 +96,9 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+        //        UserDefaults.standard.set(true, forKey: "isFirstDownloadInstructions")
+        
         let newRegistrationGpsVC = NewRegistrationGpsVC()
         newRegistrationGpsVC.authLoginDelegate = self
         
@@ -98,13 +107,14 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(true, animated: true)
         //        title = ""
-//        navigationController?.navigationBar.barTintColor = PrimaryColor.primary
+        //        navigationController?.navigationBar.barTintColor = PrimaryColor.primary
         //        navigationController?.navigationBar.titleTextAttributes = [
         //            // 文字の色
         //                .foregroundColor: UIColor.systemBackground
         //            ]
         configureTableView()
         configureAddCardButton()
+        configureInvisibleOverlay()
         
         if isLoggedInAtFirebase == UserDefaults.standard.bool(forKey: "isFirstOpenApp") {
             let loadDBModel = LoadDBModel()
@@ -116,6 +126,11 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
             loadDBModel.loadProfileData()
             
             getPermissionLocalPushNotification()
+            
+            //イントロダクションのdataSourceを実装
+            self.coachMarksController.dataSource = self
+            self.coachMarksController.delegate = self
+            self.coachMarksController.overlay.blurEffectStyle = .regular
             
             
             //Todo: FirestoreのTimeStamp型を入れること
@@ -140,6 +155,26 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkTheInstructionModeIsNeed()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UserDefaults.standard.set(false, forKey: "isFirstDownloadInstructions")
+        self.coachMarksController.stop(immediately: true)
+    }
+    
+    func checkTheInstructionModeIsNeed() {
+        
+        if UserDefaults.standard.bool(forKey: "isFirstDownloadInstructions") {
+            // 最初にアプリをダウンロードした時に出てくるインストラクション
+            self.coachMarksController.start(in: .currentWindow(of: self))
+        } else {
+            print("宏輝_instructionが全て終了しました")
+        }
+    }
     
     func getPermissionLocalPushNotification() {
         // アプリの通知を許可
@@ -167,54 +202,80 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     }
     
     func configureAddCardButton() {
-//        addWakeUpCardButton.translatesAutoresizingMaskIntoConstraints = false
-//        addWakeUpCardButton.layer.cornerRadius = 32
-//        addWakeUpCardButton.layer.borderColor = UIColor.systemBackground.cgColor
-//        addWakeUpCardButton.layer.borderWidth = 3.0
-//        addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
-//        view.addSubview(addWakeUpCardButton)
+        //        addWakeUpCardButton.translatesAutoresizingMaskIntoConstraints = false
+        //        addWakeUpCardButton.layer.cornerRadius = 32
+        //        addWakeUpCardButton.layer.borderColor = UIColor.systemBackground.cgColor
+        //        addWakeUpCardButton.layer.borderWidth = 3.0
+        //        addWakeUpCardButton.addTarget(self, action: #selector(goToWakeUpDetailCardVC), for: .touchUpInside)
+        //        view.addSubview(addWakeUpCardButton)
         
-//        addWakeMachineLearningButton.translatesAutoresizingMaskIntoConstraints = false
-//        addWakeMachineLearningButton.layer.cornerRadius = 32
-//        addWakeMachineLearningButton.layer.borderColor = UIColor.systemBackground.cgColor
-//        addWakeMachineLearningButton.layer.borderWidth = 3.0
-//        addWakeMachineLearningButton.addTarget(self, action: #selector(goToMachineLearning), for: .touchUpInside)
-//        view.addSubview(addWakeMachineLearningButton)
+        //        addWakeMachineLearningButton.translatesAutoresizingMaskIntoConstraints = false
+        //        addWakeMachineLearningButton.layer.cornerRadius = 32
+        //        addWakeMachineLearningButton.layer.borderColor = UIColor.systemBackground.cgColor
+        //        addWakeMachineLearningButton.layer.borderWidth = 3.0
+        //        addWakeMachineLearningButton.addTarget(self, action: #selector(goToMachineLearning), for: .touchUpInside)
+        //        view.addSubview(addWakeMachineLearningButton)
         
         NSLayoutConstraint.activate([
-//            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 64),
-//            addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 64),
-//            addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-//            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+            //            addWakeUpCardButton.widthAnchor.constraint(equalToConstant: 64),
+            //            addWakeUpCardButton.heightAnchor.constraint(equalToConstant: 64),
+            //            addWakeUpCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            //            addWakeUpCardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             
-//            addWakeMachineLearningButton.widthAnchor.constraint(equalToConstant: 64),
-//            addWakeMachineLearningButton.heightAnchor.constraint(equalToConstant: 64),
-//            addWakeMachineLearningButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-//            addWakeMachineLearningButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            //            addWakeMachineLearningButton.widthAnchor.constraint(equalToConstant: 64),
+            //            addWakeMachineLearningButton.heightAnchor.constraint(equalToConstant: 64),
+            //            addWakeMachineLearningButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            //            addWakeMachineLearningButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
             
             
             
         ])
-//        addWakeUpCardButton.tintColor = .systemBackground
+        //        addWakeUpCardButton.tintColor = .systemBackground
         
         
-//        addWakeMachineLearningButton.tintColor = .systemBackground
+        //        addWakeMachineLearningButton.tintColor = .systemBackground
     }
     
-//    @objc func goToWakeUpDetailCardVC() {
-//        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
-//        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
-//        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
-//        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
-//        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
-//    }
-//
-//    @objc func goToMachineLearning() {
-//                let checkVendingMachineVC = CheckVendingMachineVC()
-//                checkVendingMachineVC.modalPresentationStyle = .overFullScreen
-//                checkVendingMachineVC.modalTransitionStyle = .crossDissolve
-//                self.present(checkVendingMachineVC, animated: true, completion: nil)
-//    }
+    //    @objc func goToWakeUpDetailCardVC() {
+    //        let setAlarmTimeAndNewRegistrationVC = SetAlarmTimeAndNewRegistrationVC()
+    //        setAlarmTimeAndNewRegistrationVC.userName = self.userDataModel!.name
+    //        setAlarmTimeAndNewRegistrationVC.modalPresentationStyle = .overFullScreen
+    //        setAlarmTimeAndNewRegistrationVC.modalTransitionStyle = .crossDissolve
+    //        self.present(setAlarmTimeAndNewRegistrationVC, animated: true, completion: nil)
+    //    }
+    //
+    //    @objc func goToMachineLearning() {
+    //                let checkVendingMachineVC = CheckVendingMachineVC()
+    //                checkVendingMachineVC.modalPresentationStyle = .overFullScreen
+    //                checkVendingMachineVC.modalTransitionStyle = .crossDissolve
+    //                self.present(checkVendingMachineVC, animated: true, completion: nil)
+    //    }
+    
+    func configureInvisibleOverlay() {
+        leftHalfInvisibleOverlay.translatesAutoresizingMaskIntoConstraints = false
+        rightHalfInvisibleOverlay.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(leftHalfInvisibleOverlay)
+        view.addSubview(rightHalfInvisibleOverlay)
+        
+        leftHalfInvisibleOverlay.isHidden = true
+        rightHalfInvisibleOverlay.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            leftHalfInvisibleOverlay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            leftHalfInvisibleOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            leftHalfInvisibleOverlay.widthAnchor.constraint(equalToConstant: 50),
+            //            leftHalfInvisibleOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 50),
+            leftHalfInvisibleOverlay.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            rightHalfInvisibleOverlay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            rightHalfInvisibleOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rightHalfInvisibleOverlay.widthAnchor.constraint(equalToConstant: 50),
+            //            rightHalfInvisibleOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            rightHalfInvisibleOverlay.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }
 
 
@@ -269,7 +330,7 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
                 print("QRがタップされた")
                 
                 let wakeUpQrCodeVC = WakeUpQrCodeMakerVC()
-//                wakeUpQrCodeVC.invitedDocumentId = self.chatRoomDocumentIdArray[indexPath.row - 1]
+                //                wakeUpQrCodeVC.invitedDocumentId = self.chatRoomDocumentIdArray[indexPath.row - 1]
                 wakeUpQrCodeVC.invitedDocumentId = self.userDataModel!.teamChatRoomId
                 self.navigationController?.pushViewController(wakeUpQrCodeVC, animated: true)
                 // 実行結果に関わらず記述
@@ -333,7 +394,7 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
             
             
             makeNewTeamAction.backgroundColor = .systemGreen
-
+            
             
             if isJoinedTeam == true {
                 // 定義したアクションをセット
@@ -349,21 +410,21 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
 
 extension WakeUpCardTableListVC: UITableViewDataSource {
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//        let headerView = WakeUpCardTableListHeaderView()
-//
-//        if isJoinedTeam {
-//            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの招待」"
-//            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チーム退会」"
-//        } else {
-//            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの作成」"
-//            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チームへの参加」"
-//        }
-//
-//        return headerView
-//
-//    }
+    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //
+    //        let headerView = WakeUpCardTableListHeaderView()
+    //
+    //        if isJoinedTeam {
+    //            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの招待」"
+    //            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チーム退会」"
+    //        } else {
+    //            wakeUpCardTableListHeaderView.leftSwipeLabel.text = "左スワイプで「目標の変更」、「アラームの編集」、「チームの作成」"
+    //            wakeUpCardTableListHeaderView.rightSwipeLabel.text = "右スワイプで「チームへの参加」"
+    //        }
+    //
+    //        return headerView
+    //
+    //    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -397,9 +458,9 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 200
-//    }
+    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    //        return 200
+    //    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
@@ -415,22 +476,22 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
     
     
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//
-//
-//    }
+    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //
+    //
+    //
+    //    }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//        if isJoinedTeam {
-//            return "左スワイプで\nアラームの編集、チームの招待\n右スワイプでチーム退会\nが出来ます"
-//        } else {
-//            return
-//                "左スワイプで\nアラームの編集、チームの作成\n右スワイプでチームへの参加\nが出来ます"
-//        }
-//
-//    }
+    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //
+    //        if isJoinedTeam {
+    //            return "左スワイプで\nアラームの編集、チームの招待\n右スワイプでチーム退会\nが出来ます"
+    //        } else {
+    //            return
+    //                "左スワイプで\nアラームの編集、チームの作成\n右スワイプでチームへの参加\nが出来ます"
+    //        }
+    //
+    //    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -465,7 +526,7 @@ extension WakeUpCardTableListVC: UITableViewDataSource {
             }
         } else {
             
-           
+            
             
             // 平日、休日、曜日
             if chatRoomNameModelArray.isEmpty {
@@ -519,7 +580,7 @@ extension WakeUpCardTableListVC {
             // ここでonにすると、目覚ましセット
             alarmSet(identifierString: chatRoomDocumentIdForSwitch)
             // アラームをセットしたことを投稿
-//            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name, wakeUpTimeText: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText)
+            //            messageModel.sendMessageToChatDeclarationWakeUpEarly(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name, wakeUpTimeText: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText)
             messageModel.sendMessageToChatDeclarationWakeUpEarly(
                 documentID: userDataModel!.teamChatRoomId,
                 displayName: self.userDataModel!.name,
@@ -529,10 +590,10 @@ extension WakeUpCardTableListVC {
             print("スイッチの状態はオフです。値: \(onCheck),sender\(sender.tag - 1)")
             // ここでoffにすると、目覚まし解除
             clearAlarm(identifiers: chatRoomDocumentIdForSwitch)
-//            messageModel.sendMessageToChatAlarmCut(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
+            //            messageModel.sendMessageToChatAlarmCut(documentID: chatRoomDocumentIdForSwitch, displayName: self.userDataModel!.name)
             
             messageModel.sendMessageToChatAlarmCut(documentID: userDataModel!.teamChatRoomId, displayName: self.userDataModel!.name, dayOfTheWeek: chatRoomNameModelArray[sender.tag - 1].dayOfTheWeek)
-
+            
         }
     }
     
@@ -543,13 +604,13 @@ extension WakeUpCardTableListVC {
         guard let remakeAlarmTime = remakeAlarmTime(wakeUpTime: Date(timeIntervalSince1970: self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeDate)) else { return }
         wakeUpAndCutAlertBySlideVC.mySettingAlarmTime = remakeAlarmTime
         wakeUpAndCutAlertBySlideVC.authId = Auth.auth().currentUser!.uid
-//        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag - 1]
+        //        wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = chatRoomDocumentIdArray[sender.tag - 1]
         wakeUpAndCutAlertBySlideVC.chatRoomDocumentId = self.userDataModel!.teamChatRoomId
         wakeUpAndCutAlertBySlideVC.userName =  self.userDataModel!.name
         wakeUpAndCutAlertBySlideVC.wakeUpTimeText = self.chatRoomNameModelArray[sender.tag - 1].wakeUpTimeText
         wakeUpAndCutAlertBySlideVC.tapWeekDayOrWeekEndCell = self.weekDayOrWeekEndArray[sender.tag - 1]
         wakeUpAndCutAlertBySlideVC.modalPresentationStyle = .fullScreen
-//        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
+        //        navigationController?.pushViewController(wakeUpAndCutAlertBySlideVC, animated: true)
         present(wakeUpAndCutAlertBySlideVC, animated: true, completion: nil)
     }
     
@@ -576,9 +637,9 @@ extension WakeUpCardTableListVC {
         wakeUpCommunicateChatVC.teamRoomName = UserDefaults.standard.object(forKey: "teamChatName") as! String
         wakeUpCommunicateChatVC.chatRoomNameModel = self.chatRoomNameModelArray[sender.tag - 1]
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
-//        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag - 1]
+        //        wakeUpCommunicateChatVC.chatRoomDocumentId = self.chatRoomDocumentIdArray[sender.tag - 1]
         wakeUpCommunicateChatVC.chatRoomDocumentId = self.userDataModel!.teamChatRoomId
-//        wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag - 1
+        //        wakeUpCommunicateChatVC.chatTableViewIndexPath = sender.tag - 1
         navigationController?.pushViewController(wakeUpCommunicateChatVC, animated: true)
     }
 }
@@ -682,3 +743,89 @@ extension WakeUpCardTableListVC: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
+
+extension WakeUpCardTableListVC: CoachMarksControllerDelegate,CoachMarksControllerDataSource {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 3
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        //        var goalSettingWakeUpCardTableListCell = GoalSettingWakeUpCardTableListCell()
+        //        var wakeUpCardTableListCell = WakeUpCardTableListCell()
+        //
+        //        let highlightViews: Array<UIView> = [goalSettingWakeUpCardTableListCell.swipeOkLeftLabel, wakeUpCardTableListCell.swipeOkLeftLabel, wakeUpCardTableListCell.swipeOkRightLabel]
+        //
+        //        return coachMarksController.helper.makeCoachMark(for: highlightViews[index])
+        
+        switch index {
+        //        case 0:
+        //            let pathMaker = { (frame: CGRect) -> UIBezierPath in
+        //                return UIBezierPath(rect: frame)
+        //            }
+        //            var coachMark = coachMarksController.helper.makeCoachMark(for: tableView,
+        //                                                                      cutoutPathMaker: pathMaker)
+        //            coachMark.isDisplayedOverCutoutPath = true
+        //            return coachMark
+        //
+        case 0:
+            var coachMark = coachMarksController.helper.makeCoachMark(for: leftHalfInvisibleOverlay)
+            coachMark.isDisplayedOverCutoutPath = true
+            return coachMark
+        case 1:
+            var coachMark = coachMarksController.helper.makeCoachMark(for: rightHalfInvisibleOverlay)
+            coachMark.isDisplayedOverCutoutPath = true
+            return coachMark
+        case 2:
+            var coachMark = coachMarksController.helper.makeCoachMark(for: tableView)
+            coachMark.isDisplayedOverCutoutPath = true
+            return coachMark
+            
+        default:
+            return coachMarksController.helper.makeCoachMark()
+        }
+        
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
+        //吹き出しのビューを作成します
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(
+            withArrow: true,    //三角の矢印をつけるか
+            arrowOrientation: coachMark.arrowOrientation    //矢印の向き(吹き出しの位置)
+        )
+        
+        if UserDefaults.standard.bool(forKey: "isFirstDownloadInstructions") == true {
+            switch index {
+            case 0:    //hogeLabel
+                coachViews.bodyView.hintLabel.text = " 右へスワイプすることで\n「目標の編集」\n「アラーム時間の編集」\n\nチーム参加前は「チームの作成」\nチーム参加後は「チームへの招待」\nが出来ます"
+                coachViews.bodyView.nextLabel.text = "OK!"
+                
+            case 1:    //fugaButton
+                coachViews.bodyView.hintLabel.text = "左へスワイプすることで\nチーム参加前は「チームから招待」\nチーム参加後は「チームの退会」\nが出来ます"
+                coachViews.bodyView.nextLabel.text = "OK!"
+                
+                
+                print("宏輝_introduction_UserDefaults_最初bool後: ", UserDefaults.standard.bool(forKey: "isFirstDownloadInstructions"))
+            case 2:
+                coachViews.bodyView.hintLabel.text = "最後にアラームは\n\n🔘で切り替え\n⏰アイコンでアラーム画面へ移動\n💬アイコンでチャット画面へ移動\n\n出来ます。"
+                coachViews.bodyView.nextLabel.text = "OK!"
+            default:
+                break
+            }
+            
+        } else {
+            switch index {
+            default:
+                break
+            }
+        }
+        
+        
+        print("宏輝_introduction_UserDefaults_最初bool: ", UserDefaults.standard.bool(forKey: "isFirstDownloadInstructions"))
+        //その他の設定が終わったら吹き出しを返します
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+    }
+    
+    
+}
+
+//\nなお、チャット画面ではアラームの通知、設定変更の記録のみが表示されます

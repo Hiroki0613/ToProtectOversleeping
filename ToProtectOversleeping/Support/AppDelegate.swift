@@ -69,7 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "isFirstOpenApp": true,
             "wakeUpResultDate": 10.0,
             "teamChatName": "NoName777",
-            "theGoalSettingText": ""
+            "theGoalSettingText": "",
+            "isFirstDownloadInstructions": true
 //            "myAddressLatitude" : 35.637375,
 //            "myAddressLongitude" : 139.756308,
 //            "myAddress": "未登録",
