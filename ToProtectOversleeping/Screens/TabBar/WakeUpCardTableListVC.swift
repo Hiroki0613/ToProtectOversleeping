@@ -116,6 +116,11 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         configureAddCardButton()
         configureInvisibleOverlay()
         
+        //イントロダクションのdataSourceを実装
+        self.coachMarksController.dataSource = self
+        self.coachMarksController.delegate = self
+        self.coachMarksController.overlay.blurEffectStyle = .regular
+        
         if isLoggedInAtFirebase == UserDefaults.standard.bool(forKey: "isFirstOpenApp") {
             let loadDBModel = LoadDBModel()
             
@@ -127,10 +132,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
             
             getPermissionLocalPushNotification()
             
-            //イントロダクションのdataSourceを実装
-            self.coachMarksController.dataSource = self
-            self.coachMarksController.delegate = self
-            self.coachMarksController.overlay.blurEffectStyle = .regular
+      
             
             
             //Todo: FirestoreのTimeStamp型を入れること
@@ -166,8 +168,8 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         self.coachMarksController.stop(immediately: true)
     }
     
+    // instruction
     func checkTheInstructionModeIsNeed() {
-        
         if UserDefaults.standard.bool(forKey: "isFirstDownloadInstructions") {
             // 最初にアプリをダウンロードした時に出てくるインストラクション
             self.coachMarksController.start(in: .currentWindow(of: self))

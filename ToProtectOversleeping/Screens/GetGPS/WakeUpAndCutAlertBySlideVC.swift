@@ -10,6 +10,7 @@ import MapKit
 import KeychainSwift
 import AVKit
 import Vision
+import Instructions
 
 class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
@@ -61,6 +62,9 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     var machineSwipeButton: SwipeButton!
     let captureSession = AVCaptureSession()
     
+    //コーチビューコントローラー(イントロダクション)を作成
+    let coachMarksController = CoachMarksController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +83,9 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+//        UserDefaults.standard.set(true, forKey: UserDefaultsString.isFirstAccessToGPSVendingMachineScan)
+        
         print("宏輝_時間調査: ", mySettingAlarmTime)
         checkSettingAlarmWithinTwoHoursAndWeekDAy(settingTime: mySettingAlarmTime)
         self.view.layoutIfNeeded()
@@ -87,7 +94,34 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         drawCircle(center: myHomeLocation, meter: 10, times: 10)
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        //イントロダクションのdataSourceを実装
+        self.coachMarksController.dataSource = self
+        self.coachMarksController.delegate = self
+        self.coachMarksController.overlay.blurEffectStyle = .regular
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkTheInstructionModeIsNeed()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UserDefaults.standard.set(false, forKey: UserDefaultsString.isFirstAccessToGPSVendingMachineScan)
+        self.coachMarksController.stop(immediately: true)
+    }
+    
+    // instruction
+    func checkTheInstructionModeIsNeed() {
+        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToGPSVendingMachineScan) == true {
+            // 最初にアプリをダウンロードした時に出てくるインストラクション
+            self.coachMarksController.start(in: .currentWindow(of: self))
+        } else {
+            print("宏輝_instructionが全て終了しました")
+        }
+    }
+    
     
     func getMyAddressFromKeyChain() {
         let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "\(PrimaryPlace.primaryAddressLatitude)"
@@ -625,4 +659,47 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
     
+}
+
+
+extension WakeUpAndCutAlertBySlideVC: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 1
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        switch index {
+        case 0:
+            var coachMark = coachMarksController.helper.makeCoachMark(for: view)
+            coachMark.isDisplayedOverCutoutPath = true
+            return coachMark
+        default:
+            return coachMarksController.helper.makeCoachMark()
+        }
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
+        //吹き出しのビューを作成します
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(
+            withArrow: true,    //三角の矢印をつけるか
+            arrowOrientation: coachMark.arrowOrientation    //矢印の向き(吹き出しの位置)
+        )
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToGPSVendingMachineScan) == true {
+            switch index {
+            case 0:
+                coachViews.bodyView.hintLabel.text = "アラームカットの画面です。\n\n設定した時間内にアラームを切ると\nチームのチャットへ起きたことが\n通知されます。"
+                coachViews.bodyView.nextLabel.text = "OK!"
+            default:
+                break
+            }
+        } else {
+            switch index {
+            default:
+                break
+            }
+        }
+        //その他の設定が終わったら吹き出しを返します
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+    }
 }
