@@ -177,6 +177,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
                         teamChatName: self.newUserName,
                         theGoalSetting: self.theGoalSetting)
                     UserDefaults.standard.set(false, forKey: "isFirstOpenApp")
+                    UserDefaults.standard.set(true, forKey: UserDefaultsString.isFirstDownloadInstructions)
                     
                     //ここでデフォルトの部屋IDを用意する。
                     //"Home"のdocumentIDのために、ランダムStringを作成
