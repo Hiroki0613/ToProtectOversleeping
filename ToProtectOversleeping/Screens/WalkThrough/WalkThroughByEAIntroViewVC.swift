@@ -42,7 +42,7 @@ class WalkThroughByEAIntroViewVC: UIViewController {
         configureIntroPage(
             page: page2,
             titleString: "アラームは鳴りません",
-            descString: "\nGPS、チャット機能を活用した\n報告型アプリです。\n\nチームの👀がアラーム代りです",
+            descString: "\nGPS、チャット機能を活用した\n報告型アプリです。\n\nチームの👀がアラームです",
             titleIconImageNameString: WalkThrough.notAlarmIcon)
         // page3
         configureIntroPage(
