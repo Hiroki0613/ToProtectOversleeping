@@ -60,8 +60,10 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
             
                     keychain.clear()
             
-            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
-            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
+            let walkThroughByEAIntroViewVC = WalkThroughByEAIntroViewVC()
+            navigationController?.pushViewController(walkThroughByEAIntroViewVC, animated: true)
+//            let newRegistrationUserNameVC = NewRegistrationUserNameVC()
+//            navigationController?.pushViewController(newRegistrationUserNameVC, animated: true)
         } else {
             print("すでに新規登録しています")
         }

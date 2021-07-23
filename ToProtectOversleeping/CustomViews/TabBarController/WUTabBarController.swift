@@ -61,7 +61,7 @@ class WUTabBarController: UITabBarController {
     }
     
     func createWalkThroughByPageByScrollViewVC() -> UINavigationController {
-        let setWalkThroughByPageByScrollViewVC = WalkThroughByPageByScrollViewVC()
+        let setWalkThroughByPageByScrollViewVC = WalkThroughByEAIntroViewVC()
         setWalkThroughByPageByScrollViewVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "sun", title: "歩く", tag: 0)
         return UINavigationController(rootViewController: setWalkThroughByPageByScrollViewVC)
     }

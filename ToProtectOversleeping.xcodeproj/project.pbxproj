@@ -34,6 +34,7 @@
 		7F81B8DE26A9456300E00686 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81B8DD26A9456300E00686 /* LottieView.swift */; };
 		7F81B8E126A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81B8E026A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift */; };
 		7F81B92526A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81B92426A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift */; };
+		7F81B92726AA94B400E00686 /* WalkThroughByEAIntroViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81B92626AA94B400E00686 /* WalkThroughByEAIntroViewVC.swift */; };
 		7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* ChangeNameView.swift */; };
 		7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E32659105700AA747E /* RegisterNameVC.swift */; };
 		7F8211EB26591F3000AA747E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F8211EA26591F3000AA747E /* Settings.bundle */; };
@@ -114,6 +115,7 @@
 		7F81B8DD26A9456300E00686 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		7F81B8E026A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughByPageViewControllerVC.swift; sourceTree = "<group>"; };
 		7F81B92426A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughByPageByScrollViewVC.swift; sourceTree = "<group>"; };
+		7F81B92626AA94B400E00686 /* WalkThroughByEAIntroViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughByEAIntroViewVC.swift; sourceTree = "<group>"; };
 		7F8211E126590FF600AA747E /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		7F8211E32659105700AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
 		7F8211EA26591F3000AA747E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ToProtectOversleeping/Settings.bundle; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			children = (
 				7F81B8E026A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift */,
 				7F81B92426A9B78300E00686 /* WalkThroughByPageByScrollViewVC.swift */,
+				7F81B92626AA94B400E00686 /* WalkThroughByEAIntroViewVC.swift */,
 			);
 			path = WalkThrough;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				7FD2F4A826502FF2006C684E /* WakeUpQrCodeReaderVC.swift in Sources */,
 				7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */,
 				7FE523DB2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift in Sources */,
+				7F81B92726AA94B400E00686 /* WalkThroughByEAIntroViewVC.swift in Sources */,
 				7FE1608D269C9BD700B8EF26 /* RegistrationGoalSettingView.swift in Sources */,
 				7FABB9AA26402515001182DF /* WakeUpCardCollectionListCell.swift in Sources */,
 				7F81B8DE26A9456300E00686 /* LottieView.swift in Sources */,

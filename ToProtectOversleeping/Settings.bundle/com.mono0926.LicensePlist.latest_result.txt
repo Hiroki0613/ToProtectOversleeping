@@ -7,6 +7,16 @@ name: BoringSSL-GRPC, nameSpecified:
 body: BoringSSL is a fork …
 version: 0.0.7
 
+name: EAIntroView, nameSpecified: 
+body: MIT License
+
+Copyrig…
+version: 2.13.0
+
+name: EARestrictedScrollView, nameSpecified: 
+body: Copyright (c) 2015-2…
+version: 1.1.0
+
 name: Firebase, nameSpecified: 
 body: 
                    …

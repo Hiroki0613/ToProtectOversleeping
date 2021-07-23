@@ -22,3 +22,17 @@ enum Lottie {
     static let forestMorning = "16401-forest-morning"
     static let vaporwaveVendingMachine = "43027-vaporwave-vending-machine"
 }
+
+enum WalkThrough {
+    static let titleFont = "Helvetica-Bold"
+    static let descFont = "HiraMaruProN-W4"
+    
+    static let thanksIcon = "thanks"
+    static let notAlarmIcon = "notAlarm"
+    static let hotToUseIcon = "howToUse"
+    static let rainyDayIcon = "rainyDay"
+}
+
+enum QrcodeImage {
+    static let icon = "wakeup"
+}
