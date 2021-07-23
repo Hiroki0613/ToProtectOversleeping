@@ -36,3 +36,14 @@ enum WalkThrough {
 enum QrcodeImage {
     static let icon = "wakeup"
 }
+
+enum UserDefaultsString {
+    static let userName = "userName"
+    static let isFirstOpenApp = "isFirstOpenApp"
+    static let wakeUpResultDate = "wakeUpResultDate"
+    static let teamChatName = "teamChatName"
+    static let theGoalSettingText = "theGoalSettingText"
+    static let isFirstDownloadInstructions = "isFirstDownloadInstructions"
+    static let isFirstAccessToGPSVendingMachineScan = "isFirstAccessToGPSVendingMachineScan"
+    static let isFirstAccessToChat = "isFirstAccessToChat"
+}
