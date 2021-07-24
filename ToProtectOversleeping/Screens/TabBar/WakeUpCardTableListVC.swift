@@ -97,7 +97,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         super.viewWillAppear(animated)
         
         
-        //        UserDefaults.standard.set(true, forKey: "isFirstDownloadInstructions")
+//        UserDefaults.standard.set(true, forKey: "isFirstDownloadInstructions")
         
         let newRegistrationGpsVC = NewRegistrationGpsVC()
         newRegistrationGpsVC.authLoginDelegate = self
@@ -119,7 +119,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         //イントロダクションのdataSourceを実装
         self.coachMarksController.dataSource = self
         self.coachMarksController.delegate = self
-        self.coachMarksController.overlay.blurEffectStyle = .regular
+        self.coachMarksController.overlay.blurEffectStyle = .none
         
         if isLoggedInAtFirebase == UserDefaults.standard.bool(forKey: "isFirstOpenApp") {
             let loadDBModel = LoadDBModel()
@@ -132,7 +132,7 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
             
             getPermissionLocalPushNotification()
             
-      
+            
             
             
             //Todo: FirestoreのTimeStamp型を入れること
@@ -798,17 +798,18 @@ extension WakeUpCardTableListVC: CoachMarksControllerDelegate,CoachMarksControll
         if UserDefaults.standard.bool(forKey: "isFirstDownloadInstructions") == true {
             switch index {
             case 0:    //hogeLabel
-                coachViews.bodyView.hintLabel.text = " 右へスワイプすることで\n「目標の編集」\n「アラーム時間の編集」\n\nチーム参加前は「チームの作成」\nチーム参加後は「チームへの招待」\nが出来ます"
+                coachViews.bodyView.hintLabel.text =
+                    "最初に\n\n← 左端は右へスワイプすることで\n← 「目標の編集」\n← 「アラーム時間の編集」\n← \n← チーム参加前は「チームの作成」\n← チーム参加後は「チームへの招待」\n← が出来ます"
                 coachViews.bodyView.nextLabel.text = "OK!"
                 
             case 1:    //fugaButton
-                coachViews.bodyView.hintLabel.text = "左へスワイプすることで\nチーム参加前は「チームから招待」\nチーム参加後は「チームの退会」\nが出来ます"
-                coachViews.bodyView.nextLabel.text = "OK!"
+                coachViews.bodyView.hintLabel.text = "次に\n\n右端は左へスワイプすることで\nチーム参加前は「チームから招待」\nチーム参加後は「チームの退会」\nが出来ます"
+                coachViews.bodyView.nextLabel.text = "OK! →"
                 
                 
                 print("宏輝_introduction_UserDefaults_最初bool後: ", UserDefaults.standard.bool(forKey: "isFirstDownloadInstructions"))
             case 2:
-                coachViews.bodyView.hintLabel.text = "最後にアラームは\n\n🔘で切り替え\n⏰アイコンでアラーム画面へ移動\n💬アイコンでチャット画面へ移動\n\n出来ます。"
+                coachViews.bodyView.hintLabel.text = "最後に\n\nタイマーは\n\n右上の🔘で切り替え\n⏰アイコンでアラーム画面へ移動\n💬アイコンでチャット画面へ移動\n\n出来ます。"
                 coachViews.bodyView.nextLabel.text = "OK!"
             default:
                 break
