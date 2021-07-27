@@ -47,3 +47,5 @@ enum UserDefaultsString {
     static let isFirstAccessToGPSVendingMachineScan = "isFirstAccessToGPSVendingMachineScan"
     static let isFirstAccessToChat = "isFirstAccessToChat"
 }
+
+//TODO: ここにFirebaseに登録する、共通項目を追加しておく。
