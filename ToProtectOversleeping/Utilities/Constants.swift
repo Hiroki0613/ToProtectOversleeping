@@ -9,6 +9,7 @@ import UIKit
 
 enum PrimaryColor {
     static let primary = UIColor.systemOrange
+    static let background = UIColor.systemBackground
 }
 
 enum PrimaryPlace {
@@ -48,4 +49,8 @@ enum UserDefaultsString {
     static let isFirstAccessToChat = "isFirstAccessToChat"
 }
 
-//TODO: ここにFirebaseに登録する、共通項目を追加しておく。
+////TODO: ここにFirebaseに登録する、共通項目を追加しておく。
+//enum AppConfig {
+//    // 現時点で二箇所は手動で更新すること。
+//    static let appVersion = "1.0.3"
+//}
