@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import KeychainSwift
+import NendAd
 
 struct Keys {
     static let prefixKeychain = "WUKeychain_"
@@ -26,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        NADInterstitial.sharedInstance().loadAd(withSpotID: 777, apiKey: "777")
         
         
         // 開発時のログアウト(最初から)は、アプリを消して。ここのコメントを使ってkeychainを切る。

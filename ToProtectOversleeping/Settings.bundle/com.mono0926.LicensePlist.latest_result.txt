@@ -135,6 +135,10 @@ name: nanopb, nameSpecified:
 body: Copyright (c) 2011 P…
 version: 2.30907.0
 
+name: NendSDK_iOS, nameSpecified: 
+body: Copyright 2020 FAN C…
+version: 7.0.6
+
 name: PromisesObjC, nameSpecified: 
 body: 
                    …

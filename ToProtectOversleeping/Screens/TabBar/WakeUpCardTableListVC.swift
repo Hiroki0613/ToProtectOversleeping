@@ -9,13 +9,15 @@ import UIKit
 import Firebase
 import KeychainSwift
 import Instructions
+import NendAd
 
-class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
+class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate,NADViewDelegate {
     
     var newRegistrationGpsVC = NewRegistrationGpsVC()
     var isLoggedInAtFirebase:Bool = false
     
     let tableView = UITableView()
+    private var nadAdvertiseView = NADView()
     //    var wakeUpCardTableListHeaderView = WakeUpCardTableListHeaderView()
     
     var userDataModel: UserDataModel?
@@ -162,6 +164,12 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         checkTheInstructionModeIsNeed()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        nadAdvertiseView.pause()
+    }
+
+    
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         UserDefaults.standard.set(false, forKey: "isFirstDownloadInstructions")
@@ -193,7 +201,8 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
     
     func configureTableView() {
         view.addSubview(tableView)
-        tableView.frame = view.bounds
+//        tableView.frame = view.bounds
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = PrimaryColor.primary
         tableView.delegate = self
         tableView.dataSource = self
@@ -201,6 +210,29 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate {
         tableView.register(WakeUpCardTableListCell.self, forCellReuseIdentifier: WakeUpCardTableListCell.reuseID)
         tableView.register(BlankWakeUpCardTableListCell.self, forCellReuseIdentifier: BlankWakeUpCardTableListCell.reuseID)
         tableView.register(GoalSettingWakeUpCardTableListCell.self, forCellReuseIdentifier: GoalSettingWakeUpCardTableListCell.reuseID)
+        
+        nadAdvertiseView = NADView(frame: CGRect(x: 0, y: 100, width: 320, height: 50))
+               // 広告枠のspotIDとapiKeyを設定(必須)
+        nadAdvertiseView.setNendID(777, apiKey: "777")
+               // delegateを受けるオブジェクトを指定(必須)
+        nadAdvertiseView.delegate = self
+               // 読み込み開始(必須)
+        nadAdvertiseView.load()
+               // 通知有無にかかわらずViewに乗せる場合
+               self.view.addSubview(nadAdvertiseView)
+
+
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            nadAdvertiseView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            nadAdvertiseView.widthAnchor.constraint(equalToConstant: 320),
+            nadAdvertiseView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nadAdvertiseView.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
     func configureAddCardButton() {
@@ -832,3 +864,50 @@ extension WakeUpCardTableListVC: CoachMarksControllerDelegate,CoachMarksControll
 }
 
 //\nなお、チャット画面ではアラームの通知、設定変更の記録のみが表示されます
+
+extension WakeUpCardTableListVC {
+    func nadViewDidFinishLoad(_ adView: NADView!) {
+        print("delegate nadViewDidFinishLoad:")
+    }
+    
+    func nadViewDidClickAd(_ adView: NADView!) {
+        print("delegate nadViewDidClickAd")
+    }
+
+    
+    func nadViewDidClickInformation(_ adView: NADView!) {
+        print("delegate nadViewDidClickInformation")
+    }
+
+    
+    func nadViewDidReceiveAd(_ adView: NADView!) {
+        print("delegate nadViewDidReceiveAd")
+    }
+
+    
+    func nadViewDidFail(toReceiveAd adView: NADView!) {
+        // エラーごとに処理を分岐する場合
+        let error: NSError = adView.error as NSError
+
+        switch (error.code) {
+        case NADViewErrorCode.NADVIEW_AD_SIZE_TOO_LARGE.rawValue:
+            // 広告サイズがディスプレイサイズよりも大きい
+            break
+        case NADViewErrorCode.NADVIEW_INVALID_RESPONSE_TYPE.rawValue:
+            // 不明な広告ビュータイプ
+            break
+        case NADViewErrorCode.NADVIEW_FAILED_AD_REQUEST.rawValue:
+            // 広告取得失敗
+            break
+        case NADViewErrorCode.NADVIEW_FAILED_AD_DOWNLOAD.rawValue:
+            // 広告画像の取得失敗
+            break
+        case NADViewErrorCode.NADVIEW_AD_SIZE_DIFFERENCES.rawValue:
+            // リクエストしたサイズと取得したサイズが異なる
+            break
+        default:
+            break
+        }
+    }
+
+}
