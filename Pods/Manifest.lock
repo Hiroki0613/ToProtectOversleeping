@@ -357,6 +357,7 @@ PODS:
     - nanopb/encode (= 2.30907.0)
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
+  - NendSDK_iOS (7.0.6)
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
@@ -373,6 +374,7 @@ DEPENDENCIES:
   - LicensePlist
   - lottie-ios
   - MessageKit
+  - NendSDK_iOS
 
 SPEC REPOS:
   trunk:
@@ -404,6 +406,7 @@ SPEC REPOS:
     - lottie-ios
     - MessageKit
     - nanopb
+    - NendSDK_iOS
     - PromisesObjC
 
 SPEC CHECKSUMS:
@@ -435,8 +438,9 @@ SPEC CHECKSUMS:
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   MessageKit: fb539583599cd914e8e2d41fe7bdceb4bf686565
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  NendSDK_iOS: 43c45dad9195c8e814c2da6497fe3d66515fb982
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: d65ed157c305ecefc11f2f1405a8e5481cfd518d
+PODFILE CHECKSUM: 151bea5354aa1c1b4f5f7d110ba6faa6cc708399
 
 COCOAPODS: 1.10.1

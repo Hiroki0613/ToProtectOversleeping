@@ -20,5 +20,6 @@ pod 'FloatingPanel'
 pod 'lottie-ios'
 pod 'EAIntroView'
 pod 'Instructions'
+pod 'NendSDK_iOS'
 
 end

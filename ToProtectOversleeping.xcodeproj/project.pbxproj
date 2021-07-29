@@ -559,6 +559,7 @@
 				D1D1D53A703E4AC5FD850693 /* [CP] Embed Pods Frameworks */,
 				7F8211E526591C0E00AA747E /* LicensePlist */,
 				7F9A8B5F267DB7310025F690 /* Crashlytics */,
+				95EA4865E34CF47FE1B7D45E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -681,6 +682,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		95EA4865E34CF47FE1B7D45E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		D1D1D53A703E4AC5FD850693 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
