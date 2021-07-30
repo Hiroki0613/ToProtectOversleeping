@@ -8,3 +8,4 @@
 import Foundation
 
 // コメントテスト
+// コメントテスト２
