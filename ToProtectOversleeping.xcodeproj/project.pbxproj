@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E85E8BCC96DBE9942569E56 /* Pods_ToProtectOversleeping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8109D1B9057D670B011A662 /* Pods_ToProtectOversleeping.framework */; };
 		7F1452E42641A9C600BAB44F /* WUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1452E32641A9C600BAB44F /* WUButton.swift */; };
+		7F31247226B433DE000576FF /* keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F31247126B433DE000576FF /* keys.swift */; };
 		7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F376B1426401A910063F2EC /* AppDelegate.swift */; };
 		7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F376B1626401A910063F2EC /* SceneDelegate.swift */; };
 		7F376B1926401A910063F2EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F376B1826401A910063F2EC /* ViewController.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		08D971B04E682A5F70345371 /* Pods-ToProtectOversleeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToProtectOversleeping.debug.xcconfig"; path = "Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping.debug.xcconfig"; sourceTree = "<group>"; };
 		7F1452E32641A9C600BAB44F /* WUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUButton.swift; sourceTree = "<group>"; };
+		7F31247126B433DE000576FF /* keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keys.swift; sourceTree = "<group>"; };
 		7F344149268654C900BC4B36 /* ToProtectOversleeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToProtectOversleeping.entitlements; sourceTree = "<group>"; };
 		7F376B1126401A910063F2EC /* ToProtectOversleeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToProtectOversleeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F376B1426401A910063F2EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				7FABB9AE26403E5D001182DF /* CustomViews */,
 				7FABB9AD26403E36001182DF /* Support */,
 				7F376B2226401A920063F2EC /* Info.plist */,
+				7F31247126B433DE000576FF /* keys.swift */,
 			);
 			path = ToProtectOversleeping;
 			sourceTree = "<group>";
@@ -774,6 +777,7 @@
 				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,
 				7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */,
 				7F5A9E51267A47F000754C93 /* ResultWakeUpVC.swift in Sources */,
+				7F31247226B433DE000576FF /* keys.swift in Sources */,
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
 				7FE523DF2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift in Sources */,
 				7FE16090269DD21900B8EF26 /* EditTheGoalSettingVC.swift in Sources */,
