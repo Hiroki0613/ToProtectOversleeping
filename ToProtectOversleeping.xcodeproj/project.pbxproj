@@ -39,6 +39,7 @@
 		7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* ChangeNameView.swift */; };
 		7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E32659105700AA747E /* RegisterNameVC.swift */; };
 		7F8211EB26591F3000AA747E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F8211EA26591F3000AA747E /* Settings.bundle */; };
+		7F8273E326BD7A5A00584407 /* keyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8273E226BD7A5A00584407 /* keyApi.swift */; };
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
 		7F96B4E32691F818007B97D7 /* CheckVendingMachineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */; };
 		7F96B4E52691FC3D007B97D7 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E42691FC3D007B97D7 /* MobileNetV2.mlmodel */; };
@@ -121,6 +122,7 @@
 		7F8211E126590FF600AA747E /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		7F8211E32659105700AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
 		7F8211EA26591F3000AA747E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ToProtectOversleeping/Settings.bundle; sourceTree = "<group>"; };
+		7F8273E226BD7A5A00584407 /* keyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyApi.swift; sourceTree = "<group>"; };
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
 		7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVendingMachineVC.swift; sourceTree = "<group>"; };
 		7F96B4E42691FC3D007B97D7 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				7FABB9AE26403E5D001182DF /* CustomViews */,
 				7FABB9AD26403E36001182DF /* Support */,
 				7F376B2226401A920063F2EC /* Info.plist */,
+				7F8273E226BD7A5A00584407 /* keyApi.swift */,
 				7F31247126B433DE000576FF /* keys.swift */,
 			);
 			path = ToProtectOversleeping;
@@ -785,6 +788,7 @@
 				7FE523D92647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift in Sources */,
 				7FE1608B269C9B9700B8EF26 /* NewRegistrationUserGoalSettingVC.swift in Sources */,
 				7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */,
+				7F8273E326BD7A5A00584407 /* keyApi.swift in Sources */,
 				7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */,
 				7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */,
 				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,
