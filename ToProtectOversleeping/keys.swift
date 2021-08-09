@@ -12,3 +12,4 @@ import Foundation
 // コメント
 // コメント２
 // keyのテスト２
+// gitIgonore1
