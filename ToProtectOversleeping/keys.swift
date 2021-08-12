@@ -14,3 +14,4 @@ import Foundation
 // keyのテスト２
 // gitIgonore1
 // keys.swiftチェック　こちらは公開
+//公開
