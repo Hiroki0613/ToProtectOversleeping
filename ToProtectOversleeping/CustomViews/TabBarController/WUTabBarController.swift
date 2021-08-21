@@ -12,7 +12,13 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = PrimaryColor.primary
-        viewControllers = [createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+        viewControllers = [createWakeUpCardHomeVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+    }
+    
+    func createWakeUpCardHomeVC() -> UINavigationController {
+        let wakeUpCardHomeVC = WakeUpCardHomeVC()
+        wakeUpCardHomeVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "タイトル", tag: 1)
+        return UINavigationController(rootViewController: wakeUpCardHomeVC)
     }
     
     
