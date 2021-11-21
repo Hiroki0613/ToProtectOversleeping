@@ -8,6 +8,7 @@
 import UIKit
 import MessageKit
 import Firebase
+import FirebaseFirestore
 import InputBarAccessoryView
 import Instructions
 

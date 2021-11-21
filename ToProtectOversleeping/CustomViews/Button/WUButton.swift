@@ -26,10 +26,10 @@ class WUButton: UIButton {
         self.setTitle(title, for: .normal)
     }
     
-    convenience init(backgroundColor: UIColor, sfSymbolString: String) {
+    convenience init(backgroundColor: UIColor, sfSymbolString: String, fontSize: CGFloat = 30) {
         self.init(frame: .zero)
         self.backgroundColor = backgroundColor
-        let image = UIImage(systemName: sfSymbolString)?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 30,weight: .bold))
+        let image = UIImage(systemName: sfSymbolString)?.withConfiguration(UIImage.SymbolConfiguration(pointSize: fontSize,weight: .bold))
         self.setImage(image, for: .normal)
     }
     
@@ -37,7 +37,7 @@ class WUButton: UIButton {
     private func configure() {
         layer.cornerRadius = 10
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        setTitleColor(.systemBackground, for: .normal)
+        setTitleColor(.label, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
     

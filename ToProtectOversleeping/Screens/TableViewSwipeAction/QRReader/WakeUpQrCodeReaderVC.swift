@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import Firebase
+import FirebaseFirestore
 
 class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     

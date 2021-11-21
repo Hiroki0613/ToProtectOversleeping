@@ -46,6 +46,7 @@
 		7F96B4E52691FC3D007B97D7 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E42691FC3D007B97D7 /* MobileNetV2.mlmodel */; };
 		7F96B4E72693596D007B97D7 /* BlankWakeUpCardTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E62693596D007B97D7 /* BlankWakeUpCardTableListCell.swift */; };
 		7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */; };
+		7F9ADA7427492686005CEAAA /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ADA7327492686005CEAAA /* UIButton+Ext.swift */; };
 		7F9FB4572641A5DB00E21AE2 /* WUBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */; };
 		7FA2E17926555E7C00529B7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */; };
 		7FA9B64C2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */; };
@@ -125,6 +126,7 @@
 		7F96B4E42691FC3D007B97D7 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		7F96B4E62693596D007B97D7 /* BlankWakeUpCardTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankWakeUpCardTableListCell.swift; sourceTree = "<group>"; };
 		7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOutlineShapeView.swift; sourceTree = "<group>"; };
+		7F9ADA7327492686005CEAAA /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		7F9FB4562641A5DB00E21AE2 /* WUBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUBodyLabel.swift; sourceTree = "<group>"; };
 		7FA2E17826555E7C00529B7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmTimeAndNewRegistrationView.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */,
+				7F9ADA7327492686005CEAAA /* UIButton+Ext.swift */,
 				7FE16086269B1B3B00B8EF26 /* UIView+Ext.swift */,
 			);
 			path = Extention;
@@ -716,6 +719,7 @@
 				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
 				7FE16094269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
+				7F9ADA7427492686005CEAAA /* UIButton+Ext.swift in Sources */,
 				7F81B8E126A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift in Sources */,
 				7FE16092269DDDBF00B8EF26 /* EditTheGoalSettingView.swift in Sources */,
 				7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */,

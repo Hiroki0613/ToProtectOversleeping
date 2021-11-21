@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 protocol DoneCreateUser {
     func doneCreateUser()
@@ -38,7 +39,7 @@ class SendDBModel {
     ///   - isWakeUpBool: 起きた時に使われるBool
     func createUser(name: String,uid: String,appVersion: String, isBilling: Bool, homeRoomId: String, teamChatRoomId: String, teamChatName: String, theGoalSetting: String) {
         // ここでUserModelを作成。
-        //TODO: 不正防止にFirebaseが用意している、時刻を使うこと。
+        //TODO: (#6)不正防止にFirebaseが用意している、時刻を使うこと。
         self.db.collection("Users").document(Auth.auth().currentUser!.uid).setData(
             ["name": name as Any,
              "uid": uid as Any,

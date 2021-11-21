@@ -10,6 +10,7 @@ import Firebase
 import KeychainSwift
 import Instructions
 import NendAd
+import FirebaseFirestore
 
 class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate,NADViewDelegate {
     
