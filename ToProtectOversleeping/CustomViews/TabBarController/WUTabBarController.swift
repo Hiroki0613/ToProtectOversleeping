@@ -12,6 +12,17 @@ class WUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = PrimaryColor.primary
+        //iOS15からtabBarの背景が透明になったため実装
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.selectionIndicatorTintColor = PrimaryColor.primary
+            tabBar.standardAppearance = appearance
+            tabBar.scrollEdgeAppearance = appearance
+            tabBar.addBlurToView(alpha: 0.7)
+        } else {
+            // Fallback on earlier versions
+        }
+        
         viewControllers = [createWakeUpCardHomeVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
     
@@ -94,5 +105,4 @@ class WUTabBarController: UITabBarController {
         let settingsTabBarItem = UITabBarItem(title: title, image: icon, tag: tag)
         return settingsTabBarItem
     }
-    
 }

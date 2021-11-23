@@ -49,6 +49,12 @@ enum UserDefaultsString {
     static let isFirstAccessToChat = "isFirstAccessToChat"
 }
 
+enum SFSymbolString {
+    static let editPencil = "square.and.pencil"
+    static let person3Fill = "person.3.fill"
+    static let scanVendingMachineIcon = "camera.viewfinder"
+}
+
 ////TODO: ここにFirebaseに登録する、共通項目を追加しておく。
 //enum AppConfig {
 //    // 現時点で二箇所は手動で更新すること。

@@ -16,6 +16,7 @@
 		7F376B1C26401A910063F2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1A26401A910063F2EC /* Main.storyboard */; };
 		7F376B1E26401A920063F2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1D26401A920063F2EC /* Assets.xcassets */; };
 		7F376B2126401A920063F2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F376B1F26401A920063F2EC /* LaunchScreen.storyboard */; };
+		7F3B2650274D133B004C969D /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3B264F274D133B004C969D /* UIImage+Ext.swift */; };
 		7F58A350267CF2620038AA3F /* SettingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58A34F267CF2620038AA3F /* SettingDataModel.swift */; };
 		7F5A9E51267A47F000754C93 /* ResultWakeUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */; };
 		7F5A9E53267A55AC00754C93 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */; };
@@ -96,6 +97,7 @@
 		7F376B1D26401A920063F2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F376B2026401A920063F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F376B2226401A920063F2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F3B264F274D133B004C969D /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		7F58A34F267CF2620038AA3F /* SettingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDataModel.swift; sourceTree = "<group>"; };
 		7F5A9E50267A47F000754C93 /* ResultWakeUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWakeUpVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				7F5A9E52267A55AC00754C93 /* UIViewController+Ext.swift */,
 				7F9ADA7327492686005CEAAA /* UIButton+Ext.swift */,
 				7FE16086269B1B3B00B8EF26 /* UIView+Ext.swift */,
+				7F3B264F274D133B004C969D /* UIImage+Ext.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				7FD2F4A626502F4D006C684E /* WakeUpQrCodeReaderFunction.swift in Sources */,
 				7FDC68A82674F3E700C3267B /* RegisterNameView.swift in Sources */,
 				7F5B634426638E780057C12B /* UserDataModel.swift in Sources */,
+				7F3B2650274D133B004C969D /* UIImage+Ext.swift in Sources */,
 				7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */,
 				7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */,
 				7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */,

@@ -12,7 +12,7 @@ import UIKit
  */
 
 extension UIButton {
-    func addBlurToButton(alpha: CGFloat, style: UIBlurEffect.Style = .systemThinMaterial, cornerRadius: CGFloat = 0, padding: CGFloat = 0, view: UIView) {
+    func addBlurToButton(alpha: CGFloat, style: UIBlurEffect.Style = .systemUltraThinMaterialDark, cornerRadius: CGFloat = 0, padding: CGFloat = 0) {
         backgroundColor = .clear
 
 //        let blurEffect = UIBlurEffect(style: .regular)
