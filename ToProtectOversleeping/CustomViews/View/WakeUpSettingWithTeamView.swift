@@ -1,20 +1,20 @@
 //
-//  WakeUpSettingView.swift
+//  WakeUpSettingViewWithTeam.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2021/05/08.
+//  Created by 近藤宏輝 on 2022/01/07.
 //
 
 import UIKit
 import MapKit
 
-class WakeUpSettingView: UIView {
+class WakeUpSettingWithTeamView: UIView {
     var userDataModel: UserDataModel?
     //チームへの招待ボタン。チームに参加しているときのみ表示
     var setTeamInformationView = UIView(frame: .zero)
-//    var inviteButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チームへ招待する")
+    var inviteButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チームへ招待する")
     var goToChatButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チャット画面へ移動")
-//    var leaveTeamButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チームから退室する")
+    var leaveTeamButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チームから退室する")
 
     // ユーザー情報
     var setUserInformationView = UIView(frame: .zero)
@@ -41,17 +41,17 @@ class WakeUpSettingView: UIView {
     var evaluationButton = WUButton(backgroundColor: PrimaryColor.primary, title: "送る")
     
 //    var isJoinedTeam = false
-//    var setTeamInformationViewConstraintHight: CGFloat = 300
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-              
+        
 //        let loadDBModel = LoadDBModel()
 //        loadDBModel.getUserDataDelegate = self
 //        loadDBModel.loadProfileData()
+
         setAppInformation()
         configureUIView()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,40 +75,38 @@ class WakeUpSettingView: UIView {
     
     func configureTeamInformationView() {
         setTeamInformationView.translatesAutoresizingMaskIntoConstraints = false
-//        inviteButton.translatesAutoresizingMaskIntoConstraints = false
+        inviteButton.translatesAutoresizingMaskIntoConstraints = false
         goToChatButton.translatesAutoresizingMaskIntoConstraints = false
-//        leaveTeamButton.translatesAutoresizingMaskIntoConstraints = false
+        leaveTeamButton.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(setTeamInformationView)
         
-//        setTeamInformationView.addSubview(inviteButton)
+        setTeamInformationView.addSubview(inviteButton)
         setTeamInformationView.addSubview(goToChatButton)
-//        setTeamInformationView.addSubview(leaveTeamButton)
+        setTeamInformationView.addSubview(leaveTeamButton)
         
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
         let labelButtonHightPadding: CGFloat = 60
-        
-//        print("宏輝setTeamInformationViewConstraintHight:", setTeamInformationViewConstraintHight)
         
         NSLayoutConstraint.activate([
             setTeamInformationView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: padding),
             setTeamInformationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             setTeamInformationView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             //TODO: チームに入っている時だけ大きく枠をとること
-            setTeamInformationView.heightAnchor.constraint(equalToConstant: 100),
+            setTeamInformationView.heightAnchor.constraint(equalToConstant: 300),
             goToChatButton.topAnchor.constraint(equalTo: setTeamInformationView.topAnchor, constant: padding),
             goToChatButton.leadingAnchor.constraint(equalTo: setTeamInformationView.leadingAnchor, constant: padding),
             goToChatButton.trailingAnchor.constraint(equalTo: setTeamInformationView.trailingAnchor, constant: -padding),
-            goToChatButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
-//            inviteButton.topAnchor.constraint(equalTo: goToChatButton.bottomAnchor, constant: spacePadding),
-//            inviteButton.leadingAnchor.constraint(equalTo: setTeamInformationView.leadingAnchor, constant: padding),
-//            inviteButton.trailingAnchor.constraint(equalTo: setTeamInformationView.trailingAnchor, constant: -padding),
-//            inviteButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
-//            leaveTeamButton.topAnchor.constraint(equalTo: inviteButton.bottomAnchor, constant: spacePadding),
-//            leaveTeamButton.leadingAnchor.constraint(equalTo: setTeamInformationView.leadingAnchor, constant: padding),
-//            leaveTeamButton.trailingAnchor.constraint(equalTo: setTeamInformationView.trailingAnchor, constant: -padding),
-//            leaveTeamButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
+            goToChatButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            inviteButton.topAnchor.constraint(equalTo: goToChatButton.bottomAnchor, constant: spacePadding),
+            inviteButton.leadingAnchor.constraint(equalTo: setTeamInformationView.leadingAnchor, constant: padding),
+            inviteButton.trailingAnchor.constraint(equalTo: setTeamInformationView.trailingAnchor, constant: -padding),
+            inviteButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            leaveTeamButton.topAnchor.constraint(equalTo: inviteButton.bottomAnchor, constant: spacePadding),
+            leaveTeamButton.leadingAnchor.constraint(equalTo: setTeamInformationView.leadingAnchor, constant: padding),
+            leaveTeamButton.trailingAnchor.constraint(equalTo: setTeamInformationView.trailingAnchor, constant: -padding),
+            leaveTeamButton.heightAnchor.constraint(equalToConstant: labelButtonHightPadding)
         ])
     }
     
@@ -213,11 +211,12 @@ class WakeUpSettingView: UIView {
     }
 }
 
-//extension WakeUpSettingView: GetUserDataDelegate {
+//extension WakeUpSettingWithTeamView: GetUserDataDelegate {
 //    func getUserData(userDataModel: UserDataModel) {
 //        self.userDataModel = userDataModel
-//
+//        
 //        isJoinedTeam = self.userDataModel?.homeRoomId != self.userDataModel?.teamChatRoomId
+//        
 //    }
 //}
 
