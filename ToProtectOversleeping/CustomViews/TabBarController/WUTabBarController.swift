@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Firebase
+import KeychainSwift
 
 class WUTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UITabBar.appearance().tintColor = PrimaryColor.primary
         //iOS15からtabBarの背景が透明になったため実装
         if #available(iOS 15.0, *) {
@@ -22,9 +25,32 @@ class WUTabBarController: UITabBarController {
         } else {
             // Fallback on earlier versions
         }
-        
+                
         viewControllers = [createWakeUpCardHomeVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
     }
+    
+        
+    func checkNeedIntroductionView(complition:() -> Void) {
+        // UserDefaultの値で最初の画面を分岐させる
+        if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
+               //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
+            let keychain = KeychainSwift(keyPrefix: Keys.prefixKeychain)
+            // 開発時のログアウト(最初から)は、アプリを消して。ここのコメントを使ってkeychainを切る。
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+                print("SignOutError: %@", signOutError)
+            }
+            
+            keychain.clear()
+            
+            let walkThroughByEAIntroViewVC = WalkThroughByEAIntroViewVC()
+            navigationController?.pushViewController(walkThroughByEAIntroViewVC, animated: true)
+        } else {
+            print("すでに新規登録しています")
+        }
+    }
+    
     
     func createWakeUpCardHomeVC() -> UINavigationController {
         let wakeUpCardHomeVC = WakeUpCardHomeVC()

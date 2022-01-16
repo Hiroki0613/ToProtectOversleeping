@@ -20,7 +20,9 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     // roomID
     var chatRoomDocumentId = ""
     var userName = ""
+    
     var wakeUpTimeText = ""
+    
     var authId = ""
     var tapWeekDayOrWeekEndCell = ""
     
@@ -29,7 +31,10 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
     // Keychainでの設定値に問題があったらデフォルト値を採用
     var myAddressLatitude: Double = PrimaryPlace.primaryAddressLatitude
     var myAddressLongitude: Double = PrimaryPlace.primaryAddressLongitude
+    
+    
     var mySettingAlarmTime = Date()
+    
     
     var alarm = Alarm()
     
@@ -86,7 +91,6 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         
 //        UserDefaults.standard.set(true, forKey: UserDefaultsString.isFirstAccessToGPSVendingMachineScan)
         
-        print("宏輝_時間調査: ", mySettingAlarmTime)
         checkSettingAlarmWithinTwoHoursAndWeekDAy(settingTime: mySettingAlarmTime)
         self.view.layoutIfNeeded()
         // ここでUserDefaultsで記録した住所を入れる。
@@ -261,6 +265,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
         }
     }
     
+    
     // 地図を任意の場所へ移動させる
     private func moveTo(
         center location: CLLocationCoordinate2D,
@@ -345,6 +350,7 @@ class WakeUpAndCutAlertBySlideVC: BaseGpsVC {
             return "あと、10mほど離れてください"
         default:
             let messageModel = MessageModel()
+            //ここで自動販売機を検知＋20m以上離れたときのalarmをチャットに送る。
             messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeText)
             // ここでLottieで、OK!を通知したい。
             return "OK!\n20m以上離れました！\nアラームカットの通知を\n送信しました"
@@ -483,31 +489,32 @@ extension WakeUpAndCutAlertBySlideVC: MKMapViewDelegate {
 }
 
 
+// WakeUpAndCutAlertVC()で実装しているためカット
 // 2点間の距離を測定
-extension CLLocationCoordinate2D {
-    func distanceFromHome(
-        to targetLoacation: CLLocationCoordinate2D) -> CLLocationDistance {
-        
-        let location1 = CLLocation(latitude: latitude, longitude: longitude)
-        let location2 = CLLocation(latitude: targetLoacation.latitude, longitude: targetLoacation.longitude)
-        return location1.distance(from: location2)
-    }
-    // 距離をStringで表示
-    func distanceTextFromHome(to targetLocation: CLLocationCoordinate2D) -> String {
-        
-        let rawDistance = distanceFromHome(to: targetLocation)
-        print("distanceTextFromHome. rawDistance", rawDistance)
-        
-        // 1km未満は四捨五入で10m単位
-        if rawDistance < 1000 {
-            let roundedDistance = (rawDistance / 10).rounded() * 10
-            return "\(Int(roundedDistance))m"
-        }
-        // 1km以上は四捨五入で0.1km単位
-        let roundedDistance = (rawDistance / 100).rounded() * 100
-        return "\(roundedDistance / 1000)km"
-    }
-}
+//extension CLLocationCoordinate2D {
+//    func distanceFromHome(
+//        to targetLoacation: CLLocationCoordinate2D) -> CLLocationDistance {
+//
+//        let location1 = CLLocation(latitude: latitude, longitude: longitude)
+//        let location2 = CLLocation(latitude: targetLoacation.latitude, longitude: targetLoacation.longitude)
+//        return location1.distance(from: location2)
+//    }
+//    // 距離をStringで表示
+//    func distanceTextFromHome(to targetLocation: CLLocationCoordinate2D) -> String {
+//
+//        let rawDistance = distanceFromHome(to: targetLocation)
+//        print("distanceTextFromHome. rawDistance", rawDistance)
+//
+//        // 1km未満は四捨五入で10m単位
+//        if rawDistance < 1000 {
+//            let roundedDistance = (rawDistance / 10).rounded() * 10
+//            return "\(Int(roundedDistance))m"
+//        }
+//        // 1km以上は四捨五入で0.1km単位
+//        let roundedDistance = (rawDistance / 100).rounded() * 100
+//        return "\(roundedDistance / 1000)km"
+//    }
+//}
 
 extension WakeUpAndCutAlertBySlideVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
@@ -627,6 +634,7 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
         dismiss(animated: true, completion: nil)
     }
     
+    //自動販売機を検知したら動くfunc
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         
@@ -642,6 +650,8 @@ extension WakeUpAndCutAlertBySlideVC: AVCaptureVideoDataOutputSampleBufferDelega
             //            DispatchQueue.main.async {
             //                self.identifierLabel.text = "\(firstObservation.identifier) \(firstObservation.confidence * 100)"
             //            }
+            
+
             if firstObservation.identifier == "vending machine" {
                 if firstObservation.confidence > 0.8 {
                     self.captureSession.stopRunning()

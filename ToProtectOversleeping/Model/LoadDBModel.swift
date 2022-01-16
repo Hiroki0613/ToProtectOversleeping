@@ -31,6 +31,12 @@ class LoadDBModel {
     
     // プロフィールの呼び出し
     func loadProfileData() {
+        
+        Auth.auth().currentUser != nil ? print("宏輝_ログインしています") : print("宏輝_ログインしていません")
+        
+        UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true ? print("宏輝_初期起動です") : print("宏輝_初期起動ではないです")
+        
+        
         db.collection("Users").document(Auth.auth().currentUser!.uid).addSnapshotListener { snapShot, error in
             if error != nil {
                 print(error.debugDescription)

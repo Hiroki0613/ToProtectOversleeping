@@ -28,8 +28,15 @@
 		7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B634526638EA70057C12B /* ChatRoomNameModel.swift */; };
 		7F5B63482663ACA10057C12B /* LoadDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B63472663ACA10057C12B /* LoadDBModel.swift */; };
 		7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */; };
-		7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */; };
-		7F7E9B182673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */; };
+		7F6E40C5277EF76B00B9D54B /* SelectCreateTeamOrInvitedByOtherTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6E40C4277EF76B00B9D54B /* SelectCreateTeamOrInvitedByOtherTeamView.swift */; };
+		7F6E40C7277EFCE400B9D54B /* SelectCreateTeamOrInvitedByOtherTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6E40C6277EFCE400B9D54B /* SelectCreateTeamOrInvitedByOtherTeamVC.swift */; };
+		7F6E40C92783129100B9D54B /* EditWakeUpAlarmTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6E40C82783129100B9D54B /* EditWakeUpAlarmTimeVC.swift */; };
+		7F6E40CE278318DA00B9D54B /* EditWakeUpAlarmTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6E40CD278318DA00B9D54B /* EditWakeUpAlarmTimeView.swift */; };
+		7F6E40D027831AD400B9D54B /* EditWakeUpAlarmTimeViewByWeekDayWeekEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6E40CF27831AD400B9D54B /* EditWakeUpAlarmTimeViewByWeekDayWeekEnd.swift */; };
+		7F6E40D227873A2400B9D54B /* WakeUpAndCutAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6E40D127873A2400B9D54B /* WakeUpAndCutAlertVC.swift */; };
+		7F6E40D527874EF900B9D54B /* WakeUpSettingWithTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6E40D427874EF900B9D54B /* WakeUpSettingWithTeamView.swift */; };
+		7F7E9B162673A7200081C7F8 /* UseEditWakeUpAlarmTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B152673A7200081C7F8 /* UseEditWakeUpAlarmTimeView.swift */; };
+		7F7E9B182673AB600081C7F8 /* NotUseEditWakeUpAlarmTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B172673AB600081C7F8 /* NotUseEditWakeUpAlarmTimeVC.swift */; };
 		7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */; };
 		7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5C826429098009C839B /* BaseGpsVC.swift */; };
 		7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81A5CB2642DF95009C839B /* Alarm.swift */; };
@@ -109,8 +116,15 @@
 		7F5B634526638EA70057C12B /* ChatRoomNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomNameModel.swift; sourceTree = "<group>"; };
 		7F5B63472663ACA10057C12B /* LoadDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDBModel.swift; sourceTree = "<group>"; };
 		7F68CD0226416B1200D362B0 /* MapViewAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAtHome.swift; sourceTree = "<group>"; };
-		7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeView.swift; sourceTree = "<group>"; };
-		7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeVC.swift; sourceTree = "<group>"; };
+		7F6E40C4277EF76B00B9D54B /* SelectCreateTeamOrInvitedByOtherTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCreateTeamOrInvitedByOtherTeamView.swift; sourceTree = "<group>"; };
+		7F6E40C6277EFCE400B9D54B /* SelectCreateTeamOrInvitedByOtherTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCreateTeamOrInvitedByOtherTeamVC.swift; sourceTree = "<group>"; };
+		7F6E40C82783129100B9D54B /* EditWakeUpAlarmTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeVC.swift; sourceTree = "<group>"; };
+		7F6E40CD278318DA00B9D54B /* EditWakeUpAlarmTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeView.swift; sourceTree = "<group>"; };
+		7F6E40CF27831AD400B9D54B /* EditWakeUpAlarmTimeViewByWeekDayWeekEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWakeUpAlarmTimeViewByWeekDayWeekEnd.swift; sourceTree = "<group>"; };
+		7F6E40D127873A2400B9D54B /* WakeUpAndCutAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpAndCutAlertVC.swift; sourceTree = "<group>"; };
+		7F6E40D427874EF900B9D54B /* WakeUpSettingWithTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingWithTeamView.swift; sourceTree = "<group>"; };
+		7F7E9B152673A7200081C7F8 /* UseEditWakeUpAlarmTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseEditWakeUpAlarmTimeView.swift; sourceTree = "<group>"; };
+		7F7E9B172673AB600081C7F8 /* NotUseEditWakeUpAlarmTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotUseEditWakeUpAlarmTimeVC.swift; sourceTree = "<group>"; };
 		7F7E9B1A2673BDC70081C7F8 /* DeleteDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDBModel.swift; sourceTree = "<group>"; };
 		7F81A5C826429098009C839B /* BaseGpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGpsVC.swift; sourceTree = "<group>"; };
 		7F81A5CB2642DF95009C839B /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
@@ -251,6 +265,22 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		7F6E40CA278312BD00B9D54B /* NotUse */ = {
+			isa = PBXGroup;
+			children = (
+				7F7E9B172673AB600081C7F8 /* NotUseEditWakeUpAlarmTimeVC.swift */,
+			);
+			path = NotUse;
+			sourceTree = "<group>";
+		};
+		7F6E40D3278745E500B9D54B /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */,
+			);
+			path = Old;
+			sourceTree = "<group>";
+		};
 		7F7E4AC426498F7C00A10929 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +298,8 @@
 		7F7E9B192673AB8C0081C7F8 /* EditAlarm */ = {
 			isa = PBXGroup;
 			children = (
-				7F7E9B172673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift */,
+				7F6E40CA278312BD00B9D54B /* NotUse */,
+				7F6E40C82783129100B9D54B /* EditWakeUpAlarmTimeVC.swift */,
 			);
 			path = EditAlarm;
 			sourceTree = "<group>";
@@ -319,12 +350,16 @@
 			isa = PBXGroup;
 			children = (
 				7FE523D12646C33600B7D1B0 /* NotUse */,
-				7F7E9B152673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift */,
+				7F7E9B152673A7200081C7F8 /* UseEditWakeUpAlarmTimeView.swift */,
+				7F6E40CF27831AD400B9D54B /* EditWakeUpAlarmTimeViewByWeekDayWeekEnd.swift */,
+				7F6E40CD278318DA00B9D54B /* EditWakeUpAlarmTimeView.swift */,
 				7FA9B64B2641198C0017985B /* SetAlarmTimeAndNewRegistrationView.swift */,
 				7FE523DA2647DEB300B7D1B0 /* SetNewTeamMateNameView.swift */,
 				7FE523DE2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift */,
 				7FE523C92646905100B7D1B0 /* WakeUpSettingView.swift */,
+				7F6E40D427874EF900B9D54B /* WakeUpSettingWithTeamView.swift */,
 				7F8211E126590FF600AA747E /* ChangeNameView.swift */,
+				7F6E40C4277EF76B00B9D54B /* SelectCreateTeamOrInvitedByOtherTeamView.swift */,
 				7FDC68A72674F3E700C3267B /* RegisterNameView.swift */,
 				7F9A8B60267DFD200025F690 /* TextOutlineShapeView.swift */,
 				7FE1608C269C9BD700B8EF26 /* RegistrationGoalSettingView.swift */,
@@ -506,6 +541,7 @@
 			children = (
 				7FA9B65026411ADB0017985B /* SetAlarmTimeAndNewRegistrationVC.swift */,
 				7F8211E32659105700AA747E /* RegisterNameVC.swift */,
+				7F6E40C6277EFCE400B9D54B /* SelectCreateTeamOrInvitedByOtherTeamVC.swift */,
 			);
 			path = AddNewCard;
 			sourceTree = "<group>";
@@ -522,8 +558,9 @@
 		7FE523D62646C96600B7D1B0 /* GetGPS */ = {
 			isa = PBXGroup;
 			children = (
-				7FA9B65A26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift */,
+				7F6E40D3278745E500B9D54B /* Old */,
 				7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */,
+				7F6E40D127873A2400B9D54B /* WakeUpAndCutAlertVC.swift */,
 			);
 			path = GetGPS;
 			sourceTree = "<group>";
@@ -721,10 +758,12 @@
 			files = (
 				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
 				7FE16094269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift in Sources */,
+				7F6E40D227873A2400B9D54B /* WakeUpAndCutAlertVC.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F9ADA7427492686005CEAAA /* UIButton+Ext.swift in Sources */,
 				7F81B8E126A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift in Sources */,
 				7FE16092269DDDBF00B8EF26 /* EditTheGoalSettingView.swift in Sources */,
+				7F6E40C5277EF76B00B9D54B /* SelectCreateTeamOrInvitedByOtherTeamView.swift in Sources */,
 				7F5B634626638EA70057C12B /* ChatRoomNameModel.swift in Sources */,
 				7F68CD0326416B1200D362B0 /* MapViewAtHome.swift in Sources */,
 				7FE523C72646840000B7D1B0 /* GetGpsAddressVC.swift in Sources */,
@@ -737,6 +776,7 @@
 				7F3B2650274D133B004C969D /* UIImage+Ext.swift in Sources */,
 				7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */,
 				7F5B634026623C910057C12B /* NewRegistrationGpsVC.swift in Sources */,
+				7F6E40C7277EFCE400B9D54B /* SelectCreateTeamOrInvitedByOtherTeamVC.swift in Sources */,
 				7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */,
 				7F7E9B1B2673BDC70081C7F8 /* DeleteDBModel.swift in Sources */,
 				7F5B6339266225E90057C12B /* SendDBModel.swift in Sources */,
@@ -751,7 +791,7 @@
 				7F81B8DE26A9456300E00686 /* LottieView.swift in Sources */,
 				7F96B4E52691FC3D007B97D7 /* MobileNetV2.mlmodel in Sources */,
 				7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */,
-				7F7E9B162673A7200081C7F8 /* EditWakeUpAlarmTimeView.swift in Sources */,
+				7F7E9B162673A7200081C7F8 /* UseEditWakeUpAlarmTimeView.swift in Sources */,
 				7F96B4E72693596D007B97D7 /* BlankWakeUpCardTableListCell.swift in Sources */,
 				7F81A5CC2642DF95009C839B /* Alarm.swift in Sources */,
 				7F5B634226638E3B0057C12B /* MessageModel.swift in Sources */,
@@ -762,7 +802,7 @@
 				7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */,
 				7FE16087269B1B3B00B8EF26 /* UIView+Ext.swift in Sources */,
 				7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */,
-				7F7E9B182673AB600081C7F8 /* EditWakeUpAlarmTimeVC.swift in Sources */,
+				7F7E9B182673AB600081C7F8 /* NotUseEditWakeUpAlarmTimeVC.swift in Sources */,
 				7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */,
 				7F5B633E26623C740057C12B /* NewRegistrationUserNameVC.swift in Sources */,
 				7FE523DD2647DEDA00B7D1B0 /* SetInvitedTeamMateVC.swift in Sources */,
@@ -771,7 +811,9 @@
 				7FABB9B42641069A001182DF /* SwipeButton.swift in Sources */,
 				7FE523C32646838900B7D1B0 /* WUTabBarController.swift in Sources */,
 				7F5A9E51267A47F000754C93 /* ResultWakeUpVC.swift in Sources */,
+				7F6E40CE278318DA00B9D54B /* EditWakeUpAlarmTimeView.swift in Sources */,
 				7F31247226B433DE000576FF /* keys.swift in Sources */,
+				7F6E40D027831AD400B9D54B /* EditWakeUpAlarmTimeViewByWeekDayWeekEnd.swift in Sources */,
 				7FA9B65B26413B290017985B /* WakeUpAndCutAlertBySlideVC.swift in Sources */,
 				7FE523DF2647DEF100B7D1B0 /* SetInvitedTeamMateView.swift in Sources */,
 				7FE16090269DD21900B8EF26 /* EditTheGoalSettingVC.swift in Sources */,
@@ -779,11 +821,13 @@
 				7FE523D92647DE1B00B7D1B0 /* SetNewTeamMateNameVC.swift in Sources */,
 				7FE1608B269C9B9700B8EF26 /* NewRegistrationUserGoalSettingVC.swift in Sources */,
 				7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */,
+				7F6E40C92783129100B9D54B /* EditWakeUpAlarmTimeVC.swift in Sources */,
 				7F8273E326BD7A5A00584407 /* keyApi.swift in Sources */,
 				7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */,
 				7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */,
 				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,
 				7F376B1726401A910063F2EC /* SceneDelegate.swift in Sources */,
+				7F6E40D527874EF900B9D54B /* WakeUpSettingWithTeamView.swift in Sources */,
 				7FE160842698C18C00B8EF26 /* Constants.swift in Sources */,
 				7F58A350267CF2620038AA3F /* SettingDataModel.swift in Sources */,
 				7F955F6626D0E0C300D89A7C /* WakeUpCardHomeVC.swift in Sources */,
@@ -937,7 +981,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ToProtectOversleeping/ToProtectOversleeping.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.9;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = K6FA22KGKX;
 				INFOPLIST_FILE = ToProtectOversleeping/Info.plist;
@@ -945,7 +989,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.withios.ToProtectOversleeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -961,14 +1005,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ToProtectOversleeping/ToProtectOversleeping.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.9;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = K6FA22KGKX;
 				INFOPLIST_FILE = ToProtectOversleeping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.withios.ToProtectOversleeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

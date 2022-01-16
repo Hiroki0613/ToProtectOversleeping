@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,6 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = WUTabBarController()
         window?.makeKeyAndVisible()
+        
+        Auth.auth().currentUser != nil ? print("宏輝_ログインしています") : print("宏輝_ログインしていません")
         
         configureNavigationBar()
     }

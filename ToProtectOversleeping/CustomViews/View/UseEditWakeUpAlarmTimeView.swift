@@ -2,13 +2,12 @@
 //  EditWakeUpAlarmTimeView.swift
 //  ToProtectOversleeping
 //
-//  Created by 近藤宏輝 on 2022/01/03.
+//  Created by 近藤宏輝 on 2021/06/11.
 //
-
 
 import UIKit
 
-class EditWakeUpAlarmTimeView: UIView {
+class NotUseEditWakeUpAlarmTimeView: UIView {
     // アラーム時間を一時的に格納する
     var changeWakeUpTimeText = ""
     var changeWakeUpTimeDate = Date()
@@ -133,7 +132,7 @@ class EditWakeUpAlarmTimeView: UIView {
     }
 }
 
-extension EditWakeUpAlarmTimeView: UITextFieldDelegate {
+extension NotUseEditWakeUpAlarmTimeView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }

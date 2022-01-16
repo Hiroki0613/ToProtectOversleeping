@@ -75,7 +75,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)は\(dayOfTheWeekString)の\(wakeUpTimeText)に起きます！",
+            text: "\(displayName)さんは\(dayOfTheWeekString)の\(wakeUpTimeText)に起きます！",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.declarationWakeUpEarly
@@ -99,7 +99,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)の\(dayOfTheWeekString)のアラームはカットされました！",
+            text: "\(displayName)の\(dayOfTheWeekString)さんのアラームはカットされました！",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.alarmCut
@@ -124,7 +124,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)の\(dayOfTheWeekString)のアラーム時間が\(wakeUpTimeText)に変更されました",
+            text: "\(displayName)さんの\(dayOfTheWeekString)のアラーム時間が\(wakeUpTimeText)に変更されました",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.editAlarmTime
@@ -138,7 +138,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)は設定した\(wakeUpTimeText)より前におきました",
+            text: "\(displayName)さんは設定した\(wakeUpTimeText)より前におきました",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.wakeUpSuccessMessage
@@ -152,7 +152,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "☔️\(displayName)は設定した\(wakeUpTimeText)より前におきました☔️",
+            text: "☔️\(displayName)さんは設定した\(wakeUpTimeText)より前におきました☔️",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.rainyDay
@@ -166,7 +166,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)は退室しました。",
+            text: "\(displayName)さんは退室しました。",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.leaveTheRoom
@@ -181,7 +181,7 @@ class MessageModel {
         sendDBModel.sendMessage(
             senderId: Auth.auth().currentUser!.uid,
             toID: toID,
-            text: "\(displayName)は招待されました！",
+            text: "\(displayName)さんは招待されました！",
             displayName: displayName,
             messageAppVersion: version,
             sendWUMessageType: SendWUMessageType.newInvitedToTeam

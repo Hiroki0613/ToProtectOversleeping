@@ -56,6 +56,8 @@ class WakeUpCardTableListVC: UIViewController,AuthLoginDelegate,NADViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // UserDefaultの値で最初の画面を分岐させる
         if UserDefaults.standard.bool(forKey: "isFirstOpenApp") == true {
             //    //keychainのデフォルトセッティング。見つけやすいように共通のprefixを実装。
@@ -349,12 +351,12 @@ extension WakeUpCardTableListVC: UITableViewDelegate {
                 print("Editがタップされた")
                 print("宏輝__edit")
                 
-                let editWakeUpAlarmTimeVC = EditWakeUpAlarmTimeVC()
-                editWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row - 1]
-                editWakeUpAlarmTimeVC.userName = self.userDataModel!.name
-                editWakeUpAlarmTimeVC.teamChatRoomId = self.userDataModel!.teamChatRoomId
-                editWakeUpAlarmTimeVC.dayOfTheWeek = self.chatRoomNameModelArray[indexPath.row - 1].dayOfTheWeek
-                self.navigationController?.pushViewController(editWakeUpAlarmTimeVC, animated: true)
+                let notUserEditWakeUpAlarmTimeVC = NotUseEditWakeUpAlarmTimeVC()
+                notUserEditWakeUpAlarmTimeVC.chatRoomDocumentID = self.chatRoomDocumentIdArray[indexPath.row - 1]
+                notUserEditWakeUpAlarmTimeVC.userName = self.userDataModel!.name
+                notUserEditWakeUpAlarmTimeVC.teamChatRoomId = self.userDataModel!.teamChatRoomId
+                notUserEditWakeUpAlarmTimeVC.dayOfTheWeek = self.chatRoomNameModelArray[indexPath.row - 1].dayOfTheWeek
+                self.navigationController?.pushViewController(notUserEditWakeUpAlarmTimeVC, animated: true)
                 
                 completionHandler(true)
             }
