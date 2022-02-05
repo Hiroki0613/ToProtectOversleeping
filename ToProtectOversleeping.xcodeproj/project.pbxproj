@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E85E8BCC96DBE9942569E56 /* Pods_ToProtectOversleeping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8109D1B9057D670B011A662 /* Pods_ToProtectOversleeping.framework */; };
+		7F080B84279B040A005909A3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F080B83279B0409005909A3 /* Alert.swift */; };
 		7F1452E42641A9C600BAB44F /* WUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1452E32641A9C600BAB44F /* WUButton.swift */; };
 		7F31247226B433DE000576FF /* keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F31247126B433DE000576FF /* keys.swift */; };
 		7F376B1526401A910063F2EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F376B1426401A910063F2EC /* AppDelegate.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		08D971B04E682A5F70345371 /* Pods-ToProtectOversleeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToProtectOversleeping.debug.xcconfig"; path = "Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping.debug.xcconfig"; sourceTree = "<group>"; };
+		7F080B83279B0409005909A3 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		7F1452E32641A9C600BAB44F /* WUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUButton.swift; sourceTree = "<group>"; };
 		7F31247126B433DE000576FF /* keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keys.swift; sourceTree = "<group>"; };
 		7F344149268654C900BC4B36 /* ToProtectOversleeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToProtectOversleeping.entitlements; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				7F68CD0126416AFA00D362B0 /* Map */,
 				7FA9B64A2641196D0017985B /* View */,
 				7FABB9AF26403E66001182DF /* Cell */,
+				7F080B83279B0409005909A3 /* Alert.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				7F5B634226638E3B0057C12B /* MessageModel.swift in Sources */,
 				7F81A5C926429098009C839B /* BaseGpsVC.swift in Sources */,
 				7FE523C5264683E900B7D1B0 /* WakeUpCommunicateChatVC.swift in Sources */,
+				7F080B84279B040A005909A3 /* Alert.swift in Sources */,
 				7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */,
 				7F376B1926401A910063F2EC /* ViewController.swift in Sources */,
 				7FE523CA2646905100B7D1B0 /* WakeUpSettingView.swift in Sources */,
