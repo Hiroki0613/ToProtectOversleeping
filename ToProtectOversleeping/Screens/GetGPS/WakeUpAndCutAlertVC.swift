@@ -127,6 +127,10 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
     func getMyAddressFromKeyChain() {
         let myAddressLatitudeFromKeychainString: String = keychain.get(Keys.myAddressLatitude) ?? "\(PrimaryPlace.primaryAddressLatitude)"
         let myAddressLongitudeFromKeychainString: String = keychain.get(Keys.myAddressLongitude) ?? "\(PrimaryPlace.primaryAddressLongitude)"
+        
+        print("宏輝_Keys.myAddressLatitude: ", keychain.get(Keys.myAddressLatitude))
+        print("宏輝_Keys.myAddressLongitude: ", keychain.get(Keys.myAddressLongitude))
+        
         if let myAddressLatitude = Double(myAddressLatitudeFromKeychainString),
            let myAddressLongitude = Double(myAddressLongitudeFromKeychainString) {
             self.myAddressLatitude = myAddressLatitude

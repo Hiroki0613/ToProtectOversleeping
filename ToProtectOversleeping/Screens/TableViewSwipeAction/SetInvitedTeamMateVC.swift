@@ -64,7 +64,21 @@ class SetInvitedTeamMateVC: UIViewController {
             guard let _ = error else { return }
         }
         
+        
+//        if setInvitedTeamMateNameView.invitedIDTextField.text != nil {
+//            newInvitedTeamMateId = setInvitedTeamMateNameView.invitedIDTextField.text!
+//        } else {
+//            newInvitedTeamMateId = "初期設定"
+//        }
+        
         newInvitedTeamMateId = setInvitedTeamMateNameView.invitedIDTextField.text ?? ""
+        
+        if newInvitedTeamMateId == "" {
+            newInvitedTeamMateId = "初期設定"
+        }
+        
+        
+        print("宏輝_newInvitedTeamMateId: ",newInvitedTeamMateId)
         
         // メッセージがアプリのバージョンアップで変更した時に使用
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
@@ -91,6 +105,9 @@ class SetInvitedTeamMateVC: UIViewController {
 //                dayOfTheWeek: "",
 //                appVersion: version
 //            )
+        } else if newInvitedTeamMateId == "初期設定" {
+            setInvitedTeamMateNameView.invitedIDLabel.text = "招待IDが空白です"
+            return
         } else {
             setInvitedTeamMateNameView.invitedIDLabel.text = "招待IDが違います"
             return
@@ -101,6 +118,8 @@ class SetInvitedTeamMateVC: UIViewController {
             //招待されましたの挨拶はカット
 //            let messageModel = MessageModel()
 //            messageModel.newInvitedToTeam(documentID: self.newInvitedTeamMateId, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
+            
+        //TODO: いっきにトップのビューまで画面遷移させたい。導線の整理が必要
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -126,7 +145,7 @@ class SetInvitedTeamMateVC: UIViewController {
         
         NSLayoutConstraint.activate([
             setInvitedTeamMateNameView.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
-            setInvitedTeamMateNameView.heightAnchor.constraint(equalToConstant: 400),
+            setInvitedTeamMateNameView.heightAnchor.constraint(equalToConstant: 500),
             setInvitedTeamMateNameView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             setInvitedTeamMateNameView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])

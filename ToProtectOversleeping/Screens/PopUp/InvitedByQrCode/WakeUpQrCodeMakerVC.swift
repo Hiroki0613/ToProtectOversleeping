@@ -99,7 +99,7 @@ class WakeUpQrCodeMakerVC: UIViewController {
         qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(qrCodeImageView)
         
-        descriptionTheWayHowToInviteIntoTeamLabel.text = "チームへの招待の方法\n\nID招待の場合\n①招待される側でHome画面で右下のプラスボタンをタップ\n②任意の時間を設定し、招待されるボタンをタップ\n③招待IDを入力し、選択ボタンをタップ\n\nQR読み取りの場合\n①招待される側でHome画面で右下のプラスボタンをタップ\n②任意の時間を設定し、招待されるボタンをタップ\n③QR読み取りボタンをタップするとカメラが起動するのでQRコードを読み込むとチームへ招待されます"
+        descriptionTheWayHowToInviteIntoTeamLabel.text = "チームへの招待の方法\n\nID招待の場合\n①招待される側でHome画面で\"チーム\" →\"チームへ招待される\"の順に  タップ\n②招待IDを入力し、\"招待\"ボタンをタップ\n\nQR読み取りの場合\n①招待される側でHome画面で\"チーム\" →\"チームへ招待される\"の順に  タップ\n②QR読み取りボタンをタップするとカメラが起動するのでQRコードを読み込むとチームへ招待されます"
         descriptionTheWayHowToInviteIntoTeamLabel.numberOfLines = 0
         descriptionTheWayHowToInviteIntoTeamLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(descriptionTheWayHowToInviteIntoTeamLabel)

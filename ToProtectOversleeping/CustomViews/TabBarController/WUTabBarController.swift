@@ -26,7 +26,7 @@ class WUTabBarController: UITabBarController {
             // Fallback on earlier versions
         }
                 
-        viewControllers = [createWakeUpCardHomeVC(),createWakeUpCardTableListVC(),createWakeUpSettingVC()]
+        viewControllers = [createWakeUpCardHomeVC(),createWakeUpSettingVC()]
     }
     
         

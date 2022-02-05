@@ -161,15 +161,18 @@ class WakeUpSettingVC: UIViewController {
     @objc func tapLeaveTeamButton() {
         //TODO: チームに入っている時だけ表示
         //TODO: アラートで退室しても良いかを確認すること
-        print("leaveTeamButtonが押されました")
-        let db = Firestore.firestore()
-        db.collection("Users").document(Auth.auth().currentUser!.uid).updateData([
-            "teamChatRoomId": self.userDataModel!.homeRoomId,
-            "teamChatName": self.userDataModel!.name
-        ])
-        UserDefaults.standard.set(self.userDataModel!.name, forKey: "teamChatName")
         
-        //TODO: アラートで退室したことを伝えること
+        Alert.okAndCancelAlert(vc: self, title: "退室の確認", message: "本当にチームから退室しますか？") { _ in
+            print("leaveTeamButtonが押されました")
+            let db = Firestore.firestore()
+            db.collection("Users").document(Auth.auth().currentUser!.uid).updateData([
+                "teamChatRoomId": self.userDataModel!.homeRoomId,
+                "teamChatName": self.userDataModel!.name
+            ])
+            UserDefaults.standard.set(self.userDataModel!.name, forKey: "teamChatName")
+            
+            //TODO: アラートで退室したことを伝えること
+        }
     }
     
     

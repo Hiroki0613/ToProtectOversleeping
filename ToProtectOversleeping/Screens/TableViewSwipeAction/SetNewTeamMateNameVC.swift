@@ -80,7 +80,7 @@ class SetNewTeamMateNameVC: UIViewController {
             // 新しいチャットルームを開く
             sendDBModel.createChatRoom(roomName: self.newTeamMateString, defaultWakeUpTimeDate: Date(), defaultWakeUpTimeText: "\(formatter.string(from: Date()))", chatRoomId: generatedHomeRoomRandomString, appVersion: version)
         }
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 
 

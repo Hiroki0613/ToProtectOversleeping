@@ -40,6 +40,7 @@ class SelectCreateTeamOrInvitedByOtherTeamVC: UIViewController {
         let setInvitedTeamMateVC = SetInvitedTeamMateVC()
         //userDataModel.nameを持ってくる
         setInvitedTeamMateVC.userName = userName
+        
         self.present(setInvitedTeamMateVC, animated: true,completion: nil)
     }
     

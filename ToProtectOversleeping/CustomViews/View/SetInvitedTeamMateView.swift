@@ -38,7 +38,7 @@ class SetInvitedTeamMateView: UIView {
     
     // 目覚まし、チャット名、GPS、市区町村のプレースホルダーをここでセットしておく
     private func settingInformation() {
-        invitedIDLabel.text = "招待IDを入力してください"
+        invitedIDLabel.text = "招待IDを入力してください\n詳しい手順は\"招待する\"の\nSettingタブ → \"チームへ招待する\"ボタン\nで確認出来ます。"
         invitedIDTextField.text = ""
     }
     
@@ -86,6 +86,8 @@ class SetInvitedTeamMateView: UIView {
         invitedIDLabel.translatesAutoresizingMaskIntoConstraints = false
         invitedIDTextField.translatesAutoresizingMaskIntoConstraints = false
         
+        invitedIDLabel.numberOfLines = 0
+        
         registeredByQRCodeButton.translatesAutoresizingMaskIntoConstraints = false
         registeredByQRCodeInvitedButton.translatesAutoresizingMaskIntoConstraints = false
         regsteredByQRCodeStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +120,7 @@ class SetInvitedTeamMateView: UIView {
             invitedIDLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
             invitedIDLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             invitedIDLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            invitedIDLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding),
+            invitedIDLabel.heightAnchor.constraint(equalToConstant: labelButtonHightPadding * 3),
             invitedIDTextField.topAnchor.constraint(equalTo: invitedIDLabel.bottomAnchor, constant: spacePadding),
             invitedIDTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             invitedIDTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
