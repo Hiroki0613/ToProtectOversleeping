@@ -39,7 +39,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
     // 地図
     var mapView = MKMapView()
     var homeLocationLabel = WUBodyLabel(fontSize: 20)
-    var homeLocationFetchButton = WUButton(backgroundColor: .systemBlue, title: "タップして取得")
+    var homeLocationFetchButton = WUButton(backgroundColor: .clear, title: "タップして取得")
     var myHomeLocation = CLLocationCoordinate2D()
     // アドレスを格納
     var addressString = ""
@@ -51,7 +51,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("宏輝_theGoal_setting: ", theGoalSetting)
-        view.backgroundColor = PrimaryColor.primary
+        view.backgroundColor = PrimaryColor.background
         configureView()
         getMyAddressFromKeyChain()
         myHomeLocation = CLLocationCoordinate2D(latitude: myAddressLatitude, longitude: myAddressLongitude)
@@ -161,7 +161,7 @@ class NewRegistrationGpsVC: BaseGpsVC {
                 
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    //TODO: ここは1.0秒待たせる必要はないけど、あえて住所が登録されているのを見せてローディング画面を見せるのはありかも。
+                    //TODO: ここは1.0秒待たせる必要はないけど、あえて住所が登録されているのを見せてローディング画面を見せる。
                     UserDefaults.standard.set(self.newUserName,forKey: "userName")
                     UserDefaults.standard.set(self.newUserName,forKey: "teamChatName")
                 

@@ -35,7 +35,8 @@ class WakeUpSettingVC: UIViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
-        self.view.addBackground(name: "orange")
+//        self.view.addBackground(name: "orange")
+        self.view.backgroundColor = PrimaryColor.background
         configureAdvertiseView()
     }
     
@@ -316,7 +317,7 @@ class WakeUpSettingVC: UIViewController {
     private func configureAdvertiseView() {
         advertiseSpaceFrameView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(advertiseSpaceFrameView)
-        advertiseSpaceFrameView.addBlurToView(alpha: 0.5)
+        advertiseSpaceFrameView.addBlurToView(alpha: 0.0)
         
         NSLayoutConstraint.activate([
             advertiseSpaceFrameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

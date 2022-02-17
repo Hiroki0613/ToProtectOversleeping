@@ -19,8 +19,8 @@ class ChangeNameView: UIView {
     var newNameLabel = WUBodyLabel(fontSize: 20)
     var newNameTextField = WUTextFields()
     
-    var registerNameButton = WUButton(backgroundColor: PrimaryColor.primary, title: "登録")
-    var registerNameGoBackButton = WUButton(backgroundColor: PrimaryColor.primary, title: "戻る")
+    var registerNameButton = WUButton(backgroundColor: .clear, title: "登録")
+    var registerNameGoBackButton = WUButton(backgroundColor: .clear, title: "戻る")
     
     
     override init(frame: CGRect) {

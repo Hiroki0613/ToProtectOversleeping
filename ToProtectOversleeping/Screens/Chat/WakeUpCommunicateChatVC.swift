@@ -52,7 +52,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "本日の結果", style: .done, target: self, action: #selector(tapSummaryResults))
         // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemGray
-        messagesCollectionView.backgroundColor = PrimaryColor.primary.withAlphaComponent(0.5)
+        messagesCollectionView.backgroundColor = PrimaryColor.background.withAlphaComponent(0.0)
 
         
 //        let sendDBModel = SendDBModel()
@@ -236,7 +236,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         messageInputBar.inputTextView.tintColor = .systemGray
         messageInputBar.sendButton.setTitleColor(.systemGray, for: .normal)
         messageInputBar.sendButton.setTitleColor(
-            PrimaryColor.primary.withAlphaComponent(0.3),
+            PrimaryColor.primary.withAlphaComponent(0.0),
             for: .highlighted
         )
         reloadInputViews()
@@ -385,7 +385,7 @@ extension WakeUpCommunicateChatVC: MessagesDisplayDelegate {
     
     // 本人、他人で色を変えている
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? PrimaryColor.primary : .systemGray
+        return isFromCurrentSender(message: message) ? PrimaryColor.background : PrimaryColor.background.withAlphaComponent(0.3)
     }
     
     
@@ -474,7 +474,7 @@ extension WakeUpCommunicateChatVC: CoachMarksControllerDelegate, CoachMarksContr
         if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToChat) == true {
             switch index {
             case 0:
-                coachViews.bodyView.hintLabel.text = "チャット画面です。\nトーク機能はありません。\n\n起床宣言\n起床したことの通知\nアラーム時間の変更\n\nが表示されます。"
+                coachViews.bodyView.hintLabel.text = "チャット画面です。\n\n起床宣言\n起床したことの通知\nアラーム時間の変更\n\nが表示されます。"
                 coachViews.bodyView.nextLabel.text = "OK!"
             default:
                 break

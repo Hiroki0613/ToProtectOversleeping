@@ -17,8 +17,8 @@ class SetNewTeamMateNameView: UIView {
     var newTeamMateTextField = WUTextFields()
     
     // チャットのチーム名、ワンタイムトークンにて招待制
-    var chatTeamNewRegisterButton = WUButton(backgroundColor: PrimaryColor.primary, title: "登録")
-    var chatTeamGoBackButton = WUButton(backgroundColor: PrimaryColor.primary, title: "戻る")
+    var chatTeamNewRegisterButton = WUButton(backgroundColor: .clear, title: "登録")
+    var chatTeamGoBackButton = WUButton(backgroundColor: .clear, title: "戻る")
     var chatTeamNameAndRegstrationStackView = UIStackView(frame: .zero)
     
     override init(frame: CGRect) {

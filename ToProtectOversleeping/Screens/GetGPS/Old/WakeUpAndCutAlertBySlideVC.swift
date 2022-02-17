@@ -698,7 +698,7 @@ extension WakeUpAndCutAlertBySlideVC: CoachMarksControllerDelegate, CoachMarksCo
         if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToGPSVendingMachineScan) == true {
             switch index {
             case 0:
-                coachViews.bodyView.hintLabel.text = "アラームカットの画面です。\n\n設定した時間内にアラームを切ると\nチームのチャットへ起きたことが\n通知されます。"
+                coachViews.bodyView.hintLabel.text = "自販機のスキャン画面です。\n\n設定した時間内に自販機をスキャンすると\nチームのチャットへ起きたことが\n通知されます。"
                 coachViews.bodyView.nextLabel.text = "OK!"
             default:
                 break

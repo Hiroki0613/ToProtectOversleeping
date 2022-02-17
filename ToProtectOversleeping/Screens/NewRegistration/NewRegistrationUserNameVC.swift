@@ -33,14 +33,24 @@ class NewRegistrationUserNameVC: UIViewController {
         print("新規ユーザー登録開始")
         
         // ここでゴールセッティング画面に画面遷移する。
-        let newRegistrationUserGoalSettingVC = NewRegistrationUserGoalSettingVC()
-        newRegistrationUserGoalSettingVC.newUserName = registerNewNameView.newNameTextField.text ?? ""
-        if newRegistrationUserGoalSettingVC.newUserName == "" {
+//        let newRegistrationUserGoalSettingVC = NewRegistrationUserGoalSettingVC()
+//        newRegistrationUserGoalSettingVC.newUserName = registerNewNameView.newNameTextField.text ?? ""
+//        if newRegistrationUserGoalSettingVC.newUserName == "" {
+//            return
+//        } else {
+//            //TODO: 1秒後に画面遷移するようにする
+//            navigationController?.pushViewController(newRegistrationUserGoalSettingVC, animated: true)
+//        }
+        
+        let newRegistrationGpsVC = NewRegistrationGpsVC()
+        newRegistrationGpsVC.newUserName = registerNewNameView.newNameTextField.text ?? ""
+        if newRegistrationGpsVC.newUserName == "" {
             return
         } else {
             //TODO: 1秒後に画面遷移するようにする
-            navigationController?.pushViewController(newRegistrationUserGoalSettingVC, animated: true)
+            navigationController?.pushViewController(newRegistrationGpsVC, animated: true)
         }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

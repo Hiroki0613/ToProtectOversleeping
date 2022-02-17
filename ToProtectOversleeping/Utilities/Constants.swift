@@ -8,8 +8,8 @@
 import UIKit
 
 enum PrimaryColor {
-    static let primary = UIColor.systemOrange
-    static let background = UIColor.systemBackground
+    static let primary = UIColor.white
+    static let background = UIColor.black
 }
 
 enum PrimaryPlace {

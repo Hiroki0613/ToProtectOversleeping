@@ -32,7 +32,7 @@ class EditWakeUpAlarmTimeView: UIView {
     
     
     // 戻るボタン
-    let changeWakeUpGoBuckButton = WUButton(backgroundColor: PrimaryColor.primary, title: "戻る")
+    let changeWakeUpGoBuckButton = WUButton(backgroundColor: .clear, title: "戻る")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

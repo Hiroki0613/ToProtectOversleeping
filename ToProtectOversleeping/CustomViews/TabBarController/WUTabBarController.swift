@@ -18,14 +18,18 @@ class WUTabBarController: UITabBarController {
         //iOS15からtabBarの背景が透明になったため実装
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
-            appearance.selectionIndicatorTintColor = PrimaryColor.primary
+            appearance.selectionIndicatorTintColor = PrimaryColor.background
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = appearance
             tabBar.addBlurToView(alpha: 0.7)
         } else {
             // Fallback on earlier versions
+            // 背景の透過
+            UITabBar.appearance().backgroundImage = UIImage()
+            // 境界線の透過
+            UITabBar.appearance().shadowImage = UIImage()
         }
-                
+        
         viewControllers = [createWakeUpCardHomeVC(),createWakeUpSettingVC()]
     }
     
@@ -54,7 +58,7 @@ class WUTabBarController: UITabBarController {
     
     func createWakeUpCardHomeVC() -> UINavigationController {
         let wakeUpCardHomeVC = WakeUpCardHomeVC()
-        wakeUpCardHomeVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "gear", title: "タイトル", tag: 1)
+        wakeUpCardHomeVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "タイトル", tag: 1)
         return UINavigationController(rootViewController: wakeUpCardHomeVC)
     }
     

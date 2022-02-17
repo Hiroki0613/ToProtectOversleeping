@@ -26,7 +26,7 @@ class GetGpsAddressVC: BaseGpsVC {
     // 地図
     var mapView = MKMapView()
     var homeLocationLabel = WUBodyLabel(fontSize: 20)
-    var homeLocationFetchButton = WUButton(backgroundColor: .systemBlue, title: "タップして取得")
+    var homeLocationFetchButton = WUButton(backgroundColor: .clear, title: "タップして取得")
     
     var myHomeLocation = CLLocationCoordinate2D()
     
@@ -37,7 +37,7 @@ class GetGpsAddressVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = PrimaryColor.primary
+        view.backgroundColor = PrimaryColor.background
         configureView()
         // ここにdefaultで設定した住まいを入れる渡す。
         getMyAddressFromKeyChain()

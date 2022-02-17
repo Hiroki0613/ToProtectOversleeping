@@ -12,19 +12,19 @@ class WakeUpSettingWithTeamView: UIView {
     var userDataModel: UserDataModel?
     //チームへの招待ボタン。チームに参加しているときのみ表示
     var setTeamInformationView = UIView(frame: .zero)
-    var inviteButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チームへ招待する")
-    var goToChatButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チャット画面へ移動")
-    var leaveTeamButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チームから退室する")
+    var inviteButton = WUButton(backgroundColor: .clear, title: "チームへ招待する")
+    var goToChatButton = WUButton(backgroundColor: .clear, title: "チャット画面へ移動")
+    var leaveTeamButton = WUButton(backgroundColor: .clear, title: "チームから退室する")
 
     // ユーザー情報
     var setUserInformationView = UIView(frame: .zero)
     
     // ユーザー名の設定
     var setUserNameLabel = WUBodyLabel(fontSize: 18)
-    var setUserNameButton = WUButton(backgroundColor: PrimaryColor.primary, title: "設定")
+    var setUserNameButton = WUButton(backgroundColor: .clear, title: "設定")
     // 自宅のGPS情報取得
     var getGPSAddressLabel = WUBodyLabel(fontSize: 14)
-    var getGPSAddressButton = WUButton(backgroundColor: PrimaryColor.primary, title: "取得")
+    var getGPSAddressButton = WUButton(backgroundColor: .clear, title: "取得")
     
     // アプリ情報
     var setAppInformationView = UIView(frame: .zero)
@@ -32,13 +32,13 @@ class WakeUpSettingWithTeamView: UIView {
     // バージョン
     var appVersionLabel = WUBodyLabel(fontSize: 18)
     // ライセンス
-    var licenseButton = WUButton(backgroundColor: PrimaryColor.primary, title: "ライセンス")
+    var licenseButton = WUButton(backgroundColor: .clear, title: "ライセンス")
     // ご意見・ご要望
     var opinionsAndRequestsLabel = WUBodyLabel(fontSize: 18)
-    var opinionsAndRequestsButton = WUButton(backgroundColor: PrimaryColor.primary, title: "送る")
+    var opinionsAndRequestsButton = WUButton(backgroundColor: .clear, title: "送る")
     // アプリの評価
     var evaluationLabel = WUBodyLabel(fontSize: 18)
-    var evaluationButton = WUButton(backgroundColor: PrimaryColor.primary, title: "送る")
+    var evaluationButton = WUButton(backgroundColor: .clear, title: "送る")
     
 //    var isJoinedTeam = false
     
@@ -85,6 +85,18 @@ class WakeUpSettingWithTeamView: UIView {
         setTeamInformationView.addSubview(goToChatButton)
         setTeamInformationView.addSubview(leaveTeamButton)
         
+        setTeamInformationView.layer.borderWidth = 2.0
+        setTeamInformationView.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        inviteButton.layer.borderWidth = 2.0
+        inviteButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        goToChatButton.layer.borderWidth = 2.0
+        goToChatButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        leaveTeamButton.layer.borderWidth = 2.0
+        leaveTeamButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
         let labelButtonHightPadding: CGFloat = 60
@@ -125,6 +137,17 @@ class WakeUpSettingWithTeamView: UIView {
         setUserInformationView.addSubview(setUserNameButton)
         setUserInformationView.addSubview(getGPSAddressLabel)
         setUserInformationView.addSubview(getGPSAddressButton)
+        
+        setUserInformationView.layer.borderWidth = 2.0
+        setUserInformationView.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        setUserNameButton.layer.borderWidth = 2.0
+        setUserNameButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        getGPSAddressButton.layer.borderWidth = 2.0
+        getGPSAddressButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        
         
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
@@ -171,6 +194,15 @@ class WakeUpSettingWithTeamView: UIView {
         setAppInformationView.addSubview(opinionsAndRequestsLabel)
         setAppInformationView.addSubview(opinionsAndRequestsButton)
         
+        setAppInformationView.layer.borderWidth = 2.0
+        setAppInformationView.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        licenseButton.layer.borderWidth = 2.0
+        licenseButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
+        opinionsAndRequestsButton.layer.borderWidth = 2.0
+        opinionsAndRequestsButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
         let labelButtonHightPadding: CGFloat = 60.0
@@ -202,9 +234,9 @@ class WakeUpSettingWithTeamView: UIView {
     }
     
     private func configureDecoration() {
-        setTeamInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
-        setUserInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
-        setAppInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+//        setTeamInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+//        setUserInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
+//        setAppInformationView.backgroundColor = .systemBackground.withAlphaComponent(0.7)
         setTeamInformationView.layer.cornerRadius = 16
         setUserInformationView.layer.cornerRadius = 16
         setAppInformationView.layer.cornerRadius = 16

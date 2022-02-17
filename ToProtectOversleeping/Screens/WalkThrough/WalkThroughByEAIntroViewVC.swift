@@ -61,15 +61,15 @@ class WalkThroughByEAIntroViewVC: UIViewController {
     
     func configureIntroPage(page: EAIntroPage,titleString: String, descString: String, titleIconImageNameString: String) {
         // バックグランドカラー
-        page.bgColor = PrimaryColor.primary
+        page.bgColor = PrimaryColor.background
         // タイトル
         page.title = titleString
-        page.titleColor = .systemBackground
+        page.titleColor = PrimaryColor.primary
         page.titleFont = UIFont(name: WalkThrough.titleFont, size: 24)
         page.titlePositionY = 340
         // ディスクリプション
         page.desc = descString
-        page.descColor = .systemBackground
+        page.descColor = PrimaryColor.primary
         page.descFont = UIFont(name: WalkThrough.descFont, size: 16)
         page.descPositionY = 320
         // アイコンイメージ

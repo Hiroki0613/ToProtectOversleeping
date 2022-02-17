@@ -27,7 +27,7 @@ class WUBodyLabel: UILabel {
     
     
     private func configure() {
-        textColor = .label
+        textColor = PrimaryColor.primary
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingTail

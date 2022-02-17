@@ -18,10 +18,10 @@ class SetInvitedTeamMateView: UIView {
     //    var invitedIDStackView = UIStackView(frame: .zero)
     
     // チャットのチーム名、ワンタイムトークンにて招待制
-    var registeredByQRCodeButton = WUButton(backgroundColor: PrimaryColor.primary, title: "QR読み取り")
-    var registeredByQRCodeInvitedButton = WUButton(backgroundColor: PrimaryColor.primary, title: "招待")
+    var registeredByQRCodeButton = WUButton(backgroundColor: .clear, title: "QR読み取り")
+    var registeredByQRCodeInvitedButton = WUButton(backgroundColor: .clear, title: "招待")
     var regsteredByQRCodeStackView = UIStackView(frame: .zero)
-    var registeredByQRCodeGoBackButton = WUButton(backgroundColor: PrimaryColor.primary, title: "戻る")
+    var registeredByQRCodeGoBackButton = WUButton(backgroundColor: .clear, title: "戻る")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -63,7 +63,7 @@ class WakeUpCardHomeVC: UIViewController {
     
     
     
-    var notificationWhenWakeUpButton = WUButton(backgroundColor: PrimaryColor.primary, title: "自販機をスキャン")
+    var notificationWhenWakeUpButton = WUButton(backgroundColor: .clear, title: "自販機をスキャン")
     
     
     var advertiseSpaceFrameView = UIView()
@@ -100,7 +100,8 @@ class WakeUpCardHomeVC: UIViewController {
 
 //        self.view.backgroundColor = .black
 //        self.view.backgroundColor = PrimaryColor.primary
-        self.view.addBackground(name: "orange")
+//        self.view.addBackground(name: "orange")
+        self.view.backgroundColor = PrimaryColor.background
         
         
         //TODO: (#1)チーム参加型になっているか、そうではないかでボタンを表示、非表示に分岐させる。
@@ -172,8 +173,9 @@ class WakeUpCardHomeVC: UIViewController {
         view.addSubview(outlineFrameView)
         view.addSubview(advertiseSpaceFrameView)
         
-        outlineFrameView.addBlurToView(alpha: 0.4)
-        advertiseSpaceFrameView.addBlurToView(alpha: 0.4)
+        outlineFrameView.addBlurToView(alpha: 0.0)
+        advertiseSpaceFrameView.addBlurToView(alpha: 0.0)
+        
         
         // チーム名
         teamMateNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -243,9 +245,12 @@ class WakeUpCardHomeVC: UIViewController {
         wakeUpTimeWeekEndStackView.alignment = .fill
         wakeUpTimeWeekEndStackView.distribution = .fillEqually
                 
-        wakeUpTimeOutlineFrameView.addBlurToView(alpha: 0.5, style: .regular)
+        wakeUpTimeOutlineFrameView.addBlurToView(alpha: 0.0, style: .regular)
         wakeUpTimeOutlineFrameView.layer.cornerRadius = 16
         wakeUpTimeOutlineFrameView.clipsToBounds = true
+        
+        wakeUpTimeOutlineFrameView.layer.borderWidth = 2.0
+        wakeUpTimeOutlineFrameView.layer.borderColor = PrimaryColor.primary.cgColor
         
         //TODO: (#1) 起きる時間の右に鉛筆ボタンを用意して、時間を編集できるようにする。アラーム時間は平日、休日を同時に編集できるようにする。
         //TODO: (#8)起きる時間の編集画面へのつなぎこみ、#1、#2が完了した後に行う。
@@ -307,7 +312,12 @@ class WakeUpCardHomeVC: UIViewController {
 //        editTeamMateButton.layer.borderWidth = 1
 //        editTeamMateButton.layer.borderColor = UIColor.label.cgColor
         editTeamMateButton.titleLabel?.numberOfLines = 0
-        editTeamMateButton.addBlurToButton(alpha: 0.9, cornerRadius: 10)
+        editTeamMateButton.addBlurToButton(alpha: 0.0, cornerRadius: 10)
+        editTeamMateButton.layer.cornerRadius = 10
+        
+        editTeamMateButton.layer.borderWidth = 2.0
+        editTeamMateButton.layer.borderColor = PrimaryColor.primary.cgColor
+        
         editTeamMateButton.addTarget(self, action: #selector(tapEditTeamMateButton), for: .touchUpInside)
 //        editTeamMateButton.layer.shadowOpacity = 0.7
 //        editTeamMateButton.layer.shadowRadius = 3
@@ -364,7 +374,10 @@ class WakeUpCardHomeVC: UIViewController {
 //        notificationWhenWakeUpButton.layer.borderColor = UIColor.label.cgColor
         notificationWhenWakeUpButton.titleLabel?.numberOfLines = 0
         notificationWhenWakeUpButton.titleLabel?.textAlignment = .center
-        notificationWhenWakeUpButton.addBlurToButton(alpha: 0.9, cornerRadius: 10)
+        notificationWhenWakeUpButton.addBlurToButton(alpha: 0.0, cornerRadius: 10)
+        
+        notificationWhenWakeUpButton.layer.borderWidth = 2.0
+        notificationWhenWakeUpButton.layer.borderColor = PrimaryColor.primary.cgColor
 //        notificationWhenWakeUpButton.layer.shadowOpacity = 0.7
 //        notificationWhenWakeUpButton.layer.shadowRadius = 3
 //        notificationWhenWakeUpButton.layer.shadowColor = UIColor.label.cgColor

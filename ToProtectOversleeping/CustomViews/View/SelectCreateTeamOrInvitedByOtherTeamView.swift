@@ -9,9 +9,9 @@ import UIKit
 
 class SelectCreateTeamOrInvitedByOtherTeamView: UIView {
     var selectCreateTeamOrInvitedByOtherTeamLabel = WUBodyLabel(fontSize: 20)
-    var createTeamButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チーム作成")
-    var invitedByOtherTeamButton = WUButton(backgroundColor: PrimaryColor.primary, title: "チームへ招待される")
-    var goBuckButton = WUButton(backgroundColor: PrimaryColor.primary, title: "戻る")
+    var createTeamButton = WUButton(backgroundColor: .clear, title: "チーム作成")
+    var invitedByOtherTeamButton = WUButton(backgroundColor: .clear, title: "チームへ招待される")
+    var goBuckButton = WUButton(backgroundColor: .clear, title: "戻る")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

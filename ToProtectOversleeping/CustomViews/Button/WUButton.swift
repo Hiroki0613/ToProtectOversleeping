@@ -24,6 +24,8 @@ class WUButton: UIButton {
         self.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
+        self.layer.borderWidth = 2.0
+        self.layer.borderColor = PrimaryColor.primary.cgColor
     }
     
     convenience init(backgroundColor: UIColor, sfSymbolString: String, fontSize: CGFloat = 30) {
@@ -36,8 +38,9 @@ class WUButton: UIButton {
     
     private func configure() {
         layer.cornerRadius = 10
+        
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        setTitleColor(.label, for: .normal)
+        setTitleColor(PrimaryColor.primary, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
     

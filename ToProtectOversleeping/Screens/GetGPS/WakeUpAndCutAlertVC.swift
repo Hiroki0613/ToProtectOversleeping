@@ -46,12 +46,12 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
     
     // スワイプボタン
     var myHomeLocation = CLLocationCoordinate2D()
-    var goBuckCheckTimeButton = WUButton(backgroundColor: PrimaryColor.primary, title: "閉じる")
+    var goBuckCheckTimeButton = WUButton(backgroundColor: .clear, title: "閉じる")
     
 
     // CoreMl
     var machineBlurView = UIView()
-    var goBuckMachineLeaningCameraModeButton = WUButton(backgroundColor: PrimaryColor.primary, title: "閉じる")
+    var goBuckMachineLeaningCameraModeButton = WUButton(backgroundColor: .clear, title: "閉じる")
     // 測定結果を表示するラベル
     var machineSwipedActionLabel = WUBodyLabel(fontSize: 16)
     // 雨の日用
@@ -67,7 +67,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = PrimaryColor.primary
+        view.backgroundColor = PrimaryColor.background
         configureMachineLearningCamera()
         configureUI()
         configureMachineUI()
@@ -159,7 +159,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
     private func setAlarmWithOut2Hours() {
         captureSession.stopRunning()
         // 2時間以上前の時
-        swipedActionLabel.text = "現在はアラームを解除できません。\n\n設定した2時間以内になりましたら、\n解除ボタンが表示されます。"
+        swipedActionLabel.text = "現在は自販機をスキャンできません。\n\n設定した2時間以内になりましたら、\n解除ボタンが表示されます。"
         rainyDayLabel.isHidden = true
         rainyDaySwitch.isHidden = true
         goBuckCheckTimeButton.isHidden = false
@@ -341,7 +341,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
             //ここで自動販売機を検知＋20m以上離れたときのalarmをチャットに送る。
             messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])
             // ここでLottieで、OK!を通知したい。
-            return "OK!\n20m以上離れました！\nアラームカットの通知を\n送信しました"
+            return "OK!\n20m以上離れました！\n起きたことを\n送信しました"
         }
     }
     
@@ -360,14 +360,14 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
             print("雨の日です")
             machineSwipeButton.isHidden = false
             machineSwipeButton.isEnabled = true
-            machineSwipedActionLabel.text = "家から20m離れなくても\n解除可能です\nただし☔️通知がつきます"
+            machineSwipedActionLabel.text = "家から20m離れなくても\n起きたことを通知可能です\nただし☔️通知がつきます"
             captureSession.stopRunning()
             
         } else {
             print("晴れの日です")
             machineSwipeButton.isHidden = true
             machineSwipeButton.isEnabled = false
-            machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\n解除するとチームへ\n起床したことが通知されます"
+            machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\n自販機をスキャンするとチームへ\n起床したことが通知されます"
             captureSession.startRunning()
         }
     }
@@ -493,7 +493,7 @@ extension WakeUpAndCutAlertVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
         swipedActionLabel.text = "取得完了しました"
-        machineSwipedActionLabel.text = "OK!\n雨の日モードで解除！\nアラームカットの通知を\n送信しました"
+        machineSwipedActionLabel.text = "OK!\n雨の日モードで解除！\n起きたことの通知を\n送信しました"
         machineSwipeButton.text = "通知完了"
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         setAnnotation(location: geoCoderLocation)
@@ -544,7 +544,7 @@ extension WakeUpAndCutAlertVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         machineSwipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
         machineSwipedActionLabel.numberOfLines = 0
         machineSwipedActionLabel.textAlignment = .center
-        machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\n解除するとチームへ\n起床したことが通知されます"
+        machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\nチームへ起床したことが通知されます"
         view.addSubview(machineSwipedActionLabel)
         
         machineRainyDayLabel.text = "☔️の時"
@@ -661,7 +661,7 @@ extension WakeUpAndCutAlertVC: CoachMarksControllerDelegate, CoachMarksControlle
         if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToGPSVendingMachineScan) == true {
             switch index {
             case 0:
-                coachViews.bodyView.hintLabel.text = "アラームカットの画面です。\n\n設定した時間内にアラームを切ると\nチームのチャットへ起きたことが\n通知されます。"
+                coachViews.bodyView.hintLabel.text = "自販機のスキャン画面です。\n\n設定した時間内に自販機をスキャンすると\nチームのチャットへ起きたことが\n通知されます。"
                 coachViews.bodyView.nextLabel.text = "OK!"
             default:
                 break

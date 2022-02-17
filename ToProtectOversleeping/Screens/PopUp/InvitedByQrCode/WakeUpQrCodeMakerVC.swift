@@ -30,9 +30,9 @@ class WakeUpQrCodeMakerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = PrimaryColor.primary
+        view.backgroundColor = PrimaryColor.background
         
-        let qrColor:UIColor = .darkText
+        let qrColor:UIColor = PrimaryColor.primary
         let wakeUpLogo = UIImage(named: QrcodeImage.icon)!
         
         let qrURLImage = URL(string: invitedDocumentId)?.qrImage(using: qrColor, logo: wakeUpLogo)
