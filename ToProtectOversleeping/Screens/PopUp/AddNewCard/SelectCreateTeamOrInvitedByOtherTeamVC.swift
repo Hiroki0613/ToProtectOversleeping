@@ -13,7 +13,8 @@ class SelectCreateTeamOrInvitedByOtherTeamVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addBackground(name: "orange")
+//        self.view.addBackground(name: "orange")
+        self.view.backgroundColor = PrimaryColor.background
         configureView()
         configureAddTarget()
     }

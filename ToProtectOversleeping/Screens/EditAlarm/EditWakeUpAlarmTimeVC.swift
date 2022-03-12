@@ -18,7 +18,8 @@ class EditWakeUpAlarmTimeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addBackground(name: "orange")
+//        self.view.addBackground(name: "orange")
+        self.view.backgroundColor = PrimaryColor.background
         print("宏輝_chatRoomDocumentIDArray", chatRoomDocumentIDArray)
         print("宏輝_userName", userName)
         print("宏輝_teamChatRoomId", teamChatRoomId)
