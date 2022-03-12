@@ -146,7 +146,7 @@ class EditTheGoalSettingView: UIView {
         buttonStackView.distribution = .fillEqually
         buttonStackView.spacing = 30
         addSubview(buttonStackView)
-        backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        backgroundColor = PrimaryColor.background
         
         let padding: CGFloat = 20.0
         

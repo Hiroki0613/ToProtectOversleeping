@@ -25,20 +25,23 @@ class WUTextFields: UITextField {
         
         layer.cornerRadius = 10
         layer.borderWidth = 2
-        layer.borderColor = UIColor.systemGray4.cgColor
+        layer.borderColor = PrimaryColor.primary.cgColor
         
-        textColor = .label
-        tintColor = .label
+        textColor = PrimaryColor.primary
+        tintColor = PrimaryColor.primary.withAlphaComponent(0.3)
         textAlignment = .center
         font = UIFont.preferredFont(forTextStyle: .title2)
         adjustsFontSizeToFitWidth = true
         minimumFontSize = 12
         
-        backgroundColor = .tertiarySystemBackground
+        backgroundColor = PrimaryColor.background
         autocorrectionType = .no
         returnKeyType = .go
         clearButtonMode = .whileEditing
-        placeholder = "選択"
+        attributedPlaceholder = NSAttributedString(
+            string: "選択",
+            attributes: [.foregroundColor : PrimaryColor.primary.withAlphaComponent(0.3)])
+//        placeholder = "選択"
     }
     
 }

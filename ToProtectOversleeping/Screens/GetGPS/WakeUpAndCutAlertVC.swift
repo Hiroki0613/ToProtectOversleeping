@@ -528,7 +528,7 @@ extension WakeUpAndCutAlertVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         machineBlurView.layer.cornerRadius = 40
         machineBlurView.clipsToBounds = true
         machineBlurView.translatesAutoresizingMaskIntoConstraints = false
-        machineBlurView.addBlurToView(alpha: 0.4)
+        machineBlurView.addBlurToView(alpha: 0.7)
         view.addSubview(machineBlurView)
         
         let blurViewPadding: CGFloat = 10

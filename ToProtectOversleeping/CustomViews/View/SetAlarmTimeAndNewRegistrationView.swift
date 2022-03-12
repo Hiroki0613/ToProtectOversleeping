@@ -110,7 +110,7 @@ class SetAlarmTimeAndNewRegistrationView: UIView, UITableViewDelegate {
         
         wakeUpGoBuckButton.translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        backgroundColor = PrimaryColor.background
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 10.0
         let labelSpacePadding: CGFloat = 30

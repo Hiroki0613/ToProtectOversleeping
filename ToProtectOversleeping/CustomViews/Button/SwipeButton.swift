@@ -43,7 +43,7 @@ class SwipeButton: UIView {
     }
         
     var swipedFrontColor : UIColor = PrimaryColor.primary
-    var swipedGroundColor : UIColor = .darkGray
+    var swipedGroundColor : UIColor = PrimaryColor.background
     var swipedTextColor : UIColor = PrimaryColor.primary
     
     var textFont : UIFont = UIFont.systemFont(ofSize: 20) {
@@ -100,7 +100,7 @@ class SwipeButton: UIView {
     public lazy var button: RoundView = { [unowned self] in
         let view = RoundView()
         view.backgroundColor = frontColor
-        view.layer.borderColor = UIColor.systemBackground.cgColor
+        view.layer.borderColor = PrimaryColor.background.cgColor
         view.layer.borderWidth = 3.0
         view.delegate = self
         return view

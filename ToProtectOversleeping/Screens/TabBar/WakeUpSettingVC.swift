@@ -34,6 +34,8 @@ class WakeUpSettingVC: UIViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.tintColor = PrimaryColor.primary
+        navigationController?.navigationBar.barTintColor = PrimaryColor.background
         
 //        self.view.addBackground(name: "orange")
         self.view.backgroundColor = PrimaryColor.background

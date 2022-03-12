@@ -30,7 +30,7 @@ class SelectCreateTeamOrInvitedByOtherTeamView: UIView {
         invitedByOtherTeamButton.translatesAutoresizingMaskIntoConstraints = false
         goBuckButton.translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundColor = .systemBackground.withAlphaComponent(0.7)
+        backgroundColor = PrimaryColor.background
         let padding: CGFloat = 20.0
         let spacePadding: CGFloat = 30.0
         let labelButtonHightPadding: CGFloat = 60

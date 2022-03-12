@@ -15,13 +15,14 @@ class WUTabBarController: UITabBarController {
         super.viewDidLoad()
         
         UITabBar.appearance().tintColor = PrimaryColor.primary
+        UITabBar.appearance().unselectedItemTintColor = PrimaryColor.primary.withAlphaComponent(0.3)
         //iOS15からtabBarの背景が透明になったため実装
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
-            appearance.selectionIndicatorTintColor = PrimaryColor.background
+//            appearance.selectionIndicatorTintColor = PrimaryColor.primary.withAlphaComponent(0.3)
+            appearance.backgroundColor = PrimaryColor.background
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = appearance
-            tabBar.addBlurToView(alpha: 0.7)
         } else {
             // Fallback on earlier versions
             // 背景の透過

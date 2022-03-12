@@ -16,7 +16,7 @@ import Instructions
 class WakeUpCommunicateChatVC: MessagesViewController {
     var messages = [Message]()
     
-    var wakeUpCardTableListVC = WakeUpCardTableListVC()
+//    var wakeUpCardTableListVC = WakeUpCardTableListVC()
     var teamRoomName = ""
     var chatRoomNameModel: ChatRoomNameModel?
     var userDataModel: UserDataModel?
@@ -52,6 +52,9 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "本日の結果", style: .done, target: self, action: #selector(tapSummaryResults))
         // ここの背景にアプリのロゴを入れる？
         view.backgroundColor = .systemGray
+        navigationController?.navigationBar.tintColor = PrimaryColor.primary
+        navigationController?.navigationBar.barTintColor = PrimaryColor.background
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: PrimaryColor.primary]
         messagesCollectionView.backgroundColor = PrimaryColor.background.withAlphaComponent(0.0)
 
         
