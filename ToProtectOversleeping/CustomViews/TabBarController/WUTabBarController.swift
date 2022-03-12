@@ -63,11 +63,11 @@ class WUTabBarController: UITabBarController {
     }
     
     
-    func createWakeUpCardTableListVC() -> UINavigationController {
-        let wakeUpCardTableListVC = WakeUpCardTableListVC()
-        wakeUpCardTableListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "Home", tag: 1)
-        return UINavigationController(rootViewController: wakeUpCardTableListVC)
-    }
+//    func createWakeUpCardTableListVC() -> UINavigationController {
+//        let wakeUpCardTableListVC = WakeUpCardTableListVC()
+//        wakeUpCardTableListVC.tabBarItem = setSFSymbolsToTabBar(symbolSystemName: "house", title: "Home", tag: 1)
+//        return UINavigationController(rootViewController: wakeUpCardTableListVC)
+//    }
     
     
     func createWakeUpSettingVC() -> UINavigationController {
