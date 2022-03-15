@@ -29,11 +29,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     // ナビゲーションコントローラーを実装
-    func createWakeUpDetailCardNC() -> UINavigationController {
-        let wakeUpDetailCardVC = SetAlarmTimeAndNewRegistrationVC()
-        wakeUpDetailCardVC.title = "目覚ましセット"
-        return UINavigationController(rootViewController: wakeUpDetailCardVC)
-    }
+//    func createWakeUpDetailCardNC() -> UINavigationController {
+//        let wakeUpDetailCardVC = SetAlarmTimeAndNewRegistrationVC()
+//        wakeUpDetailCardVC.title = "目覚ましセット"
+//        return UINavigationController(rootViewController: wakeUpDetailCardVC)
+//    }
     
     func configureNavigationBar() {
         UINavigationBar.appearance().tintColor = PrimaryColor.primary
