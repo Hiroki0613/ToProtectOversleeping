@@ -40,6 +40,7 @@ class ResultWakeUpVC: UIViewController {
     
     func configureTextOutlineShapeView() {
         let str = teamName
+//        let str = "オキルンジャー"
         guard let font = UIFont(name: "HiraKakuProN-W6", size: 30) else { return }
         
         let textOptions = TextOutlineShapeView.TextOptions(text: str,

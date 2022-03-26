@@ -192,6 +192,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
         goBuckCheckTimeButton.isEnabled = false
         
         // CoreMl画面を出す
+        //ストアリリース時は、startRunningをコメントアウトすると、スクリーンショット画面が取得できる。
         captureSession.startRunning()
         machineBlurView.addBlurToView(alpha: 0.4)
         machineBlurView.isHidden = false
@@ -367,7 +368,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
             print("晴れの日です")
             machineSwipeButton.isHidden = true
             machineSwipeButton.isEnabled = false
-            machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\n自販機をスキャンするとチームへ\n起床したことが通知されます"
+            machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\n\nスキャンするとチームへ\n起床したことが通知されます"
             captureSession.startRunning()
         }
     }
@@ -547,7 +548,7 @@ extension WakeUpAndCutAlertVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         machineSwipedActionLabel.translatesAutoresizingMaskIntoConstraints = false
         machineSwipedActionLabel.numberOfLines = 0
         machineSwipedActionLabel.textAlignment = .center
-        machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\nチームへ起床したことが通知されます"
+        machineSwipedActionLabel.text = "家から20m離れて\n自販機を写してください\n\nスキャンするとチームへ\n起床したことが通知されます"
         view.addSubview(machineSwipedActionLabel)
         
         machineRainyDayLabel.text = "☔️の時"
