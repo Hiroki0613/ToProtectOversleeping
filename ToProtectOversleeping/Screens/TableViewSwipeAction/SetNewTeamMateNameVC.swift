@@ -80,15 +80,16 @@ class SetNewTeamMateNameVC: UIViewController {
             // 新しいチャットルームを開く
             sendDBModel.createChatRoom(roomName: self.newTeamMateString, defaultWakeUpTimeDate: Date(), defaultWakeUpTimeText: "\(formatter.string(from: Date()))", chatRoomId: generatedHomeRoomRandomString, appVersion: version)
         }
-        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
 
     // 戻る
     @objc func goBack() {
         print("戻るボタン")
-//        dismiss(animated: true, completion: nil)
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+//        navigationController?.popViewController(animated: true)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

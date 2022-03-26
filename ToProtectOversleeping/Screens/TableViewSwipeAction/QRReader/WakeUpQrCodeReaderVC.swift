@@ -116,7 +116,7 @@ class WakeUpQrCodeReaderVC: UIViewController, AVCaptureMetadataOutputObjectsDele
 //                messageModel.newInvitedToTeam(documentID: self.qrCodeReadLabel.text!, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
                 
                 //TODO: いっきにトップのビューまで画面遷移させたい。導線の整理が必要
-                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
                 
                 isSendMessageByReadingQRCodeFirstTime = false
             }

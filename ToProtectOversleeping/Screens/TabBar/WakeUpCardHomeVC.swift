@@ -457,7 +457,9 @@ class WakeUpCardHomeVC: UIViewController {
         
         let selectCreateTeamOrInvitedByOtherTeamVC = SelectCreateTeamOrInvitedByOtherTeamVC()
         selectCreateTeamOrInvitedByOtherTeamVC.userName = userDataModel!.name
-        navigationController?.pushViewController(selectCreateTeamOrInvitedByOtherTeamVC, animated: true)
+//        navigationController?.pushViewController(selectCreateTeamOrInvitedByOtherTeamVC, animated: true)
+        selectCreateTeamOrInvitedByOtherTeamVC.modalPresentationStyle = .fullScreen
+        present(selectCreateTeamOrInvitedByOtherTeamVC, animated: true)
         
     }
     

@@ -34,19 +34,22 @@ class SelectCreateTeamOrInvitedByOtherTeamVC: UIViewController {
     
     @objc func createTeam() {
         let setNewTeamMateNameVC = SetNewTeamMateNameVC()
-        self.navigationController?.pushViewController(setNewTeamMateNameVC, animated: true)
+//        self.navigationController?.pushViewController(setNewTeamMateNameVC, animated: true)
+        setNewTeamMateNameVC.modalPresentationStyle = .fullScreen
+        present(setNewTeamMateNameVC, animated: true, completion: nil)
     }
     
     @objc func invitedByOtherTeam() {
         let setInvitedTeamMateVC = SetInvitedTeamMateVC()
         //userDataModel.nameを持ってくる
         setInvitedTeamMateVC.userName = userName
-        
+        setInvitedTeamMateVC.modalPresentationStyle = .fullScreen
         self.present(setInvitedTeamMateVC, animated: true,completion: nil)
     }
     
     @objc func goBack() {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+//        navigationController?.popViewController(animated: true)
     }
     
     

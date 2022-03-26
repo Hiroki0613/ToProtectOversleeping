@@ -113,14 +113,15 @@ class SetInvitedTeamMateVC: UIViewController {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
             
             //招待されましたの挨拶はカット
 //            let messageModel = MessageModel()
 //            messageModel.newInvitedToTeam(documentID: self.newInvitedTeamMateId, displayName: self.userName, wakeUpTimeText: self.wakeUpTimeText)
             
         //TODO: いっきにトップのビューまで画面遷移させたい。導線の整理が必要
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
     

@@ -299,7 +299,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
             let messageModel = MessageModel()
             messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])
             // ここでLottieで、OK!を通知したい。
-            return "OK!、雨の日モードで解除！"
+            return "OK!、雨の日モードで報告しました！\n2秒後にHomeに戻ります。"
         }
         
         //TODO: ここを任意で距離を決められても面白いかもしれない。
@@ -341,7 +341,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
             //ここで自動販売機を検知＋20m以上離れたときのalarmをチャットに送る。
             messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])
             // ここでLottieで、OK!を通知したい。
-            return "OK!\n20m以上離れました！\n起きたことを\n送信しました"
+            return "OK!\n20m以上離れました！\n起きたことを報告しました\n2秒後にHomeに戻ります。"
         }
     }
     
@@ -493,13 +493,16 @@ extension WakeUpAndCutAlertVC: GetGeocoderDelegate {
     func getAddressFromCurrentPlace() {
         getCurrentLocation()
         swipedActionLabel.text = "取得完了しました"
-        machineSwipedActionLabel.text = "OK!\n雨の日モードで解除！\n起きたことの通知を\n送信しました"
+        machineSwipedActionLabel.text = "OK!\n雨の日モードで報告！\n起きたことの通知を\n送信しました\n２秒後にHomeに移動します。"
         machineSwipeButton.text = "通知完了"
         let geoCoderLocation = CLLocationCoordinate2D(latitude: geoCoderLatitude, longitude: geoCoderLongitude)
         setAnnotation(location: geoCoderLocation)
         moveTo(center: geoCoderLocation, animated: false)
         print("geoCoderLatitude:", geoCoderLatitude)
         print("geoCoderLongitude:", geoCoderLongitude)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 
@@ -625,7 +628,20 @@ extension WakeUpAndCutAlertVC: AVCaptureVideoDataOutputSampleBufferDelegate {
                     
                     DispatchQueue.main.async {
                         self.machineSwipedActionLabel.text = self.rank(location: geoCoderLocation)
-                        //                        self.dismiss(animated: true, completion: nil)
+                        self.captureSession.stopRunning()
+                        
+                        //自販機でスキャンしてOKだった場合は、自動的にHome画面に戻るようにする。
+                        let machineSwipedActionLabelText = self.rank(location: geoCoderLocation)
+                        
+                        if machineSwipedActionLabelText.contains("OK!") {
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                //OK!、雨の日モードで解除！
+                                //"OK!\n20m以上離れました！\n起きたことを\n送信しました"
+                                //が含まれてたら、１秒後に画面が閉じてHome画面に移動させる。
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
                     }
                 }
             }

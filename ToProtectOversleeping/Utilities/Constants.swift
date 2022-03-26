@@ -7,6 +7,7 @@
 
 import UIKit
 
+// ダークモードで、primaryが働いていないため、強制的に色を指定したい
 enum PrimaryColor {
     static let primary = UIColor.white
     static let background = UIColor.black
