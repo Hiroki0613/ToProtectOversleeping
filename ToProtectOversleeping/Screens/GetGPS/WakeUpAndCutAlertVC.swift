@@ -334,10 +334,13 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
         // 家から20m離れたらアラームカット出来るようにする。
         switch rawDistance {
         case 0..<(10):
+            print("離れた_rawDistance: ", rawDistance)
             return "あと、20mほど離れてください"
         case (10)..<(20):
+            print("離れた_rawDistance: ", rawDistance)
             return "あと、10mほど離れてください"
         default:
+            print("離れた_rawDistance: ", rawDistance)
             let messageModel = MessageModel()
             //ここで自動販売機を検知＋20m以上離れたときのalarmをチャットに送る。
             messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])

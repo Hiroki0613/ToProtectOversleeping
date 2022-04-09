@@ -155,6 +155,7 @@ class WakeUpSettingVC: UIViewController {
         print("goToChatButtonが押されました")
         let wakeUpCommunicateChatVC = WakeUpCommunicateChatVC()
         wakeUpCommunicateChatVC.teamRoomName = UserDefaults.standard.object(forKey: "teamChatName") as! String
+        //TODO: おそらく、以下の２箇所のどちらかでNilが入っていたことによってクラッシュをしていた模様
         wakeUpCommunicateChatVC.userDataModel = self.userDataModel
         wakeUpCommunicateChatVC.chatRoomDocumentId = self.userDataModel!.teamChatRoomId
         
