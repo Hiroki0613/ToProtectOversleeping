@@ -85,7 +85,7 @@ class ResultWakeUpVC: UIViewController {
                     
                     guard let messageAppVersion = data["messageAppVersion"] as? String else { return }
                     
-                    if messageAppVersion == "1.0.1" || messageAppVersion == "1.0.2" || messageAppVersion == "1.0.3"|| messageAppVersion == "1.0.4" {
+                    if messageAppVersion == "1.0.1" || messageAppVersion == "1.0.2" || messageAppVersion == "1.0.3" || messageAppVersion == "1.0.4" {
                         if let _ = data["text"] as? String,
                            let _ = data["senderId"] as? String,
                            let displayName = data["displayName"] as? String,

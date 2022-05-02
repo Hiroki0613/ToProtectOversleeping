@@ -10,7 +10,7 @@ import MessageKit
 import Firebase
 import FirebaseFirestore
 import InputBarAccessoryView
-import Instructions
+//import Instructions
 
 
 class WakeUpCommunicateChatVC: MessagesViewController {
@@ -43,7 +43,7 @@ class WakeUpCommunicateChatVC: MessagesViewController {
     }()
     
     //コーチビューコントローラー(イントロダクション)を作成
-    let coachMarksController = CoachMarksController()
+//    let coachMarksController = CoachMarksController()
     
     
     override func viewDidLoad() {
@@ -98,31 +98,31 @@ class WakeUpCommunicateChatVC: MessagesViewController {
         showResultPage()
         
         //イントロダクションのdataSourceを実装
-        self.coachMarksController.dataSource = self
-        self.coachMarksController.delegate = self
-        self.coachMarksController.overlay.blurEffectStyle = .regular
+//        self.coachMarksController.dataSource = self
+//        self.coachMarksController.delegate = self
+//        self.coachMarksController.overlay.blurEffectStyle = .regular
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkTheInstructionModeIsNeed()
+//        checkTheInstructionModeIsNeed()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         UserDefaults.standard.set(false, forKey: UserDefaultsString.isFirstAccessToChat)
-        self.coachMarksController.stop(immediately: true)
+//        self.coachMarksController.stop(immediately: true)
     }
     
     // instruction
-    func checkTheInstructionModeIsNeed() {
-        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToChat) == true {
-            // 最初にアプリをダウンロードした時に出てくるインストラクション
-            self.coachMarksController.start(in: .currentWindow(of: self))
-        } else {
-            print("宏輝_instructionが全て終了しました")
-        }
-    }
+//    func checkTheInstructionModeIsNeed() {
+//        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToChat) == true {
+//            // 最初にアプリをダウンロードした時に出てくるインストラクション
+//            self.coachMarksController.start(in: .currentWindow(of: self))
+//        } else {
+//            print("宏輝_instructionが全て終了しました")
+//        }
+//    }
     
     // 集計画面へ画面遷移
     @objc func tapSummaryResults() {
@@ -451,45 +451,48 @@ extension WakeUpCommunicateChatVC: MessageCellDelegate {
     
 }
 
-extension WakeUpCommunicateChatVC: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
-    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return 1
-    }
-    
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        switch index {
-        case 0:
-            var coachMark = coachMarksController.helper.makeCoachMark(for: messagesCollectionView)
-            coachMark.isDisplayedOverCutoutPath = true
-            return coachMark
-        default:
-            return coachMarksController.helper.makeCoachMark()
-        }
-    }
-    
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
-        //吹き出しのビューを作成します
-        let coachViews = coachMarksController.helper.makeDefaultCoachViews(
-            withArrow: true,    //三角の矢印をつけるか
-            arrowOrientation: coachMark.arrowOrientation    //矢印の向き(吹き出しの位置)
-        )
-        
-        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToChat) == true {
-            switch index {
-            case 0:
-                coachViews.bodyView.hintLabel.text = "チャット画面です。\n\n起床宣言\n起床したことの通知\nアラーム時間の変更\n\nが表示されます。"
-                coachViews.bodyView.nextLabel.text = "OK!"
-            default:
-                break
-            }
-        } else {
-            switch index {
-            default:
-                break
-            }
-        }
-        //その他の設定が終わったら吹き出しを返します
-        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
-    }
-}
+
+
+
+//extension WakeUpCommunicateChatVC: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
+//    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+//        return 1
+//    }
+//
+//    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+//        switch index {
+//        case 0:
+//            var coachMark = coachMarksController.helper.makeCoachMark(for: messagesCollectionView)
+//            coachMark.isDisplayedOverCutoutPath = true
+//            return coachMark
+//        default:
+//            return coachMarksController.helper.makeCoachMark()
+//        }
+//    }
+//
+//    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
+//        //吹き出しのビューを作成します
+//        let coachViews = coachMarksController.helper.makeDefaultCoachViews(
+//            withArrow: true,    //三角の矢印をつけるか
+//            arrowOrientation: coachMark.arrowOrientation    //矢印の向き(吹き出しの位置)
+//        )
+//
+//        if UserDefaults.standard.bool(forKey: UserDefaultsString.isFirstAccessToChat) == true {
+//            switch index {
+//            case 0:
+//                coachViews.bodyView.hintLabel.text = "チャット画面です。\n\n起床宣言\n起床したことの通知\nアラーム時間の変更\n\nが表示されます。"
+//                coachViews.bodyView.nextLabel.text = "OK!"
+//            default:
+//                break
+//            }
+//        } else {
+//            switch index {
+//            default:
+//                break
+//            }
+//        }
+//        //その他の設定が終わったら吹き出しを返します
+//        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+//    }
+//}
 
