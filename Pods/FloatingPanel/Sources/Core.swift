@@ -17,6 +17,19 @@ class Core: NSObject, UIGestureRecognizerDelegate {
         didSet {
             oldValue?.panGestureRecognizer.removeTarget(self, action: nil)
             scrollView?.panGestureRecognizer.addTarget(self, action: #selector(handle(panGesture:)))
+            if let cur = scrollView {
+                if oldValue == nil {
+                    initialScrollOffset = cur.contentOffset
+                    scrollBounce = cur.bounces
+                    scrollIndictorVisible = cur.showsVerticalScrollIndicator
+                }
+            } else {
+                if let pre = oldValue {
+                    pre.isDirectionalLockEnabled = false
+                    pre.bounces = scrollBounce
+                    pre.showsVerticalScrollIndicator = scrollIndictorVisible
+                }
+            }
         }
     }
 
@@ -697,7 +710,7 @@ class Core: NSObject, UIGestureRecognizerDelegate {
         if stopScrollDeceleration {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-
+                
                 self.stopScrolling(at: self.initialScrollOffset)
             }
         }
@@ -788,7 +801,7 @@ class Core: NSObject, UIGestureRecognizerDelegate {
             if grabberAreaFrame.contains(location) {
                 initialScrollOffset = scrollView.contentOffset
             } else {
-                initialScrollOffset = contentOffsetForPinning(of: scrollView)
+                initialScrollOffset = scrollView.contentOffset
                 let offsetDiff = scrollView.contentOffset - contentOffsetForPinning(of: scrollView)
                 switch layoutAdapter.position {
                 case .top, .left:
@@ -837,6 +850,7 @@ class Core: NSObject, UIGestureRecognizerDelegate {
     }
 
     private func tearDownActiveInteraction() {
+        guard panGestureRecognizer.isEnabled else { return }
         // Cancel the pan gesture so that panningEnd(with:velocity:) is called
         panGestureRecognizer.isEnabled = false
         panGestureRecognizer.isEnabled = true

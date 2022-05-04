@@ -26,6 +26,9 @@
 #include <utility>
 #include <vector>
 
+#include "Firestore/core/src/api/load_bundle_task.h"
+#include "Firestore/core/src/bundle/bundle_loader.h"
+#include "Firestore/core/src/bundle/bundle_reader.h"
 #include "Firestore/core/src/core/query.h"
 #include "Firestore/core/src/core/target_id_generator.h"
 #include "Firestore/core/src/core/view.h"
@@ -93,7 +96,7 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
  public:
   SyncEngine(local::LocalStore* local_store,
              remote::RemoteStore* remote_store,
-             const auth::User& initial_user,
+             const credentials::User& initial_user,
              size_t max_concurrent_limbo_resolutions);
 
   // Implements `QueryEventSource`.
@@ -135,18 +138,20 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
                    core::TransactionUpdateCallback update_callback,
                    core::TransactionResultCallback result_callback);
 
-  void HandleCredentialChange(const auth::User& user);
+  void HandleCredentialChange(const credentials::User& user);
 
   // Implements `RemoteStoreCallback`
   void ApplyRemoteEvent(const remote::RemoteEvent& remote_event) override;
   void HandleRejectedListen(model::TargetId target_id,
                             util::Status error) override;
-  void HandleSuccessfulWrite(
-      const model::MutationBatchResult& batch_result) override;
+  void HandleSuccessfulWrite(model::MutationBatchResult batch_result) override;
   void HandleRejectedWrite(model::BatchId batch_id,
                            util::Status error) override;
   void HandleOnlineStateChange(model::OnlineState online_state) override;
   model::DocumentKeySet GetRemoteKeys(model::TargetId target_id) const override;
+
+  void LoadBundle(std::shared_ptr<bundle::BundleReader> reader,
+                  std::shared_ptr<api::LoadBundleTask> result_task);
 
   // For tests only
   std::map<model::DocumentKey, model::TargetId>
@@ -230,7 +235,7 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
   void RemoveLimboTarget(const model::DocumentKey& key);
 
   void EmitNewSnapshotsAndNotifyLocalStore(
-      const model::MaybeDocumentMap& changes,
+      const model::DocumentMap& changes,
       const absl::optional<remote::RemoteEvent>& maybe_remote_event);
 
   /** Updates the limbo document state for the given target_id. */
@@ -262,13 +267,18 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
   void TriggerPendingWriteCallbacks(model::BatchId batch_id);
   void FailOutstandingPendingWriteCallbacks(const std::string& message);
 
+  absl::optional<bundle::BundleLoader> ReadIntoLoader(
+      const bundle::BundleMetadata& metadata,
+      bundle::BundleReader& reader,
+      api::LoadBundleTask& result_task);
+
   /** The local store, used to persist mutations and cached documents. */
   local::LocalStore* local_store_ = nullptr;
 
   /** The remote store for sending writes, watches, etc. to the backend. */
   remote::RemoteStore* remote_store_ = nullptr;
 
-  auth::User current_user_;
+  credentials::User current_user_;
   SyncEngineCallback* sync_engine_callback_ = nullptr;
 
   /**
@@ -278,9 +288,9 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
   TargetIdGenerator target_id_generator_;
 
   /** Stores user completion blocks, indexed by User and BatchId. */
-  std::unordered_map<auth::User,
+  std::unordered_map<credentials::User,
                      std::unordered_map<model::BatchId, util::StatusCallback>,
-                     auth::HashUser>
+                     credentials::HashUser>
       mutation_callbacks_;
 
   /** Stores user callbacks waiting for pending writes to be acknowledged. */

@@ -25,13 +25,13 @@
 #import "Crashlytics/Crashlytics/Components/FIRCLSHost.h"
 #include "Crashlytics/Crashlytics/Components/FIRCLSUserLogging.h"
 #import "Crashlytics/Crashlytics/DataCollection/FIRCLSDataCollectionArbiter.h"
+#import "Crashlytics/Crashlytics/DataCollection/FIRCLSDataCollectionToken.h"
 #import "Crashlytics/Crashlytics/FIRCLSUserDefaults/FIRCLSUserDefaults.h"
 #include "Crashlytics/Crashlytics/Handlers/FIRCLSException.h"
 #import "Crashlytics/Crashlytics/Helpers/FIRCLSDefines.h"
 #include "Crashlytics/Crashlytics/Helpers/FIRCLSProfiling.h"
 #include "Crashlytics/Crashlytics/Helpers/FIRCLSUtility.h"
 #import "Crashlytics/Crashlytics/Models/FIRCLSFileManager.h"
-#import "Crashlytics/Crashlytics/Models/FIRCLSReport_Private.h"
 #import "Crashlytics/Crashlytics/Models/FIRCLSSettings.h"
 #import "Crashlytics/Crashlytics/Settings/Models/FIRCLSApplicationIdentifierModel.h"
 
@@ -46,6 +46,9 @@
 #import "Crashlytics/Crashlytics/Controllers/FIRCLSNotificationManager.h"
 #import "Crashlytics/Crashlytics/Controllers/FIRCLSReportManager.h"
 #import "Crashlytics/Crashlytics/Controllers/FIRCLSReportUploader.h"
+#import "Crashlytics/Crashlytics/Private/FIRCLSExistingReportManager_Private.h"
+#import "Crashlytics/Crashlytics/Private/FIRCLSOnDemandModel_Private.h"
+#import "Crashlytics/Crashlytics/Private/FIRExceptionModel_Private.h"
 
 #import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 #import "FirebaseInstallations/Source/Library/Private/FirebaseInstallationsInternal.h"
@@ -127,13 +130,16 @@ NSString *const FIRCLSGoogleTransportMappingID = @"1206";
     FIRCLSSettings *settings = [[FIRCLSSettings alloc] initWithFileManager:_fileManager
                                                                 appIDModel:appModel];
 
+    FIRCLSOnDemandModel *onDemandModel =
+        [[FIRCLSOnDemandModel alloc] initWithFIRCLSSettings:settings];
     _managerData = [[FIRCLSManagerData alloc] initWithGoogleAppID:_googleAppID
                                                   googleTransport:googleTransport
                                                     installations:installations
                                                         analytics:analytics
                                                       fileManager:_fileManager
                                                       dataArbiter:_dataArbiter
-                                                         settings:settings];
+                                                         settings:settings
+                                                    onDemandModel:onDemandModel];
 
     _reportUploader = [[FIRCLSReportUploader alloc] initWithManagerData:_managerData];
 
@@ -147,15 +153,14 @@ NSString *const FIRCLSGoogleTransportMappingID = @"1206";
                                                 existingReportManager:_existingReportManager
                                                      analyticsManager:_analyticsManager];
 
+    _didPreviouslyCrash = [_fileManager didCrashOnPreviousExecution];
     // Process did crash during previous execution
-    NSString *crashedMarkerFileName = [NSString stringWithUTF8String:FIRCLSCrashedMarkerFileName];
-    NSString *crashedMarkerFileFullPath =
-        [[_fileManager rootPath] stringByAppendingPathComponent:crashedMarkerFileName];
-    _didPreviouslyCrash = [_fileManager fileExistsAtPath:crashedMarkerFileFullPath];
-
     if (_didPreviouslyCrash) {
       // Delete the crash file marker in the background ensure start up is as fast as possible
       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *crashedMarkerFileFullPath = [[self.fileManager rootPath]
+            stringByAppendingPathComponent:[NSString
+                                               stringWithUTF8String:FIRCLSCrashedMarkerFileName]];
         [self.fileManager removeItemAtPath:crashedMarkerFileFullPath];
       });
     }
@@ -271,10 +276,20 @@ NSString *const FIRCLSGoogleTransportMappingID = @"1206";
 #pragma mark - API: Accessors
 
 - (void)checkForUnsentReportsWithCompletion:(void (^)(BOOL))completion {
-  [[self.reportManager checkForUnsentReports] then:^id _Nullable(NSNumber *_Nullable value) {
-    completion([value boolValue]);
-    return nil;
-  }];
+  [[self.reportManager checkForUnsentReports]
+      then:^id _Nullable(FIRCrashlyticsReport *_Nullable value) {
+        completion(value ? true : false);
+        return nil;
+      }];
+}
+
+- (void)checkAndUpdateUnsentReportsWithCompletion:
+    (void (^)(FIRCrashlyticsReport *_Nonnull))completion {
+  [[self.reportManager checkForUnsentReports]
+      then:^id _Nullable(FIRCrashlyticsReport *_Nullable value) {
+        completion(value);
+        return nil;
+      }];
 }
 
 - (void)sendUnsentReports {
@@ -286,13 +301,13 @@ NSString *const FIRCLSGoogleTransportMappingID = @"1206";
 }
 
 #pragma mark - API: setUserID
-- (void)setUserID:(NSString *)userID {
+- (void)setUserID:(nullable NSString *)userID {
   FIRCLSUserLoggingRecordInternalKeyValue(FIRCLSUserIdentifierKey, userID);
 }
 
 #pragma mark - API: setCustomValue
 
-- (void)setCustomValue:(id)value forKey:(NSString *)key {
+- (void)setCustomValue:(nullable id)value forKey:(NSString *)key {
   FIRCLSUserLoggingRecordUserKeyValue(key, value);
 }
 
@@ -341,6 +356,13 @@ NSString *const FIRCLSGoogleTransportMappingID = @"1206";
 
 - (void)recordExceptionModel:(FIRExceptionModel *)exceptionModel {
   FIRCLSExceptionRecordModel(exceptionModel);
+}
+
+- (void)recordOnDemandExceptionModel:(FIRExceptionModel *)exceptionModel {
+  [self.managerData.onDemandModel
+      recordOnDemandExceptionIfQuota:exceptionModel
+           withDataCollectionEnabled:[self.dataArbiter isCrashlyticsCollectionEnabled]
+          usingExistingReportManager:self.existingReportManager];
 }
 
 @end
