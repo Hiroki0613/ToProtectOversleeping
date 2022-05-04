@@ -7,6 +7,8 @@
 		<dict>
 			<key>FooterText</key>
 			<string>Copyright 2020 FAN Communications, Inc. All Rights Reserved.</string>
+			<key>License</key>
+			<string>unknown</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

@@ -632,18 +632,21 @@ extension WakeUpAndCutAlertVC: AVCaptureVideoDataOutputSampleBufferDelegate {
                     
                     DispatchQueue.main.async {
                         self.machineSwipedActionLabel.text = self.rank(location: geoCoderLocation)
+                        
                         self.captureSession.stopRunning()
                         
                         //自販機でスキャンしてOKだった場合は、自動的にHome画面に戻るようにする。
-                        let machineSwipedActionLabelText = self.rank(location: geoCoderLocation)
-                        
-                        if machineSwipedActionLabelText.contains("OK!") {
+//                        let machineSwipedActionLabelText = self.rank(location: geoCoderLocation)
+                        if let machineSwipedActionLabelText = self.machineSwipedActionLabel.text {
+                            
+                            if machineSwipedActionLabelText.contains("OK!") {
 
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                //OK!、雨の日モードで解除！
-                                //"OK!\n20m以上離れました！\n起きたことを\n送信しました"
-                                //が含まれてたら、１秒後に画面が閉じてHome画面に移動させる。
-                                self.dismiss(animated: true, completion: nil)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    //OK!、雨の日モードで解除！
+                                    //"OK!\n20m以上離れました！\n起きたことを\n送信しました"
+                                    //が含まれてたら、１秒後に画面が閉じてHome画面に移動させる。
+                                    self.dismiss(animated: true, completion: nil)
+                                }
                             }
                         }
                     }
