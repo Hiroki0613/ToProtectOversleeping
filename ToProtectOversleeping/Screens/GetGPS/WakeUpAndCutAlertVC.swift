@@ -22,6 +22,7 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
     var userName = ""
     
     var wakeUpTimeTextArray = [""]
+    var wakeUpTimeAndWeekDayOrWeekEnd = ""
     
     var authId = ""
     
@@ -84,8 +85,14 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
         
         if isTodayIsWeekDay() == "平日" {
             checkSettingAlarmWithinTwoHoursAndWeekDAy(settingTime: mySettingAlarmTimeArray[0])
+            wakeUpTimeAndWeekDayOrWeekEnd = wakeUpTimeTextArray[0]
+            print("宏輝_時間調査_平日: ", wakeUpTimeAndWeekDayOrWeekEnd)
+
         } else {
             checkSettingAlarmWithinTwoHoursAndWeekDAy(settingTime: mySettingAlarmTimeArray[1])
+            wakeUpTimeAndWeekDayOrWeekEnd = wakeUpTimeTextArray[1]
+            print("宏輝_時間調査_休日: ", wakeUpTimeAndWeekDayOrWeekEnd)
+
         }
         
         
@@ -298,7 +305,11 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
             print("宏輝_起きた_chatRoomDocumentID: ",chatRoomDocumentId)
             //            clearAlarm()
             let messageModel = MessageModel()
-            messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])
+//            messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])
+            
+            messageModel.sendMessageToChatWakeUpAtRainyDay(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeAndWeekDayOrWeekEnd)
+
+            
             // ここでLottieで、OK!を通知したい。
             return "OK!、雨の日モードで報告しました！\n2秒後にHomeに戻ります。"
         }
@@ -343,7 +354,14 @@ class WakeUpAndCutAlertVC: BaseGpsVC {
             print("離れた_rawDistance: ", rawDistance)
             let messageModel = MessageModel()
             //ここで自動販売機を検知＋20m以上離れたときのalarmをチャットに送る。
-            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])
+            
+            // ここで平日、休日を確認する必要がある。
+            
+            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeAndWeekDayOrWeekEnd)
+            
+            
+//            messageModel.sendMessageToChatWakeUpSuccessMessage(documentID: chatRoomDocumentId, displayName: userName, wakeUpTimeText: wakeUpTimeTextArray[0])
+            
             // ここでLottieで、OK!を通知したい。
             return "OK!\n20m以上離れました！\n起きたことを報告しました\n2秒後にHomeに戻ります。"
         }

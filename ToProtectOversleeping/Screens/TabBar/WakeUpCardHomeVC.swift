@@ -268,8 +268,10 @@ class WakeUpCardHomeVC: UIViewController {
         wakeUpTimeWeekDayTimeLabel.textAlignment = .center
         wakeUpTimeWeekDayTimeLabel.textColor = PrimaryColor.primary
         
-        //TODO: (#2)休日については、日本の祝日を含むようにする。
-        wakeUpTimeWeekEndDeclarationLabel.text = "休日(祝日)"
+        //TODO: (#2)休日については、日本の祝日を含むようにする。現在は土日としておく
+//        wakeUpTimeWeekEndDeclarationLabel.text = "休日(祝日)"
+        wakeUpTimeWeekEndDeclarationLabel.text = "土日"
+
         wakeUpTimeWeekEndDeclarationLabel.textAlignment = .center
         wakeUpTimeWeekEndDeclarationLabel.textColor = PrimaryColor.primary
         wakeUpTimeWeekEndTimeLabel.text = "8:00"
