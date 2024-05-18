@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,7 +48,6 @@
 		7F8211E226590FF600AA747E /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E126590FF600AA747E /* ChangeNameView.swift */; };
 		7F8211E42659105700AA747E /* RegisterNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8211E32659105700AA747E /* RegisterNameVC.swift */; };
 		7F8211EB26591F3000AA747E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F8211EA26591F3000AA747E /* Settings.bundle */; };
-		7F8273E326BD7A5A00584407 /* keyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8273E226BD7A5A00584407 /* keyApi.swift */; };
 		7F872DBD2641A4EC0055FEAC /* WUTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */; };
 		7F955F6626D0E0C300D89A7C /* WakeUpCardHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F955F6526D0E0C300D89A7C /* WakeUpCardHomeVC.swift */; };
 		7F96B4E32691F818007B97D7 /* CheckVendingMachineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */; };
@@ -66,6 +65,7 @@
 		7FABB9B7264106A2001182DF /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABB9B6264106A2001182DF /* SwipeViewController.swift */; };
 		7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */; };
 		7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */; };
+		7FC7BE7E2BF8A62000468A6D /* keyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC7BE7D2BF8A62000468A6D /* keyApi.swift */; };
 		7FD2F49D264FFD9B006C684E /* GetGpsAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */; };
 		7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */; };
 		7FD2F4A326502D3D006C684E /* WakeUpQrCodeMakerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */; };
@@ -137,7 +137,6 @@
 		7F8211E126590FF600AA747E /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		7F8211E32659105700AA747E /* RegisterNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNameVC.swift; sourceTree = "<group>"; };
 		7F8211EA26591F3000AA747E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ToProtectOversleeping/Settings.bundle; sourceTree = "<group>"; };
-		7F8273E226BD7A5A00584407 /* keyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyApi.swift; sourceTree = "<group>"; };
 		7F872DBC2641A4EC0055FEAC /* WUTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextFields.swift; sourceTree = "<group>"; };
 		7F955F6526D0E0C300D89A7C /* WakeUpCardHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardHomeVC.swift; sourceTree = "<group>"; };
 		7F96B4E22691F818007B97D7 /* CheckVendingMachineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVendingMachineVC.swift; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 		7FABB9B6264106A2001182DF /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		7FAC365E264C163A003675DC /* WakeUpCardTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListCell.swift; sourceTree = "<group>"; };
 		7FAC3660264C1850003675DC /* WakeUpCardTableListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpCardTableListVC.swift; sourceTree = "<group>"; };
+		7FC7BE7D2BF8A62000468A6D /* keyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyApi.swift; sourceTree = "<group>"; };
 		7FD2F49C264FFD9B006C684E /* GetGpsAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGpsAddressView.swift; sourceTree = "<group>"; };
 		7FD2F49E2650117D006C684E /* WakeUpSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpSettingVC.swift; sourceTree = "<group>"; };
 		7FD2F4A226502D3D006C684E /* WakeUpQrCodeMakerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpQrCodeMakerVC.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 				7FABB9AE26403E5D001182DF /* CustomViews */,
 				7FABB9AD26403E36001182DF /* Support */,
 				7F376B2226401A920063F2EC /* Info.plist */,
-				7F8273E226BD7A5A00584407 /* keyApi.swift */,
+				7FC7BE7D2BF8A62000468A6D /* keyApi.swift */,
 				7F31247126B433DE000576FF /* keys.swift */,
 			);
 			path = ToProtectOversleeping;
@@ -599,7 +599,7 @@
 				D1D1D53A703E4AC5FD850693 /* [CP] Embed Pods Frameworks */,
 				7F8211E526591C0E00AA747E /* LicensePlist */,
 				7F9A8B5F267DB7310025F690 /* Crashlytics */,
-				95EA4865E34CF47FE1B7D45E /* [CP] Copy Pods Resources */,
+				F4745139CABC5622DF0341A0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -718,23 +718,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		95EA4865E34CF47FE1B7D45E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D1D1D53A703E4AC5FD850693 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -752,6 +735,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F4745139CABC5622DF0341A0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToProtectOversleeping/Pods-ToProtectOversleeping-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -762,6 +762,7 @@
 				7FD2F49F2650117D006C684E /* WakeUpSettingVC.swift in Sources */,
 				7FE16094269DE76100B8EF26 /* WakeUpCardTableListHeaderView.swift in Sources */,
 				7F6E40D227873A2400B9D54B /* WakeUpAndCutAlertVC.swift in Sources */,
+				7FC7BE7E2BF8A62000468A6D /* keyApi.swift in Sources */,
 				7FE523D32646C34B00B7D1B0 /* NotUseWakeUpCardView.swift in Sources */,
 				7F9ADA7427492686005CEAAA /* UIButton+Ext.swift in Sources */,
 				7F81B8E126A946AD00E00686 /* WalkThroughByPageViewControllerVC.swift in Sources */,
@@ -826,7 +827,6 @@
 				7FE1608B269C9B9700B8EF26 /* NewRegistrationUserGoalSettingVC.swift in Sources */,
 				7FAC3661264C1850003675DC /* WakeUpCardTableListVC.swift in Sources */,
 				7F6E40C92783129100B9D54B /* EditWakeUpAlarmTimeVC.swift in Sources */,
-				7F8273E326BD7A5A00584407 /* keyApi.swift in Sources */,
 				7F9A8B61267DFD200025F690 /* TextOutlineShapeView.swift in Sources */,
 				7FAC365F264C163A003675DC /* WakeUpCardTableListCell.swift in Sources */,
 				7FE523D02646C2A100B7D1B0 /* NotUseWakeUpCardCollectionListCell.swift in Sources */,

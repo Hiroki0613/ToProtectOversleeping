@@ -1,11 +1,11 @@
 name: abseil, nameSpecified: 
 body: 
                    …
-version: 1.20211102.0
+version: 1.20240116.2
 
 name: BoringSSL-GRPC, nameSpecified: 
 body: BoringSSL is a fork …
-version: 0.0.24
+version: 0.0.32
 
 name: EAIntroView, nameSpecified: 
 body: MIT License
@@ -20,66 +20,101 @@ version: 1.1.0
 name: Firebase, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
 
 name: FirebaseAnalytics, nameSpecified: 
-body: Copyright 2021 Googl…
-version: 8.15.0
+body: Copyright 2022 Googl…
+version: 10.25.0
+
+name: FirebaseAppCheckInterop, nameSpecified: 
+body: 
+                   …
+version: 10.25.0
 
 name: FirebaseAuth, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
+
+name: FirebaseAuthInterop, nameSpecified: 
+body: 
+                   …
+version: 10.25.0
 
 name: FirebaseCore, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
 
-name: FirebaseCoreDiagnostics, nameSpecified: 
+name: FirebaseCoreExtension, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
+
+name: FirebaseCoreInternal, nameSpecified: 
+body: 
+                   …
+version: 10.25.0
 
 name: FirebaseCrashlytics, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
 
 name: FirebaseFirestore, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
+
+name: FirebaseFirestoreInternal, nameSpecified: 
+body: 
+                   …
+version: 10.25.0
 
 name: FirebaseInstallations, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
+
+name: FirebaseRemoteConfigInterop, nameSpecified: 
+body: 
+                   …
+version: 10.25.0
+
+name: FirebaseSessions, nameSpecified: 
+body: 
+                   …
+version: 10.25.0
+
+name: FirebaseSharedSwift, nameSpecified: 
+body: 
+                   …
+version: 10.25.0
 
 name: FirebaseStorage, nameSpecified: 
 body: 
                    …
-version: 8.15.0
+version: 10.25.0
 
 name: FloatingPanel, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 2.5.2
+version: 2.8.2
 
 name: GoogleAppMeasurement, nameSpecified: 
-body: Copyright 2021 Googl…
-version: 8.15.0
+body: Copyright 2022 Googl…
+version: 10.25.0
 
 name: GoogleDataTransport, nameSpecified: 
 body: 
                    …
-version: 9.1.2
+version: 9.4.1
 
 name: GoogleUtilities, nameSpecified: 
 body: 
                    …
-version: 7.7.0
+version: 7.13.3
 
 name: gRPC-C++, nameSpecified: 
 body: 
@@ -89,12 +124,12 @@ version:
 name: gRPC-Core, nameSpecified: 
 body: 
                    …
-version: 1.44.0
+version: 1.62.5
 
 name: GTMSessionFetcher, nameSpecified: 
 body: 
                    …
-version: 1.7.2
+version: 3.4.1
 
 name: InputBarAccessoryView, nameSpecified: 
 body: 
@@ -103,31 +138,27 @@ version: 5.5.0
 
 name: Instructions, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.1
+version: 2.3.0
 
 name: KeychainSwift, nameSpecified: 
 body: The MIT License
 
 Cop…
-version: 20.0.0
+version: 24.0.0
 
 name: leveldb-library, nameSpecified: 
 body: Copyright (c) 2011 T…
-version: 1.22.1
-
-name: Libuv-gRPC, nameSpecified: 
-body: libuv is licensed fo…
-version: 0.0.10
+version: 1.22.5
 
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 3.22.0
+version: 3.25.1
 
 name: lottie-ios, nameSpecified: 
 body:                     …
-version: 3.3.0
+version: 4.4.3
 
 name: MessageKit, nameSpecified: 
 body: MIT License
@@ -137,17 +168,27 @@ version: 3.8.0
 
 name: nanopb, nameSpecified: 
 body: Copyright (c) 2011 P…
-version: 2.30908.0
+version: 2.30910.0
 
 name: NendSDK_iOS, nameSpecified: 
 body: Copyright 2020 FAN C…
-version: 7.3.0
+version: 8.2.0
 
 name: PromisesObjC, nameSpecified: 
 body: 
                    …
-version: 2.1.0
+version: 2.4.0
+
+name: PromisesSwift, nameSpecified: 
+body: 
+                   …
+version: 2.4.0
+
+name: RecaptchaInterop, nameSpecified: 
+body: 
+                   …
+version: 100.0.0
 
 add-version-numbers: false
 
-LicensePlist Version: 3.22.0
+LicensePlist Version: 3.25.1
